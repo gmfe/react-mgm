@@ -1,0 +1,45 @@
+.msg {
+  padding-top: @MsgPaddingTop;
+  text-align: center;
+
+  .icon-area {
+    margin-bottom: @MsgIconGap;
+  }
+
+  .text-area {
+    margin-bottom: @MsgTextGap;
+    padding: 0 20px;
+  }
+  .msg-title {
+    margin-bottom: @MsgTitleGap;
+    font-weight: 400;
+    font-size: 20px;
+  }
+  .msg-desc {
+    font-size: 14px;
+    color: @descColor;
+  }
+
+  .opr-area {
+    margin-bottom: @MsgOprGap;
+  }
+
+  .extra-area {
+    margin-bottom: @MsgExtraAreaGap;
+    font-size: 14px;
+    color: @descColor;
+    a {
+      color: @linkColor;
+    }
+  }
+}
+
+@media screen and (min-height: @MsgExtraAreaOfMinHeight) {
+  .extra-area {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+}

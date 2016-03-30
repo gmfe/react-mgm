@@ -1,0 +1,28 @@
+{
+  "name": "react-wx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --port 6767 --host 0.0.0.0 --inline --hot --devtool eval --progress --color --profile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmfe/react-wx.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gmfe/react-wx/issues"
+  },
+  "homepage": "https://github.com/gmfe/react-wx#readme",
+  "devDependencies": {
+    "classnames": "^2.2.3",
+    "gm-util": "^2.0.0",
+    "husky": "^0.11.4",
+    "react": "^0.14.8",
+    "webpack": "^1.12.14",
+    "weui": "^0.4.0"
+  }
+}

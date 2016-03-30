@@ -1,0 +1,26 @@
+// tab
+.nav-tabs {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  background: @bg;
+}
+
+.nav-tabs li {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  text-align: center;
+  list-style: none;
+}
+
+.nav-tabs li > div {
+  padding: 10px 0 7px;
+  border-bottom: 3px solid transparent;
+  display: inline-block;
+}
+
+.nav-tabs .active > div {
+  color: @primaryColor;
+  border-bottom: 3px solid @primaryBorderColor;
+}

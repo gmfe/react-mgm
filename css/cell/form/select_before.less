@@ -1,0 +1,29 @@
+@import "select";
+
+.select-before {
+  padding-right: @CellGapH;
+  .select {
+    width: auto;
+  }
+  .cell-hd {
+    position: relative;
+    &:after {
+      .setRightLine(@CellBorderColor);
+    }
+    &:before {
+      content: " ";
+      .setArrowWap(right, 6px, #C8C8CD, 2px);
+
+      position: absolute;
+      top: 50%;
+      right: @CellGapH;
+      margin-top: -3px;
+    }
+  }
+  .cell-bd {
+    padding-left: @CellGapH;
+    &:after {
+      display: none;
+    }
+  }
+}

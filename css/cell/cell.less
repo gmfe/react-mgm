@@ -1,0 +1,73 @@
+.cell {
+  // onepx
+  position: relative;
+  &:before {
+    .setTopLine(@CellBorderColor);
+    left: @CellGapH;
+  }
+  &:first-child {
+    &:before {
+      display: none;
+    }
+  }
+}
+
+.cells {
+  margin-top: @CellsMarginTop;
+  background-color: @CellBg;
+  line-height: @CellLineHeight;
+  font-size: @CellFontSize; //cell中间有效高度23px，跟客户端默认图标尺寸一致
+
+  overflow: hidden; //因为每个cell的border使用before元素left搞的，ie下伪元素的containing block估计跟标准不同，在cell上用oh不生效
+
+  // onepx
+  position: relative;
+  &:before {
+    .setTopLine(@CellBorderColor);
+  }
+  &:after {
+    .setBottomLine(@CellBorderColor);
+  }
+}
+
+.cells-title {
+  margin-top: .77em; // 15px - 行高
+  margin-bottom: .3em; // 8px - 行高
+  padding-left: @CellGapH;
+  padding-right: @CellGapH;
+  color: @descColor;
+  font-size: @CellTipsFontSize;
+
+  & + .cells {
+    margin-top: 0;
+  }
+}
+
+.cells-tips {
+  margin-top: .3em; // 8px - 行高
+  color: @descColor;
+  text-align: center;
+  font-size: @CellTipsFontSize;
+}
+
+.cell {
+  padding: @CellGapV @CellGapH;
+  position: relative; //这个是为了兼容cells容器onepx方案被before挡住而做的
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.cell-ft {
+  text-align: right;
+  color: @descColor;
+}
+
+.cell-primary {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}

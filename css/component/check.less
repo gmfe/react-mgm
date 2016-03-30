@@ -1,0 +1,70 @@
+
+.check-label {
+  .setTapColor();
+}
+
+.check {
+  position: absolute;
+  left: -9999em;
+}
+
+.cells-checkbox {
+  .cell-hd {
+    padding-right: @CellInnerGapH;
+  }
+  .cell {
+    &:active {
+      background-color: #ECECEC;
+    }
+  }
+  .icon-checked {
+    &:before {
+      content: '\EA01';
+      color: #C9C9C9;
+      font-size: 23px;
+      display: block;
+    }
+  }
+}
+
+// method2 accessbility
+.check {
+  // checkbox
+  .cells-checkbox & {
+    &:checked {
+      & + .icon-checked {
+        &:before {
+          content: '\EA06';
+          color: #09BB07;
+        }
+      }
+    }
+  }
+}
+
+// method2 accessbility
+.cells-radio {
+  .cell-ft {
+    padding-left: @CellInnerGapH;
+  }
+  .cell {
+    &:active {
+      background-color: #ECECEC;
+    }
+  }
+}
+
+.check {
+  // radio
+  .cells-radio & {
+    &:checked {
+      & + .icon-checked {
+        &:before {
+          content: '\EA08';
+          color: #09BB07;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

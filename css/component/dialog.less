@@ -1,0 +1,91 @@
+@DialogBackgroundColor: #FAFAFC;
+@DialogLineColor: #D5D5D6;
+@DialogLinkColor: #3CC51F;
+
+.dialog {
+  position: fixed;
+  z-index: 200;
+  width: 85%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: @DialogBackgroundColor;
+  text-align: center;
+  border-radius: 3px;
+  .dialog-confirm & {
+    .dialog-hd {
+      text-align: left;
+      padding: 1.2em 20px .5em;
+    }
+    .dialog-bd {
+      text-align: left;
+    }
+  }
+}
+
+.dialog-hd {
+  padding: 1.2em 0 .5em;
+}
+
+.dialog-title {
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.dialog-bd {
+  padding: 0 20px;
+  font-size: 15px;
+  color: @descColor;
+}
+
+.dialog-ft {
+  position: relative;
+  line-height: 42px;
+  margin-top: 20px;
+  font-size: 17px;
+  display: flex;
+  a {
+    display: block;
+    flex: 1;
+    color: @DialogLinkColor;
+    text-decoration: none;
+    .setTapColor;
+    &:active, &:hover {
+      text-decoration: none;
+    }
+  }
+  &:after {
+    content: " ";
+    .setTopLine(@DialogLineColor);
+  }
+  .dialog-confirm & {
+    a {
+      position: relative;
+      &:after {
+        content: " ";
+        .setLeftLine(@DialogLineColor);
+      }
+      &:first-child {
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.btn-dialog {
+  &.default {
+    color: #353535;
+  }
+  &.primary {
+    color: #0BB20C;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .dialog {
+    width: 35%;
+  }
+}
