@@ -34,6 +34,7 @@
     "react": "^0.14.8",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1",
     "weui": "^0.4.0"
   }
 }
