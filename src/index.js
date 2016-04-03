@@ -1,5 +1,3 @@
-import Layout from './layout';
-import Flex from './flex';
 import Header from './header';
 import Storage from './storage';
 import Toast from './toast';
@@ -9,7 +7,7 @@ import Droper from './droper';
 import NProgress from './nprogress';
 import Textarea from './textarea';
 import Infinite from './infinite';
-import Util from './util';
+import Util from 'gm-util';
 import '../css/react-gmm.less';
 
 var ReactGMM = {
