@@ -1,0 +1,45 @@
+@import "./border";
+@import "./gap";
+@import "./img";
+@import "./gap";
+
+// 和weui 互补
+a.decoration {
+  text-decoration: underline;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.inline {
+  display: inline;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.absoluteRight {
+  position: absolute;
+  right: 0;
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table
+  }
+  &:after {
+    clear: both;
+  }
+}

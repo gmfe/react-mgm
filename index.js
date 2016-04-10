@@ -3,6 +3,32 @@ import _ from 'underscore';
 import ReactDOM from 'react-dom';
 
 
+import './src/index.less';
+
+const Gap = React.createClass({
+    render(){
+        return (
+            <div>
+                <i>gap</i>
+                <div>
+                    gap0
+                    <div className="gap0"></div>
+                    gap5
+                    <div className="gap5"></div>
+                    gap10
+                    <div className="gap10"></div>
+                    gap15
+                    <div className="gap15"></div>
+                    end
+                </div>
+                <div>
+                    <div className="border padding5 margin5">padding5 margin5</div>
+                </div>
+            </div>
+        );
+    }
+});
+
 const App = React.createClass({
     getInitialState(){
         return {
@@ -11,7 +37,9 @@ const App = React.createClass({
     },
     render(){
         return (
-            <div>asfaf</div>
+            <div>
+                <Gap></Gap>
+            </div>
         );
     }
 });
