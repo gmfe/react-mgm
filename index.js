@@ -2,27 +2,42 @@ import React from 'react';
 import _ from 'underscore';
 import ReactDOM from 'react-dom';
 
-
+import ReactMGM from './src/index';
 import './src/index.less';
 
-const Gap = React.createClass({
+const {Flex} = ReactMGM;
+
+
+const FlexWrap = React.createClass({
+    render(){
+        return (
+            <div>
+                <i>flex</i>
+                <div>
+                    <Flex>
+                        <Flex className="border">
+                            1
+                        </Flex>
+                        <Flex flex className="border">flex</Flex>
+                    </Flex>
+                </div>
+            </div>
+        );
+    }
+});
+
+const GapWrap = React.createClass({
     render(){
         return (
             <div>
                 <i>gap</i>
                 <div>
-                    gap0
-                    <div className="gap0"></div>
-                    gap5
-                    <div className="gap5"></div>
-                    gap10
-                    <div className="gap10"></div>
-                    gap15
-                    <div className="gap15"></div>
-                    end
+                    gap-5
+                    <div className="gap-5"></div>
+                    gap-5
                 </div>
                 <div>
-                    <div className="border padding5 margin5">padding5 margin5</div>
+                    <div className="border padding-5 margin-5">padding-5 margin-5</div>
                 </div>
             </div>
         );
@@ -38,7 +53,8 @@ const App = React.createClass({
     render(){
         return (
             <div>
-                <Gap></Gap>
+                <GapWrap></GapWrap>
+                <FlexWrap></FlexWrap>
             </div>
         );
     }

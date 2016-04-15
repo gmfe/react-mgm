@@ -24,28 +24,28 @@ var Flex = React.createClass({
     },
     render() {
         const cn = classNames({
-            'gm-flex': true,
+            'flex': true,
 
-            'gm-flex-auto': this.props.auto,
-            'gm-flex-none': this.props.width || this.props.height,
+            'flex-auto': this.props.auto,
+            'flex-none': this.props.width || this.props.height,
 
-            'gm-flex-row': this.props.row,
-            'gm-flex-column': this.props.column,
+            'flex-row': this.props.row,
+            'flex-column': this.props.column,
 
-            'gm-flex-wrap': this.props.wrap,
-            'gm-flex-nowrap': this.props.nowrap,
+            'flex-wrap': this.props.wrap,
+            'flex-nowrap': this.props.nowrap,
 
-            'gm-flex-justify-start': this.props.justifyStart,
-            'gm-flex-justify-end': this.props.justifyEnd,
-            'gm-flex-justify-center': this.props.justifyCenter,
-            'gm-flex-justify-between': this.props.justifyBetween,
-            'gm-flex-justify-around': this.props.justifyAround,
+            'flex-justify-start': this.props.justifyStart,
+            'flex-justify-end': this.props.justifyEnd,
+            'flex-justify-center': this.props.justifyCenter,
+            'flex-justify-between': this.props.justifyBetween,
+            'flex-justify-around': this.props.justifyAround,
 
-            'gm-flex-align-start': this.props.alignStart,
-            'gm-flex-align-end': this.props.alignEnd,
-            'gm-flex-align-center': this.props.alignCenter,
-            'gm-flex-align-baseline': this.props.alignBaseline,
-            'gm-flex-align-stretch': this.props.alignStretch
+            'flex-align-start': this.props.alignStart,
+            'flex-align-end': this.props.alignEnd,
+            'flex-align-center': this.props.alignCenter,
+            'flex-align-baseline': this.props.alignBaseline,
+            'flex-align-stretch': this.props.alignStretch
         }, this.props.className);
 
         let style = Object.assign({}, this.props.style);

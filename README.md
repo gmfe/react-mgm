@@ -1,5 +1,5 @@
 # 微信
-微信端项目
+移动端（主微信端）项目
 
 ## 依赖
 
@@ -9,3 +9,6 @@ underscore
 classnames
 
 weui
+
+## 开发
+[传送门](./README.dev.md)
