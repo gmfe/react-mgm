@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config webpack.config.dev.js --port 4000 --host 0.0.0.0 --inline --hot --devtool eval --progress --color --profile"
+    "precommit": "eslint ./src/component/",
+    "pre": "npm install;",
+    "clear": "rm -rf build; mkdir build;",
+    "start": "npm run clear; webpack-dev-server --config webpack.config.dev.js --port 4000 --host 0.0.0.0 --inline --hot --devtool eval --progress --color --profile"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,8 @@
     "babel-preset-react": "^6.5.0",
     "classnames": "^2.2.3",
     "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
+    "gm-font": "^2.0.1",
     "gm-util": "^2.0.0",
     "husky": "^0.11.4",
     "less": "^2.6.1",
@@ -36,6 +40,7 @@
     "react-dom": "^0.14.8",
     "style-loader": "^0.13.1",
     "underscore": "^1.8.3",
+    "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
     "weui": "^0.4.1"

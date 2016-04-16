@@ -13,5 +13,11 @@
 
 如需声明less变量请通知liyatang
 
+### z-index层级管理
+z-index < 10000
+mask 100
+toast 800
+nprogress 9999
+
 ## js规范
 在comonent目录

@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import classNames from 'classnames';
 import Mask from './mask';
+import Loading from './loading';
 
-let toastsContainerId = '_gmm_toasts_container' + (Math.random() + '').slice(2);
+let toastsContainerId = '_mgm_toasts_container' + (Math.random() + '').slice(2);
 let toastsContainer = document.getElementById(toastsContainerId);
 
 if (!toastsContainer) {
     toastsContainer = document.createElement('div');
-    toastsContainer.className = 'gmm-toasts';
+    toastsContainer.className = 'mgm-toasts';
     toastsContainer.id = toastsContainerId;
     document.body.appendChild(toastsContainer);
 }
 
-let ToastStatics = {
+let ToastStatics = {};
+ToastStatics = {
     _queue: [],
     _ing: false,
     _render(){
@@ -30,7 +31,7 @@ let ToastStatics = {
         let _b_onFinish = options.onFinish;
 
         let div = document.createElement('div');
-        div.className = 'gmm-toasts-cell';
+        div.className = 'mgm-toasts-cell';
         toastsContainer.appendChild(div);
 
         options.onFinish = function () {
@@ -55,23 +56,53 @@ let ToastStatics = {
         //toastsContainer.removeChild(div);
     },
     tip(options) {
+        if (typeof options === 'string') {
+            options = {
+                children: options
+            };
+        }
         options = Object.assign({show: true}, options);
         ToastStatics._queue.push(options);
         return ToastStatics._render();
     },
     success(options) {
+        if (typeof options === 'string') {
+            options = {
+                children: options
+            };
+        }
         return ToastStatics.tip(Object.assign({success: true}, options));
     },
     info(options) {
+        if (typeof options === 'string') {
+            options = {
+                children: options
+            };
+        }
         return ToastStatics.tip(Object.assign({info: true}, options));
     },
-    warn(options) {
-        return ToastStatics.tip(Object.assign({warn: true}, options));
+    warning(options) {
+        if (typeof options === 'string') {
+            options = {
+                children: options
+            };
+        }
+        return ToastStatics.tip(Object.assign({warning: true}, options));
     },
     danger(options) {
+        if (typeof options === 'string') {
+            options = {
+                children: options
+            };
+        }
         return ToastStatics.tip(Object.assign({danger: true}, options));
     },
     loading(options) {
+        if (typeof options === 'string') {
+            options = {
+                children: options
+            };
+        }
         return ToastStatics.tip(Object.assign({loading: true}, options));
     }
 };
@@ -89,7 +120,7 @@ let Toast = React.createClass({
         icon: React.PropTypes.any,
         success: React.PropTypes.bool,
         info: React.PropTypes.bool,
-        warn: React.PropTypes.bool,
+        warning: React.PropTypes.bool,
         danger: React.PropTypes.bool
     },
     getDefaultProps(){
@@ -122,13 +153,13 @@ let Toast = React.createClass({
 
 
         if (this.props.loading) {
-            icon = undefined;
+            icon = <Loading></Loading>;
             children = children || '加载中...';
         } else if (this.props.success) {
             icon = <i className="ifont ifont-success"></i>;
         } else if (this.props.info) {
             icon = <i className="ifont ifont-info-circle"></i>;
-        } else if (this.props.warn) {
+        } else if (this.props.warning) {
             icon = <i className="ifont ifont-warning"></i>;
         } else if (this.props.danger) {
             icon = <i className="ifont ifont-close"></i>;

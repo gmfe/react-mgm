@@ -2,11 +2,11 @@ import React from 'react';
 import _ from 'underscore';
 import ReactDOM from 'react-dom';
 
+import 'gm-font/iconfont.css';
 import ReactMGM from './src/index';
 import './src/index.less';
 
-const {Flex, Textarea} = ReactMGM;
-
+const {Flex, Textarea, NProgress, Toast, Loading} = ReactMGM;
 
 const FlexWrap = React.createClass({
     render(){
@@ -64,6 +64,36 @@ const TextareaWrap = React.createClass({
     }
 });
 
+const ToastWrap = React.createClass({
+    render(){
+        return (
+            <div>
+                <button className="weui_btn weui_btn_primary weui_btn_mini" onClick={this.handleToast}>Toast</button>
+            </div>
+        );
+    },
+    handleToast(){
+        Toast.tip('adf');
+        Toast.success({
+            children: 'chenggong'
+        });
+        Toast.info('chenggong');
+        Toast.warning('chenggong');
+        Toast.danger('chenggong');
+        Toast.loading('loading');
+    }
+});
+
+const LoadingWrap = React.createClass({
+    render(){
+        return (
+            <div>
+                <Loading></Loading>
+            </div>
+        );
+    }
+});
+
 const App = React.createClass({
     getInitialState(){
         return {
@@ -76,6 +106,8 @@ const App = React.createClass({
                 <GapWrap></GapWrap>
                 <FlexWrap></FlexWrap>
                 <TextareaWrap></TextareaWrap>
+                <ToastWrap></ToastWrap>
+                <LoadingWrap></LoadingWrap>
             </div>
         );
     }
@@ -84,3 +116,5 @@ const App = React.createClass({
 ReactDOM.render(
     <App></App>
     , document.getElementById('appContainer'));
+
+NProgress.start();

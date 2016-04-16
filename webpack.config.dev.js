@@ -18,7 +18,7 @@ module.exports = {
     plugins: [
         new webpack.NoErrorsPlugin(),
         new AssetsPlugin({
-            filename: 'webpack-assets.js',
+            filename: 'build/webpack-assets.js',
             processOutput: function (assets) {
                 return 'window.WEBPACK_ASSETS = ' + JSON.stringify(assets);
             }
@@ -34,6 +34,9 @@ module.exports = {
         }, {
             test: /\.(css|less)$/,
             loader: 'style!css!postcss!less'
+        }, {
+            test: /iconfont\.(woff|woff2|ttf|eot|svg)($|\?)/,
+            loader: 'url?limit=1024&name=[name].[ext]'
         }]
     },
     postcss: function () {

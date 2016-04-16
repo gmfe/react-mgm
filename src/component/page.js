@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react'
-import classNames from 'classnames'
+import React, {PropTypes} from 'react';
+import classNames from 'classnames';
 
 const Page = React.createClass({
     propTypes: {
@@ -18,18 +18,18 @@ const Page = React.createClass({
         });
     },
     render() {
-        const {children, fix, className, ...props} = this.props;
+        const {children, fix, className} = this.props;
         const {tabbar} = this.state;
         const classes = classNames({
             'page': true,
         }, className);
         return (
-            <div className={classes} {...props}>
+            <div className={classes} {...this.props}>
                 <div className='page-content'>
                     {children}
                 </div>
             </div>
-        )
+        );
     }
 });
 

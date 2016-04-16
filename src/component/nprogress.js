@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-var containerId = '_gm_nprogress_container' + (Math.random() + '').slice(2);
+var containerId = '_mgm_nprogress_container' + (Math.random() + '').slice(2);
 var container = document.getElementById(containerId);
 if (!container) {
     container = document.createElement('div');

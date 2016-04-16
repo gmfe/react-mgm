@@ -10,5 +10,7 @@ classnames
 
 weui
 
+gm-font
+
 ## 开发
 [传送门](./README.dev.md)
