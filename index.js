@@ -14,7 +14,7 @@ const FlexWrap = React.createClass({
             <div>
                 <i>flex</i>
                 <div>
-                    <Flex>
+                    <Flex wrap>
                         <Flex className="border">
                             1
                         </Flex>
