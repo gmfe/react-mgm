@@ -1,22 +1,16 @@
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import _ from 'underscore';
 
 var Textarea = React.createClass({
-    getDefaultProps(){
-        return {
-            full: 10,
-            score: 0
-        };
-    },
     render() {
-        let cn = classNames({
+        let cn = classnames({
             'textarea-adapter': true
         });
         return (
             <div className={cn}>
-                <pre><span>{this.props.value}</span></pre>
-                <textarea className="textarea" {...this.props}></textarea>
+                <pre>{this.props.value}</pre>
+                <textarea {...this.props} className={classnames("weui_textarea", this.props.className)}></textarea>
             </div>
         );
     }

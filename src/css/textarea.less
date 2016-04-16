@@ -1,0 +1,24 @@
+.textarea-adapter {
+  position: relative;
+  min-height: 8em; // 5em * 1.6(line-height)
+  border: 1px solid @globalBorderColor;
+}
+
+.textarea-adapter pre {
+  display: block;
+  font-size: 1.22em; // 不知道为啥pre font-size小了，故16/13约等于1.22
+  visibility: hidden;
+}
+
+.textarea-adapter pre:after {
+  display: block;
+  content: " ";
+}
+
+.textarea-adapter textarea {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

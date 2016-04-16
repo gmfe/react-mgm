@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import ReactMGM from './src/index';
 import './src/index.less';
 
-const {Flex} = ReactMGM;
+const {Flex, Textarea} = ReactMGM;
 
 
 const FlexWrap = React.createClass({
@@ -44,6 +44,26 @@ const GapWrap = React.createClass({
     }
 });
 
+const TextareaWrap = React.createClass({
+    getInitialState(){
+        return {
+            value: 'a\na\na\na'
+        };
+    },
+    render(){
+        return (
+            <div>
+                <Textarea value={this.state.value} onChange={this.handleChange}></Textarea>
+            </div>
+        );
+    },
+    handleChange(event){
+        this.setState({
+            value: event.target.value
+        });
+    }
+});
+
 const App = React.createClass({
     getInitialState(){
         return {
@@ -55,6 +75,7 @@ const App = React.createClass({
             <div>
                 <GapWrap></GapWrap>
                 <FlexWrap></FlexWrap>
+                <TextareaWrap></TextareaWrap>
             </div>
         );
     }
