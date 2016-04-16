@@ -1,27 +1,22 @@
 import React, {PropTypes} from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 const Page = React.createClass({
     propTypes: {
         children: PropTypes.node,
         className: PropTypes.string,
+        white: PropTypes.bool,
         navbar: PropTypes.node,
-        toolbar: PropTypes.node,
+        tabbar: PropTypes.node,
     },
     getDefaultProps(){
         return {};
     },
-    componentWillMount() {
-        const {ui} = this.context;
-        this.setState({
-            tabbar: ui.getTabbar()
-        });
-    },
     render() {
-        const {children, fix, className} = this.props;
-        const {tabbar} = this.state;
-        const classes = classNames({
+        const {children, className} = this.props;
+        const classes = classnames({
             'page': true,
+            'page-white': this.props.white
         }, className);
         return (
             <div className={classes} {...this.props}>

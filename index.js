@@ -1,18 +1,18 @@
 import React from 'react';
-import _ from 'underscore';
 import ReactDOM from 'react-dom';
+import {Router, Route, IndexRoute, IndexRedirect, hashHistory, Link} from 'react-router';
 
 import 'gm-font/iconfont.css';
 import ReactMGM from './src/index';
 import './src/index.less';
 
-const {Flex, Textarea, NProgress, Toast, Loading} = ReactMGM;
+const {Flex, Textarea, NProgress, Toast, Loading, Page} = ReactMGM;
 
 const FlexWrap = React.createClass({
     render(){
         return (
-            <div>
-                <i>flex</i>
+            <Page white>
+                <h2>flex</h2>
                 <div>
                     <Flex wrap>
                         <Flex className="border">
@@ -21,7 +21,7 @@ const FlexWrap = React.createClass({
                         <Flex flex className="border">flex</Flex>
                     </Flex>
                 </div>
-            </div>
+            </Page>
         );
     }
 });
@@ -29,7 +29,7 @@ const FlexWrap = React.createClass({
 const GapWrap = React.createClass({
     render(){
         return (
-            <div>
+            <Page white>
                 <i>gap</i>
                 <div>
                     gap-5
@@ -39,7 +39,7 @@ const GapWrap = React.createClass({
                 <div>
                     <div className="border padding-5 margin-5">padding-5 margin-5</div>
                 </div>
-            </div>
+            </Page>
         );
     }
 });
@@ -52,9 +52,10 @@ const TextareaWrap = React.createClass({
     },
     render(){
         return (
-            <div>
+            <Page>
+                <h2>textarea</h2>
                 <Textarea value={this.state.value} onChange={this.handleChange}></Textarea>
-            </div>
+            </Page>
         );
     },
     handleChange(event){
@@ -67,19 +68,20 @@ const TextareaWrap = React.createClass({
 const ToastWrap = React.createClass({
     render(){
         return (
-            <div>
+            <Page white>
+                <h2>toast</h2>
                 <button className="weui_btn weui_btn_primary weui_btn_mini" onClick={this.handleToast}>Toast</button>
-            </div>
+            </Page>
         );
     },
     handleToast(){
-        Toast.tip('adf');
+        Toast.tip('tip');
         Toast.success({
-            children: 'chenggong'
+            children: 'success'
         });
-        Toast.info('chenggong');
-        Toast.warning('chenggong');
-        Toast.danger('chenggong');
+        Toast.info('info');
+        Toast.warning('warning');
+        Toast.danger('danger');
         Toast.loading('loading');
     }
 });
@@ -87,14 +89,23 @@ const ToastWrap = React.createClass({
 const LoadingWrap = React.createClass({
     render(){
         return (
-            <div>
+            <Page white>
+                <h2>loading</h2>
                 <Loading></Loading>
-            </div>
+            </Page>
         );
     }
 });
 
 const App = React.createClass({
+    render(){
+        return (
+            <Page>{this.props.children}</Page>
+        );
+    }
+});
+
+const Home = React.createClass({
     getInitialState(){
         return {
             left: false
@@ -102,19 +113,76 @@ const App = React.createClass({
     },
     render(){
         return (
-            <div>
-                <GapWrap></GapWrap>
-                <FlexWrap></FlexWrap>
-                <TextareaWrap></TextareaWrap>
-                <ToastWrap></ToastWrap>
-                <LoadingWrap></LoadingWrap>
-            </div>
+            <Page>
+                <h2>React MGM</h2>
+                <div className="weui_cells_title">Component</div>
+                <div className="weui_cells weui_cells_access">
+                    <Link to="/gap" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">gap</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/flex" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">flex</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/textarea" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">textarea</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/toast" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">toast</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/loading" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">loading</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/nprogress" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">nprogress</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                </div>
+            </Page>
+        );
+    }
+});
+
+const NProgressWrap = React.createClass({
+    render(){
+        return (
+            <Page white>
+                <h2>nprogress</h2>
+                <button className="weui_btn weui_btn_default weui_btn_mini" onClick={this.handleStart}>start</button>
+                <button className="weui_btn weui_btn_default weui_btn_mini" onClick={this.handleDone}>done</button>
+            </Page>
+        );
+    },
+    handleStart(){
+        NProgress.start();
+    },
+    handleDone(){
+        NProgress.done();
+    }
+});
+
+const Root = React.createClass({
+    render(){
+        return (
+            <Router history={hashHistory}>
+                <Route path="/" component={App}>
+                    <IndexRoute component={Home}></IndexRoute>
+                    <Route path="gap" component={GapWrap}></Route>
+                    <Route path="flex" component={FlexWrap}></Route>
+                    <Route path="textarea" component={TextareaWrap}></Route>
+                    <Route path="toast" component={ToastWrap}></Route>
+                    <Route path="loading" component={LoadingWrap}></Route>
+                    <Route path="nprogress" component={NProgressWrap}></Route>
+                </Route>
+            </Router>
         );
     }
 });
 
 ReactDOM.render(
-    <App></App>
+    <Root></Root>
     , document.getElementById('appContainer'));
-
-NProgress.start();

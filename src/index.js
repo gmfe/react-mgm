@@ -5,6 +5,7 @@ import NProgress from './component/nprogress';
 import Mask from './component/mask';
 import Toast from './component/toast';
 import Loading from './component/loading';
+import Page from './component/page';
 
 var ReactGMM = {
     Flex,
@@ -13,6 +14,7 @@ var ReactGMM = {
     Mask,
     Toast,
     Loading,
+    Page,
     Util
 };
 
