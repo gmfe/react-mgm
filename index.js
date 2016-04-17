@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, IndexRedirect, hashHistory, Link} from 'react-router';
+import {Router, Route, IndexRoute, hashHistory, Link} from 'react-router';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import 'gm-font/iconfont.css';
 import ReactMGM from './src/index';
@@ -97,14 +98,6 @@ const LoadingWrap = React.createClass({
     }
 });
 
-const App = React.createClass({
-    render(){
-        return (
-            <Page>{this.props.children}</Page>
-        );
-    }
-});
-
 const Home = React.createClass({
     getInitialState(){
         return {
@@ -143,6 +136,24 @@ const Home = React.createClass({
                     </Link>
                 </div>
             </Page>
+        );
+    }
+});
+
+const App = React.createClass({
+    render(){
+        console.log(this.props);
+        return (
+            <ReactCSSTransitionGroup
+                component={Page}
+                transitionName="page"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={500}
+            >
+                {React.cloneElement(this.props.children, {
+                    key: this.props.location.pathname
+                })}
+            </ReactCSSTransitionGroup>
         );
     }
 });

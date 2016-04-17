@@ -13,3 +13,42 @@
   }
 }
 
+//.page-enter {
+//  opacity: 0;
+//  transform: translate3d(100%, 0, 0);
+//  transition: opacity .2s ease-in, transform .2s ease-in;
+//}
+//
+//.page-enter.page-enter-active {
+//  opacity: 1;
+//  transform: translate3d(0, 0, 0);
+//}
+//
+//.page-leave {
+//  opacity: 1;
+//  transform: translate3d(0, 0, 0);
+//  transition: opacity .2s ease-in, transform .2s ease-in;
+//}
+//
+//.page-leave.page-leave-active {
+//  opacity: 0;
+//  transform: translate3d(-20%, 0, 0);
+//}
+
+.page-enter {
+  opacity: 0.01;
+  transition: opacity .2s ease-in;
+}
+
+.page-enter.page-enter-active {
+  opacity: 1;
+}
+
+.page-leave {
+  opacity: 1;
+  transition: opacity .2s ease-in;
+}
+
+.page-leave.page-leave-active {
+  opacity: 0;
+}
