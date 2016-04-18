@@ -35,7 +35,7 @@ const Home = React.createClass({
     },
     render(){
         return (
-            <Page>
+            <Page header={<Header title="标题"></Header>} tabbar={this.renderTabbar()}>
                 <h2>React MGM</h2>
                 <div className="weui_cells_title">Component</div>
                 <div className="weui_cells weui_cells_access">
@@ -68,7 +68,38 @@ const Home = React.createClass({
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
+                <div style={{height: 500}}></div>
             </Page>
+        );
+    },
+    renderTabbar(){
+        return (
+            <div className="weui_tabbar">
+                <a href="javascript:;" className="weui_tabbar_item weui_bar_item_on">
+                    <div className="weui_tabbar_icon">
+                        <img src="https://bshop.guanmai.cn/static/app/img/nav11.png" alt=""/>
+                    </div>
+                    <p className="weui_tabbar_label">全部菜品</p>
+                </a>
+                <a href="javascript:;" className="weui_tabbar_item">
+                    <div className="weui_tabbar_icon">
+                        <img src="https://bshop.guanmai.cn/static/app/img/nav2.png" alt=""/>
+                    </div>
+                    <p className="weui_tabbar_label">购物车</p>
+                </a>
+                <a href="javascript:;" className="weui_tabbar_item">
+                    <div className="weui_tabbar_icon">
+                        <img src="https://bshop.guanmai.cn/static/app/img/nav3.png" alt=""/>
+                    </div>
+                    <p className="weui_tabbar_label">我的订单</p>
+                </a>
+                <a href="javascript:;" className="weui_tabbar_item">
+                    <div className="weui_tabbar_icon">
+                        <img src="https://bshop.guanmai.cn/static/app/img/nav4.png" alt=""/>
+                    </div>
+                    <p className="weui_tabbar_label">我的</p>
+                </a>
+            </div>
         );
     }
 });
@@ -94,7 +125,7 @@ const FlexWrap = React.createClass({
 const GapWrap = React.createClass({
     render(){
         return (
-            <Page header={<Header title="标题"></Header>}>
+            <Page white>
                 <div className="padding-10">
                     <i>gap</i>
                     <div>

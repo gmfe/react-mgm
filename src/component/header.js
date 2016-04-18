@@ -5,9 +5,7 @@ let Header = React.createClass({
         return (
             <div className="header">
                 {this.props.left ? this.props.left : (<a href="" className="button button-link pull-left header-left">
-                    <i className="icon-angle-left"></i>
-                    返回
-                </a>)}
+                    <i className="icon-angle-left"></i>返回</a>)}
                 {this.props.right ? this.props.right : null}
                 <h1 className="header-title">{this.props.title}</h1>
             </div>

@@ -18,18 +18,26 @@ const Page = React.createClass({
             'page': true,
             'page-white': this.props.white
         }, this.props.className);
-        return (
-            <Flex column {...this.props} className={classes}>
-                {this.props.header && (
-                    <Flex column>
-                        {this.props.header}
+        // 如果没有header tabbar 就简化html结构
+        if (this.props.header || this.props.tabbar) {
+            return (
+                <Flex column {...this.props} className={classes}>
+                    {this.props.header && (
+                        <Flex column>{this.props.header}</Flex>
+                    )}
+                    <Flex flex column className="page-content">
+                        {this.props.children}
                     </Flex>
-                )}
-                <Flex flex column className="page-content">
-                    {this.props.children}
+                    {this.props.tabbar && (
+                        <Flex column className="page-tabbar">{this.props.tabbar}</Flex>
+                    )}
                 </Flex>
-            </Flex>
-        );
+            );
+        } else {
+            return (
+                <div className={classes}>{this.props.children}</div>
+            );
+        }
     }
 });
 
