@@ -25,7 +25,7 @@ const Page = React.createClass({
                     {this.props.header && (
                         <Flex column>{this.props.header}</Flex>
                     )}
-                    <Flex flex column className="page-content">
+                    <Flex flex column className="page-content block">
                         {this.props.children}
                     </Flex>
                     {this.props.tabbar && (
