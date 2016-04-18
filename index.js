@@ -7,7 +7,71 @@ import 'gm-font/iconfont.css';
 import ReactMGM from './src/index';
 import './src/index.less';
 
-const {Flex, Textarea, NProgress, Toast, Loading, Page} = ReactMGM;
+const {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite} = ReactMGM;
+
+const App = React.createClass({
+    render(){
+        console.log(this.props);
+        return (
+            <ReactCSSTransitionGroup
+                component={Page}
+                transitionName="page"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={500}
+            >
+                {React.cloneElement(this.props.children, {
+                    key: this.props.location.pathname
+                })}
+            </ReactCSSTransitionGroup>
+        );
+    }
+});
+
+const Home = React.createClass({
+    getInitialState(){
+        return {
+            left: false
+        };
+    },
+    render(){
+        return (
+            <Page>
+                <h2>React MGM</h2>
+                <div className="weui_cells_title">Component</div>
+                <div className="weui_cells weui_cells_access">
+                    <Link to="/gap" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">gap</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/flex" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">flex</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/textarea" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">textarea</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/toast" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">toast</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/loading" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">loading</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/nprogress" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">nprogress</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/infinite" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">infinite</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                </div>
+            </Page>
+        );
+    }
+});
 
 const FlexWrap = React.createClass({
     render(){
@@ -98,65 +162,6 @@ const LoadingWrap = React.createClass({
     }
 });
 
-const Home = React.createClass({
-    getInitialState(){
-        return {
-            left: false
-        };
-    },
-    render(){
-        return (
-            <Page>
-                <h2>React MGM</h2>
-                <div className="weui_cells_title">Component</div>
-                <div className="weui_cells weui_cells_access">
-                    <Link to="/gap" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">gap</div>
-                        <div className="weui_cell_ft"></div>
-                    </Link>
-                    <Link to="/flex" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">flex</div>
-                        <div className="weui_cell_ft"></div>
-                    </Link>
-                    <Link to="/textarea" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">textarea</div>
-                        <div className="weui_cell_ft"></div>
-                    </Link>
-                    <Link to="/toast" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">toast</div>
-                        <div className="weui_cell_ft"></div>
-                    </Link>
-                    <Link to="/loading" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">loading</div>
-                        <div className="weui_cell_ft"></div>
-                    </Link>
-                    <Link to="/nprogress" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">nprogress</div>
-                        <div className="weui_cell_ft"></div>
-                    </Link>
-                </div>
-            </Page>
-        );
-    }
-});
-
-const App = React.createClass({
-    render(){
-        console.log(this.props);
-        return (
-            <ReactCSSTransitionGroup
-                component={Page}
-                transitionName="page"
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={500}
-            >
-                {React.cloneElement(this.props.children, {
-                    key: this.props.location.pathname
-                })}
-            </ReactCSSTransitionGroup>
-        );
-    }
-});
 
 const NProgressWrap = React.createClass({
     render(){
@@ -176,6 +181,31 @@ const NProgressWrap = React.createClass({
     }
 });
 
+const InfiniteWrap = React.createClass({
+    render(){
+        return (
+            <Page white>
+                <Infinite>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                </Infinite>
+            </Page>
+        );
+    }
+});
+
 const Root = React.createClass({
     render(){
         return (
@@ -188,6 +218,7 @@ const Root = React.createClass({
                     <Route path="toast" component={ToastWrap}></Route>
                     <Route path="loading" component={LoadingWrap}></Route>
                     <Route path="nprogress" component={NProgressWrap}></Route>
+                    <Route path="infinite" component={InfiniteWrap}></Route>
                 </Route>
             </Router>
         );

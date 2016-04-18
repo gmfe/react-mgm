@@ -6,9 +6,11 @@ import Mask from './component/mask';
 import Toast from './component/toast';
 import Loading from './component/loading';
 import Page from './component/page';
+import Infinite from './component/infinite';
 
 var ReactGMM = {
     Flex,
+    Infinite,
     Textarea,
     NProgress,
     Mask,
