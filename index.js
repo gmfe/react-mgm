@@ -7,14 +7,14 @@ import 'gm-font/iconfont.css';
 import ReactMGM from './src/index';
 import './src/index.less';
 
-const {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite} = ReactMGM;
+const {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header} = ReactMGM;
 
 const App = React.createClass({
     render(){
         console.log(this.props);
         return (
             <ReactCSSTransitionGroup
-                component={Page}
+                component="div"
                 transitionName="page"
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={500}
@@ -94,15 +94,17 @@ const FlexWrap = React.createClass({
 const GapWrap = React.createClass({
     render(){
         return (
-            <Page white>
-                <i>gap</i>
-                <div>
-                    gap-5
-                    <div className="gap-5"></div>
-                    gap-5
-                </div>
-                <div>
-                    <div className="border padding-5 margin-5">padding-5 margin-5</div>
+            <Page header={<Header title="标题"></Header>}>
+                <div className="padding-10">
+                    <i>gap</i>
+                    <div>
+                        gap-5
+                        <div className="gap-5"></div>
+                        gap-5
+                    </div>
+                    <div>
+                        <div className="border padding-5 margin-5">padding-5 margin-5</div>
+                    </div>
                 </div>
             </Page>
         );

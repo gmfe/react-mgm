@@ -7,6 +7,7 @@ import Toast from './component/toast';
 import Loading from './component/loading';
 import Page from './component/page';
 import Infinite from './component/infinite';
+import Header from './component/header';
 
 var ReactGMM = {
     Flex,
@@ -17,6 +18,7 @@ var ReactGMM = {
     Toast,
     Loading,
     Page,
+    Header,
     Util
 };
 
