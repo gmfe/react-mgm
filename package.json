@@ -10,7 +10,8 @@
     "start": "npm run clear; webpack-dev-server --config webpack.config.dev.js --port 4000 --host 0.0.0.0 --inline --hot --devtool eval --progress --color --profile",
     "deploy": "npm install; npm run build && npm run build:min",
     "build": "webpack --progress --color --profile",
-    "build:min": "webpack --config webpack.config.min.js"
+    "build:min": "webpack --config webpack.config.min.js",
+    "gh-pages": "webpack --config webpack.config.dev.js"
   },
   "repository": {
     "type": "git",

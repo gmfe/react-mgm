@@ -11,9 +11,9 @@ module.exports = {
         ]
     },
     output: {
-        path: path.join(__dirname, ''),
+        path: path.join(__dirname, 'build'),
         filename: '[name].js',
-        publicPath: '/static/'
+        publicPath: '/react-mgm/build/'
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
