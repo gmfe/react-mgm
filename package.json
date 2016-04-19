@@ -1,13 +1,16 @@
 {
   "name": "react-mgm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "precommit": "eslint ./src/component/",
     "pre": "npm install;",
     "clear": "rm -rf build; mkdir build;",
-    "start": "npm run clear; webpack-dev-server --config webpack.config.dev.js --port 4000 --host 0.0.0.0 --inline --hot --devtool eval --progress --color --profile"
+    "start": "npm run clear; webpack-dev-server --config webpack.config.dev.js --port 4000 --host 0.0.0.0 --inline --hot --devtool eval --progress --color --profile",
+    "deploy": "npm install; npm run build && npm run build:min",
+    "build": "webpack --progress --color --profile",
+    "build:min": "webpack --config webpack.config.min.js"
   },
   "repository": {
     "type": "git",
@@ -28,12 +31,14 @@
     "babel-preset-react": "^6.5.0",
     "classnames": "^2.2.3",
     "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "gm-font": "^2.0.1",
     "gm-util": "^2.0.0",
     "husky": "^0.11.4",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
+    "path": "^0.12.7",
     "postcss-loader": "^0.8.2",
     "precss": "^1.4.0",
     "react": "^0.14.8",

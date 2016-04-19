@@ -8,6 +8,9 @@ import Loading from './component/loading';
 import Page from './component/page';
 import Infinite from './component/infinite';
 import Header from './component/header';
+import Storage from './component/storage';
+
+import './index.less';
 
 var ReactGMM = {
     Flex,
@@ -19,6 +22,7 @@ var ReactGMM = {
     Loading,
     Page,
     Header,
+    Storage,
     Util
 };
 

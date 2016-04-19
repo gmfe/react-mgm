@@ -2,7 +2,7 @@
 
 ## 请查看issue，认领模块开发，如认领请assignee（issue详情右边栏第五个）给你自己。
 
-## checkout dev分支开发。往dev分支推送改动，推送后微信群上周知，大家会review
+## 改动后微信群上周知，大家会review
 
 ## 所有改动需在index.html有demo展示
 

@@ -8,7 +8,7 @@ react-dom
 underscore
 classnames
 
-weui
+weui(会一同打包进去，方便定制weui主题)
 
 gm-font
 

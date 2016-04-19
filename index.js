@@ -2,12 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, hashHistory, Link} from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header} from './src/index';
 
 import 'gm-font/iconfont.css';
-import ReactMGM from './src/index';
 import './src/index.less';
-
-const {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header} = ReactMGM;
 
 const App = React.createClass({
     render(){
@@ -37,6 +35,9 @@ const Home = React.createClass({
         return (
             <Page header={<Header title="标题"></Header>} tabbar={this.renderTabbar()}>
                 <h2>React MGM</h2>
+                <div className="bg-white">
+                    <h3><a href="http://weui.github.io/weui/#/" target="_blank">WEUI</a></h3>
+                </div>
                 <div className="weui_cells_title">Component</div>
                 <div className="weui_cells weui_cells_access">
                     <Link to="/gap" className="weui_cell">
@@ -219,6 +220,19 @@ const InfiniteWrap = React.createClass({
         return (
             <Page white>
                 <Infinite>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
+                    <div>aaaaa</div>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
