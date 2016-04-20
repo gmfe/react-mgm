@@ -13,7 +13,7 @@ classnames
 
 weui(会一同打包进去，方便定制weui主题)
 
-gm-font
+gm-mfont
 
 ## 关于polyfill
 为减低包大小，尽量不用 polyfill。

@@ -4,7 +4,7 @@ import {Router, Route, IndexRoute, hashHistory, Link} from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header} from './src/index';
 
-import 'gm-font/iconfont.css';
+import 'gm-mfont/iconfont.css';
 import './src/index.less';
 
 const App = React.createClass({
@@ -14,8 +14,8 @@ const App = React.createClass({
             <ReactCSSTransitionGroup
                 component="div"
                 transitionName="page"
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={500}
+                transitionEnterTimeout={200}
+                transitionLeaveTimeout={200}
             >
                 {React.cloneElement(this.props.children, {
                     key: this.props.location.pathname
@@ -174,14 +174,19 @@ const ToastWrap = React.createClass({
         );
     },
     handleToast(){
-        Toast.tip('tip');
+        // Toast.tip('tip');
         Toast.success({
-            children: 'success'
+            children: (
+                <div>
+                    <div>a</div>
+                    <div>b</div>
+                </div>
+            )
         });
-        Toast.info('info');
-        Toast.warning('warning');
-        Toast.danger('danger');
-        Toast.loading('loading');
+        // Toast.info('我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们');
+        // Toast.warning('warning');
+        // Toast.danger('danger');
+        // Toast.loading('loading');
     }
 });
 

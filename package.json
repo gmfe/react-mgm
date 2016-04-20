@@ -2,7 +2,7 @@
   "name": "react-mgm",
   "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "precommit": "eslint ./src/component/",
     "pre": "npm install;",
@@ -34,7 +34,7 @@
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
-    "gm-font": "^2.0.1",
+    "gm-mfont": "^1.0.1",
     "gm-util": "^2.0.0",
     "husky": "^0.11.4",
     "less": "^2.6.1",
@@ -42,15 +42,23 @@
     "path": "^0.12.7",
     "postcss-loader": "^0.8.2",
     "precss": "^1.4.0",
-    "react": "^0.14.8",
+    "react": "^15.0.1",
     "react-addons-css-transition-group": "^15.0.1",
-    "react-dom": "^0.14.8",
+    "react-dom": "^15.0.1",
     "react-router": "^2.2.4",
     "style-loader": "^0.13.1",
     "underscore": "^1.8.3",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
+    "weui": "^0.4.1"
+  },
+  "dependencies": {
+    "gm-mfont": "^1.0.1",
+    "gm-util": "^2.0.1",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "underscore": "^1.8.3",
     "weui": "^0.4.1"
   }
 }
