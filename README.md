@@ -1,6 +1,9 @@
 # 微信
 移动端（主微信端）项目
 
+## demo
+http://gmfe.github.io/react-mgm/
+
 ## 依赖
 
 react
