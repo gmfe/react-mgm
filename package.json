@@ -2,7 +2,8 @@
   "name": "react-mgm",
   "version": "1.0.2",
   "description": "",
-  "main": "./src/index.js",
+  "main": "src/index.js",
+  "less": "src/index.less",
   "scripts": {
     "precommit": "eslint ./src/component/",
     "pre": "npm install;",
