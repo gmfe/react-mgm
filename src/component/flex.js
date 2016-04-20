@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import _ from 'underscore';
 
 var Flex = React.createClass({
     propTypes: {
@@ -48,7 +49,7 @@ var Flex = React.createClass({
             'flex-align-stretch': this.props.alignStretch
         }, this.props.className);
 
-        let style = Object.assign({}, this.props.style);
+        let style = _.extend({}, this.props.style);
         if (this.props.flex) {
             style.flex = (typeof this.props.flex === 'boolean') ? 1 : this.props.flex;
         }

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Mask from './mask';
 import Loading from './loading';
+import _ from 'underscore';
 
 let toastsContainerId = '_mgm_toasts_container' + (Math.random() + '').slice(2);
 let toastsContainer = document.getElementById(toastsContainerId);
@@ -61,7 +62,7 @@ ToastStatics = {
                 children: options
             };
         }
-        options = Object.assign({show: true}, options);
+        options = _.extend({show: true}, options);
         ToastStatics._queue.push(options);
         return ToastStatics._render();
     },
@@ -71,7 +72,7 @@ ToastStatics = {
                 children: options
             };
         }
-        return ToastStatics.tip(Object.assign({success: true}, options));
+        return ToastStatics.tip(_.extend({success: true}, options));
     },
     info(options) {
         if (typeof options === 'string') {
@@ -79,7 +80,7 @@ ToastStatics = {
                 children: options
             };
         }
-        return ToastStatics.tip(Object.assign({info: true}, options));
+        return ToastStatics.tip(_.extend({info: true}, options));
     },
     warning(options) {
         if (typeof options === 'string') {
@@ -87,7 +88,7 @@ ToastStatics = {
                 children: options
             };
         }
-        return ToastStatics.tip(Object.assign({warning: true}, options));
+        return ToastStatics.tip(_.extend({warning: true}, options));
     },
     danger(options) {
         if (typeof options === 'string') {
@@ -95,7 +96,7 @@ ToastStatics = {
                 children: options
             };
         }
-        return ToastStatics.tip(Object.assign({danger: true}, options));
+        return ToastStatics.tip(_.extend({danger: true}, options));
     },
     loading(options) {
         if (typeof options === 'string') {
@@ -103,7 +104,7 @@ ToastStatics = {
                 children: options
             };
         }
-        return ToastStatics.tip(Object.assign({loading: true}, options));
+        return ToastStatics.tip(_.extend({loading: true}, options));
     }
 };
 
