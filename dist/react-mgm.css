@@ -2033,26 +2033,6 @@ a.decoration {
 .border-left {
   border-left: 1px solid #BCBAB6;
 }
-.gap-0 {
-  display: inline-block;
-  width: 0;
-  height: 0;
-}
-.gap-5 {
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-}
-.gap-10 {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-}
-.gap-15 {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-}
 .padding-0 {
   padding: 0;
 }
@@ -2068,13 +2048,13 @@ a.decoration {
 .padding-top-0 {
   padding-top: 0;
 }
-.paddingt-top-5 {
+.padding-top-5 {
   padding-top: 5px;
 }
-.paddingt-top-10 {
+.padding-top-10 {
   padding-top: 10px;
 }
-.paddingt-top-15 {
+.padding-top-15 {
   padding-top: 15px;
 }
 .padding-bottom-0 {
@@ -2532,7 +2512,7 @@ a.decoration {
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
 }
 .mask-transparent {
   position: fixed;
@@ -2608,6 +2588,7 @@ a.decoration {
   position: relative;
   min-height: 8em;
   border: 1px solid #BCBAB6;
+  overflow: hidden;
 }
 .textarea-adapter pre {
   display: block;

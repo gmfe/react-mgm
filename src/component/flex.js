@@ -5,9 +5,9 @@ import _ from 'underscore';
 var Flex = React.createClass({
     propTypes: {
         flex: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.bool]),
-        auto: React.PropTypes.string,
-        width: React.PropTypes.string,
-        height: React.PropTypes.string,
+        auto: React.PropTypes.bool,
+        width: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+        height: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
         row: React.PropTypes.bool,
         column: React.PropTypes.bool,
         wrap: React.PropTypes.bool,

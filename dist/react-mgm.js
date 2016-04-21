@@ -357,9 +357,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    propTypes: {
 	        flex: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.bool]),
-	        auto: _react2.default.PropTypes.string,
-	        width: _react2.default.PropTypes.string,
-	        height: _react2.default.PropTypes.string,
+	        auto: _react2.default.PropTypes.bool,
+	        width: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]),
+	        height: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]),
 	        row: _react2.default.PropTypes.bool,
 	        column: _react2.default.PropTypes.bool,
 	        wrap: _react2.default.PropTypes.bool,
@@ -849,6 +849,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                });
 	            });
 	        } else {
+	            // 假设要点时间
 	            this.timer = setTimeout(function () {
 	                _this.setState({
 	                    loading: false
@@ -1149,13 +1150,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Textarea = _react2.default.createClass({
 	    displayName: 'Textarea',
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            wrapProps: {}
+	        };
+	    },
 	    render: function render() {
-	        var cn = (0, _classnames2.default)({
-	            'textarea-adapter': true
-	        });
+	        var cn = (0, _classnames2.default)('textarea-adapter', this.props.wrapProps.className);
 	        return _react2.default.createElement(
 	            'div',
-	            { className: cn },
+	            _extends({}, this.props.wrapProps, { className: cn }),
 	            _react2.default.createElement(
 	                'pre',
 	                null,

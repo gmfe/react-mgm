@@ -68,8 +68,12 @@ const Home = React.createClass({
                         <div className="weui_cell_bd weui_cell_primary">infinite</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
+                    <Link to="/page" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">page</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
                 </div>
-                <div style={{height: 500}}></div>
+                <div style={{height: 500}}>height 500px</div>
             </Page>
         );
     },
@@ -109,13 +113,101 @@ const FlexWrap = React.createClass({
     render(){
         return (
             <Page white>
-                <h2>flex</h2>
-                <div>
-                    <Flex wrap>
+                <h2>flex
+                    <small><i>具体见代码容易理解</i></small>
+                </h2>
+                <hr/>
+                <div className="padding-15">
+                    横向 默认 Flex
+                    <Flex>
                         <Flex className="border">
                             1
                         </Flex>
-                        <Flex flex className="border">flex</Flex>
+                        <Flex flex className="border">Flex flex 会占满</Flex>
+                    </Flex>
+                    纵向 Flex column
+                    <Flex column>
+                        <Flex className="border">1</Flex>
+                        <Flex className="border">2</Flex>
+                    </Flex>
+                </div>
+                <div className="padding-15">
+                    不换行 默认 宽度会被压缩 FLex
+                    <Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                    </Flex>
+                    换行 FLex wrap
+                    <Flex wrap>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                    </Flex>
+                </div>
+                <div className="padding-15">
+                    Flex width height 如果定了width/height则不能被压缩
+                    <Flex>
+                        <Flex className="border" width={100}>100</Flex>
+                        <Flex className="border" width={100}>100</Flex>
+                        <Flex className="border" width={100}>100</Flex>
+                        <Flex className="border" width={100}>100</Flex>
+                    </Flex>
+                </div>
+                <div className="padding-15">
+                    主轴对齐方式 默认 Flex
+                    <Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                    </Flex>
+                    主轴对齐方式 Flex justifyCenter
+                    <Flex justifyCenter>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                    </Flex>
+                    主轴对齐方式 Flex justifyEnd
+                    <Flex justifyEnd>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                    </Flex>
+                    主轴对齐方式 Flex justifyBetween
+                    <Flex justifyBetween>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                    </Flex>
+                    主轴对齐方式 Flex justifyAround
+                    <Flex justifyAround>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: 100}}>100</Flex>
+                    </Flex>
+                </div>
+                <div className="padding-15">
+                    交叉轴对齐 默认 Flex
+                    <Flex>
+                        <Flex className="border" style={{width: 50}}>50 50</Flex>
+                        <Flex className="border" style={{width: 50, height: 100}}>50 100</Flex>
+                    </Flex>
+                    交叉轴对齐 Flex alignEnd
+                    <Flex alignEnd>
+                        <Flex className="border" style={{width: 50}}>1<br/>2</Flex>
+                        <Flex className="border" style={{width: 50}}>1<br/>2<br/>3</Flex>
+                    </Flex>
+                    交叉轴对齐 Flex alignCenter
+                    <Flex alignCenter>
+                        <Flex className="border" style={{width: 50}}>1<br/>2</Flex>
+                        <Flex className="border" style={{width: 50}}>1<br/>2<br/>3</Flex>
+                    </Flex>
+                    交叉轴对齐 Flex alignStretch
+                    <Flex alignStretch>
+                        <Flex className="border" style={{width: 50}}>1<br/>2</Flex>
+                        <Flex className="border" style={{width: 50}}>1<br/>2<br/>3</Flex>
+                    </Flex>
+                    交叉轴对齐 Flex alignBaseline
+                    <Flex alignBaseline>
+                        <Flex className="border" style={{width: 50}}>1<br/>2</Flex>
+                        <Flex className="border padding-top-10" style={{width: 50}}>1<br/>2<br/>3</Flex>
                     </Flex>
                 </div>
             </Page>
@@ -127,16 +219,28 @@ const GapWrap = React.createClass({
     render(){
         return (
             <Page white>
-                <div className="padding-10">
-                    <i>gap</i>
-                    <div>
-                        gap-5
-                        <div className="gap-5"></div>
-                        gap-5
-                    </div>
-                    <div>
-                        <div className="border padding-5 margin-5">padding-5 margin-5</div>
-                    </div>
+                <h2>gap</h2>
+                <hr/>
+                <div>gap 即间距的，用来快速布局</div>
+                <div>有4种尺寸，分别是0 5 10 15</div>
+                <div>有以下形式：</div>
+                <div className="border padding-10">
+                    padding-10
+                </div>
+                <div className="border padding-top-10">
+                    padding-top-10
+                </div>
+                <div className="border padding-bottom-10">
+                    padding-bottom-10
+                </div>
+                <div className="border padding-lr-10">
+                    padding-lr-10 lr表示左右
+                </div>
+                <div className="border padding-tb-10">
+                    padding-tb-10
+                </div>
+                <div>
+                    margin-x margin-top-x margin-bottom-x margin-lr-x margin-bt-x 同理
                 </div>
             </Page>
         );
@@ -153,7 +257,12 @@ const TextareaWrap = React.createClass({
         return (
             <Page>
                 <h2>textarea</h2>
+                <hr/>
+                原生textarea不能随内容变高。
                 <Textarea value={this.state.value} onChange={this.handleChange}></Textarea>
+                固定高度
+                <Textarea value={this.state.value} onChange={this.handleChange}
+                          wrapProps={{style:{maxHeight: '10em'}}}></Textarea>
             </Page>
         );
     },
@@ -174,7 +283,7 @@ const ToastWrap = React.createClass({
         );
     },
     handleToast(){
-        // Toast.tip('tip');
+        Toast.tip('tip');
         Toast.success({
             children: (
                 <div>
@@ -183,10 +292,10 @@ const ToastWrap = React.createClass({
                 </div>
             )
         });
-        // Toast.info('我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们');
-        // Toast.warning('warning');
-        // Toast.danger('danger');
-        // Toast.loading('loading');
+        Toast.info('我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们');
+        Toast.warning('warning');
+        Toast.danger('danger');
+        Toast.loading('loading');
     }
 });
 
@@ -224,7 +333,7 @@ const InfiniteWrap = React.createClass({
     render(){
         return (
             <Page white>
-                <Infinite>
+                <Infinite onBottom={this.handleBottom}>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
@@ -255,6 +364,50 @@ const InfiniteWrap = React.createClass({
                 </Infinite>
             </Page>
         );
+    },
+    handleBottom(){
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve();
+            }, 2000);
+        });
+    }
+});
+
+const PageWrap = React.createClass({
+    getInitialState(){
+        return {
+            show: false
+        };
+    },
+    render(){
+        return (
+            <Page white>
+                <h2>page</h2>
+                <hr/>
+                <div>
+                    everyway 每个页面都是Page
+                </div>
+
+                <button className="weui_btn weui_btn_primary" onClick={this.handleOtherPage}>showOtherPage</button>
+                {this.state.show && (
+                    <Page className="enter">
+                        adf
+                        <button className="weui_btn weui_btn_primary" onClick={this.handleClose}>close</button>
+                    </Page>
+                )}
+            </Page>
+        );
+    },
+    handleOtherPage(){
+        this.setState({
+            show: !this.state.show
+        });
+    },
+    handleClose(){
+        this.setState({
+            show: !this.state.show
+        });
     }
 });
 
@@ -271,6 +424,7 @@ const Root = React.createClass({
                     <Route path="loading" component={LoadingWrap}></Route>
                     <Route path="nprogress" component={NProgressWrap}></Route>
                     <Route path="infinite" component={InfiniteWrap}></Route>
+                    <Route path="page" component={PageWrap}></Route>
                 </Route>
             </Router>
         );

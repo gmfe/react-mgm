@@ -46,6 +46,7 @@ var Infinite = React.createClass({
                 });
             });
         } else {
+            // 假设要点时间
             this.timer = setTimeout(() => {
                 this.setState({
                     loading: false
