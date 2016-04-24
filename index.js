@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, hashHistory, Link} from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header} from './src/index';
+import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header, Slider} from './src/index';
 
 import 'gm-mfont/iconfont.css';
 import './src/index.less';
@@ -70,6 +70,10 @@ const Home = React.createClass({
                     </Link>
                     <Link to="/page" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">page</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/slider" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">slider</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -411,6 +415,25 @@ const PageWrap = React.createClass({
     }
 });
 
+var SliderWrap = React.createClass({
+    render: function () {
+        return (
+            <div>
+                <Slider>
+                    <div><h3>1</h3></div>
+                    <div><h3>2</h3></div>
+                    <div><h3>3</h3></div>
+                </Slider>
+                <div className="padding-10"></div>
+                <Slider>
+                    <div>aaa</div>
+                    <div>aaa</div>
+                </Slider>
+            </div>
+        );
+    }
+});
+
 const Root = React.createClass({
     render(){
         return (
@@ -425,6 +448,7 @@ const Root = React.createClass({
                     <Route path="nprogress" component={NProgressWrap}></Route>
                     <Route path="infinite" component={InfiniteWrap}></Route>
                     <Route path="page" component={PageWrap}></Route>
+                    <Route path="slider" component={SliderWrap}></Route>
                 </Route>
             </Router>
         );

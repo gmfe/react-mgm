@@ -7,7 +7,7 @@
 		exports["ReactMGM"] = factory(require("react"), require("underscore"), require("classnames"), require("react-dom"));
 	else
 		root["ReactMGM"] = factory(root["react"], root["underscore"], root["classnames"], root["react-dom"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_10__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_6__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -56,7 +56,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _flex = __webpack_require__(8);
+	var _flex = __webpack_require__(4);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
-	var _textarea = __webpack_require__(20);
+	var _textarea = __webpack_require__(21);
 
 	var _textarea2 = _interopRequireDefault(_textarea);
 
@@ -72,15 +72,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _nprogress2 = _interopRequireDefault(_nprogress);
 
-	var _mask = __webpack_require__(9);
+	var _mask = __webpack_require__(10);
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _toast = __webpack_require__(21);
+	var _toast = __webpack_require__(22);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
-	var _loading = __webpack_require__(4);
+	var _loading = __webpack_require__(5);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
@@ -96,11 +96,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _storage = __webpack_require__(19);
+	var _storage = __webpack_require__(20);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	__webpack_require__(22);
+	var _slider = __webpack_require__(19);
+
+	var _slider2 = _interopRequireDefault(_slider);
+
+	__webpack_require__(23);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -115,6 +119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Page: _page2.default,
 	    Header: _header2.default,
 	    Storage: _storage2.default,
+	    Slider: _slider2.default,
 	    Util: _gmUtil2.default
 	};
 
@@ -140,194 +145,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Loading = _react2.default.createClass({
-	    displayName: "Loading",
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "div",
-	            _extends({}, this.props, { className: "loading" }),
-	            _react2.default.createElement(
-	                "div",
-	                { className: "loading-inner" },
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_0" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_1" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_2" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_3" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_4" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_5" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_6" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_7" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_8" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_9" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_10" }),
-	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_11" })
-	            )
-	        );
-	    }
-	});
-
-	exports.default = Loading;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _underscore = __webpack_require__(2);
-
-	var _underscore2 = _interopRequireDefault(_underscore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var format = function format(str, data) {
-	    var result = str;
-	    if (arguments.length < 2) {
-	        return result;
-	    }
-
-	    result = result.replace(/\{([\d\w\.]+)\}/g, function (key) {
-	        var keys = arguments[1].split('.');
-	        var r = null;
-	        _underscore2.default.each(keys, function (value, index) {
-	            if (index) {
-	                r = r[value];
-	            } else {
-	                r = data[value];
-	            }
-	        });
-	        return r;
-	    });
-	    return result;
-	};
-
-	exports.default = format;
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _underscore = __webpack_require__(2);
-
-	var _underscore2 = _interopRequireDefault(_underscore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var param = function param(obj) {
-	    // encodeURIComponent
-	    return _underscore2.default.map(obj, function (v, k) {
-	        return [encodeURIComponent(k), '=', encodeURIComponent(v)].join('');
-	    }).join('&').replace(/%20/g, "+");
-	};
-
-	exports.default = param;
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _underscore = __webpack_require__(2);
-
-	var _underscore2 = _interopRequireDefault(_underscore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var RequestInterceptor = function () {
-	    var interceptors = []; // [{request: function(){}, response: function(){}, responseError: function(){}}]
-	    var id = 0;
-
-	    return {
-	        add: function add(interceptor) {
-	            interceptor.__id = id++;
-	            interceptors.push(interceptor);
-	            return interceptor.__id;
-	        },
-	        remove: function remove(interceptorId) {
-	            interceptors = _underscore2.default.filter(interceptors, function (value) {
-	                return value.__id !== interceptorId;
-	            });
-	        },
-
-	        // 私有方法,谁用谁死
-	        interceptor: {
-	            request: function request(config) {
-	                var promise = Promise.resolve(config);
-	                _underscore2.default.each(interceptors, function (value) {
-	                    if (value.request) {
-	                        promise = promise.then(function (_config) {
-	                            // 如果request不按规范来,啥也不做. 则默认放回 config
-	                            return value.request(_config) || config;
-	                        });
-	                    }
-	                });
-
-	                return promise;
-	            },
-	            response: function response(json, config) {
-	                var promise = Promise.resolve(json);
-	                _underscore2.default.each(interceptors, function (value) {
-	                    if (value.response) {
-	                        promise = promise.then(function (json) {
-	                            // 如果response不按规范来,啥也不做. 则默认放回json
-	                            return value.response(json, config) || json;
-	                        });
-	                    }
-	                });
-	                return promise;
-	            },
-	            responseError: function responseError(reason, config) {
-	                var promise = Promise.reject(reason);
-	                _underscore2.default.each(interceptors, function (value) {
-	                    if (value.responseError) {
-	                        promise = promise.catch(function (reason) {
-	                            // 如果responseError不按规范来,啥也不做. reason
-	                            return Promise.reject(value.responseError(reason, config) || reason);
-	                        });
-	                    }
-	                });
-
-	                return promise;
-	            }
-	        }
-	    };
-	}();
-
-	exports.default = RequestInterceptor;
-
-/***/ },
-/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -423,7 +240,201 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Flex;
 
 /***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Loading = _react2.default.createClass({
+	    displayName: "Loading",
+	    render: function render() {
+	        return _react2.default.createElement(
+	            "div",
+	            _extends({}, this.props, { className: "loading" }),
+	            _react2.default.createElement(
+	                "div",
+	                { className: "loading-inner" },
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_0" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_1" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_2" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_3" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_4" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_5" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_6" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_7" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_8" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_9" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_10" }),
+	                _react2.default.createElement("div", { className: "weui_loading_leaf weui_loading_leaf_11" })
+	            )
+	        );
+	    }
+	});
+
+	exports.default = Loading;
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _underscore = __webpack_require__(2);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var format = function format(str, data) {
+	    var result = str;
+	    if (arguments.length < 2) {
+	        return result;
+	    }
+
+	    result = result.replace(/\{([\d\w\.]+)\}/g, function (key) {
+	        var keys = arguments[1].split('.');
+	        var r = null;
+	        _underscore2.default.each(keys, function (value, index) {
+	            if (index) {
+	                r = r[value];
+	            } else {
+	                r = data[value];
+	            }
+	        });
+	        return r;
+	    });
+	    return result;
+	};
+
+	exports.default = format;
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _underscore = __webpack_require__(2);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var param = function param(obj) {
+	    // encodeURIComponent
+	    return _underscore2.default.map(obj, function (v, k) {
+	        return [encodeURIComponent(k), '=', encodeURIComponent(v)].join('');
+	    }).join('&').replace(/%20/g, "+");
+	};
+
+	exports.default = param;
+
+/***/ },
 /* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _underscore = __webpack_require__(2);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var RequestInterceptor = function () {
+	    var interceptors = []; // [{request: function(){}, response: function(){}, responseError: function(){}}]
+	    var id = 0;
+
+	    return {
+	        add: function add(interceptor) {
+	            interceptor.__id = id++;
+	            interceptors.push(interceptor);
+	            return interceptor.__id;
+	        },
+	        remove: function remove(interceptorId) {
+	            interceptors = _underscore2.default.filter(interceptors, function (value) {
+	                return value.__id !== interceptorId;
+	            });
+	        },
+
+	        // 私有方法,谁用谁死
+	        interceptor: {
+	            request: function request(config) {
+	                var promise = Promise.resolve(config);
+	                _underscore2.default.each(interceptors, function (value) {
+	                    if (value.request) {
+	                        promise = promise.then(function (_config) {
+	                            // 如果request不按规范来,啥也不做. 则默认放回 config
+	                            return value.request(_config) || config;
+	                        });
+	                    }
+	                });
+
+	                return promise;
+	            },
+	            response: function response(json, config) {
+	                var promise = Promise.resolve(json);
+	                _underscore2.default.each(interceptors, function (value) {
+	                    if (value.response) {
+	                        promise = promise.then(function (json) {
+	                            // 如果response不按规范来,啥也不做. 则默认放回json
+	                            return value.response(json, config) || json;
+	                        });
+	                    }
+	                });
+	                return promise;
+	            },
+	            responseError: function responseError(reason, config) {
+	                var promise = Promise.reject(reason);
+	                _underscore2.default.each(interceptors, function (value) {
+	                    if (value.responseError) {
+	                        promise = promise.catch(function (reason) {
+	                            // 如果responseError不按规范来,啥也不做. reason
+	                            return Promise.reject(value.responseError(reason, config) || reason);
+	                        });
+	                    }
+	                });
+
+	                return promise;
+	            }
+	        }
+	    };
+	}();
+
+	exports.default = RequestInterceptor;
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -476,12 +487,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Mask;
 
 /***/ },
-/* 10 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
-
-/***/ },
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -491,15 +496,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _request2 = _interopRequireDefault(_request);
 
-	var _requestInterceptor = __webpack_require__(7);
+	var _requestInterceptor = __webpack_require__(9);
 
 	var _requestInterceptor2 = _interopRequireDefault(_requestInterceptor);
 
-	var _param = __webpack_require__(6);
+	var _param = __webpack_require__(8);
 
 	var _param2 = _interopRequireDefault(_param);
 
-	var _format = __webpack_require__(5);
+	var _format = __webpack_require__(7);
 
 	var _format2 = _interopRequireDefault(_format);
 
@@ -550,11 +555,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _param = __webpack_require__(6);
+	var _param = __webpack_require__(8);
 
 	var _param2 = _interopRequireDefault(_param);
 
-	var _format = __webpack_require__(5);
+	var _format = __webpack_require__(7);
 
 	var _format2 = _interopRequireDefault(_format);
 
@@ -562,7 +567,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _request = __webpack_require__(7);
+	var _request = __webpack_require__(9);
 
 	var _request2 = _interopRequireDefault(_request);
 
@@ -794,7 +799,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _loading = __webpack_require__(4);
+	var _loading = __webpack_require__(5);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
@@ -889,7 +894,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(10);
+	var _reactDom = __webpack_require__(6);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -983,7 +988,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _flex = __webpack_require__(8);
+	var _flex = __webpack_require__(4);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -1042,6 +1047,171 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(6);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _classnames = __webpack_require__(3);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _underscore = __webpack_require__(2);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
+	var _flex = __webpack_require__(4);
+
+	var _flex2 = _interopRequireDefault(_flex);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Slider = _react2.default.createClass({
+	    displayName: 'Slider',
+	    getInitialState: function getInitialState() {
+	        return {
+	            count: 1,
+	            sliderWidth: 0,
+	            touchObject: null,
+	            dragging: false,
+	            transition: false,
+	            x: 0
+	        };
+	    },
+	    render: function render() {
+	        var to = this.state.touchObject;
+	        var offset = to ? to.x - to.startX + this.state.x : this.state.x;
+
+	        var cn = (0, _classnames2.default)('slider', {
+	            'slider-transition': this.state.transition
+	        }, this.props.className);
+
+	        var style = {
+	            WebkitTransform: 'translate3d(' + offset + 'px, 0, 0)',
+	            transform: 'translate3d(' + offset + 'px, 0, 0)'
+	        };
+
+	        return _react2.default.createElement(
+	            _flex2.default,
+	            _extends({}, this.props, {
+	                ref: 'slider',
+	                className: cn,
+	                onMouseDown: this.swipeStart,
+	                onMouseMove: this.state.dragging ? this.swipeMove : null,
+	                onMouseUp: this.swipeEnd,
+	                onMouseLeave: this.state.dragging ? this.swipeEnd : null,
+	                onTouchStart: this.swipeStart,
+	                onTouchMove: this.state.dragging ? this.swipeMove : null,
+	                onTouchEnd: this.swipeEnd,
+	                onTouchCancel: this.state.dragging ? this.swipeEnd : null,
+	                style: style
+	            }),
+	            this.renderChild()
+	        );
+	    },
+	    renderChild: function renderChild() {
+	        if (toString.call(this.props.children) === '[object Array]') {
+	            return _underscore2.default.map(this.props.children, function (value, i) {
+	                return _react2.default.cloneElement(value, {
+	                    style: { width: '100%' },
+	                    className: (0, _classnames2.default)('slider-cell flex flex-none', value.className),
+	                    key: i
+	                });
+	            });
+	        } else {
+	            return this.props.children;
+	        }
+	    },
+	    componentDidMount: function componentDidMount() {
+	        this.setSliderWidth();
+	        this.setState({
+	            count: toString.call(this.props.children) === '[object Array]' ? this.props.children.length : 1
+	        });
+	        window.addEventListener('resize', this.setSliderWidth);
+	    },
+	    componentWillUnmount: function componentWillUnmount() {
+	        window.removeEventListener('resize', this.setSliderWidth);
+	    },
+	    setSliderWidth: function setSliderWidth() {
+	        var slider = _reactDom2.default.findDOMNode(this.refs.slider);
+	        this.setState({
+	            sliderWidth: slider.offsetWidth
+	        });
+	    },
+	    getX: function getX(event) {
+	        return event.touches !== undefined ? event.touches[0].pageX : event.clientX;
+	    },
+	    swipeStart: function swipeStart(event) {
+	        this.setState({
+	            dragging: true,
+	            transition: false,
+	            touchObject: {
+	                startX: this.getX(event),
+	                x: this.getX(event)
+	            }
+	        });
+	    },
+	    swipeMove: function swipeMove(event) {
+	        this.setState({
+	            dragging: true,
+	            transition: false,
+	            touchObject: _underscore2.default.extend({}, this.state.touchObject, {
+	                x: this.getX(event)
+	            })
+	        });
+	    },
+	    swipeEnd: function swipeEnd() {
+	        if (!this.state.dragging) {
+	            return;
+	        }
+	        var to = this.state.touchObject;
+	        var diff = to.x - to.startX;
+	        var x = this.state.x;
+	        if (to && Math.abs(diff) > 50) {
+	            if (diff > 0) {
+	                x += this.state.sliderWidth;
+	            } else {
+	                x -= this.state.sliderWidth;
+	            }
+	            if (x > 0) {
+	                x = 0;
+	            }
+	            if (x < -(this.state.sliderWidth * (this.state.count - 1))) {
+	                x = -(this.state.sliderWidth * (this.state.count - 1));
+	            }
+	            this.setState({
+	                transition: true,
+	                dragging: false,
+	                touchObject: null,
+	                x: x
+	            });
+	        } else {
+	            this.setState({
+	                transition: true,
+	                dragging: false,
+	                touchObject: null
+	            });
+	        }
+	    }
+	});
+
+	exports.default = Slider;
+
+/***/ },
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1123,7 +1293,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Storage;
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1173,7 +1343,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Textarea;
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1186,15 +1356,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(10);
+	var _reactDom = __webpack_require__(6);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _mask = __webpack_require__(9);
+	var _mask = __webpack_require__(10);
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _loading = __webpack_require__(4);
+	var _loading = __webpack_require__(5);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
@@ -1430,7 +1600,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Toast;
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

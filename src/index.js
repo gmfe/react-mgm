@@ -9,6 +9,7 @@ import Page from './component/page';
 import Infinite from './component/infinite';
 import Header from './component/header';
 import Storage from './component/storage';
+import Slider from './component/slider';
 
 import './index.less';
 
@@ -23,6 +24,7 @@ var ReactGMM = {
     Page,
     Header,
     Storage,
+    Slider,
     Util
 };
 

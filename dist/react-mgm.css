@@ -2627,3 +2627,10 @@ a.decoration {
 .toast-container .toast .loading {
   margin: auto;
 }
+.slider-cell {
+  border: 1px solid black;
+}
+.slider-transition {
+  -webkit-transition: .2s transform;
+  transition: .2s transform;
+}
