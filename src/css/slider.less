@@ -1,11 +1,23 @@
 .slider {
 
-  &-cell {
-    border: 1px solid black;
+  .slider-cell {
   }
 
   &-transition {
     -webkit-transition: .2s transform;
     transition: .2s transform;
+  }
+
+  .slider-flag {
+    span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: @globalBorderColor;
+      margin: 6px;
+      &.active {
+        background: grey;
+      }
+    }
   }
 }

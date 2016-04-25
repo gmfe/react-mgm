@@ -2570,19 +2570,75 @@ a.decoration {
 }
 .page-enter {
   opacity: 0.01;
-  -webkit-transition: opacity 0.2s ease-in;
-  transition: opacity 0.2s ease-in;
+  -webkit-transition: opacity .2s linear;
+  transition: opacity .2s linear;
 }
 .page-enter.page-enter-active {
   opacity: 1;
 }
 .page-leave {
   opacity: 1;
-  -webkit-transition: opacity 0.2s ease-in;
-  transition: opacity 0.2s ease-in;
+  -webkit-transition: opacity .2s linear;
+  transition: opacity .2s linear;
 }
 .page-leave.page-leave-active {
   opacity: 0;
+}
+.page-r2l-enter {
+  opacity: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+  -webkit-transition: opacity .2s linear, -webkit-transform .2s linear;
+  transition: opacity .2s linear, -webkit-transform .2s linear;
+  transition: opacity .2s linear, transform .2s linear;
+  transition: opacity .2s linear, transform .2s linear, -webkit-transform .2s linear;
+}
+.page-r2l-enter.page-r2l-enter-active {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.page-r2l-leave {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: opacity .2s linear, -webkit-transform .2s linear;
+  transition: opacity .2s linear, -webkit-transform .2s linear;
+  transition: opacity .2s linear, transform .2s linear;
+  transition: opacity .2s linear, transform .2s linear, -webkit-transform .2s linear;
+}
+.page-r2l-leave.page-r2l-leave-active {
+  opacity: 0;
+  -webkit-transform: translate3d(-20%, 0, 0);
+          transform: translate3d(-20%, 0, 0);
+}
+.page-l2r-enter {
+  opacity: 0;
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+  -webkit-transition: opacity .2s linear, -webkit-transform .2s linear;
+  transition: opacity .2s linear, -webkit-transform .2s linear;
+  transition: opacity .2s linear, transform .2s linear;
+  transition: opacity .2s linear, transform .2s linear, -webkit-transform .2s linear;
+}
+.page-l2r-enter.page-l2r-enter-active {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.page-l2r-leave {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: opacity .2s linear, -webkit-transform .2s linear;
+  transition: opacity .2s linear, -webkit-transform .2s linear;
+  transition: opacity .2s linear, transform .2s linear;
+  transition: opacity .2s linear, transform .2s linear, -webkit-transform .2s linear;
+}
+.page-l2r-leave.page-l2r-leave-active {
+  opacity: 0;
+  -webkit-transform: translate3d(20%, 0, 0);
+          transform: translate3d(20%, 0, 0);
 }
 .textarea-adapter {
   position: relative;
@@ -2627,10 +2683,76 @@ a.decoration {
 .toast-container .toast .loading {
   margin: auto;
 }
-.slider-cell {
-  border: 1px solid black;
-}
 .slider-transition {
   -webkit-transition: .2s transform;
   transition: .2s transform;
+}
+.slider .slider-flag span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #BCBAB6;
+  margin: 6px;
+}
+.slider .slider-flag span.active {
+  background: grey;
+}
+.tabs {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+.tabs .tabs-item {
+  position: relative;
+  display: block;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 10px 0;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.tabs .tabs-item:before {
+  content: " ";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  border-right: 1px solid #BCBAB6;
+  -webkit-transform: scaleY(0.4);
+          transform: scaleY(0.4);
+}
+.tabs .tabs-item:last-child:before {
+  display: none;
+}
+.tabs .tabs-item:active {
+  background: #ededed;
+}
+.tabs .tabs-item:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid #BCBAB6;
+}
+.tabs .tabs-item.active {
+  color: #3cc51f;
+}
+.tabs .tabs-item.active:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid #3cc51f;
+}
+.tabs .tabs-item.active:active {
+  background: #ededed;
 }

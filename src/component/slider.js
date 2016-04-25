@@ -19,7 +19,7 @@ var Slider = React.createClass({
         const to = this.state.touchObject;
         let offset = to ? (to.x - to.startX + this.state.x) : this.state.x;
 
-        const cn = classnames('slider', {
+        const cn = classnames({
             'slider-transition': this.state.transition
         }, this.props.className);
 
@@ -29,29 +29,32 @@ var Slider = React.createClass({
         };
 
         return (
-            <Flex
-                {...this.props}
-                ref="slider"
-                className={cn}
-                onMouseDown={this.swipeStart}
-                onMouseMove={this.state.dragging ? this.swipeMove: null}
-                onMouseUp={this.swipeEnd}
-                onMouseLeave={this.state.dragging ? this.swipeEnd: null}
-                onTouchStart={this.swipeStart}
-                onTouchMove={this.state.dragging ? this.swipeMove: null}
-                onTouchEnd={this.swipeEnd}
-                onTouchCancel={this.state.dragging ? this.swipeEnd: null}
-                style={style}
-            >
-                {this.renderChild()}
-            </Flex>
+            <div className="slider">
+                <Flex
+                    {...this.props}
+                    ref="slider"
+                    className={cn}
+                    onMouseDown={this.swipeStart}
+                    onMouseMove={this.state.dragging ? this.swipeMove: null}
+                    onMouseUp={this.swipeEnd}
+                    onMouseLeave={this.state.dragging ? this.swipeEnd: null}
+                    onTouchStart={this.swipeStart}
+                    onTouchMove={this.state.dragging ? this.swipeMove: null}
+                    onTouchEnd={this.swipeEnd}
+                    onTouchCancel={this.state.dragging ? this.swipeEnd: null}
+                    style={style}
+                >
+                    {this.renderChild()}
+                </Flex>
+                {this.renderFlag()}
+            </div>
         );
     },
     renderChild(){
         if (toString.call(this.props.children) === '[object Array]') {
             return _.map(this.props.children, (value, i) => {
                 return React.cloneElement(value, {
-                    style: {width: '100%'},
+                    style: _.extend({}, value.props.style, {width: '100%'}),
                     className: classnames('slider-cell flex flex-none', value.className),
                     key: i
                 });
@@ -59,6 +62,16 @@ var Slider = React.createClass({
         } else {
             return this.props.children;
         }
+    },
+    renderFlag(){
+        //
+        return (
+            <Flex justifyCenter className="slider-flag">
+                {_.map(_.range(this.state.count), (value, i) => <span
+                    className={classnames({active: Math.abs(this.state.x / this.state.sliderWidth) === i})}
+                    key={i}></span>)}
+            </Flex>
+        );
     },
     componentDidMount(){
         this.setSliderWidth();

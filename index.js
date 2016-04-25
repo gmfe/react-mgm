@@ -9,11 +9,18 @@ import './src/index.less';
 
 const App = React.createClass({
     render(){
-        console.log(this.props);
+        const action = this.props.location.action;
+        let transitionName = 'page';
+        // REPLEASE
+        if (action === 'PUSH') {
+            transitionName = 'page-r2l';
+        } else if (action === 'POP') {
+            transitionName = 'page-l2r';
+        }
         return (
             <ReactCSSTransitionGroup
                 component="div"
-                transitionName="page"
+                transitionName={transitionName}
                 transitionEnterTimeout={200}
                 transitionLeaveTimeout={200}
             >
@@ -33,17 +40,29 @@ const Home = React.createClass({
     },
     render(){
         return (
-            <Page header={<Header title="标题"></Header>} tabbar={this.renderTabbar()}>
+            <Page header={<Header title="React MGM"></Header>} tabbar={this.renderTabbar()}>
                 <h2>React MGM</h2>
-                <div className="bg-white">
-                    <h3><a href="http://weui.github.io/weui/#/" target="_blank">WEUI</a></h3>
-                </div>
-                <div className="weui_cells_title">Component</div>
+                <div className="weui_cells_title">CSS</div>
                 <div className="weui_cells weui_cells_access">
+                    <a href="http://weui.github.io/weui/#/" target="_blank" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">WEUI</div>
+                        <div className="weui_cell_ft"></div>
+                    </a>
+                    <a href="http://gmfe.github.io/gm-mfont/demo.html" target="_blank" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">icon</div>
+                        <div className="weui_cell_ft"></div>
+                    </a>
                     <Link to="/gap" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">gap</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
+                    <Link to="/tabs" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">tabs</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                </div>
+                <div className="weui_cells_title">Component</div>
+                <div className="weui_cells weui_cells_access">
                     <Link to="/flex" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">flex</div>
                         <div className="weui_cell_ft"></div>
@@ -77,7 +96,6 @@ const Home = React.createClass({
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
-                <div style={{height: 500}}>height 500px</div>
             </Page>
         );
     },
@@ -417,18 +435,34 @@ const PageWrap = React.createClass({
 
 var SliderWrap = React.createClass({
     render: function () {
+        const style = {
+            background: '#71B5DE',
+            height: '5em',
+            lineHeight: '5em',
+            textAlign: 'center',
+            display: 'block',
+            color: 'white'
+        };
         return (
             <div>
                 <Slider>
-                    <div><h3>1</h3></div>
-                    <div><h3>2</h3></div>
-                    <div><h3>3</h3></div>
+                    <div style={style}>1</div>
+                    <div style={style}>2</div>
                 </Slider>
-                <div className="padding-10"></div>
-                <Slider>
-                    <div>aaa</div>
-                    <div>aaa</div>
-                </Slider>
+            </div>
+        );
+    }
+});
+
+var TabsWrap = React.createClass({
+    render(){
+        return (
+            <div>
+                <div className="tabs">
+                    <div className="tabs-item">选项一</div>
+                    <div className="tabs-item active">选项二</div>
+                    <div className="tabs-item">选项三</div>
+                </div>
             </div>
         );
     }
@@ -449,6 +483,7 @@ const Root = React.createClass({
                     <Route path="infinite" component={InfiniteWrap}></Route>
                     <Route path="page" component={PageWrap}></Route>
                     <Route path="slider" component={SliderWrap}></Route>
+                    <Route path="tabs" component={TabsWrap}></Route>
                 </Route>
             </Router>
         );

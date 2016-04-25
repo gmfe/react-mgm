@@ -1095,7 +1095,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var to = this.state.touchObject;
 	        var offset = to ? to.x - to.startX + this.state.x : this.state.x;
 
-	        var cn = (0, _classnames2.default)('slider', {
+	        var cn = (0, _classnames2.default)({
 	            'slider-transition': this.state.transition
 	        }, this.props.className);
 
@@ -1105,28 +1105,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 
 	        return _react2.default.createElement(
-	            _flex2.default,
-	            _extends({}, this.props, {
-	                ref: 'slider',
-	                className: cn,
-	                onMouseDown: this.swipeStart,
-	                onMouseMove: this.state.dragging ? this.swipeMove : null,
-	                onMouseUp: this.swipeEnd,
-	                onMouseLeave: this.state.dragging ? this.swipeEnd : null,
-	                onTouchStart: this.swipeStart,
-	                onTouchMove: this.state.dragging ? this.swipeMove : null,
-	                onTouchEnd: this.swipeEnd,
-	                onTouchCancel: this.state.dragging ? this.swipeEnd : null,
-	                style: style
-	            }),
-	            this.renderChild()
+	            'div',
+	            { className: 'slider' },
+	            _react2.default.createElement(
+	                _flex2.default,
+	                _extends({}, this.props, {
+	                    ref: 'slider',
+	                    className: cn,
+	                    onMouseDown: this.swipeStart,
+	                    onMouseMove: this.state.dragging ? this.swipeMove : null,
+	                    onMouseUp: this.swipeEnd,
+	                    onMouseLeave: this.state.dragging ? this.swipeEnd : null,
+	                    onTouchStart: this.swipeStart,
+	                    onTouchMove: this.state.dragging ? this.swipeMove : null,
+	                    onTouchEnd: this.swipeEnd,
+	                    onTouchCancel: this.state.dragging ? this.swipeEnd : null,
+	                    style: style
+	                }),
+	                this.renderChild()
+	            ),
+	            this.renderFlag()
 	        );
 	    },
 	    renderChild: function renderChild() {
 	        if (toString.call(this.props.children) === '[object Array]') {
 	            return _underscore2.default.map(this.props.children, function (value, i) {
 	                return _react2.default.cloneElement(value, {
-	                    style: { width: '100%' },
+	                    style: _underscore2.default.extend({}, value.props.style, { width: '100%' }),
 	                    className: (0, _classnames2.default)('slider-cell flex flex-none', value.className),
 	                    key: i
 	                });
@@ -1134,6 +1139,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else {
 	            return this.props.children;
 	        }
+	    },
+	    renderFlag: function renderFlag() {
+	        var _this = this;
+
+	        //
+	        return _react2.default.createElement(
+	            _flex2.default,
+	            { justifyCenter: true, className: 'slider-flag' },
+	            _underscore2.default.map(_underscore2.default.range(this.state.count), function (value, i) {
+	                return _react2.default.createElement('span', {
+	                    className: (0, _classnames2.default)({ active: Math.abs(_this.state.x / _this.state.sliderWidth) === i }),
+	                    key: i });
+	            })
+	        );
 	    },
 	    componentDidMount: function componentDidMount() {
 	        this.setSliderWidth();
