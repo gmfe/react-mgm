@@ -417,12 +417,27 @@ const PageWrap = React.createClass({
 
 var SliderWrap = React.createClass({
     render: function () {
+        const style = {
+            border: '1px solid black',
+            borderRadius: '50%',
+        };
         return (
             <div>
                 <Slider>
-                    <div><h3>1</h3></div>
-                    <div><h3>2</h3></div>
-                    <div><h3>3</h3></div>
+                    <Flex>
+                        <Flex width="25%" style={style}>1</Flex>
+                        <Flex width="25%" style={style}>1</Flex>
+                        <Flex width="25%" style={style}>1</Flex>
+                        <Flex width="25%" style={style}>1</Flex>
+                        <Flex width="25%" style={style}>1</Flex>
+                    </Flex>
+                    <Flex>
+                        <Flex width="25%" style={style}>2</Flex>
+                        <Flex width="25%" style={style}>2</Flex>
+                        <Flex width="25%" style={style}>2</Flex>
+                        <Flex width="25%" style={style}>2</Flex>
+                        <Flex width="25%" style={style}>2</Flex>
+                    </Flex>
                 </Slider>
                 <div className="padding-10"></div>
                 <Slider>
