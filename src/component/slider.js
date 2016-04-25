@@ -54,7 +54,7 @@ var Slider = React.createClass({
         if (toString.call(this.props.children) === '[object Array]') {
             return _.map(this.props.children, (value, i) => {
                 return React.cloneElement(value, {
-                    style: {width: '100%'},
+                    style: _.extend({}, value.props.style, {width: '100%'}),
                     className: classnames('slider-cell flex flex-none', value.className),
                     key: i
                 });

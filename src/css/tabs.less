@@ -1,0 +1,62 @@
+.tabs {
+  display: flex;
+  width: 100%;
+
+  .tabs-item {
+    position: relative;
+    display: block;
+    flex: 1;
+    padding: 10px 0;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+
+    &:before {
+      content: " ";
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      border-right: 1px solid @globalBorderColor;
+      transform: scaleY(0.4);
+    }
+
+    &:last-child:before {
+      display: none;
+    }
+
+    &:active {
+      background: @activeColor;
+    }
+
+    &:after {
+      content: " ";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      border-bottom: 1px solid @globalBorderColor;
+    }
+
+    &.active {
+      color: @primaryColor;
+
+      &:after {
+        content: " ";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px solid @primaryColor;
+      }
+
+      &:active {
+        background: @activeColor;
+      }
+    }
+
+  }
+
+}
