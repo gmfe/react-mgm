@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, hashHistory, Link} from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header, Slider} from './src/index';
+import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header, Slider, Panel} from './src/index';
 
 import 'gm-mfont/iconfont.css';
 import './src/index.less';
@@ -93,6 +93,10 @@ const Home = React.createClass({
                     </Link>
                     <Link to="/slider" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">slider</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/panel" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">panel</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -468,6 +472,34 @@ var TabsWrap = React.createClass({
     }
 });
 
+var PanelWrap = React.createClass({
+    getInitialState(){
+        return {
+            show: false
+        };
+    },
+    render(){
+        return (
+            <Page>
+                <button className="weui_btn weui_btn_primary" onClick={this.handleShow}>open panel</button>
+                <Panel show={this.state.show} onChange={this.handleChange}>
+                    asdfa
+                </Panel>
+            </Page>
+        );
+    },
+    handleShow(){
+        this.setState({
+            show: !this.state.show
+        });
+    },
+    handleChange(show){
+        this.setState({
+            show
+        });
+    }
+});
+
 const Root = React.createClass({
     render(){
         return (
@@ -484,6 +516,7 @@ const Root = React.createClass({
                     <Route path="page" component={PageWrap}></Route>
                     <Route path="slider" component={SliderWrap}></Route>
                     <Route path="tabs" component={TabsWrap}></Route>
+                    <Route path="panel" component={PanelWrap}></Route>
                 </Route>
             </Router>
         );

@@ -7,7 +7,7 @@
 		exports["ReactMGM"] = factory(require("react"), require("underscore"), require("classnames"), require("react-dom"));
 	else
 		root["ReactMGM"] = factory(root["react"], root["underscore"], root["classnames"], root["react-dom"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_6__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
-	var _textarea = __webpack_require__(21);
+	var _textarea = __webpack_require__(22);
 
 	var _textarea2 = _interopRequireDefault(_textarea);
 
@@ -72,11 +72,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _nprogress2 = _interopRequireDefault(_nprogress);
 
-	var _mask = __webpack_require__(10);
+	var _mask = __webpack_require__(6);
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _toast = __webpack_require__(22);
+	var _toast = __webpack_require__(23);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
@@ -96,15 +96,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _storage = __webpack_require__(20);
+	var _storage = __webpack_require__(21);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _slider = __webpack_require__(19);
+	var _slider = __webpack_require__(20);
 
 	var _slider2 = _interopRequireDefault(_slider);
 
-	__webpack_require__(23);
+	var _panel = __webpack_require__(19);
+
+	var _panel2 = _interopRequireDefault(_panel);
+
+	__webpack_require__(24);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -120,6 +124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Header: _header2.default,
 	    Storage: _storage2.default,
 	    Slider: _slider2.default,
+	    Panel: _panel2.default,
 	    Util: _gmUtil2.default
 	};
 
@@ -287,12 +292,65 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 6 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(3);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Mask = _react2.default.createClass({
+	    displayName: 'Mask',
+
+	    propTypes: {
+	        transparent: _react2.default.PropTypes.bool,
+	        show: _react2.default.PropTypes.bool,
+	        opacity: _react2.default.PropTypes.number
+	    },
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            transparent: false,
+	            show: false
+	        };
+	    },
+	    render: function render() {
+	        var className = (0, _classnames2.default)({
+	            'mask': !this.props.transparent,
+	            'mask-transparent': this.props.transparent
+	        });
+
+	        var style = {
+	            display: this.props.show ? 'block' : 'none',
+	            opacity: this.props.opacity
+	        };
+
+	        return _react2.default.createElement('div', _extends({}, this.props, { className: className, style: style }));
+	    }
+	});
+
+	exports.default = Mask;
 
 /***/ },
 /* 7 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
+
+/***/ },
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -331,7 +389,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = format;
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -356,7 +414,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = param;
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -434,59 +492,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = RequestInterceptor;
 
 /***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames = __webpack_require__(3);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Mask = _react2.default.createClass({
-	    displayName: 'Mask',
-
-	    propTypes: {
-	        transparent: _react2.default.PropTypes.bool,
-	        show: _react2.default.PropTypes.bool,
-	        opacity: _react2.default.PropTypes.number
-	    },
-	    getDefaultProps: function getDefaultProps() {
-	        return {
-	            transparent: false,
-	            show: false
-	        };
-	    },
-	    render: function render() {
-	        var className = (0, _classnames2.default)({
-	            'mask': !this.props.transparent,
-	            'mask-transparent': this.props.transparent
-	        });
-
-	        var style = {
-	            display: this.props.show ? 'block' : 'none',
-	            opacity: this.props.opacity
-	        };
-
-	        return _react2.default.createElement('div', _extends({}, this.props, { className: className, style: style }));
-	    }
-	});
-
-	exports.default = Mask;
-
-/***/ },
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -496,15 +501,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _request2 = _interopRequireDefault(_request);
 
-	var _requestInterceptor = __webpack_require__(9);
+	var _requestInterceptor = __webpack_require__(10);
 
 	var _requestInterceptor2 = _interopRequireDefault(_requestInterceptor);
 
-	var _param = __webpack_require__(8);
+	var _param = __webpack_require__(9);
 
 	var _param2 = _interopRequireDefault(_param);
 
-	var _format = __webpack_require__(7);
+	var _format = __webpack_require__(8);
 
 	var _format2 = _interopRequireDefault(_format);
 
@@ -555,11 +560,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _param = __webpack_require__(8);
+	var _param = __webpack_require__(9);
 
 	var _param2 = _interopRequireDefault(_param);
 
-	var _format = __webpack_require__(7);
+	var _format = __webpack_require__(8);
 
 	var _format2 = _interopRequireDefault(_format);
 
@@ -567,7 +572,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _request = __webpack_require__(9);
+	var _request = __webpack_require__(10);
 
 	var _request2 = _interopRequireDefault(_request);
 
@@ -894,7 +899,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(6);
+	var _reactDom = __webpack_require__(7);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1055,13 +1060,72 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(3);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _mask = __webpack_require__(6);
+
+	var _mask2 = _interopRequireDefault(_mask);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Panel = _react2.default.createClass({
+	    displayName: 'Panel',
+
+	    propTypes: {
+	        show: _react.PropTypes.bool,
+	        onChange: _react.PropTypes.func
+	    },
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            show: false,
+	            onChange: function onChange() {}
+	        };
+	    },
+	    render: function render() {
+	        var cn = (0, _classnames2.default)('panel', {
+	            active: this.props.show
+	        });
+	        return _react2.default.createElement(
+	            'div',
+	            { className: cn },
+	            _react2.default.createElement(_mask2.default, { show: this.props.show, opacity: 0.1, onClick: this.handleChange }),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'panel-content' },
+	                this.props.children
+	            )
+	        );
+	    },
+	    handleChange: function handleChange() {
+	        this.props.onChange(!this.props.show);
+	    }
+	});
+
+	exports.default = Panel;
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(6);
+	var _reactDom = __webpack_require__(7);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1230,7 +1294,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Slider;
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1312,7 +1376,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Storage;
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1362,7 +1426,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Textarea;
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1375,11 +1439,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(6);
+	var _reactDom = __webpack_require__(7);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _mask = __webpack_require__(10);
+	var _mask = __webpack_require__(6);
 
 	var _mask2 = _interopRequireDefault(_mask);
 
@@ -1619,7 +1683,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Toast;
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

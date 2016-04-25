@@ -10,6 +10,7 @@ import Infinite from './component/infinite';
 import Header from './component/header';
 import Storage from './component/storage';
 import Slider from './component/slider';
+import Panel from './component/panel';
 
 import './index.less';
 
@@ -25,6 +26,7 @@ var ReactGMM = {
     Header,
     Storage,
     Slider,
+    Panel,
     Util
 };
 

@@ -6,6 +6,7 @@
 ## z-index层级管理
 z-index < 10000
 mask 100
+panel 200
 toast 800
 nprogress 9999
 
