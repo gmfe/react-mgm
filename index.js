@@ -9,11 +9,18 @@ import './src/index.less';
 
 const App = React.createClass({
     render(){
-        console.log(this.props);
+        const action = this.props.location.action;
+        let transitionName = 'page';
+        // REPLEASE
+        if (action === 'PUSH') {
+            transitionName = 'page-r2l';
+        } else if (action === 'POP') {
+            transitionName = 'page-l2r';
+        }
         return (
             <ReactCSSTransitionGroup
                 component="div"
-                transitionName="page"
+                transitionName={transitionName}
                 transitionEnterTimeout={200}
                 transitionLeaveTimeout={200}
             >
