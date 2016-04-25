@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, hashHistory, Link} from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header, Slider, Panel, SearchBar} from './src/index';
+import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header, Slider, Popup, SearchBar} from './src/index';
 
 import 'gm-mfont/iconfont.css';
 import './src/index.less';
@@ -95,8 +95,8 @@ const Home = React.createClass({
                         <div className="weui_cell_bd weui_cell_primary">slider</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
-                    <Link to="/panel" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">panel</div>
+                    <Link to="/popup" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">popup</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                     <Link to="/searchbar" className="weui_cell">
@@ -476,19 +476,25 @@ var TabsWrap = React.createClass({
     }
 });
 
-var PanelWrap = React.createClass({
+var PopupWrap = React.createClass({
     getInitialState(){
         return {
-            show: false
+            show: false,
+            show2: false
         };
     },
     render(){
         return (
             <Page>
-                <button className="weui_btn weui_btn_primary" onClick={this.handleShow}>open panel</button>
-                <SearchBar show={this.state.show} onChange={this.handleChange}>
+                <button className="weui_btn weui_btn_primary" onClick={this.handleShow}>open popup left</button>
+                <button className="weui_btn weui_btn_primary" onClick={this.handleShow2}>open popup bottom</button>
+                <Popup left show={this.state.show} onChange={this.handleChange}>
                     asdfa
-                </SearchBar>
+                </Popup>
+
+                <Popup bottom height="350px" show={this.state.show2} onChange={this.handleChange2}>
+                    height 350px
+                </Popup>
             </Page>
         );
     },
@@ -497,9 +503,19 @@ var PanelWrap = React.createClass({
             show: !this.state.show
         });
     },
+    handleShow2(){
+        this.setState({
+            show2: !this.state.show2
+        });
+    },
     handleChange(show){
         this.setState({
             show
+        });
+    },
+    handleChange2(show2){
+        this.setState({
+            show2
         });
     }
 });
@@ -550,7 +566,7 @@ const Root = React.createClass({
                     <Route path="page" component={PageWrap}></Route>
                     <Route path="slider" component={SliderWrap}></Route>
                     <Route path="tabs" component={TabsWrap}></Route>
-                    <Route path="panel" component={PanelWrap}></Route>
+                    <Route path="popup" component={PopupWrap}></Route>
                     <Route path="searchbar" component={SearchBarWrap}></Route>
                 </Route>
             </Router>

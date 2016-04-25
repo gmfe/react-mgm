@@ -104,9 +104,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _slider2 = _interopRequireDefault(_slider);
 
-	var _panel = __webpack_require__(19);
+	var _popup = __webpack_require__(19);
 
-	var _panel2 = _interopRequireDefault(_panel);
+	var _popup2 = _interopRequireDefault(_popup);
 
 	var _search = __webpack_require__(20);
 
@@ -128,7 +128,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Header: _header2.default,
 	    Storage: _storage2.default,
 	    Slider: _slider2.default,
-	    Panel: _panel2.default,
+	    Popup: _popup2.default,
 	    SearchBar: _search2.default,
 	    Util: _gmUtil2.default
 	};
@@ -1065,6 +1065,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -1077,14 +1079,22 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _mask2 = _interopRequireDefault(_mask);
 
+	var _underscore = __webpack_require__(2);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Panel = _react2.default.createClass({
-	    displayName: 'Panel',
+	var Popup = _react2.default.createClass({
+	    displayName: 'Popup',
 
 	    propTypes: {
 	        show: _react.PropTypes.bool,
-	        onChange: _react.PropTypes.func
+	        onChange: _react.PropTypes.func,
+	        left: _react.PropTypes.bool,
+	        bottom: _react.PropTypes.bool,
+	        width: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
+	        height: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number])
 	    },
 	    getDefaultProps: function getDefaultProps() {
 	        return {
@@ -1093,16 +1103,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    },
 	    render: function render() {
-	        var cn = (0, _classnames2.default)('panel', {
-	            active: this.props.show
-	        });
+	        var cn = (0, _classnames2.default)('popup', {
+	            active: this.props.show,
+	            'popup-left': this.props.left,
+	            'popup-bottom': this.props.bottom
+	        }, this.props.className);
+
+	        var style = _underscore2.default.extend({}, this.props.style);
+	        if (this.props.left && this.props.width) {
+	            style.width = this.props.width;
+	        } else if (this.props.bottom && this.props.height) {
+	            style.height = this.props.height;
+	        }
+
 	        return _react2.default.createElement(
 	            'div',
-	            { className: cn },
+	            _extends({}, this.props, { className: cn, style: style }),
 	            _react2.default.createElement(_mask2.default, { show: this.props.show, opacity: 0.1, onClick: this.handleChange }),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'panel-content' },
+	                { className: 'popup-content' },
 	                this.props.children
 	            )
 	        );
@@ -1112,7 +1132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	});
 
-	exports.default = Panel;
+	exports.default = Popup;
 
 /***/ },
 /* 20 */
@@ -1177,7 +1197,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        onFocus: this.handleFocus,
 	                        onChange: this.handleChange,
 	                        value: this.props.value }),
-	                    _react2.default.createElement('a', { href: 'javascript:', className: 'weui_icon_clear', onClick: this.handleClose.bind(this, true) })
+	                    _react2.default.createElement('a', { href: 'javascript:', className: 'weui_icon_clear',
+	                        onClick: this.handleClose.bind(this, true) })
 	                ),
 	                _react2.default.createElement(
 	                    'label',

@@ -2756,20 +2756,34 @@ a.decoration {
 .tabs .tabs-item.active:active {
   background: #ededed;
 }
-.panel {
+.popup {
   position: absolute;
+  z-index: 200;
+}
+.popup.popup-left {
   top: 0;
   left: -100%;
   width: 70%;
   height: 100%;
-  z-index: 200;
   -webkit-transition: left 0.2s ease-out;
   transition: left 0.2s ease-out;
 }
-.panel.active {
+.popup.popup-left.active {
   left: 0;
 }
-.panel .panel-content {
+.popup.popup-bottom {
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  max-height: 100%;
+  -webkit-transition: bottom 0.2s ease-out;
+  transition: bottom 0.2s ease-out;
+}
+.popup.popup-bottom.active {
+  bottom: 0;
+}
+.popup .popup-content {
   background: white;
   position: absolute;
   top: 0;
