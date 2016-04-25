@@ -11,6 +11,7 @@ import Header from './component/header';
 import Storage from './component/storage';
 import Slider from './component/slider';
 import Panel from './component/panel';
+import SearchBar from './component/search.bar';
 
 import './index.less';
 
@@ -27,6 +28,7 @@ var ReactGMM = {
     Storage,
     Slider,
     Panel,
+    SearchBar,
     Util
 };
 

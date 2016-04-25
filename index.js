@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, hashHistory, Link} from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header, Slider, Panel} from './src/index';
+import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header, Slider, Panel, SearchBar} from './src/index';
 
 import 'gm-mfont/iconfont.css';
 import './src/index.less';
@@ -97,6 +97,10 @@ const Home = React.createClass({
                     </Link>
                     <Link to="/panel" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">panel</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/searchbar" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">search bar</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -482,9 +486,9 @@ var PanelWrap = React.createClass({
         return (
             <Page>
                 <button className="weui_btn weui_btn_primary" onClick={this.handleShow}>open panel</button>
-                <Panel show={this.state.show} onChange={this.handleChange}>
+                <SearchBar show={this.state.show} onChange={this.handleChange}>
                     asdfa
-                </Panel>
+                </SearchBar>
             </Page>
         );
     },
@@ -497,6 +501,36 @@ var PanelWrap = React.createClass({
         this.setState({
             show
         });
+    }
+});
+
+var SearchBarWrap = React.createClass({
+    getInitialState(){
+        return {
+            defaultFocus: false,
+            value: ''
+        };
+    },
+    render(){
+        return (
+            <Page>
+                <SearchBar placeholder="搜索商品" value={this.state.value} onChange={this.handleChange}
+                           onOK={this.handleOK}
+                           onCancel={this.handleCancel}
+                ></SearchBar>
+            </Page>
+        );
+    },
+    handleChange(value){
+        this.setState({
+            value
+        });
+    },
+    handleOK(){
+        console.log('ok');
+    },
+    handleCancel(){
+        console.log('cancel');
     }
 });
 
@@ -517,6 +551,7 @@ const Root = React.createClass({
                     <Route path="slider" component={SliderWrap}></Route>
                     <Route path="tabs" component={TabsWrap}></Route>
                     <Route path="panel" component={PanelWrap}></Route>
+                    <Route path="searchbar" component={SearchBarWrap}></Route>
                 </Route>
             </Router>
         );

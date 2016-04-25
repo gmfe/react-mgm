@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
-	var _textarea = __webpack_require__(22);
+	var _textarea = __webpack_require__(23);
 
 	var _textarea2 = _interopRequireDefault(_textarea);
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _toast = __webpack_require__(23);
+	var _toast = __webpack_require__(24);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
@@ -96,11 +96,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _storage = __webpack_require__(21);
+	var _storage = __webpack_require__(22);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _slider = __webpack_require__(20);
+	var _slider = __webpack_require__(21);
 
 	var _slider2 = _interopRequireDefault(_slider);
 
@@ -108,7 +108,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _panel2 = _interopRequireDefault(_panel);
 
-	__webpack_require__(24);
+	var _search = __webpack_require__(20);
+
+	var _search2 = _interopRequireDefault(_search);
+
+	__webpack_require__(25);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -125,6 +129,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Storage: _storage2.default,
 	    Slider: _slider2.default,
 	    Panel: _panel2.default,
+	    SearchBar: _search2.default,
 	    Util: _gmUtil2.default
 	};
 
@@ -1119,6 +1124,114 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(3);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SearchBar = _react2.default.createClass({
+	    displayName: 'SearchBar',
+
+	    propTypes: {
+	        defaultFocus: _react.PropTypes.bool,
+	        value: _react.PropTypes.string.isRequired,
+	        onChange: _react.PropTypes.func.isRequired,
+	        placeholder: _react.PropTypes.string,
+	        onOK: _react.PropTypes.func,
+	        onCancel: _react.PropTypes.func
+	    },
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            id: '_mgm_search_bar_id' + (Math.random() + '').slice(2),
+	            defaultFocus: false,
+	            onOK: function onOK() {},
+	            onCancel: function onCancel() {}
+	        };
+	    },
+	    getInitialState: function getInitialState() {
+	        return {
+	            focus: this.props.defaultFocus
+	        };
+	    },
+	    render: function render() {
+	        var cn = (0, _classnames2.default)('search-bar weui_search_bar', {
+	            'weui_search_focusing': this.state.focus
+	        });
+	        return _react2.default.createElement(
+	            'div',
+	            { className: cn },
+	            _react2.default.createElement(
+	                'form',
+	                { className: 'weui_search_outer', onSubmit: this.handleOK },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'weui_search_inner' },
+	                    _react2.default.createElement('i', { className: 'weui_icon_search' }),
+	                    _react2.default.createElement('input', { id: this.props.id, type: 'search', className: 'weui_search_input',
+	                        placeholder: this.props.placeholder,
+	                        onFocus: this.handleFocus,
+	                        onChange: this.handleChange,
+	                        value: this.props.value }),
+	                    _react2.default.createElement('a', { href: 'javascript:', className: 'weui_icon_clear', onClick: this.handleClose.bind(this, true) })
+	                ),
+	                _react2.default.createElement(
+	                    'label',
+	                    { htmlFor: this.props.id, 'for': 'search_input', className: 'weui_search_text' },
+	                    _react2.default.createElement('i', { className: 'weui_icon_search' }),
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        this.props.placeholder
+	                    )
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'a',
+	                { href: 'javascript:', className: 'weui_search_cancel', onClick: this.handleClose.bind(this, false) },
+	                '取消'
+	            )
+	        );
+	    },
+	    handleFocus: function handleFocus(event) {
+	        event.preventDefault();
+	        this.setState({
+	            focus: true
+	        });
+	    },
+	    handleClose: function handleClose(clear, event) {
+	        event.preventDefault();
+	        if (clear) {
+	            this.props.onChange('');
+	        }
+	        this.setState({ focus: false });
+	        this.props.onCancel();
+	    },
+	    handleOK: function handleOK(event) {
+	        event.preventDefault();
+	        this.props.onOK();
+	    },
+	    handleChange: function handleChange(event) {
+	        this.props.onChange(event.target.value);
+	    }
+	});
+
+	exports.default = SearchBar;
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _react = __webpack_require__(1);
@@ -1294,7 +1407,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Slider;
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1376,7 +1489,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Storage;
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1426,7 +1539,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Textarea;
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1683,7 +1796,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Toast;
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
