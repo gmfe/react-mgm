@@ -12,7 +12,7 @@
     "deploy": "npm install; npm run build && npm run build:min",
     "build": "webpack --progress --color --profile",
     "build:min": "webpack --config webpack.config.min.js",
-    "gh-pages": "webpack --config webpack.config.dev.js"
+    "publish": "npm run deploy;"
   },
   "repository": {
     "type": "git",

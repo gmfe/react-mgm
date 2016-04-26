@@ -40,7 +40,7 @@ const Home = React.createClass({
     },
     render(){
         return (
-            <Page header={<Header title="React MGM"></Header>} tabbar={this.renderTabbar()}>
+            <Page header={<Header title="React MGM" history={hashHistory}></Header>} tabbar={this.renderTabbar()}>
                 <h2>React MGM</h2>
                 <div className="weui_cells_title">CSS</div>
                 <div className="weui_cells weui_cells_access">

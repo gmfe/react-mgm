@@ -765,7 +765,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            { className: "header" },
 	            this.props.left ? this.props.left : _react2.default.createElement(
 	                "a",
-	                { href: "", className: "button button-link pull-left header-left" },
+	                { href: "javascript:void(0);", className: "button button-link pull-left header-left", onClick: this.handleBack },
 	                _react2.default.createElement("i", { className: "icon-angle-left" }),
 	                "返回"
 	            ),
@@ -780,7 +780,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    handleBack: function handleBack(event) {
 	        event.stopPropagation();
 	        event.preventDefault();
-
 	        if (this.props.history) {
 	            this.props.history.go(-1);
 	        }

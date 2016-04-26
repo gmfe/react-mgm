@@ -2462,6 +2462,7 @@ a.decoration {
 }
 .header .button {
   z-index: 20;
+  position: relative;
 }
 .header .button.button-link {
   line-height: 45px;
