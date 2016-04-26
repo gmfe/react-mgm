@@ -104,6 +104,10 @@ const Home = React.createClass({
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
+                <div className="weui_cells_title">Theme</div>
+                <div>
+                    <button className="weui_btn weui_btn_primary">primary</button>
+                </div>
             </Page>
         );
     },
