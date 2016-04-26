@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/react-mgm.svg)](https://badge.fury.io/js/react-mgm)
+
 # 微信
 移动端（主微信端）项目
 
