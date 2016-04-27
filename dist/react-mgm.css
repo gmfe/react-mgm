@@ -2313,6 +2313,12 @@ a.decoration {
   -webkit-animation: slideOut .25s forwards;
           animation: slideOut .25s forwards;
 }
+.weui_tabbar {
+  background-color: white;
+}
+.weui_tabbar_item.weui_bar_item_on .weui_tabbar_label {
+  color: #00BE6B;
+}
 .flex-flex {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
