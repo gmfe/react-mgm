@@ -458,7 +458,7 @@ var SliderWrap = React.createClass({
         return (
             <div>
                 <Slider>
-                    <div style={style}>1</div>
+                    <div className="border" style={style}>1</div>
                     <div style={style}>2</div>
                 </Slider>
             </div>
