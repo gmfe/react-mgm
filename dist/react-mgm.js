@@ -1329,7 +1329,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return _underscore2.default.map(this.props.children, function (value, i) {
 	                return _react2.default.cloneElement(value, {
 	                    style: _underscore2.default.extend({}, value.props.style, { width: '100%' }),
-	                    className: (0, _classnames2.default)('slider-cell flex flex-none', value.className),
+	                    className: (0, _classnames2.default)('slider-cell flex flex-none', value.props.className),
 	                    key: i
 	                });
 	            });
