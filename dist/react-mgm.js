@@ -1117,12 +1117,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        return _react2.default.createElement(
 	            'div',
-	            _extends({}, this.props, { className: cn, style: style }),
+	            { className: 'popup-wrap' },
 	            _react2.default.createElement(_mask2.default, { show: this.props.show, opacity: 0.1, onClick: this.handleChange }),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'popup-content' },
-	                this.props.children
+	                _extends({}, this.props, { className: cn, style: style }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'popup-content' },
+	                    this.props.children
+	                )
 	            )
 	        );
 	    },
