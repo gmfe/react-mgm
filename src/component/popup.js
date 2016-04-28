@@ -34,10 +34,12 @@ const Popup = React.createClass({
         }
 
         return (
-            <div {...this.props} className={cn} style={style}>
+            <div className="popup-wrap">
                 <Mask show={this.props.show} opacity={0.1} onClick={this.handleChange}></Mask>
-                <div className="popup-content">
-                    {this.props.children}
+                <div {...this.props} className={cn} style={style}>
+                    <div className="popup-content">
+                        {this.props.children}
+                    </div>
                 </div>
             </div>
         );

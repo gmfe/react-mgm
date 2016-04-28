@@ -511,6 +511,32 @@ var PopupWrap = React.createClass({
                 <Popup bottom height="350px" show={this.state.show2} onChange={this.handleChange2}>
                     height 350px
                 </Popup>
+
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
+                <div>asdf</div>
             </Page>
         );
     },
