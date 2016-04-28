@@ -52,6 +52,10 @@ const Home = React.createClass({
                         <div className="weui_cell_bd weui_cell_primary">icon</div>
                         <div className="weui_cell_ft"></div>
                     </a>
+                    <Link to="/theme" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">theme</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
                     <Link to="/gap" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">gap</div>
                         <div className="weui_cell_ft"></div>
@@ -104,10 +108,6 @@ const Home = React.createClass({
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
-                <div className="weui_cells_title">Theme</div>
-                <div>
-                    <button className="weui_btn weui_btn_primary">primary</button>
-                </div>
             </Page>
         );
     },
@@ -138,6 +138,18 @@ const Home = React.createClass({
                     </div>
                     <p className="weui_tabbar_label">我的</p>
                 </a>
+            </div>
+        );
+    }
+});
+
+const ThemeWrap = React.createClass({
+    render(){
+        return (
+            <div>
+                <div>
+                    <button className="weui_btn weui_btn_primary">primary</button>
+                </div>
             </div>
         );
     }
@@ -560,6 +572,7 @@ const Root = React.createClass({
             <Router history={hashHistory}>
                 <Route path="/" component={App}>
                     <IndexRoute component={Home}></IndexRoute>
+                    <Route path="theme" component={ThemeWrap}></Route>
                     <Route path="gap" component={GapWrap}></Route>
                     <Route path="flex" component={FlexWrap}></Route>
                     <Route path="textarea" component={TextareaWrap}></Route>
