@@ -1,0 +1,1 @@
+window.WEBPACK_ASSETS = {"index":{"js":"/react-mgm/build/index.c11df7afefd34bdd0a36.js"}}
