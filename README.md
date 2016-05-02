@@ -6,7 +6,11 @@
 文档见wiki
 
 ## demo
-http://gmfe.github.io/react-mgm/
+http://gmfe.github.io/react-mgm/demo
+
+或者 
+clone下来，npm install; npm start; 
+访问http://localhost:4000/demo/
 
 ## 依赖
 react
