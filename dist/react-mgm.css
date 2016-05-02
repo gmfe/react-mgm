@@ -2453,7 +2453,7 @@ a.decoration {
 }
 .header {
   height: 45px;
-  background-color: #f7f7f7;
+  background-color: white;
   padding: 0 10px;
   position: relative;
 }
@@ -2619,8 +2619,8 @@ a.decoration {
 }
 .page-r2l-leave.page-r2l-leave-active {
   opacity: 0;
-  -webkit-transform: translate3d(-20%, 0, 0);
-          transform: translate3d(-20%, 0, 0);
+  -webkit-transform: translate3d(-10%, 0, 0);
+          transform: translate3d(-10%, 0, 0);
 }
 .page-l2r-enter {
   opacity: 0;
@@ -2647,8 +2647,8 @@ a.decoration {
 }
 .page-l2r-leave.page-l2r-leave-active {
   opacity: 0;
-  -webkit-transform: translate3d(20%, 0, 0);
-          transform: translate3d(20%, 0, 0);
+  -webkit-transform: translate3d(10%, 0, 0);
+          transform: translate3d(10%, 0, 0);
 }
 .textarea-adapter {
   position: relative;

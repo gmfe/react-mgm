@@ -565,6 +565,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _param = __webpack_require__(9);
 
 	var _param2 = _interopRequireDefault(_param);
@@ -628,7 +630,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this._data = {};
 	    this.url = url;
 	    this.sucCode = [0];
-	    this.options = Object.assign({
+	    this.options = _extends({
 	        method: 'get',
 	        headers: {
 	            'Accept': 'application/json'
@@ -647,7 +649,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    data: function data(_data) {
 	        // 过滤null  undefined 只Object 类型。
-	        this._data = Object.assign({}, _data);
+	        this._data = _extends({}, _data);
 	        if (toString.call(this._data) === '[object Object]') {
 	            this._data = _underscore2.default.pick(this._data, function (value) {
 	                return value !== null && value !== undefined;
