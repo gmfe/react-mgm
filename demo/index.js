@@ -2,10 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, hashHistory, Link} from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Flex, Textarea, NProgress, Toast, Loading, Page, Infinite, Header, Slider, Popup, SearchBar} from './src/index';
+import {
+    Flex,
+    Textarea,
+    NProgress,
+    Toast,
+    Loading,
+    Page,
+    Infinite,
+    Header,
+    Slider,
+    Popup,
+    SearchBar
+} from './../src/index';
 
-import 'gm-mfont/iconfont.css';
-import './src/index.less';
+import '../node_modules/gm-mfont/iconfont.css';
+import '../src/index.less';
 
 const App = React.createClass({
     render(){

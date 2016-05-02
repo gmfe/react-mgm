@@ -32,7 +32,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.js$/,
-            loader: 'babel?presets[]=react,presets[]=es2015',
+            loader: 'babel',
         }, {
             test: /\.(css|less)$/,
             loader: ExtractTextPlugin.extract('style', 'css!postcss!less')
