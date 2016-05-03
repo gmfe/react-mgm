@@ -161,6 +161,8 @@ const ThemeWrap = React.createClass({
             <div>
                 <div>
                     <button className="weui_btn weui_btn_primary">primary</button>
+
+                    <input type="text" className="weui_input" placeholder="adf"/>
                 </div>
             </div>
         );
@@ -495,9 +497,15 @@ var TabsWrap = React.createClass({
         return (
             <div>
                 <div className="tabs">
-                    <div className="tabs-item">选项一</div>
-                    <div className="tabs-item active">选项二</div>
-                    <div className="tabs-item">选项三</div>
+                    <div className="tabs-item">
+                        <div className="tabs-item-text">选项一</div>
+                    </div>
+                    <div className="tabs-item active">
+                        <div className="tabs-item-text">选项二</div>
+                    </div>
+                    <div className="tabs-item">
+                        <div className="tabs-item-text">选项三</div>
+                    </div>
                 </div>
             </div>
         );

@@ -6,9 +6,12 @@
     position: relative;
     display: block;
     flex: 1;
-    padding: 10px 0;
     text-align: center;
     -webkit-tap-highlight-color: transparent;
+
+    &:active {
+      background: @activeColor;
+    }
 
     &:before {
       content: " ";
@@ -20,13 +23,8 @@
       border-right: 1px solid @borderColor;
       transform: scaleY(0.4);
     }
-
     &:last-child:before {
       display: none;
-    }
-
-    &:active {
-      background: @activeColor;
     }
 
     &:after {
@@ -39,8 +37,14 @@
       border-bottom: 1px solid @borderColor;
     }
 
-    &.active {
+    .tabs-item-text {
+      padding: 10px 1em;
+    }
+
+    &.active .tabs-item-text {
+      display: inline-block;
       color: @primaryColor;
+      position: relative;
 
       &:after {
         content: " ";
@@ -49,14 +53,9 @@
         bottom: 0;
         width: 100%;
         height: 1px;
-        border-bottom: 1px solid @primaryColor;
-      }
-
-      &:active {
-        background: @activeColor;
+        border-bottom: 3px solid @primaryColor;
       }
     }
-
   }
 
 }
