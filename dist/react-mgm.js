@@ -1201,9 +1201,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        placeholder: this.props.placeholder,
 	                        onFocus: this.handleFocus,
 	                        onChange: this.handleChange,
+	                        ref: 'input',
 	                        value: this.props.value }),
-	                    _react2.default.createElement('a', { href: 'javascript:', className: 'weui_icon_clear',
-	                        onClick: this.handleClose.bind(this, true) })
+	                    this.props.value === '' ? undefined : _react2.default.createElement('a', { href: 'javascript:', className: 'weui_icon_clear',
+	                        onClick: this.handleClose })
 	                ),
 	                _react2.default.createElement(
 	                    'label',
@@ -1218,7 +1219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            ),
 	            _react2.default.createElement(
 	                'a',
-	                { href: 'javascript:', className: 'weui_search_cancel', onClick: this.handleClose.bind(this, false) },
+	                { href: 'javascript:', className: 'weui_search_cancel', onClick: this.handleCancle },
 	                '取消'
 	            )
 	        );
@@ -1229,17 +1230,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	            focus: true
 	        });
 	    },
-	    handleClose: function handleClose(clear, event) {
+	    handleClose: function handleClose(event) {
 	        event.preventDefault();
-	        if (clear) {
-	            this.props.onChange('');
-	        }
+	        this.props.onChange('');
+	        this.refs.input.focus();
+	    },
+	    handleCancle: function handleCancle(event) {
+	        event.preventDefault();
 	        this.setState({ focus: false });
+	        this.props.onChange('');
 	        this.props.onCancel();
 	    },
 	    handleOK: function handleOK(event) {
 	        event.preventDefault();
 	        this.props.onOK();
+	        this.setState({
+	            focus: false
+	        });
 	    },
 	    handleChange: function handleChange(event) {
 	        this.props.onChange(event.target.value);

@@ -2010,6 +2010,13 @@ a.decoration {
   position: absolute;
   right: 0;
 }
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
 .inline {
   display: inline !important;
 }
