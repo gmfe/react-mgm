@@ -6,7 +6,7 @@ let Header = React.createClass({
             <div className="header">
 
                 {this.props.left ? this.props.left : (<a href="javascript:void(0);" className="button button-link pull-left header-left" onClick={this.handleBack}>
-                    <i className="icon-angle-left"></i>返回</a>)}
+                    <i className="ifont ifont-angle-left"></i>返回</a>)}
                 {this.props.right ? this.props.right : null}
                 <h1 className="header-title">{this.props.title}</h1>
             </div>
