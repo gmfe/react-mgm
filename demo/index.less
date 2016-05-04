@@ -1,0 +1,35 @@
+@import "../src/index.less";
+
+.strip {
+  display: inline-block;
+  width: 100px;
+  height: 10px;
+}
+
+.color {
+  .default {
+    background: @defaultColor;
+  }
+  .primary {
+    background: @primaryColor;
+  }
+
+  .warn {
+    background: @warnColor;
+  }
+
+  .desc {
+    background: @descColor
+  }
+
+  .border {
+    background: @borderColor;
+  }
+}
+
+.bg {
+  .default {
+    height: 50px;
+    background: @defaultBg;
+  }
+}

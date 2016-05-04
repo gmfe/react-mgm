@@ -17,7 +17,7 @@ import {
 } from './../src/index';
 
 import '../node_modules/gm-mfont/iconfont.css';
-import '../src/index.less';
+import './index.less';
 
 const App = React.createClass({
     render(){
@@ -158,13 +158,55 @@ const Home = React.createClass({
 const ThemeWrap = React.createClass({
     render(){
         return (
-            <div>
-                <div>
-                    <button className="weui_btn weui_btn_primary">primary</button>
-
-                    <input type="text" className="weui_input" placeholder="adf"/>
+            <Page white>
+                <div className="color">
+                    <h3>色系</h3>
+                    <div>
+                        <span className="strip default"></span>默认字体色
+                    </div>
+                    <div>
+                        <span className="strip primary"></span>主色
+                    </div>
+                    <div>
+                        <span className="strip warn"></span>危险色
+                    </div>
+                    <div>
+                        <span className="strip desc"></span>辅助色
+                    </div>
+                    <div>
+                        <span className="strip border"></span>边框色
+                    </div>
                 </div>
-            </div>
+                <div className="bg">
+                    <h3>背景</h3>
+                    两种:1 白色背景色
+                    <div className="default">2 默认背景色</div>
+                </div>
+                <div>
+                    <h3>按钮(正常和不可点状态)</h3>
+                    <div>
+                        <button className="weui_btn weui_btn_primary active">primary</button>
+                        <button className="weui_btn weui_btn_primary weui_btn_disabled" disabled>warn</button>
+                    </div>
+                    <div>
+                        <button className="weui_btn weui_btn_warn">warn</button>
+                        <button className="weui_btn weui_btn_warn weui_btn_disabled" disabled>warn</button>
+                    </div>
+                    <div>
+                        <button className="weui_btn weui_btn_default">default</button>
+                        <button className="weui_btn weui_btn_default weui_btn_disabled" disabled>default</button>
+                    </div>
+                    <div>
+                        <button className="weui_btn weui_btn_plain_primary">plain primary</button>
+                        <button className="weui_btn weui_btn_plain_default">plain default</button>
+                    </div>
+
+                </div>
+                <div>
+                    <h3>input placeholder</h3>
+                    <input type="text" className="weui_input" placeholder="请输入xxxxx"/>
+                </div>
+            </Page>
         );
     }
 });
