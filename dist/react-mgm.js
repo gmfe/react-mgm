@@ -768,7 +768,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.props.left ? this.props.left : _react2.default.createElement(
 	                "a",
 	                { href: "javascript:void(0);", className: "button button-link pull-left header-left", onClick: this.handleBack },
-	                _react2.default.createElement("i", { className: "icon-angle-left" }),
+	                _react2.default.createElement("i", { className: "ifont ifont-angle-left" }),
 	                "返回"
 	            ),
 	            this.props.right ? this.props.right : null,
