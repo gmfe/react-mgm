@@ -2300,6 +2300,9 @@ a.decoration {
 .weui_tabbar_item.weui_bar_item_on .weui_tabbar_label {
   color: #34BE66;
 }
+.weui_cells {
+  font-size: 16px;
+}
 .flex-flex {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
