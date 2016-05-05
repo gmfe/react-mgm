@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("underscore"), require("classnames"), require("react-dom"));
+		module.exports = factory(require("react"), require("classnames"), require("underscore"), require("react-dom"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "underscore", "classnames", "react-dom"], factory);
+		define(["react", "classnames", "underscore", "react-dom"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactMGM"] = factory(require("react"), require("underscore"), require("classnames"), require("react-dom"));
+		exports["ReactMGM"] = factory(require("react"), require("classnames"), require("underscore"), require("react-dom"));
 	else
-		root["ReactMGM"] = factory(root["react"], root["underscore"], root["classnames"], root["react-dom"]);
+		root["ReactMGM"] = factory(root["react"], root["classnames"], root["underscore"], root["react-dom"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
-	var _textarea = __webpack_require__(24);
+	var _textarea = __webpack_require__(25);
 
 	var _textarea2 = _interopRequireDefault(_textarea);
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _toast = __webpack_require__(25);
+	var _toast = __webpack_require__(26);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _storage = __webpack_require__(23);
+	var _storage = __webpack_require__(24);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
@@ -112,11 +112,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _search2 = _interopRequireDefault(_search);
 
+	var _square = __webpack_require__(23);
+
+	var _square2 = _interopRequireDefault(_square);
+
 	var _lazy = __webpack_require__(17);
 
 	var _lazy2 = _interopRequireDefault(_lazy);
 
-	__webpack_require__(26);
+	__webpack_require__(27);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -134,6 +138,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Slider: _slider2.default,
 	    Popup: _popup2.default,
 	    SearchBar: _search2.default,
+	    Square: _square2.default,
 	    LazyImg: _lazy2.default,
 	    Util: _gmUtil2.default
 	};
@@ -174,11 +179,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(3);
+	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _underscore = __webpack_require__(2);
+	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -316,7 +321,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(3);
+	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -369,7 +374,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _underscore = __webpack_require__(2);
+	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -408,7 +413,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _underscore = __webpack_require__(2);
+	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -433,7 +438,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _underscore = __webpack_require__(2);
+	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -580,7 +585,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _format2 = _interopRequireDefault(_format);
 
-	var _underscore = __webpack_require__(2);
+	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -811,7 +816,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(3);
+	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -912,7 +917,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(3);
+	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -1065,7 +1070,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(3);
+	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -1142,7 +1147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(3);
+	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -1150,7 +1155,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _underscore = __webpack_require__(2);
+	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1223,7 +1228,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(3);
+	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -1345,11 +1350,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _classnames = __webpack_require__(3);
+	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _underscore = __webpack_require__(2);
+	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1519,11 +1524,52 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _underscore = __webpack_require__(2);
+	var _classnames = __webpack_require__(2);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Square = _react2.default.createClass({
+	    displayName: 'Square',
+	    render: function render() {
+	        var cn = (0, _classnames2.default)('square-inner', this.props.className);
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'square' },
+	            _react2.default.createElement(
+	                'div',
+	                _extends({}, this.props, { className: cn }),
+	                this.props.children
+	            )
+	        );
+	    }
+	});
+
+	exports.default = Square;
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1592,7 +1638,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Storage;
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1607,11 +1653,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(3);
+	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _underscore = __webpack_require__(2);
+	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1642,7 +1688,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Textarea;
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1667,7 +1713,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _loading2 = _interopRequireDefault(_loading);
 
-	var _underscore = __webpack_require__(2);
+	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1899,7 +1945,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Toast;
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
