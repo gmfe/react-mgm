@@ -12,6 +12,7 @@ import Storage from './component/storage';
 import Slider from './component/slider';
 import Popup from './component/popup';
 import SearchBar from './component/search.bar';
+import Square from './component/square';
 import LazyImg from './component/lazy.img';
 
 import './index.less';
@@ -30,6 +31,7 @@ var ReactGMM = {
     Slider,
     Popup,
     SearchBar,
+    Square,
     LazyImg,
     Util
 };

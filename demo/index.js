@@ -14,6 +14,7 @@ import {
     Slider,
     Popup,
     SearchBar,
+    Square,
     LazyImg
 } from './../src/index';
 
@@ -120,8 +121,12 @@ const Home = React.createClass({
                         <div className="weui_cell_bd weui_cell_primary">search bar</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
+                    <Link to="/square" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">square</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
                     <Link to="/lazyimg" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">lazy img</div>
+                        <div className="weui_cell_bd weui_cell_primary">lazy img(todo)</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -659,6 +664,21 @@ var SearchBarWrap = React.createClass({
     }
 });
 
+
+var SquareWrap = React.createClass({
+    render(){
+        return (
+            <Page>
+                <div style={{width: '50%'}}>
+                    <Square className="bg-white">
+                    </Square>
+                </div>
+            </Page>
+        );
+    }
+});
+
+
 var LazyImgWrap = React.createClass({
     render(){
         return (
@@ -699,6 +719,7 @@ const Root = React.createClass({
                     <Route path="tabs" component={TabsWrap}></Route>
                     <Route path="popup" component={PopupWrap}></Route>
                     <Route path="searchbar" component={SearchBarWrap}></Route>
+                    <Route path="square" component={SquareWrap}></Route>
                     <Route path="lazyimg" component={LazyImgWrap}></Route>
                 </Route>
             </Router>
