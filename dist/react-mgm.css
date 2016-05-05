@@ -2794,3 +2794,6 @@ a.decoration {
   overflow-y: auto;
   z-index: 200;
 }
+.search-bar {
+  background: #F7F7F7;
+}

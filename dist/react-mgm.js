@@ -64,11 +64,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
-	var _textarea = __webpack_require__(23);
+	var _textarea = __webpack_require__(24);
 
 	var _textarea2 = _interopRequireDefault(_textarea);
 
-	var _nprogress = __webpack_require__(17);
+	var _nprogress = __webpack_require__(18);
 
 	var _nprogress2 = _interopRequireDefault(_nprogress);
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _toast = __webpack_require__(24);
+	var _toast = __webpack_require__(25);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
@@ -84,7 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _loading2 = _interopRequireDefault(_loading);
 
-	var _page = __webpack_require__(18);
+	var _page = __webpack_require__(19);
 
 	var _page2 = _interopRequireDefault(_page);
 
@@ -96,23 +96,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _storage = __webpack_require__(22);
+	var _storage = __webpack_require__(23);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _slider = __webpack_require__(21);
+	var _slider = __webpack_require__(22);
 
 	var _slider2 = _interopRequireDefault(_slider);
 
-	var _popup = __webpack_require__(19);
+	var _popup = __webpack_require__(20);
 
 	var _popup2 = _interopRequireDefault(_popup);
 
-	var _search = __webpack_require__(20);
+	var _search = __webpack_require__(21);
 
 	var _search2 = _interopRequireDefault(_search);
 
-	__webpack_require__(25);
+	var _lazy = __webpack_require__(17);
+
+	var _lazy2 = _interopRequireDefault(_lazy);
+
+	__webpack_require__(26);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -130,6 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Slider: _slider2.default,
 	    Popup: _popup2.default,
 	    SearchBar: _search2.default,
+	    LazyImg: _lazy2.default,
 	    Util: _gmUtil2.default
 	};
 
@@ -901,6 +906,71 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(3);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var LazyImg = _react2.default.createClass(_defineProperty({
+	    displayName: 'LazyImg',
+	    render: function render() {
+	        var cn = (0, _classnames2.default)('lazy-img', this.props.className);
+	        return _react2.default.createElement(
+	            'div',
+	            { clsssName: 'cn' },
+	            _react2.default.createElement('img', _extends({ ref: 'img', src: this.props.src }, this.props))
+	        );
+	    },
+
+	    pageDom: null,
+	    pageDomHeight: 0,
+	    componentDidMount: function componentDidMount() {
+	        this.pageDom = document.getElementsByClassName('page')[0];
+	        if (this.pageDom) {
+	            this.pageDomHeight = this.pageDom.offsetHeight;
+	            this.pageDom.addEventListener('scroll', this.onScroll);
+	        }
+	    },
+	    componentWillUnmount: function componentWillUnmount() {
+	        if (this.pageDom) {
+	            this.pageDom.removeEventListener('scroll', this.onScroll);
+	        }
+	    },
+
+	    timer: null,
+	    onScroll: function onScroll() {
+	        var _this = this;
+
+	        if (this.timer) {
+	            clearTimeout(this.timer);
+	        }
+	        this.timer = setTimeout(function () {
+	            console.log(_this.refs.img.offsetTop, _this.pageDom.scrollTop + _this.pageDomHeight);
+	        }, 500);
+	    }
+	}, 'timer', null));
+
+	exports.default = LazyImg;
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -980,7 +1050,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = NProgress;
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1057,7 +1127,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Page;
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1140,7 +1210,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Popup;
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1256,7 +1326,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = SearchBar;
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1440,7 +1510,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Slider;
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1522,7 +1592,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Storage;
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1572,7 +1642,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Textarea;
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1829,7 +1899,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Toast;
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
