@@ -13,7 +13,8 @@ import {
     Header,
     Slider,
     Popup,
-    SearchBar
+    SearchBar,
+    LazyImg
 } from './../src/index';
 
 import '../node_modules/gm-mfont/iconfont.css';
@@ -117,6 +118,10 @@ const Home = React.createClass({
                     </Link>
                     <Link to="/searchbar" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">search bar</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/lazyimg" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">lazy img</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -654,6 +659,27 @@ var SearchBarWrap = React.createClass({
     }
 });
 
+var LazyImgWrap = React.createClass({
+    render(){
+        return (
+            <Page>
+                <LazyImg
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
+                <LazyImg
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
+                <LazyImg
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
+                <LazyImg
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
+                <LazyImg
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
+                <LazyImg
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
+            </Page>
+        );
+    }
+});
+
 const Root = React.createClass({
     render(){
         return (
@@ -673,6 +699,7 @@ const Root = React.createClass({
                     <Route path="tabs" component={TabsWrap}></Route>
                     <Route path="popup" component={PopupWrap}></Route>
                     <Route path="searchbar" component={SearchBarWrap}></Route>
+                    <Route path="lazyimg" component={LazyImgWrap}></Route>
                 </Route>
             </Router>
         );
