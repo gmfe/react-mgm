@@ -38,7 +38,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "gm-mfont": "^1.0.7",
-    "gm-util": "^2.0.0",
+    "gm-util": "^2.0.2",
     "husky": "^0.11.4",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
