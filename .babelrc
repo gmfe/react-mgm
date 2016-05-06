@@ -1,7 +1,4 @@
 {
-  "plugins": [
-    "transform-object-assign"
-  ],
   "presets": [
     "react",
     "es2015",
