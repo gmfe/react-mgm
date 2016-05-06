@@ -1413,22 +1413,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        );
 	    },
 	    renderChild: function renderChild() {
-	        if (toString.call(this.props.children) === '[object Array]') {
-	            return _underscore2.default.map(this.props.children, function (value, i) {
-	                return _react2.default.cloneElement(value, {
-	                    style: _underscore2.default.extend({}, value.props.style, { width: '100%' }),
-	                    className: (0, _classnames2.default)('slider-cell flex flex-none', value.props.className),
-	                    key: i
-	                });
-	            });
-	        } else {
-	            return this.props.children;
+	        var components = this.props.children;
+
+	        if (toString.call(this.props.children) !== '[object Array]') {
+	            components = [this.props.children];
 	        }
+	        return _underscore2.default.map(components, function (value, i) {
+	            return _react2.default.cloneElement(value, {
+	                style: _underscore2.default.extend({}, value.props.style, { width: '100%' }),
+	                className: (0, _classnames2.default)('slider-cell flex flex-none', value.props.className),
+	                key: i
+	            });
+	        });
 	    },
 	    renderFlag: function renderFlag() {
 	        var _this = this;
 
-	        //
 	        return _react2.default.createElement(
 	            _flex2.default,
 	            { justifyCenter: true, className: 'slider-flag' },
