@@ -2029,6 +2029,12 @@ a.decoration {
 .bg-white {
   background: white;
 }
+.weui_cell {
+  padding: 15px;
+}
+.weui_btn:after {
+  border: none;
+}
 .border {
   border: 1px solid #D5D5D5;
 }
