@@ -15,7 +15,8 @@ import {
     Popup,
     SearchBar,
     Square,
-    LazyImg
+    LazyImg,
+    Dialog
 } from './../src/index';
 
 import '../node_modules/gm-mfont/iconfont.css';
@@ -127,6 +128,10 @@ const Home = React.createClass({
                     </Link>
                     <Link to="/lazyimg" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">lazy img(todo)</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/dialog" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">dialog</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -705,6 +710,68 @@ var LazyImgWrap = React.createClass({
     }
 });
 
+var DialogWrap = React.createClass({
+    getInitialState(){
+        return {
+            confirmShow: false,
+            alertShow: false
+        };
+    },
+
+    handleCancel(){
+        this.setState({
+            confirmShow: false
+        });
+    },
+
+    handleConfirm(){
+        this.setState({
+            confirmShow: false,
+            alertShow: false
+        });
+    },
+
+    handleAlertShow(){
+        this.setState({
+            alertShow: true
+        });
+    },
+
+    handleConfirmShow(){
+        this.setState({
+            confirmShow: true
+        });
+    },
+
+    render(){
+        return (
+            <page>
+                <button className="weui_btn weui_btn_primary" onClick={this.handleAlertShow}>Alert Dialog</button>
+                <button className="weui_btn weui_btn_primary" onClick={this.handleConfirmShow}>Confirm Dialog</button>
+
+                <Dialog
+                    confirm
+                    show={this.state.confirmShow}
+                    title="Alert Dialog"
+                    onCancel={this.handleCancel}
+                    onConfirm={this.handleConfirm}
+                >
+                    这是confirm内容
+                </Dialog>
+
+                <Dialog
+                    alert
+                    show={this.state.alertShow}
+                    title="Alert Dialog"
+                    onConfirm={this.handleConfirm}
+                >
+                    这是alert
+                </Dialog>
+            </page>
+        );
+    }
+});
+
 const Root = React.createClass({
     render(){
         return (
@@ -726,6 +793,7 @@ const Root = React.createClass({
                     <Route path="searchbar" component={SearchBarWrap}></Route>
                     <Route path="square" component={SquareWrap}></Route>
                     <Route path="lazyimg" component={LazyImgWrap}></Route>
+                    <Route path="dialog" component={DialogWrap}></Route>
                 </Route>
             </Router>
         );

@@ -14,6 +14,7 @@ import Popup from './component/popup';
 import SearchBar from './component/search.bar';
 import Square from './component/square';
 import LazyImg from './component/lazy.img';
+import Dialog from './component/dialog';
 
 import './index.less';
 
@@ -33,6 +34,7 @@ var ReactGMM = {
     SearchBar,
     Square,
     LazyImg,
+    Dialog,
     Util
 };
 

@@ -64,11 +64,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
-	var _textarea = __webpack_require__(25);
+	var _textarea = __webpack_require__(26);
 
 	var _textarea2 = _interopRequireDefault(_textarea);
 
-	var _nprogress = __webpack_require__(18);
+	var _nprogress = __webpack_require__(19);
 
 	var _nprogress2 = _interopRequireDefault(_nprogress);
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _toast = __webpack_require__(26);
+	var _toast = __webpack_require__(27);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
@@ -84,43 +84,47 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _loading2 = _interopRequireDefault(_loading);
 
-	var _page = __webpack_require__(19);
+	var _page = __webpack_require__(20);
 
 	var _page2 = _interopRequireDefault(_page);
 
-	var _infinite = __webpack_require__(16);
+	var _infinite = __webpack_require__(17);
 
 	var _infinite2 = _interopRequireDefault(_infinite);
 
-	var _header = __webpack_require__(15);
+	var _header = __webpack_require__(16);
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _storage = __webpack_require__(24);
+	var _storage = __webpack_require__(25);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _slider = __webpack_require__(22);
+	var _slider = __webpack_require__(23);
 
 	var _slider2 = _interopRequireDefault(_slider);
 
-	var _popup = __webpack_require__(20);
+	var _popup = __webpack_require__(21);
 
 	var _popup2 = _interopRequireDefault(_popup);
 
-	var _search = __webpack_require__(21);
+	var _search = __webpack_require__(22);
 
 	var _search2 = _interopRequireDefault(_search);
 
-	var _square = __webpack_require__(23);
+	var _square = __webpack_require__(24);
 
 	var _square2 = _interopRequireDefault(_square);
 
-	var _lazy = __webpack_require__(17);
+	var _lazy = __webpack_require__(18);
 
 	var _lazy2 = _interopRequireDefault(_lazy);
 
-	__webpack_require__(27);
+	var _dialog = __webpack_require__(15);
+
+	var _dialog2 = _interopRequireDefault(_dialog);
+
+	__webpack_require__(28);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -140,6 +144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    SearchBar: _search2.default,
 	    Square: _square2.default,
 	    LazyImg: _lazy2.default,
+	    Dialog: _dialog2.default,
 	    Util: _gmUtil2.default
 	};
 
@@ -757,6 +762,120 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(2);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Dialog = function (_React$Component) {
+	    _inherits(Dialog, _React$Component);
+
+	    function Dialog(props) {
+	        _classCallCheck(this, Dialog);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Dialog).call(this, props));
+
+	        _this.handleCancel = _this.handleCancel.bind(_this);
+	        _this.handleConfirm = _this.handleConfirm.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(Dialog, [{
+	        key: 'handleConfirm',
+	        value: function handleConfirm() {
+	            this.props.onConfirm();
+	        }
+	    }, {
+	        key: 'handleCancel',
+	        value: function handleCancel() {
+	            this.props.onCancel();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var thisProps = this.props;
+	            var cls = (0, _classnames2.default)({
+	                'weui_dialog_confirm': thisProps.confirm,
+	                'weui_dialog_alert': thisProps.alert
+	            });
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: cls, style: { display: thisProps.show ? 'block' : 'none' } },
+	                _react2.default.createElement('div', { className: 'weui_mask' }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'weui_dialog' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'weui_dialog_hd' },
+	                        _react2.default.createElement(
+	                            'strong',
+	                            { className: 'weui_dialog_title' },
+	                            thisProps.title
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'weui_dialog_bd' },
+	                        thisProps.children
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'weui_dialog_ft' },
+	                        thisProps.confirm ? _react2.default.createElement(
+	                            'a',
+	                            { href: 'javascript:;', className: 'weui_btn_dialog default', onClick: this.handleCancel },
+	                            '取消'
+	                        ) : null,
+	                        _react2.default.createElement(
+	                            'a',
+	                            { href: 'javascript:;', className: 'weui_btn_dialog primary', onClick: this.handleConfirm },
+	                            '确定'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Dialog;
+	}(_react2.default.Component);
+
+	Dialog.propTypes = {
+	    show: _react.PropTypes.bool,
+	    onConfirm: _react.PropTypes.func.isRequired,
+	    onCancel: _react.PropTypes.func,
+	    title: _react.PropTypes.string.isRequired,
+	    alert: _react.PropTypes.bool,
+	    confirm: _react.PropTypes.bool
+	};
+
+	exports.default = Dialog;
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -801,7 +920,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Header;
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -902,7 +1021,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Infinite;
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -967,7 +1086,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = LazyImg;
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1055,7 +1174,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = NProgress;
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1132,7 +1251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Page;
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1215,7 +1334,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Popup;
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1331,7 +1450,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = SearchBar;
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1515,7 +1634,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Slider;
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1556,7 +1675,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Square;
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1638,7 +1757,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Storage;
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1688,7 +1807,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Textarea;
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1945,7 +2064,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Toast;
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
