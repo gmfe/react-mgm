@@ -51,20 +51,20 @@ var Slider = React.createClass({
         );
     },
     renderChild(){
-        if (toString.call(this.props.children) === '[object Array]') {
-            return _.map(this.props.children, (value, i) => {
-                return React.cloneElement(value, {
-                    style: _.extend({}, value.props.style, {width: '100%'}),
-                    className: classnames('slider-cell flex flex-none', value.props.className),
-                    key: i
-                });
-            });
-        } else {
-            return this.props.children;
+        let components = this.props.children;
+
+        if (toString.call(this.props.children) !== '[object Array]') {
+            components = [this.props.children];
         }
+        return _.map(components, (value, i) => {
+            return React.cloneElement(value, {
+                style: _.extend({}, value.props.style, {width: '100%'}),
+                className: classnames('slider-cell flex flex-none', value.props.className),
+                key: i
+            });
+        });
     },
     renderFlag(){
-        //
         return (
             <Flex justifyCenter className="slider-flag">
                 {_.map(_.range(this.state.count), (value, i) => <span
