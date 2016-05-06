@@ -1376,6 +1376,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            x: 0
 	        };
 	    },
+	    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	        this.setState({
+	            count: toString.call(nextProps.children) === '[object Array]' ? nextProps.children.length : 1
+	        });
+	    },
 	    render: function render() {
 	        var to = this.state.touchObject;
 	        var offset = to ? to.x - to.startX + this.state.x : this.state.x;
