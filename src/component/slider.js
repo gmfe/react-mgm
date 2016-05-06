@@ -15,6 +15,11 @@ var Slider = React.createClass({
             x: 0
         };
     },
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            count: toString.call(nextProps.children) === '[object Array]' ? nextProps.children.length : 1
+        });
+    },
     render() {
         const to = this.state.touchObject;
         let offset = to ? (to.x - to.startX + this.state.x) : this.state.x;
