@@ -1522,13 +1522,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    ref: 'slider',
 	                    className: cn,
 	                    onMouseDown: this.swipeStart,
-	                    onMouseMove: this.state.dragging ? this.swipeMove : null,
+	                    onMouseMove: this.swipeMove,
 	                    onMouseUp: this.swipeEnd,
-	                    onMouseLeave: this.state.dragging ? this.swipeEnd : null,
+	                    onMouseLeave: this.swipeEnd,
 	                    onTouchStart: this.swipeStart,
-	                    onTouchMove: this.state.dragging ? this.swipeMove : null,
+	                    onTouchMove: this.swipeMove,
 	                    onTouchEnd: this.swipeEnd,
-	                    onTouchCancel: this.state.dragging ? this.swipeEnd : null,
+	                    onTouchCancel: this.swipeEnd,
 	                    style: style
 	                }),
 	                this.renderChild()
@@ -1583,6 +1583,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return event.touches !== undefined ? event.touches[0].pageX : event.clientX;
 	    },
 	    swipeStart: function swipeStart(event) {
+	        event.preventDefault();
 	        this.setState({
 	            dragging: true,
 	            transition: false,
@@ -1593,6 +1594,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    },
 	    swipeMove: function swipeMove(event) {
+	        event.preventDefault();
 	        this.setState({
 	            dragging: true,
 	            transition: false,
@@ -1601,10 +1603,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            })
 	        });
 	    },
-	    swipeEnd: function swipeEnd() {
-	        if (!this.state.dragging) {
-	            return;
-	        }
+	    swipeEnd: function swipeEnd(event) {
+	        event.preventDefault();
+	        // if (!this.state.dragging) {
+	        //     return;
+	        // }
 	        var to = this.state.touchObject;
 	        var diff = to.x - to.startX;
 	        var x = this.state.x;

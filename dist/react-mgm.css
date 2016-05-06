@@ -2677,6 +2677,9 @@ a.decoration {
 .toast-container .toast .loading {
   margin: auto;
 }
+.slider {
+  overflow: hidden;
+}
 .slider-transition {
   -webkit-transition: .2s transform;
   transition: .2s transform;
