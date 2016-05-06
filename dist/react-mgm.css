@@ -2700,6 +2700,7 @@ a.decoration {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+  background: white;
 }
 .tabs .tabs-item {
   position: relative;
