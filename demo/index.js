@@ -671,6 +671,7 @@ var SquareWrap = React.createClass({
             <Page>
                 <div style={{width: '50%'}}>
                     <Square className="bg-white">
+                        <img src="" style={{width: '100%', height: '100%'}} alt=""/>
                     </Square>
                 </div>
             </Page>
