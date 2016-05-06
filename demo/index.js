@@ -198,6 +198,18 @@ const ThemeWrap = React.createClass({
                     <div className="default">2 默认背景色</div>
                 </div>
                 <div>
+                    <h3>边框</h3>
+                    <div className="border margin-5">
+                        border
+                    </div>
+                    <div className="border-bottom margin-5">
+                        border bottom
+                    </div>
+                    <div className="border-top margin-5">
+                        border top
+                    </div>
+                </div>
+                <div>
                     <h3>按钮(正常和不可点状态)</h3>
                     <div>
                         <button className="weui_btn weui_btn_primary active">primary</button>
