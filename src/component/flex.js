@@ -6,6 +6,7 @@ var Flex = React.createClass({
     propTypes: {
         flex: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.bool]),
         auto: React.PropTypes.bool,
+        none: React.PropTypes.bool,
         width: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
         height: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
         row: React.PropTypes.bool,
@@ -28,7 +29,7 @@ var Flex = React.createClass({
             'flex': true,
 
             'flex-auto': this.props.auto,
-            'flex-none': this.props.width || this.props.height,
+            'flex-none': this.props.none || this.props.width || this.props.height,
 
             'flex-row': this.props.row,
             'flex-column': this.props.column,
