@@ -200,6 +200,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    propTypes: {
 	        flex: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.bool]),
 	        auto: _react2.default.PropTypes.bool,
+	        none: _react2.default.PropTypes.bool,
 	        width: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]),
 	        height: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]),
 	        row: _react2.default.PropTypes.bool,
@@ -222,7 +223,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            'flex': true,
 
 	            'flex-auto': this.props.auto,
-	            'flex-none': this.props.width || this.props.height,
+	            'flex-none': this.props.none || this.props.width || this.props.height,
 
 	            'flex-row': this.props.row,
 	            'flex-column': this.props.column,
