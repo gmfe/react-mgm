@@ -2493,7 +2493,6 @@ a.decoration {
 .infinite {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 100%;
 }
 .infinite-loading {
   height: 50px;
