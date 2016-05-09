@@ -20,7 +20,6 @@ import {
 } from './../src/index';
 
 import '../node_modules/gm-mfont/iconfont.css';
-import './index.less';
 
 const App = React.createClass({
     render(){
@@ -462,7 +461,7 @@ const InfiniteWrap = React.createClass({
     render(){
         return (
             <Page white>
-                <Infinite onBottom={this.handleBottom}>
+                <Infinite onBottom={this.handleBottom} style={{height: '100%'}}>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
