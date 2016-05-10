@@ -1378,7 +1378,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    render: function render() {
 	        var cn = (0, _classnames2.default)('search-bar weui_search_bar', {
-	            'weui_search_focusing': this.state.focus
+	            'weui_search_focusing': this.props.value || this.state.focus
 	        });
 	        return _react2.default.createElement(
 	            'div',
