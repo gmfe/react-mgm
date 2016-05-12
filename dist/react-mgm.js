@@ -1041,17 +1041,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var LazyImg = _react2.default.createClass(_defineProperty({
+	var LazyImg = _react2.default.createClass({
 	    displayName: 'LazyImg',
+
+	    propType: {
+	        src: _react2.default.PropTypes.string,
+	        placeholder: _react2.default.PropTypes.string
+	    },
+	    getInitialState: function getInitialState() {
+	        return {
+	            show: false
+	        };
+	    },
 	    render: function render() {
 	        var cn = (0, _classnames2.default)('lazy-img', this.props.className);
-	        return _react2.default.createElement(
-	            'div',
-	            { clsssName: 'cn' },
-	            _react2.default.createElement('img', _extends({ ref: 'img', src: this.props.src }, this.props))
-	        );
+
+	        return _react2.default.createElement('img', _extends({ ref: 'img', className: cn }, this.props, {
+	            src: this.state.show ? this.props.src : this.props.placeholder }));
 	    },
 
 	    pageDom: null,
@@ -1064,6 +1070,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    },
 	    componentWillUnmount: function componentWillUnmount() {
+	        this.removeListener();
+	    },
+	    removeListener: function removeListener() {
 	        if (this.pageDom) {
 	            this.pageDom.removeEventListener('scroll', this.onScroll);
 	        }
@@ -1077,10 +1086,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            clearTimeout(this.timer);
 	        }
 	        this.timer = setTimeout(function () {
-	            console.log(_this.refs.img.offsetTop, _this.pageDom.scrollTop + _this.pageDomHeight);
+	            _this.doLazy();
 	        }, 500);
+	    },
+	    doLazy: function doLazy() {
+	        // 显示了
+	        if (this.refs.img.offsetTop - this.pageDom.scrollTop - this.pageDomHeight < 0) {
+	            console.log('show');
+	            this.setState({
+	                show: true
+	            });
+	            this.removeListener();
+	        }
 	    }
-	}, 'timer', null));
+	});
 
 	exports.default = LazyImg;
 
