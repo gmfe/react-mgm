@@ -705,6 +705,9 @@ var LazyImgWrap = React.createClass({
     render(){
         return (
             <Page className="lazy-img-wrap">
+                <LazyImg
+                    placeholder={'https://placeholdit.imgix.net/~text?txtsize=23&bg=f7f7f7&txt=loading&w=250&h=250'}
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
                 <div style={{height: '600px'}}></div>
                 <LazyImg
                     placeholder={'https://placeholdit.imgix.net/~text?txtsize=23&bg=f7f7f7&txt=loading&w=250&h=250'}

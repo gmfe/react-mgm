@@ -34,6 +34,7 @@ const LazyImg = React.createClass({
         if (this.pageDom) {
             this.pageDomHeight = this.pageDom.offsetHeight;
             this.pageDom.addEventListener('scroll', this.onScroll);
+            this.doLazy();
         }
     },
     componentWillUnmount(){
