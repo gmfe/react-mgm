@@ -1041,6 +1041,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function getElementTop(element) {
+	    var actualTop = element.offsetTop;
+	    var current = element.offsetParent;
+	    while (current !== null) {
+	        actualTop += current.offsetTop;
+	        current = current.offsetParent;
+	    }
+	    return actualTop;
+	}
+
 	var LazyImg = _react2.default.createClass({
 	    displayName: 'LazyImg',
 
@@ -1063,7 +1073,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    pageDom: null,
 	    pageDomHeight: 0,
 	    componentDidMount: function componentDidMount() {
-	        this.pageDom = document.getElementsByClassName('page')[0];
+	        this.pageDom = document.getElementsByClassName('page-content')[0];
 	        if (this.pageDom) {
 	            this.pageDomHeight = this.pageDom.offsetHeight;
 	            this.pageDom.addEventListener('scroll', this.onScroll);
@@ -1091,7 +1101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    doLazy: function doLazy() {
 	        // 显示了
-	        if (this.refs.img.offsetTop - this.pageDom.scrollTop - this.pageDomHeight < 0) {
+	        if (getElementTop(this.refs.img) - this.pageDom.scrollTop - this.pageDomHeight < 0) {
 	            console.log('show');
 	            this.setState({
 	                show: true
@@ -1259,7 +1269,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else {
 	            return _react2.default.createElement(
 	                'div',
-	                { className: classes },
+	                { className: (0, _classnames2.default)(classes, 'page-content') },
 	                this.props.children
 	            );
 	        }
