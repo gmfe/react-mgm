@@ -1,7 +1,17 @@
 import React from 'react';
 import classnames from 'classnames';
 
-var LazyImg = React.createClass({
+function getElementTop(element) {
+    let actualTop = element.offsetTop;
+    let current = element.offsetParent;
+    while (current !== null) {
+        actualTop += current.offsetTop;
+        current = current.offsetParent;
+    }
+    return actualTop;
+}
+
+const LazyImg = React.createClass({
     propType: {
         src: React.PropTypes.string,
         placeholder: React.PropTypes.string
@@ -20,7 +30,7 @@ var LazyImg = React.createClass({
     pageDom: null,
     pageDomHeight: 0,
     componentDidMount(){
-        this.pageDom = document.getElementsByClassName('page')[0];
+        this.pageDom = document.getElementsByClassName('page-content')[0];
         if (this.pageDom) {
             this.pageDomHeight = this.pageDom.offsetHeight;
             this.pageDom.addEventListener('scroll', this.onScroll);
@@ -45,7 +55,7 @@ var LazyImg = React.createClass({
     },
     doLazy(){
         // 显示了
-        if (this.refs.img.offsetTop - this.pageDom.scrollTop - this.pageDomHeight < 0) {
+        if (getElementTop(this.refs.img) - this.pageDom.scrollTop - this.pageDomHeight < 0) {
             console.log('show');
             this.setState({
                 show: true

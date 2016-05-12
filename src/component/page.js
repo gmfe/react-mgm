@@ -35,7 +35,7 @@ const Page = React.createClass({
             );
         } else {
             return (
-                <div className={classes}>{this.props.children}</div>
+                <div className={classnames(classes, 'page-content')}>{this.props.children}</div>
             );
         }
     }
