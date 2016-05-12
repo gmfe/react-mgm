@@ -1077,6 +1077,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.pageDom) {
 	            this.pageDomHeight = this.pageDom.offsetHeight;
 	            this.pageDom.addEventListener('scroll', this.onScroll);
+	            this.doLazy();
 	        }
 	    },
 	    componentWillUnmount: function componentWillUnmount() {
