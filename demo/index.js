@@ -20,6 +20,7 @@ import {
 } from './../src/index';
 
 import '../node_modules/gm-mfont/iconfont.css';
+import './index.less';
 
 const App = React.createClass({
     render(){
@@ -126,7 +127,7 @@ const Home = React.createClass({
                         <div className="weui_cell_ft"></div>
                     </Link>
                     <Link to="/lazyimg" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">lazy img(todo)</div>
+                        <div className="weui_cell_bd weui_cell_primary">lazy img</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                     <Link to="/dialog" className="weui_cell">
@@ -703,14 +704,10 @@ var SquareWrap = React.createClass({
 var LazyImgWrap = React.createClass({
     render(){
         return (
-            <Page>
+            <Page className="lazy-img-wrap">
+                <div style={{height: '600px'}}></div>
                 <LazyImg
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
-                <LazyImg
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
-                <LazyImg
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
-                <LazyImg
+                    placeholder={'https://placeholdit.imgix.net/~text?txtsize=23&bg=f7f7f7&txt=loading&w=250&h=250'}
                     src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
                 <LazyImg
                     src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>

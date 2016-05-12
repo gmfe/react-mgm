@@ -2,13 +2,20 @@ import React from 'react';
 import classnames from 'classnames';
 
 var LazyImg = React.createClass({
+    propType: {
+        src: React.PropTypes.string,
+        placeholder: React.PropTypes.string
+    },
+    getInitialState(){
+        return {
+            show: false
+        };
+    },
     render() {
         const cn = classnames('lazy-img', this.props.className);
-        return (
-            <div clsssName="cn">
-                <img ref="img" src={this.props.src} {...this.props}/>
-            </div>
-        );
+
+        return <img ref="img" className={cn} {...this.props}
+                    src={this.state.show? this.props.src : this.props.placeholder}/>;
     },
     pageDom: null,
     pageDomHeight: 0,
@@ -20,6 +27,9 @@ var LazyImg = React.createClass({
         }
     },
     componentWillUnmount(){
+        this.removeListener();
+    },
+    removeListener(){
         if (this.pageDom) {
             this.pageDom.removeEventListener('scroll', this.onScroll);
         }
@@ -30,10 +40,19 @@ var LazyImg = React.createClass({
             clearTimeout(this.timer);
         }
         this.timer = setTimeout(() => {
-            console.log(this.refs.img.offsetTop, this.pageDom.scrollTop + this.pageDomHeight);
+            this.doLazy();
         }, 500);
     },
-    timer: null
+    doLazy(){
+        // 显示了
+        if (this.refs.img.offsetTop - this.pageDom.scrollTop - this.pageDomHeight < 0) {
+            console.log('show');
+            this.setState({
+                show: true
+            });
+            this.removeListener();
+        }
+    }
 });
 
 export default LazyImg;
