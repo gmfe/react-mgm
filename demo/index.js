@@ -601,7 +601,7 @@ var PopupWrap = React.createClass({
                     asdfa
                 </Popup>
 
-                <Popup bottom height="350px" show={this.state.show2} onChange={this.handleChange2}>
+                <Popup opacity={0.8} bottom height="350px" show={this.state.show2} onChange={this.handleChange2}>
                     height 350px
                 </Popup>
 

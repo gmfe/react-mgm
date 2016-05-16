@@ -10,7 +10,8 @@ const Popup = React.createClass({
         left: PropTypes.bool,
         bottom: PropTypes.bool,
         width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        height: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        opacity: PropTypes.number
     },
     getDefaultProps(){
         return {
@@ -20,25 +21,29 @@ const Popup = React.createClass({
         };
     },
     render() {
-        const cn = classnames('popup', {
-            active: this.props.show,
-            'popup-left': this.props.left,
-            'popup-bottom': this.props.bottom
-        }, this.props.className);
+        const thisProps = this.props;
 
-        let style = _.extend({}, this.props.style);
-        if (this.props.left && this.props.width) {
-            style.width = this.props.width;
-        } else if (this.props.bottom && this.props.height) {
-            style.height = this.props.height;
+        const cn = classnames('popup', {
+            active: thisProps.show,
+            'popup-left': thisProps.left,
+            'popup-bottom': thisProps.bottom
+        }, thisProps.className);
+
+        let style = _.extend({}, thisProps.style);
+        if (thisProps.left && thisProps.width) {
+            style.width = thisProps.width;
+        } else if (thisProps.bottom && thisProps.height) {
+            style.height = thisProps.height;
         }
+
+        const {opacity, ...props} = thisProps;
 
         return (
             <div className="popup-wrap">
-                <Mask show={this.props.show} opacity={0.1} onClick={this.handleChange}></Mask>
-                <div {...this.props} className={cn} style={style}>
+                <Mask show={thisProps.show} opacity={opacity || 0.1} onClick={this.handleChange}/>
+                <div {...props} className={cn} style={style}>
                     <div className="popup-content">
-                        {this.props.children}
+                        {thisProps.children}
                     </div>
                 </div>
             </div>

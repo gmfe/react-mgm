@@ -634,9 +634,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return Promise.reject(json.msg || '未知错误');
 	        }
 	    }).catch(function (reason) {
-	        console.log('%c*** Request catch %s', color, reason);
-	        // reason 是个对象。目前先给字符串。吧。后续有需要在扩展
-	        return Promise.reject('' + reason);
+	        // reason 有点复杂，各种实现，碰到一个解决一个吧
+	        if (toString.call(reason) === '[object Promise]') {
+	            return reason.catch(function (rea) {
+	                console.error('%c*** Request catch %s', color, rea);
+	                // reason 是个对象。目前先给字符串。吧。后续有需要在扩展
+	                return Promise.reject('' + rea);
+	            });
+	        } else {
+	            console.error('%c*** Request catch %s', color, reason);
+	            // reason 是个对象。目前先给字符串。吧。后续有需要在扩展
+	            return Promise.reject('' + reason);
+	        }
 	    });
 	};
 
@@ -1309,6 +1318,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 	var Popup = _react2.default.createClass({
 	    displayName: 'Popup',
 
@@ -1318,7 +1329,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        left: _react.PropTypes.bool,
 	        bottom: _react.PropTypes.bool,
 	        width: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
-	        height: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number])
+	        height: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
+	        opacity: _react.PropTypes.number
 	    },
 	    getDefaultProps: function getDefaultProps() {
 	        return {
@@ -1327,30 +1339,36 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    },
 	    render: function render() {
-	        var cn = (0, _classnames2.default)('popup', {
-	            active: this.props.show,
-	            'popup-left': this.props.left,
-	            'popup-bottom': this.props.bottom
-	        }, this.props.className);
+	        var thisProps = this.props;
 
-	        var style = _underscore2.default.extend({}, this.props.style);
-	        if (this.props.left && this.props.width) {
-	            style.width = this.props.width;
-	        } else if (this.props.bottom && this.props.height) {
-	            style.height = this.props.height;
+	        var cn = (0, _classnames2.default)('popup', {
+	            active: thisProps.show,
+	            'popup-left': thisProps.left,
+	            'popup-bottom': thisProps.bottom
+	        }, thisProps.className);
+
+	        var style = _underscore2.default.extend({}, thisProps.style);
+	        if (thisProps.left && thisProps.width) {
+	            style.width = thisProps.width;
+	        } else if (thisProps.bottom && thisProps.height) {
+	            style.height = thisProps.height;
 	        }
+
+	        var opacity = thisProps.opacity;
+
+	        var props = _objectWithoutProperties(thisProps, ['opacity']);
 
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'popup-wrap' },
-	            _react2.default.createElement(_mask2.default, { show: this.props.show, opacity: 0.1, onClick: this.handleChange }),
+	            _react2.default.createElement(_mask2.default, { show: thisProps.show, opacity: opacity || 0.1, onClick: this.handleChange }),
 	            _react2.default.createElement(
 	                'div',
-	                _extends({}, this.props, { className: cn, style: style }),
+	                _extends({}, props, { className: cn, style: style }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'popup-content' },
-	                    this.props.children
+	                    thisProps.children
 	                )
 	            )
 	        );
