@@ -53,12 +53,5 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
-  },
-  "dependencies": {
-    "gm-mfont": "^1.0.7",
-    "gm-util": "^2.0.1",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "underscore": "^1.8.3"
   }
 }
