@@ -42,7 +42,7 @@ const SearchBar = React.createClass({
                                value={this.props.value}/>
                         {this.props.value === '' ? undefined : (
                             <a href="javascript:" className="weui_icon_clear"
-                               onClick={this.handleClose}></a>
+                               onClick={this.handleClear}></a>
                         )}
                     </div>
                     <label htmlFor={this.props.id} for="search_input" className="weui_search_text">
@@ -60,7 +60,7 @@ const SearchBar = React.createClass({
             focus: true
         });
     },
-    handleClose(event){
+    handleClear(event){
         event.preventDefault();
         this.props.onChange('');
         this.refs.input.focus();
@@ -70,6 +70,7 @@ const SearchBar = React.createClass({
         this.setState({focus: false});
         this.props.onChange('');
         this.props.onCancel();
+        this.refs.input.blur();
     },
     handleOK(event){
         event.preventDefault();

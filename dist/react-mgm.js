@@ -1445,7 +1445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        ref: 'input',
 	                        value: this.props.value }),
 	                    this.props.value === '' ? undefined : _react2.default.createElement('a', { href: 'javascript:', className: 'weui_icon_clear',
-	                        onClick: this.handleClose })
+	                        onClick: this.handleClear })
 	                ),
 	                _react2.default.createElement(
 	                    'label',
@@ -1471,7 +1471,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            focus: true
 	        });
 	    },
-	    handleClose: function handleClose(event) {
+	    handleClear: function handleClear(event) {
 	        event.preventDefault();
 	        this.props.onChange('');
 	        this.refs.input.focus();
@@ -1481,6 +1481,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.setState({ focus: false });
 	        this.props.onChange('');
 	        this.props.onCancel();
+	        this.refs.input.blur();
 	    },
 	    handleOK: function handleOK(event) {
 	        event.preventDefault();
