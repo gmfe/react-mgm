@@ -1,15 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-
-function getElementTop(element) {
-    let actualTop = element.offsetTop;
-    let current = element.offsetParent;
-    while (current !== null) {
-        actualTop += current.offsetTop;
-        current = current.offsetParent;
-    }
-    return actualTop;
-}
+import Util from 'gm-util';
 
 const LazyImg = React.createClass({
     propType: {
@@ -28,11 +19,9 @@ const LazyImg = React.createClass({
                     src={this.state.show? this.props.src : this.props.placeholder}/>;
     },
     pageDom: null,
-    pageDomHeight: 0,
     componentDidMount(){
         this.pageDom = document.getElementsByClassName('page-content')[0];
         if (this.pageDom) {
-            this.pageDomHeight = this.pageDom.offsetHeight;
             this.pageDom.addEventListener('scroll', this.onScroll);
             this.doLazy();
         }
@@ -56,7 +45,7 @@ const LazyImg = React.createClass({
     },
     doLazy(){
         // 显示了
-        if (getElementTop(this.refs.img) - this.pageDom.scrollTop - this.pageDomHeight < 0) {
+        if (Util.isElementOverViewport(this.refs.img)) {
             console.log('show');
             this.setState({
                 show: true
