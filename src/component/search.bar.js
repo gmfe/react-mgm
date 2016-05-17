@@ -37,6 +37,7 @@ const SearchBar = React.createClass({
                         <input id={this.props.id} type="search" className="weui_search_input"
                                placeholder={this.props.placeholder}
                                onFocus={this.handleFocus}
+                               onBlur={this.handleBlur}
                                onChange={this.handleChange}
                                ref="input"
                                value={this.props.value}/>
@@ -58,6 +59,12 @@ const SearchBar = React.createClass({
         event.preventDefault();
         this.setState({
             focus: true
+        });
+    },
+    handleBlur(event){
+        event.preventDefault();
+        this.setState({
+            focus: false
         });
     },
     handleClear(event){

@@ -1441,6 +1441,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    _react2.default.createElement('input', { id: this.props.id, type: 'search', className: 'weui_search_input',
 	                        placeholder: this.props.placeholder,
 	                        onFocus: this.handleFocus,
+	                        onBlur: this.handleBlur,
 	                        onChange: this.handleChange,
 	                        ref: 'input',
 	                        value: this.props.value }),
@@ -1469,6 +1470,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        event.preventDefault();
 	        this.setState({
 	            focus: true
+	        });
+	    },
+	    handleBlur: function handleBlur(event) {
+	        event.preventDefault();
+	        this.setState({
+	            focus: false
 	        });
 	    },
 	    handleClear: function handleClear(event) {
