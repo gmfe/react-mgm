@@ -1069,7 +1069,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    propType: {
 	        src: _react2.default.PropTypes.string,
-	        placeholder: _react2.default.PropTypes.string
+	        placeholder: _react2.default.PropTypes.string,
+	        targetId: _react2.default.PropTypes.string // 指定监听滚动的dom id
 	    },
 	    getInitialState: function getInitialState() {
 	        return {
@@ -1083,11 +1084,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            src: this.state.show ? this.props.src : this.props.placeholder }));
 	    },
 
-	    pageDom: null,
+	    targetDom: null,
 	    componentDidMount: function componentDidMount() {
-	        this.pageDom = document.getElementsByClassName('page-content')[0];
-	        if (this.pageDom) {
-	            this.pageDom.addEventListener('scroll', this.onScroll);
+	        this.targetDom = this.props.targetId ? document.getElementById(this.props.targetId) : document.getElementsByClassName('page-content')[0];
+	        if (this.targetDom) {
+	            this.targetDom.addEventListener('scroll', this.onScroll);
 	            this.doLazy();
 	        }
 	    },
@@ -1095,8 +1096,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.removeListener();
 	    },
 	    removeListener: function removeListener() {
-	        if (this.pageDom) {
-	            this.pageDom.removeEventListener('scroll', this.onScroll);
+	        if (this.targetDom) {
+	            this.targetDom.removeEventListener('scroll', this.onScroll);
 	        }
 	    },
 
@@ -1114,7 +1115,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    doLazy: function doLazy() {
 	        // 显示了
 	        if (_gmUtil2.default.isElementOverViewport(this.refs.img)) {
-	            console.log('show');
 	            this.setState({
 	                show: true
 	            });
