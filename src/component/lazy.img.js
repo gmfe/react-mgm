@@ -5,7 +5,8 @@ import Util from 'gm-util';
 const LazyImg = React.createClass({
     propType: {
         src: React.PropTypes.string,
-        placeholder: React.PropTypes.string
+        placeholder: React.PropTypes.string,
+        targetId: React.PropTypes.string // 指定监听滚动的dom id
     },
     getInitialState(){
         return {
@@ -18,11 +19,11 @@ const LazyImg = React.createClass({
         return <img ref="img" className={cn} {...this.props}
                     src={this.state.show? this.props.src : this.props.placeholder}/>;
     },
-    pageDom: null,
+    targetDom: null,
     componentDidMount(){
-        this.pageDom = document.getElementsByClassName('page-content')[0];
-        if (this.pageDom) {
-            this.pageDom.addEventListener('scroll', this.onScroll);
+        this.targetDom = this.props.targetId ? document.getElementById(this.props.targetId) : document.getElementsByClassName('page-content')[0];
+        if (this.targetDom) {
+            this.targetDom.addEventListener('scroll', this.onScroll);
             this.doLazy();
         }
     },
@@ -30,8 +31,8 @@ const LazyImg = React.createClass({
         this.removeListener();
     },
     removeListener(){
-        if (this.pageDom) {
-            this.pageDom.removeEventListener('scroll', this.onScroll);
+        if (this.targetDom) {
+            this.targetDom.removeEventListener('scroll', this.onScroll);
         }
     },
     timer: null,
@@ -46,7 +47,6 @@ const LazyImg = React.createClass({
     doLazy(){
         // 显示了
         if (Util.isElementOverViewport(this.refs.img)) {
-            console.log('show');
             this.setState({
                 show: true
             });
