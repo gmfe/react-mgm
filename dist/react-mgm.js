@@ -1452,7 +1452,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                ),
 	                _react2.default.createElement(
 	                    'label',
-	                    { htmlFor: this.props.id, 'for': 'search_input', className: 'weui_search_text' },
+	                    { htmlFor: this.props.id, className: 'weui_search_text' },
 	                    _react2.default.createElement('i', { className: 'weui_icon_search' }),
 	                    _react2.default.createElement(
 	                        'span',
@@ -1622,10 +1622,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    componentDidMount: function componentDidMount() {
 	        this.setSliderWidth();
+	        this.setCount();
+	        window.addEventListener('resize', this.setSliderWidth);
+	    },
+	    setCount: function setCount() {
 	        this.setState({
 	            count: toString.call(this.props.children) === '[object Array]' ? this.props.children.length : 1
 	        });
-	        window.addEventListener('resize', this.setSliderWidth);
 	    },
 	    componentWillUnmount: function componentWillUnmount() {
 	        window.removeEventListener('resize', this.setSliderWidth);
@@ -1804,7 +1807,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    },
 	    save: function save() {
-	        Storage.set(this.props.name, value);
+	        Storage.set(this.props.name, this.props.value);
 	    },
 	    componentWillUpdate: function componentWillUpdate() {
 	        if (this.props.autoSave) {
@@ -1840,10 +1843,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _underscore = __webpack_require__(3);
-
-	var _underscore2 = _interopRequireDefault(_underscore);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
