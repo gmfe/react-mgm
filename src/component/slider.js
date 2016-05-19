@@ -80,10 +80,13 @@ var Slider = React.createClass({
     },
     componentDidMount(){
         this.setSliderWidth();
+        this.setCount();
+        window.addEventListener('resize', this.setSliderWidth);
+    },
+    setCount(){
         this.setState({
             count: toString.call(this.props.children) === '[object Array]' ? this.props.children.length : 1
         });
-        window.addEventListener('resize', this.setSliderWidth);
     },
     componentWillUnmount(){
         window.removeEventListener('resize', this.setSliderWidth);

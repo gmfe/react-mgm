@@ -46,7 +46,7 @@ const SearchBar = React.createClass({
                                onClick={this.handleClear}></a>
                         )}
                     </div>
-                    <label htmlFor={this.props.id} for="search_input" className="weui_search_text">
+                    <label htmlFor={this.props.id} className="weui_search_text">
                         <i className="weui_icon_search"></i>
                         <span>{this.props.placeholder}</span>
                     </label>

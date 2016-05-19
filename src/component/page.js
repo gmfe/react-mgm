@@ -8,7 +8,7 @@ const Page = React.createClass({
         className: PropTypes.string,
         white: PropTypes.bool,
         header: PropTypes.node,
-        tabbar: PropTypes.node,
+        tabbar: PropTypes.node
     },
     getDefaultProps(){
         return {};

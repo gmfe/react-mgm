@@ -44,7 +44,7 @@ var Storage = React.createClass({
         };
     },
     save: function () {
-        Storage.set(this.props.name, value);
+        Storage.set(this.props.name, this.props.value);
     },
     componentWillUpdate: function () {
         if (this.props.autoSave) {

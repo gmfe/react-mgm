@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import _ from 'underscore';
 
 var Textarea = React.createClass({
     getDefaultProps(){
