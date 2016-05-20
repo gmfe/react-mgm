@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+const iPhone = window.navigator.userAgent.indexOf('iPhone') > -1;
+
 class ScrollIntoView extends React.Component {
     constructor(props) {
         super(props);
@@ -28,11 +30,13 @@ class ScrollIntoView extends React.Component {
     }
 
     handleFocus() {
-        setTimeout(() => {
-            if (this.target) {
-                this.target.scrollIntoView();
-            }
-        }, 500);
+        if (!iPhone) {
+            setTimeout(() => {
+                if (this.target) {
+                    this.target.scrollIntoView();
+                }
+            }, 500);
+        }
     }
 }
 
