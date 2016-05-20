@@ -2695,8 +2695,8 @@ a.decoration {
   overflow: hidden;
 }
 .slider-transition {
-  -webkit-transition: .2s transform;
-  transition: .2s transform;
+  -webkit-transition: 0.2s transform ease-in-out;
+  transition: 0.2s transform ease-in-out;
 }
 .slider .slider-flag span {
   width: 6px;

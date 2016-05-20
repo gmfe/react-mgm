@@ -7,7 +7,7 @@
 		exports["ReactMGM"] = factory(require("react"), require("classnames"), require("underscore"), require("react-dom"));
 	else
 		root["ReactMGM"] = factory(root["react"], root["classnames"], root["underscore"], root["react-dom"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_7__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -56,7 +56,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _flex = __webpack_require__(4);
+	var _flex = __webpack_require__(5);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
-	var _textarea = __webpack_require__(27);
+	var _textarea = __webpack_require__(28);
 
 	var _textarea2 = _interopRequireDefault(_textarea);
 
@@ -72,15 +72,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _nprogress2 = _interopRequireDefault(_nprogress);
 
-	var _mask = __webpack_require__(6);
+	var _mask = __webpack_require__(7);
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _toast = __webpack_require__(28);
+	var _toast = __webpack_require__(29);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
-	var _loading = __webpack_require__(5);
+	var _loading = __webpack_require__(6);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
@@ -96,11 +96,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _storage = __webpack_require__(26);
+	var _storage = __webpack_require__(27);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _slider = __webpack_require__(24);
+	var _slider = __webpack_require__(25);
 
 	var _slider2 = _interopRequireDefault(_slider);
 
@@ -108,11 +108,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _popup2 = _interopRequireDefault(_popup);
 
-	var _search = __webpack_require__(23);
+	var _search = __webpack_require__(24);
 
 	var _search2 = _interopRequireDefault(_search);
 
-	var _square = __webpack_require__(25);
+	var _square = __webpack_require__(26);
 
 	var _square2 = _interopRequireDefault(_square);
 
@@ -124,7 +124,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
-	__webpack_require__(29);
+	var _scrollInto = __webpack_require__(23);
+
+	var _scrollInto2 = _interopRequireDefault(_scrollInto);
+
+	__webpack_require__(30);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -145,6 +149,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Square: _square2.default,
 	    LazyImg: _lazy2.default,
 	    Dialog: _dialog2.default,
+	    ScrollIntoView: _scrollInto2.default,
 	    Util: _gmUtil2.default
 	};
 
@@ -170,6 +175,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ },
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -266,7 +277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Flex;
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -312,7 +323,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Loading;
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -363,12 +374,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 	exports.default = Mask;
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
 
 /***/ },
 /* 8 */
@@ -957,7 +962,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _loading = __webpack_require__(5);
+	var _loading = __webpack_require__(6);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
@@ -1139,7 +1144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(7);
+	var _reactDom = __webpack_require__(4);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1233,7 +1238,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _flex = __webpack_require__(4);
+	var _flex = __webpack_require__(5);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -1310,7 +1315,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _mask = __webpack_require__(6);
+	var _mask = __webpack_require__(7);
 
 	var _mask2 = _interopRequireDefault(_mask);
 
@@ -1384,6 +1389,88 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(4);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ScrollIntoView = function (_React$Component) {
+	    _inherits(ScrollIntoView, _React$Component);
+
+	    function ScrollIntoView(props) {
+	        _classCallCheck(this, ScrollIntoView);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ScrollIntoView).call(this, props));
+
+	        _this.target = null;
+	        return _this;
+	    }
+
+	    _createClass(ScrollIntoView, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.cloneElement(this.props.children, {
+	                onFocus: this.handleFocus.bind(this)
+	            });
+	        }
+	    }, {
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            if (toString.call(this.props.children) !== '[object Object]') {
+	                console.error('There must be one and only one component');
+	            }
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.target = _reactDom2.default.findDOMNode(this);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            this.target = null;
+	        }
+	    }, {
+	        key: 'handleFocus',
+	        value: function handleFocus() {
+	            var _this2 = this;
+
+	            setTimeout(function () {
+	                if (_this2.target) {
+	                    _this2.target.scrollIntoView();
+	                }
+	            }, 500);
+	        }
+	    }]);
+
+	    return ScrollIntoView;
+	}(_react2.default.Component);
+
+	exports.default = ScrollIntoView;
+
+/***/ },
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1507,7 +1594,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = SearchBar;
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1522,7 +1609,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(7);
+	var _reactDom = __webpack_require__(4);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1534,7 +1621,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _flex = __webpack_require__(4);
+	var _flex = __webpack_require__(5);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -1702,7 +1789,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Slider;
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1743,7 +1830,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Square;
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1825,7 +1912,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Storage;
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1871,7 +1958,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Textarea;
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1884,15 +1971,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(7);
+	var _reactDom = __webpack_require__(4);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _mask = __webpack_require__(6);
+	var _mask = __webpack_require__(7);
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _loading = __webpack_require__(5);
+	var _loading = __webpack_require__(6);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
@@ -2128,7 +2215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Toast;
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
