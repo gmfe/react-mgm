@@ -15,6 +15,7 @@ import SearchBar from './component/search.bar';
 import Square from './component/square';
 import LazyImg from './component/lazy.img';
 import Dialog from './component/dialog';
+import ScrollIntoView from './component/scroll.into.view';
 
 import './index.less';
 
@@ -35,6 +36,7 @@ var ReactGMM = {
     Square,
     LazyImg,
     Dialog,
+    ScrollIntoView,
     Util
 };
 
