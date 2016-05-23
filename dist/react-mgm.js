@@ -1380,7 +1380,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            )
 	        );
 	    },
-	    handleChange: function handleChange() {
+	    handleChange: function handleChange(e) {
+	        e.preventDefault();
 	        this.props.onChange(!this.props.show);
 	    }
 	});

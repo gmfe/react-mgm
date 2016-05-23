@@ -49,7 +49,8 @@ const Popup = React.createClass({
             </div>
         );
     },
-    handleChange(){
+    handleChange(e){
+        e.preventDefault();
         this.props.onChange(!this.props.show);
     }
 });
