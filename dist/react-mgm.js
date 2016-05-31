@@ -824,12 +824,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    _createClass(Dialog, [{
 	        key: 'handleConfirm',
-	        value: function handleConfirm() {
+	        value: function handleConfirm(e) {
+	            e.preventDefault();
 	            this.props.onConfirm();
 	        }
 	    }, {
 	        key: 'handleCancel',
-	        value: function handleCancel() {
+	        value: function handleCancel(e) {
+	            e.preventDefault();
 	            this.props.onCancel();
 	        }
 	    }, {
@@ -867,12 +869,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        { className: 'weui_dialog_ft' },
 	                        thisProps.confirm ? _react2.default.createElement(
 	                            'a',
-	                            { href: 'javascript:;', className: 'weui_btn_dialog default', onClick: this.handleCancel },
+	                            { href: 'javascript:;', className: 'weui_btn_dialog default', onClick: this.handleCancel.bind(this) },
 	                            '取消'
 	                        ) : null,
 	                        _react2.default.createElement(
 	                            'a',
-	                            { href: 'javascript:;', className: 'weui_btn_dialog primary', onClick: this.handleConfirm },
+	                            { href: 'javascript:;', className: 'weui_btn_dialog primary', onClick: this.handleConfirm.bind(this) },
 	                            '确定'
 	                        )
 	                    )

@@ -9,11 +9,13 @@ class Dialog extends React.Component {
         this.handleConfirm = this.handleConfirm.bind(this);
     }
 
-    handleConfirm(){
+    handleConfirm(e){
+        e.preventDefault();
         this.props.onConfirm();
     }
 
-    handleCancel(){
+    handleCancel(e){
+        e.preventDefault();
         this.props.onCancel();
     }
 
@@ -35,11 +37,11 @@ class Dialog extends React.Component {
                     <div className="weui_dialog_ft">
                         {
                             thisProps.confirm ?
-                                <a href="javascript:;" className="weui_btn_dialog default" onClick={this.handleCancel}>取消</a>
+                                <a href="javascript:;" className="weui_btn_dialog default" onClick={::this.handleCancel}>取消</a>
                                 :
                                 null
                         }
-                        <a href="javascript:;" className="weui_btn_dialog primary" onClick={this.handleConfirm}>确定</a>
+                        <a href="javascript:;" className="weui_btn_dialog primary" onClick={::this.handleConfirm}>确定</a>
                     </div>
                 </div>
             </div>
