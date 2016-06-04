@@ -921,8 +921,8 @@ button.weui_btn_plain_default, input.weui_btn_plain_default {
   bottom: 0;
   width: 100%;
   height: 1px;
-  border-bottom: 1px solid #D9D9D9;
-  color: #D9D9D9;
+  border-bottom: 1px solid #D5D5D5;
+  color: #D5D5D5;
   -webkit-transform-origin: 0 100%;
           transform-origin: 0 100%;
   -webkit-transform: scaleY(0.5);
@@ -2036,19 +2036,19 @@ a.decoration {
   border: none;
 }
 .border {
-  border: 1px solid #D9D9D9;
+  border: 1px solid #D5D5D5;
 }
 .border-bottom {
-  border-bottom: 1px solid #D9D9D9;
+  border-bottom: 1px solid #D5D5D5;
 }
 .border-right {
-  border-right: 1px solid #D9D9D9;
+  border-right: 1px solid #D5D5D5;
 }
 .border-top {
-  border-top: 1px solid #D9D9D9;
+  border-top: 1px solid #D5D5D5;
 }
 .border-left {
-  border-left: 1px solid #D9D9D9;
+  border-left: 1px solid #D5D5D5;
 }
 .padding-0 {
   padding: 0;
@@ -2199,7 +2199,7 @@ a.decoration {
   padding: 4px;
   line-height: 1.42857143;
   background-color: #fff;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #D5D5D5;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -2560,6 +2560,7 @@ a.decoration {
   background: #F7F7F7;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .page.page-white {
   background: white;
@@ -2568,6 +2569,7 @@ a.decoration {
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .page .page-tabbar {
   height: 55px;
@@ -2651,7 +2653,7 @@ a.decoration {
 .textarea-adapter {
   position: relative;
   min-height: 8em;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #D5D5D5;
   overflow: hidden;
 }
 .textarea-adapter pre {
@@ -2702,7 +2704,7 @@ a.decoration {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #D9D9D9;
+  background: #D5D5D5;
   margin: 6px;
 }
 .slider .slider-flag span.active {
@@ -2736,7 +2738,7 @@ a.decoration {
   top: 0;
   height: 100%;
   width: 1px;
-  border-right: 1px solid #D9D9D9;
+  border-right: 1px solid #D5D5D5;
   -webkit-transform: scaleY(0.4);
           transform: scaleY(0.4);
 }
@@ -2750,7 +2752,7 @@ a.decoration {
   bottom: 0;
   width: 100%;
   height: 1px;
-  border-bottom: 1px solid #D9D9D9;
+  border-bottom: 1px solid #D5D5D5;
 }
 .tabs .tabs-item .tabs-item-text {
   padding: 10px 1em;
