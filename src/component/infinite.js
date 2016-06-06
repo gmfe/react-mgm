@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Loading from './loading';
+import Flex from './flex';
 
 var Infinite = React.createClass({
     getInitialState(){
@@ -20,14 +21,20 @@ var Infinite = React.createClass({
         return (
             <div ref="infinite" {...this.props} className={cn} onScroll={this.handleScroll}>
                 {this.props.children}
-                <div className="infinite-loading">
-                    {this.state.loading && <Loading></Loading>}
-                </div>
+                <Flex justifyCenter alignCenter className="infinite-loading">
+                    {
+                        this.props.done ?
+                            <Flex justifyCenter className="text-desc text-small">没有更多数据</Flex>
+                            : this.state.loading && <Loading />
+                    }
+                </Flex>
             </div>
         );
     },
     timer: null,
     handleBottom(){
+        if (this.props.done) return;
+
         clearTimeout(this.timer);
         this.setState({
             loading: true
@@ -68,5 +75,10 @@ var Infinite = React.createClass({
         this.scrollTop = event.target.scrollTop;
     }
 });
+
+Infinite.propTypes = {
+    onBottom: React.PropTypes.func.isRequired,
+    done: React.PropTypes.bool
+};
 
 export default Infinite;
