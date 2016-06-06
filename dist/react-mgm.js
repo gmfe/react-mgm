@@ -7,7 +7,7 @@
 		exports["ReactMGM"] = factory(require("react"), require("classnames"), require("underscore"), require("react-dom"));
 	else
 		root["ReactMGM"] = factory(root["react"], root["classnames"], root["underscore"], root["react-dom"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -56,7 +56,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _flex = __webpack_require__(5);
+	var _flex = __webpack_require__(4);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -175,12 +175,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
-
-/***/ },
-/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -275,6 +269,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 	exports.default = Flex;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ },
 /* 6 */
@@ -968,6 +968,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _loading2 = _interopRequireDefault(_loading);
 
+	var _flex = __webpack_require__(4);
+
+	var _flex2 = _interopRequireDefault(_flex);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Infinite = _react2.default.createClass({
@@ -990,9 +994,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _extends({ ref: 'infinite' }, this.props, { className: cn, onScroll: this.handleScroll }),
 	            this.props.children,
 	            _react2.default.createElement(
-	                'div',
-	                { className: 'infinite-loading' },
-	                this.state.loading && _react2.default.createElement(_loading2.default, null)
+	                _flex2.default,
+	                { justifyCenter: true, alignCenter: true, className: 'infinite-loading' },
+	                this.props.done ? _react2.default.createElement(
+	                    _flex2.default,
+	                    { justifyCenter: true, className: 'text-desc text-small' },
+	                    '没有更多数据'
+	                ) : this.state.loading && _react2.default.createElement(_loading2.default, null)
 	            )
 	        );
 	    },
@@ -1000,6 +1008,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    timer: null,
 	    handleBottom: function handleBottom() {
 	        var _this = this;
+
+	        if (this.props.done) return;
 
 	        clearTimeout(this.timer);
 	        this.setState({
@@ -1042,6 +1052,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.scrollTop = event.target.scrollTop;
 	    }
 	});
+
+	Infinite.propTypes = {
+	    onBottom: _react2.default.PropTypes.func.isRequired,
+	    done: _react2.default.PropTypes.bool
+	};
 
 	exports.default = Infinite;
 
@@ -1146,7 +1161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(4);
+	var _reactDom = __webpack_require__(5);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1240,7 +1255,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _flex = __webpack_require__(5);
+	var _flex = __webpack_require__(4);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -1406,7 +1421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(4);
+	var _reactDom = __webpack_require__(5);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1616,7 +1631,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(4);
+	var _reactDom = __webpack_require__(5);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1628,7 +1643,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _flex = __webpack_require__(5);
+	var _flex = __webpack_require__(4);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -1978,7 +1993,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(4);
+	var _reactDom = __webpack_require__(5);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 

@@ -459,10 +459,15 @@ const NProgressWrap = React.createClass({
 });
 
 const InfiniteWrap = React.createClass({
+    getInitialState(){
+        return {
+            done: false
+        }
+    },
     render(){
         return (
             <Page white>
-                <Infinite onBottom={this.handleBottom} style={{height: '100%'}}>
+                <Infinite done={this.state.done} onBottom={this.handleBottom} style={{height: '100%'}}>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
@@ -495,8 +500,12 @@ const InfiniteWrap = React.createClass({
         );
     },
     handleBottom(){
+        var me = this;
         return new Promise(resolve => {
             setTimeout(() => {
+                me.setState({
+                    done: true
+                });
                 resolve();
             }, 2000);
         });
