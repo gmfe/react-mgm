@@ -412,8 +412,9 @@ const ToastWrap = React.createClass({
         );
     },
     handleToast(){
-        Toast.tip('tip');
+        // Toast.tip('tip');
         Toast.success({
+            time: 0,
             children: (
                 <div>
                     <div>a</div>
@@ -421,10 +422,10 @@ const ToastWrap = React.createClass({
                 </div>
             )
         });
-        Toast.info('我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们');
-        Toast.warning('warning');
-        Toast.danger('danger');
-        Toast.loading('loading');
+        // Toast.info('我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们');
+        // Toast.warning('warning');
+        // Toast.danger('danger');
+        // Toast.loading('loading');
     }
 });
 
@@ -462,7 +463,7 @@ const InfiniteWrap = React.createClass({
     getInitialState(){
         return {
             done: false
-        }
+        };
     },
     render(){
         return (
