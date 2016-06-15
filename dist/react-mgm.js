@@ -849,7 +849,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                _react2.default.createElement('div', { className: 'weui_mask' }),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'weui_dialog' },
+	                    { className: 'weui_dialog', style: thisProps.style },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'weui_dialog_hd' },

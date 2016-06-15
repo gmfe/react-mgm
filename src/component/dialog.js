@@ -29,7 +29,7 @@ class Dialog extends React.Component {
         return (
             <div className={cls} style={{display: thisProps.show ? 'block' : 'none'}}>
                 <div className="weui_mask"></div>
-                <div className="weui_dialog">
+                <div className="weui_dialog" style={thisProps.style}>
                     <div className="weui_dialog_hd"><strong className="weui_dialog_title">{thisProps.title}</strong></div>
                     <div className="weui_dialog_bd">
                         {thisProps.children}

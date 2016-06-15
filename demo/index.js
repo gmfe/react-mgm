@@ -775,6 +775,7 @@ var DialogWrap = React.createClass({
                     title="Alert Dialog"
                     onCancel={this.handleCancel}
                     onConfirm={this.handleConfirm}
+                    style={{maxWidth: '450px'}}
                 >
                     这是confirm内容
                 </Dialog>
