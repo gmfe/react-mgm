@@ -381,15 +381,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var RequestInterceptor = function () {
 	    var interceptors = []; // [{request: function(){}, response: function(){}, responseError: function(){}}]
@@ -402,7 +404,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return interceptor.__id;
 	        },
 	        remove: function remove(interceptorId) {
-	            interceptors = _underscore2.default.filter(interceptors, function (value) {
+	            interceptors = _underscore2['default'].filter(interceptors, function (value) {
 	                return value.__id !== interceptorId;
 	            });
 	        },
@@ -411,7 +413,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        interceptor: {
 	            request: function request(config) {
 	                var promise = Promise.resolve(config);
-	                _underscore2.default.each(interceptors, function (value) {
+	                _underscore2['default'].each(interceptors, function (value) {
 	                    if (value.request) {
 	                        promise = promise.then(function (_config) {
 	                            // 如果request不按规范来,啥也不做. 则默认放回 config
@@ -424,7 +426,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            response: function response(json, config) {
 	                var promise = Promise.resolve(json);
-	                _underscore2.default.each(interceptors, function (value) {
+	                _underscore2['default'].each(interceptors, function (value) {
 	                    if (value.response) {
 	                        promise = promise.then(function (json) {
 	                            // 如果response不按规范来,啥也不做. 则默认放回json
@@ -436,9 +438,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            responseError: function responseError(reason, config) {
 	                var promise = Promise.reject(reason);
-	                _underscore2.default.each(interceptors, function (value) {
+	                _underscore2['default'].each(interceptors, function (value) {
 	                    if (value.responseError) {
-	                        promise = promise.catch(function (reason) {
+	                        promise = promise['catch'](function (reason) {
 	                            // 如果responseError不按规范来,啥也不做. reason
 	                            return Promise.reject(value.responseError(reason, config) || reason);
 	                        });
@@ -451,7 +453,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	}();
 
-	exports.default = RequestInterceptor;
+	exports['default'] = RequestInterceptor;
+	module.exports = exports['default'];
 
 /***/ },
 /* 9 */
@@ -459,15 +462,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var format = function format(str, data) {
 	    var result = str;
@@ -478,7 +483,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    result = result.replace(/\{([\d\w\.]+)\}/g, function (key) {
 	        var keys = arguments[1].split('.');
 	        var r = null;
-	        _underscore2.default.each(keys, function (value, index) {
+	        _underscore2['default'].each(keys, function (value, index) {
 	            if (index) {
 	                r = r[value];
 	            } else {
@@ -490,13 +495,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return result;
 	};
 
-	exports.default = format;
+	exports['default'] = format;
+	module.exports = exports['default'];
 
 /***/ },
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _Request = __webpack_require__(12);
 
@@ -526,16 +536,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _is2 = _interopRequireDefault(_is);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	module.exports = {
-	    Request: _Request2.default,
-	    RequestInterceptor: _RequestInterceptor2.default,
-	    format: _format2.default,
-	    param: _param2.default,
-	    isElementInViewport: _isElementInViewport2.default,
-	    isElementOverViewport: _isElementOverViewport2.default,
-	    is: _is2.default
+	    Request: _Request2['default'],
+	    RequestInterceptor: _RequestInterceptor2['default'],
+	    format: _format2['default'],
+	    param: _param2['default'],
+	    isElementInViewport: _isElementInViewport2['default'],
+	    isElementOverViewport: _isElementOverViewport2['default'],
+	    is: _is2['default']
 	};
 
 /***/ },
@@ -544,24 +552,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _underscore = __webpack_require__(3);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	var param = function param(obj) {
 	    // encodeURIComponent
-	    return _underscore2.default.map(obj, function (v, k) {
+	    return _underscore2['default'].map(obj, function (v, k) {
 	        return [encodeURIComponent(k), '=', encodeURIComponent(v)].join('');
 	    }).join('&').replace(/%20/g, "+");
 	};
 
-	exports.default = param;
+	exports['default'] = param;
+	module.exports = exports['default'];
 
 /***/ },
 /* 12 */
@@ -569,17 +580,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
 
-	var _param = __webpack_require__(11);
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
-	var _param2 = _interopRequireDefault(_param);
+	var _paramJs = __webpack_require__(11);
 
-	var _format = __webpack_require__(9);
+	var _paramJs2 = _interopRequireDefault(_paramJs);
 
-	var _format2 = _interopRequireDefault(_format);
+	var _formatJs = __webpack_require__(9);
+
+	var _formatJs2 = _interopRequireDefault(_formatJs);
 
 	var _underscore = __webpack_require__(3);
 
@@ -589,16 +604,26 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _RequestInterceptor2 = _interopRequireDefault(_RequestInterceptor);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var setPromiseTimeout = function setPromiseTimeout(promise, ms) {
+	    if (ms === false) {
+	        return promise;
+	    }
+	    return new Promise(function (resolve, reject) {
+	        setTimeout(function () {
+	            reject('request timeout');
+	        }, ms);
+	        promise.then(resolve, reject);
+	    });
+	};
 
 	var processRequest = function processRequest(config) {
-	    return _RequestInterceptor2.default.interceptor.request(config);
+	    return _RequestInterceptor2['default'].interceptor.request(config);
 	};
 
 	var processResponse = function processResponse(promise, url, sucCode, config) {
 	    var color = 'color: #8a6d3b;';
 
-	    return promise.then(function (res) {
+	    return setPromiseTimeout(promise, config.options.timeout).then(function (res) {
 	        if (res.ok) {
 	            var ct = res.headers.get('content-type');
 	            // 后台可能会有登录拦截，返回登录页面
@@ -613,11 +638,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return res.json();
 	            }
 	        }
-	        return Promise.reject((0, _format2.default)('服务器错误 {status} {statusText}', res));
+	        return Promise.reject((0, _formatJs2['default'])('服务器错误 {status} {statusText}', res));
 	    }).then(function (json) {
-	        return _RequestInterceptor2.default.interceptor.response(json, config);
+	        return _RequestInterceptor2['default'].interceptor.response(json, config);
 	    }, function (reason) {
-	        return Promise.reject(_RequestInterceptor2.default.interceptor.responseError(reason, config));
+	        return Promise.reject(_RequestInterceptor2['default'].interceptor.responseError(reason, config));
 	    }).then(function (json) {
 	        if (sucCode.indexOf(json.code) > -1) {
 	            return json;
@@ -625,10 +650,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            console.log('%c*** Request url: %s、code: %s、msg: %s', color, url, json.code, json.msg);
 	            return Promise.reject(json.msg || '未知错误');
 	        }
-	    }).catch(function (reason) {
+	    })['catch'](function (reason) {
 	        // reason 有点复杂，各种实现，碰到一个解决一个吧
 	        if (toString.call(reason) === '[object Promise]') {
-	            return reason.catch(function (rea) {
+	            return reason['catch'](function (rea) {
 	                console.error('%c*** Request catch %s', color, rea);
 	                // reason 是个对象。目前先给字符串。吧。后续有需要在扩展
 	                return Promise.reject('' + rea);
@@ -646,6 +671,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.url = url;
 	    this.sucCode = [0];
 	    this.options = Object.assign({
+	        timeout: 10000, // number or false
 	        method: 'get',
 	        headers: {
 	            'Accept': 'application/json'
@@ -655,18 +681,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	Request.prototype = {
 	    code: function code(codes) {
-	        if (_underscore2.default.isArray(codes)) {
+	        if (_underscore2['default'].isArray(codes)) {
 	            this.sucCode = this.sucCode.concat(codes);
 	        } else {
 	            this.sucCode.push(codes);
 	        }
 	        return this;
 	    },
+	    timeout: function timeout(_timeout) {
+	        Object.assign(this.options, {
+	            timeout: _timeout
+	        });
+	        return this;
+	    },
 	    data: function data(_data) {
 	        // 过滤null  undefined 只Object 类型。
 	        this._data = Object.assign({}, _data);
 	        if (toString.call(this._data) === '[object Object]') {
-	            this._data = _underscore2.default.pick(this._data, function (value) {
+	            this._data = _underscore2['default'].pick(this._data, function (value) {
 	                return value !== null && value !== undefined;
 	            });
 	        }
@@ -700,7 +732,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var t = this;
 
 	        return t._beforeRequest().then(function () {
-	            var p = (0, _param2.default)(t._data);
+	            var p = (0, _paramJs2['default'])(t._data);
 	            var newUrl = t.url + (t.url.indexOf('?') > -1 ? '&' : '?') + p;
 	            return processResponse(fetch(newUrl, t.options), t.url, t.sucCode, t._getConfig());
 	        });
@@ -731,7 +763,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return new Request(url, options);
 	};
 
-	exports.default = RequestFactory;
+	exports['default'] = RequestFactory;
+	module.exports = exports['default'];
 
 /***/ },
 /* 13 */
@@ -749,7 +782,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    );
 	};
 
-	exports.default = is;
+	exports["default"] = is;
+	module.exports = exports["default"];
 
 /***/ },
 /* 14 */
@@ -761,10 +795,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	exports.default = function (dom) {
+	exports["default"] = function (dom) {
 	    var rect = dom.getBoundingClientRect();
 	    return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
 	};
+
+	module.exports = exports["default"];
 
 /***/ },
 /* 15 */
@@ -776,10 +812,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	exports.default = function (dom) {
+	exports["default"] = function (dom) {
 	    var rect = dom.getBoundingClientRect();
 	    return rect.bottom > 0 && rect.right > 0 && rect.left < (window.innerWidth || document.documentElement.clientWidth) && rect.top < (window.innerHeight || document.documentElement.clientHeight);
 	};
+
+	module.exports = exports["default"];
 
 /***/ },
 /* 16 */
@@ -1354,7 +1392,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bottom: _react.PropTypes.bool,
 	        width: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
 	        height: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
-	        opacity: _react.PropTypes.number
+	        opacity: _react.PropTypes.number,
+	        autoHeight: _react.PropTypes.bool // 只bottom:true 有效
 	    },
 	    getDefaultProps: function getDefaultProps() {
 	        return {
@@ -1368,13 +1407,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var cn = (0, _classnames2.default)('popup', {
 	            active: thisProps.show,
 	            'popup-left': thisProps.left,
-	            'popup-bottom': thisProps.bottom
+	            'popup-bottom': thisProps.bottom,
+	            'popup-bottom-auto-height': thisProps.autoHeight
 	        }, thisProps.className);
 
 	        var style = _underscore2.default.extend({}, thisProps.style);
 	        if (thisProps.left && thisProps.width) {
 	            style.width = thisProps.width;
-	        } else if (thisProps.bottom && thisProps.height) {
+	        } else if (thisProps.bottom) {
 	            style.height = thisProps.height;
 	        }
 

@@ -2805,6 +2805,13 @@ a.decoration {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+.popup-wrap .popup.popup-bottom.popup-bottom-auto-height {
+  height: auto;
+}
+.popup-wrap .popup.popup-bottom.popup-bottom-auto-height .popup-content {
+  height: auto;
+  position: initial;
+}
 .popup-wrap .popup .popup-content {
   background: white;
   position: absolute;
