@@ -1,6 +1,6 @@
 {
   "name": "react-mgm",
-  "version": "1.2.55",
+  "version": "1.2.56",
   "description": "",
   "main": "src/index.js",
   "less": "src/index.less",
