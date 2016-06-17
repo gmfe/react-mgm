@@ -776,7 +776,7 @@ var DialogWrap = React.createClass({
                     title="Alert Dialog"
                     onCancel={this.handleCancel}
                     onConfirm={this.handleConfirm}
-                    style={{maxWidth: '450px'}}
+                    btnText={{cancel: '不合并', confirm: '合并'}}
                 >
                     这是confirm内容
                 </Dialog>

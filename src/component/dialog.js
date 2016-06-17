@@ -20,7 +20,8 @@ class Dialog extends React.Component {
     }
 
     render() {
-        const thisProps = this.props;
+        const thisProps = this.props,
+            {btnText = {}} = thisProps;
         const cls = classnames({
             'weui_dialog_confirm': thisProps.confirm,
             'weui_dialog_alert': thisProps.alert
@@ -29,7 +30,7 @@ class Dialog extends React.Component {
         return (
             <div className={cls} style={{display: thisProps.show ? 'block' : 'none'}}>
                 <div className="weui_mask"></div>
-                <div className="weui_dialog" style={thisProps.style}>
+                <div className="weui_dialog">
                     <div className="weui_dialog_hd"><strong className="weui_dialog_title">{thisProps.title}</strong></div>
                     <div className="weui_dialog_bd">
                         {thisProps.children}
@@ -37,11 +38,11 @@ class Dialog extends React.Component {
                     <div className="weui_dialog_ft">
                         {
                             thisProps.confirm ?
-                                <a href="javascript:;" className="weui_btn_dialog default" onClick={::this.handleCancel}>取消</a>
+                                <a href="javascript:;" className="weui_btn_dialog default" onClick={::this.handleCancel}>{btnText.cancel ? btnText.cancel : '取消'}</a>
                                 :
                                 null
                         }
-                        <a href="javascript:;" className="weui_btn_dialog primary" onClick={::this.handleConfirm}>确定</a>
+                        <a href="javascript:;" className="weui_btn_dialog primary" onClick={::this.handleConfirm}>{btnText.confirm ? btnText.confirm : '确定'}</a>
                     </div>
                 </div>
             </div>
@@ -55,7 +56,8 @@ Dialog.propTypes = {
     onCancel: PropTypes.func,
     title: PropTypes.string.isRequired,
     alert: PropTypes.bool,
-    confirm: PropTypes.bool
+    confirm: PropTypes.bool,
+    btnText: PropTypes.object
 };
 
 export default Dialog;
