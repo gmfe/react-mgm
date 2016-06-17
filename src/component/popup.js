@@ -11,7 +11,8 @@ const Popup = React.createClass({
         bottom: PropTypes.bool,
         width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        opacity: PropTypes.number
+        opacity: PropTypes.number,
+        autoHeight: PropTypes.bool // 只bottom:true 有效
     },
     getDefaultProps(){
         return {
@@ -26,13 +27,14 @@ const Popup = React.createClass({
         const cn = classnames('popup', {
             active: thisProps.show,
             'popup-left': thisProps.left,
-            'popup-bottom': thisProps.bottom
+            'popup-bottom': thisProps.bottom,
+            'popup-bottom-auto-height': thisProps.autoHeight
         }, thisProps.className);
 
         let style = _.extend({}, thisProps.style);
         if (thisProps.left && thisProps.width) {
             style.width = thisProps.width;
-        } else if (thisProps.bottom && thisProps.height) {
+        } else if (thisProps.bottom) {
             style.height = thisProps.height;
         }
 
