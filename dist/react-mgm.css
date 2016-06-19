@@ -2038,17 +2038,130 @@ a.decoration {
 .border {
   border: 1px solid #D5D5D5;
 }
-.border-bottom {
-  border-bottom: 1px solid #D5D5D5;
-}
-.border-right {
-  border-right: 1px solid #D5D5D5;
-}
 .border-top {
   border-top: 1px solid #D5D5D5;
 }
 .border-left {
   border-left: 1px solid #D5D5D5;
+}
+.border-right {
+  border-right: 1px solid #D5D5D5;
+}
+.border-bottom {
+  border-bottom: 1px solid #D5D5D5;
+}
+.border-1x {
+  position: relative;
+}
+.border-1x:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  border: 1px solid #D5D5D5;
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  box-sizing: border-box;
+}
+.border-1x-top {
+  position: relative;
+}
+.border-1x-top:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #D5D5D5;
+  width: 100%;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+.border-1x-left {
+  position: relative;
+}
+.border-1x-left:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #D5D5D5;
+  width: 1px;
+  height: 100%;
+  -webkit-transform: scaleX(0.5);
+          transform: scaleX(0.5);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+}
+.border-1x-left-after {
+  position: relative;
+}
+.border-1x-left-after:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #D5D5D5;
+  width: 1px;
+  height: 100%;
+  -webkit-transform: scaleX(0.5);
+          transform: scaleX(0.5);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+}
+.border-1x-right {
+  position: relative;
+}
+.border-1x-right:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #D5D5D5;
+  width: 1px;
+  height: 100%;
+  -webkit-transform: scaleX(0.5);
+          transform: scaleX(0.5);
+  -webkit-transform-origin: 100% 0;
+          transform-origin: 100% 0;
+}
+.border-1x-right-after {
+  position: relative;
+}
+.border-1x-right-after:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #D5D5D5;
+  width: 1px;
+  height: 100%;
+  -webkit-transform: scaleX(0.5);
+          transform: scaleX(0.5);
+  -webkit-transform-origin: 100% 0;
+          transform-origin: 100% 0;
+}
+.border-1x-bottom {
+  position: relative;
+}
+.border-1x-bottom:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #D5D5D5;
+  width: 100%;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+          transform: scaleY(0.5);
+  -webkit-transform-origin: 0 100%;
+          transform-origin: 0 100%;
 }
 .padding-0 {
   padding: 0;
@@ -2717,9 +2830,22 @@ a.decoration {
   display: flex;
   width: 100%;
   background: white;
+  position: relative;
+}
+.tabs:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #D5D5D5;
+  width: 100%;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+          transform: scaleY(0.5);
+  -webkit-transform-origin: 0 100%;
+          transform-origin: 0 100%;
 }
 .tabs .tabs-item {
-  position: relative;
   display: block;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -2727,32 +2853,32 @@ a.decoration {
           flex: 1;
   text-align: center;
   -webkit-tap-highlight-color: transparent;
+  position: relative;
 }
 .tabs .tabs-item:active {
   background: #ededed;
 }
 .tabs .tabs-item:before {
-  content: " ";
+  content: '';
   position: absolute;
   right: 0;
   top: 0;
-  height: 100%;
+  background: #D5D5D5;
   width: 1px;
-  border-right: 1px solid #D5D5D5;
-  -webkit-transform: scaleY(0.4);
-          transform: scaleY(0.4);
+  height: 100%;
+  -webkit-transform: scaleX(0.5);
+          transform: scaleX(0.5);
+  -webkit-transform-origin: 100% 0;
+          transform-origin: 100% 0;
+}
+.tabs .tabs-item:before {
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+  -webkit-transform-origin: 100% 50%;
+          transform-origin: 100% 50%;
 }
 .tabs .tabs-item:last-child:before {
   display: none;
-}
-.tabs .tabs-item:after {
-  content: " ";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  border-bottom: 1px solid #D5D5D5;
 }
 .tabs .tabs-item .tabs-item-text {
   padding: 10px 1em;
@@ -2769,7 +2895,7 @@ a.decoration {
   bottom: 0;
   width: 100%;
   height: 1px;
-  border-bottom: 3px solid #34BE66;
+  border-bottom: 2px solid #34BE66;
 }
 .popup-wrap .popup {
   position: fixed;
