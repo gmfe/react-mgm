@@ -210,6 +210,18 @@ const ThemeWrap = React.createClass({
                     </div>
                 </div>
                 <div>
+                    <h3>1x 边框(用前请了解其原理)</h3>
+                    <div className="border-1x margin-5">
+                        border 1x
+                    </div>
+                    <div className="border-1x-bottom margin-5">
+                        border 1x bottom
+                    </div>
+                    <div className="border-1x-top margin-5">
+                        border 1x top
+                    </div>
+                </div>
+                <div>
                     <h3>按钮(正常和不可点状态)</h3>
                     <div>
                         <button className="weui_btn weui_btn_primary active">primary</button>

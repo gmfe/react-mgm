@@ -1,0 +1,111 @@
+.borderAll() {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  border: 1px solid @borderColor;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  box-sizing: border-box;
+}
+
+.borderLeft() {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: @borderColor;
+  width: 1px;
+  height: 100%;
+  transform: scaleX(0.5);
+  transform-origin: 0 0;
+}
+
+.borderRight() {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: @borderColor;
+  width: 1px;
+  height: 100%;
+  transform: scaleX(0.5);
+  transform-origin: 100% 0;
+}
+
+.borderTop() {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: @borderColor;
+  width: 100%;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.borderBottom() {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: @borderColor;
+  width: 100%;
+  height: 1px;
+  transform: scaleY(0.5);
+  transform-origin: 0 100%;
+}
+
+.borderAllAfter() {
+  position: relative;
+  &:after {
+    .borderAll();
+  }
+}
+
+.borderTopBefore() {
+  position: relative;
+  &:before {
+    .borderTop();
+  }
+}
+
+.borderLeftBefore() {
+  position: relative;
+  &:before {
+    .borderLeft();
+  }
+}
+
+.borderLeftAfter() {
+  position: relative;
+  &:after {
+    .borderLeft();
+  }
+}
+
+.borderRightBefore() {
+  position: relative;
+  &:before {
+    .borderRight();
+  }
+}
+
+.borderRightAfter() {
+  position: relative;
+  &:after {
+    .borderRight();
+  }
+}
+
+.borderBottomAfter() {
+  position: relative;
+  &:after {
+    .borderBottom();
+  }
+}
