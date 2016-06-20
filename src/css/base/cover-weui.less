@@ -21,3 +21,15 @@
     margin-bottom: 4px
   }
 }
+
+.weui_cells_checkbox {
+  .weui_check {
+    &:checked {
+      & + .weui_icon_checked {
+        &:before {
+          color: @primaryColor;
+        }
+      }
+    }
+  }
+}

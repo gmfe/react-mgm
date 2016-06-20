@@ -2426,6 +2426,9 @@ a.decoration {
   margin-top: 1px;
   margin-bottom: 4px;
 }
+.weui_cells_checkbox .weui_check:checked + .weui_icon_checked:before {
+  color: #34BE66;
+}
 .flex-flex {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
