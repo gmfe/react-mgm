@@ -9,14 +9,14 @@ class Dialog extends React.Component {
         this.handleConfirm = this.handleConfirm.bind(this);
     }
 
-    handleConfirm(e){
+    handleConfirm(e) {
         e.preventDefault();
         this.props.onConfirm();
     }
 
-    handleCancel(e){
+    handleCancel(e) {
         e.preventDefault();
-        this.props.onCancel();
+        this.props.onCancel && this.props.onCancel();
     }
 
     render() {
@@ -31,18 +31,21 @@ class Dialog extends React.Component {
             <div className={cls} style={{display: thisProps.show ? 'block' : 'none'}}>
                 <div className="weui_mask"></div>
                 <div className="weui_dialog">
-                    <div className="weui_dialog_hd"><strong className="weui_dialog_title">{thisProps.title}</strong></div>
+                    <div className="weui_dialog_hd"><strong className="weui_dialog_title">{thisProps.title}</strong>
+                    </div>
                     <div className="weui_dialog_bd">
                         {thisProps.children}
                     </div>
                     <div className="weui_dialog_ft">
                         {
                             thisProps.confirm ?
-                                <a href="javascript:;" className="weui_btn_dialog default" onClick={::this.handleCancel}>{btnText.cancel ? btnText.cancel : '取消'}</a>
+                                <a href="javascript:;" className="weui_btn_dialog default"
+                                   onClick={::this.handleCancel}>{btnText.cancel ? btnText.cancel : '取消'}</a>
                                 :
                                 null
                         }
-                        <a href="javascript:;" className="weui_btn_dialog primary" onClick={::this.handleConfirm}>{btnText.confirm ? btnText.confirm : '确定'}</a>
+                        <a href="javascript:;" className="weui_btn_dialog primary"
+                           onClick={::this.handleConfirm}>{btnText.confirm ? btnText.confirm : '确定'}</a>
                     </div>
                 </div>
             </div>
