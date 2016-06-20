@@ -2050,10 +2050,10 @@ a.decoration {
 .border-bottom {
   border-bottom: 1px solid #D5D5D5;
 }
-.border-1x {
+.border-1px {
   position: relative;
 }
-.border-1x:after {
+.border-1px:after {
   content: " ";
   width: 200%;
   height: 200%;
@@ -2067,10 +2067,10 @@ a.decoration {
           transform-origin: 0 0;
   box-sizing: border-box;
 }
-.border-1x-top {
+.border-1px-top {
   position: relative;
 }
-.border-1x-top:before {
+.border-1px-top:before {
   content: " ";
   position: absolute;
   left: 0;
@@ -2083,10 +2083,10 @@ a.decoration {
   -webkit-transform-origin: 0 0;
           transform-origin: 0 0;
 }
-.border-1x-left {
+.border-1px-left {
   position: relative;
 }
-.border-1x-left:before {
+.border-1px-left:before {
   content: " ";
   position: absolute;
   left: 0;
@@ -2099,10 +2099,10 @@ a.decoration {
   -webkit-transform-origin: 0 0;
           transform-origin: 0 0;
 }
-.border-1x-left-after {
+.border-1px-left-after {
   position: relative;
 }
-.border-1x-left-after:after {
+.border-1px-left-after:after {
   content: " ";
   position: absolute;
   left: 0;
@@ -2115,10 +2115,10 @@ a.decoration {
   -webkit-transform-origin: 0 0;
           transform-origin: 0 0;
 }
-.border-1x-right {
+.border-1px-right {
   position: relative;
 }
-.border-1x-right:after {
+.border-1px-right:after {
   content: " ";
   position: absolute;
   right: 0;
@@ -2131,10 +2131,10 @@ a.decoration {
   -webkit-transform: scaleX(0.5);
           transform: scaleX(0.5);
 }
-.border-1x-right-after {
+.border-1px-right-after {
   position: relative;
 }
-.border-1x-right-after:before {
+.border-1px-right-after:before {
   content: " ";
   position: absolute;
   right: 0;
@@ -2147,10 +2147,10 @@ a.decoration {
   -webkit-transform: scaleX(0.5);
           transform: scaleX(0.5);
 }
-.border-1x-bottom {
+.border-1px-bottom {
   position: relative;
 }
-.border-1x-bottom:after {
+.border-1px-bottom:after {
   content: " ";
   position: absolute;
   left: 0;
