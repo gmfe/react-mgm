@@ -816,7 +816,10 @@ var DialogWrap = React.createClass({
     },
 
     handleC(){
-        Dialog.confirm('确定么?').then(() => {
+        Dialog.confirm({
+            children: '确定么?',
+            btnText: {confirm: '去充值'}
+        }).then(() => {
             console.log('ok');
         }).catch(() => {
             console.log('cancel');
