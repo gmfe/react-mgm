@@ -801,8 +801,26 @@ var DialogWrap = React.createClass({
                 >
                     这是alert
                 </Dialog>
+
+                <button className="weui_btn weui_btn_warn" onClick={this.handleA}>Alert Dialog（API+Promise）</button>
+                <button className="weui_btn weui_btn_warn" onClick={this.handleC}>Confirm Dialog（API+Promise）
+                </button>
             </page>
         );
+    },
+
+    handleA(){
+        Dialog.alert('yoyoyo').then(() => {
+            console.log('ok');
+        });
+    },
+
+    handleC(){
+        Dialog.confirm('确定么?').then(() => {
+            console.log('ok');
+        }).catch(() => {
+            console.log('cancel');
+        });
     }
 });
 

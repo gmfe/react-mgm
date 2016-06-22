@@ -1,12 +1,65 @@
 import React, {PropTypes} from 'react';
+import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 
+let dialogsContainerId = '_mgm_dialogs_container' + (Math.random() + '').slice(2);
+let dialogsContainer = document.getElementById(dialogsContainerId);
+
+if (!dialogsContainer) {
+    dialogsContainer = document.createElement('div');
+    dialogsContainer.className = 'mgm-dialogs';
+    dialogsContainer.id = dialogsContainerId;
+    document.body.appendChild(dialogsContainer);
+}
+
+let DialogStatics = {};
+DialogStatics = {
+    dialog(options){
+        return new Promise((resolve, reject) => {
+            const div = document.createElement('div');
+            dialogsContainer.appendChild(div);
+            options.title = options.title || '提示';
+            options.show = true;
+            options.onConfirm = () => {
+                dialogsContainer.removeChild(div);
+                resolve();
+            };
+            options.onCancel = () => {
+                dialogsContainer.removeChild(div);
+                reject();
+            };
+            ReactDOM.render(<Dialog {...options}></Dialog>, div);
+        });
+    },
+    alert(options){
+        if (typeof options === 'string') {
+            options = {
+                children: options
+            };
+        }
+        options.alert = true;
+        return DialogStatics.dialog(options);
+    },
+    confirm(options){
+        if (typeof options === 'string') {
+            options = {
+                children: options
+            };
+        }
+        options.confirm = true;
+        return DialogStatics.dialog(options);
+    }
+};
+
 class Dialog extends React.Component {
+    static alert = DialogStatics.alert;
+    static confirm = DialogStatics.confirm;
+
     constructor(props) {
         super(props);
 
-        this.handleCancel = this.handleCancel.bind(this);
-        this.handleConfirm = this.handleConfirm.bind(this);
+        this.handleCancel = ::this.handleCancel;
+        this.handleConfirm = ::this.handleConfirm;
     }
 
     handleConfirm(e) {
@@ -27,8 +80,12 @@ class Dialog extends React.Component {
             'weui_dialog_alert': thisProps.alert
         });
 
+        if (!thisProps.show) {
+            return null;
+        }
+
         return (
-            <div className={cls} style={{display: thisProps.show ? 'block' : 'none'}}>
+            <div className={cls} style={{display: 'block'}}>
                 <div className="weui_mask"></div>
                 <div className="weui_dialog">
                     <div className="weui_dialog_hd"><strong className="weui_dialog_title">{thisProps.title}</strong>
@@ -40,12 +97,12 @@ class Dialog extends React.Component {
                         {
                             thisProps.confirm ?
                                 <a href="javascript:;" className="weui_btn_dialog default"
-                                   onClick={::this.handleCancel}>{btnText.cancel ? btnText.cancel : '取消'}</a>
+                                   onClick={this.handleCancel}>{btnText.cancel ? btnText.cancel : '取消'}</a>
                                 :
                                 null
                         }
                         <a href="javascript:;" className="weui_btn_dialog primary"
-                           onClick={::this.handleConfirm}>{btnText.confirm ? btnText.confirm : '确定'}</a>
+                           onClick={this.handleConfirm}>{btnText.confirm ? btnText.confirm : '确定'}</a>
                     </div>
                 </div>
             </div>
