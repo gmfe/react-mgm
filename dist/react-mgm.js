@@ -7,7 +7,7 @@
 		exports["ReactMGM"] = factory(require("react"), require("classnames"), require("underscore"), require("react-dom"));
 	else
 		root["ReactMGM"] = factory(root["react"], root["classnames"], root["underscore"], root["react-dom"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -56,7 +56,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _flex = __webpack_require__(4);
+	var _flex = __webpack_require__(5);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -175,6 +175,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ },
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -269,12 +275,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 	exports.default = Flex;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ },
 /* 6 */
@@ -835,6 +835,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactDom = __webpack_require__(4);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
 	var _classnames = __webpack_require__(2);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
@@ -846,6 +850,55 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var dialogsContainerId = '_mgm_dialogs_container' + (Math.random() + '').slice(2);
+	var dialogsContainer = document.getElementById(dialogsContainerId);
+
+	if (!dialogsContainer) {
+	    dialogsContainer = document.createElement('div');
+	    dialogsContainer.className = 'mgm-dialogs';
+	    dialogsContainer.id = dialogsContainerId;
+	    document.body.appendChild(dialogsContainer);
+	}
+
+	var DialogStatics = {};
+	DialogStatics = {
+	    dialog: function dialog(options) {
+	        return new Promise(function (resolve, reject) {
+	            var div = document.createElement('div');
+	            dialogsContainer.appendChild(div);
+	            options.title = options.title || '提示';
+	            options.show = true;
+	            options.onConfirm = function () {
+	                dialogsContainer.removeChild(div);
+	                resolve();
+	            };
+	            options.onCancel = function () {
+	                dialogsContainer.removeChild(div);
+	                reject();
+	            };
+	            _reactDom2.default.render(_react2.default.createElement(Dialog, options), div);
+	        });
+	    },
+	    alert: function alert(options) {
+	        if (typeof options === 'string') {
+	            options = {
+	                children: options
+	            };
+	        }
+	        options.alert = true;
+	        return DialogStatics.dialog(options);
+	    },
+	    confirm: function confirm(options) {
+	        if (typeof options === 'string') {
+	            options = {
+	                children: options
+	            };
+	        }
+	        options.confirm = true;
+	        return DialogStatics.dialog(options);
+	    }
+	};
 
 	var Dialog = function (_React$Component) {
 	    _inherits(Dialog, _React$Component);
@@ -884,9 +937,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                'weui_dialog_alert': thisProps.alert
 	            });
 
+	            if (!thisProps.show) {
+	                return null;
+	            }
+
 	            return _react2.default.createElement(
 	                'div',
-	                { className: cls, style: { display: thisProps.show ? 'block' : 'none' } },
+	                { className: cls, style: { display: 'block' } },
 	                _react2.default.createElement('div', { className: 'weui_mask' }),
 	                _react2.default.createElement(
 	                    'div',
@@ -911,13 +968,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        thisProps.confirm ? _react2.default.createElement(
 	                            'a',
 	                            { href: 'javascript:;', className: 'weui_btn_dialog default',
-	                                onClick: this.handleCancel.bind(this) },
+	                                onClick: this.handleCancel },
 	                            btnText.cancel ? btnText.cancel : '取消'
 	                        ) : null,
 	                        _react2.default.createElement(
 	                            'a',
 	                            { href: 'javascript:;', className: 'weui_btn_dialog primary',
-	                                onClick: this.handleConfirm.bind(this) },
+	                                onClick: this.handleConfirm },
 	                            btnText.confirm ? btnText.confirm : '确定'
 	                        )
 	                    )
@@ -928,6 +985,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return Dialog;
 	}(_react2.default.Component);
+
+	Dialog.alert = DialogStatics.alert;
+	Dialog.confirm = DialogStatics.confirm;
+
 
 	Dialog.propTypes = {
 	    show: _react.PropTypes.bool,
@@ -1012,7 +1073,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _loading2 = _interopRequireDefault(_loading);
 
-	var _flex = __webpack_require__(4);
+	var _flex = __webpack_require__(5);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -1205,7 +1266,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(5);
+	var _reactDom = __webpack_require__(4);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1299,7 +1360,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _flex = __webpack_require__(4);
+	var _flex = __webpack_require__(5);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -1467,7 +1528,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(5);
+	var _reactDom = __webpack_require__(4);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1677,7 +1738,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(5);
+	var _reactDom = __webpack_require__(4);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1689,7 +1750,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _flex = __webpack_require__(4);
+	var _flex = __webpack_require__(5);
 
 	var _flex2 = _interopRequireDefault(_flex);
 
@@ -2039,7 +2100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(5);
+	var _reactDom = __webpack_require__(4);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
