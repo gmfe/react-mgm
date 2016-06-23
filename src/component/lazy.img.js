@@ -17,7 +17,7 @@ const LazyImg = React.createClass({
         const cn = classnames('lazy-img', this.props.className);
 
         return <img ref="img" className={cn} {...this.props}
-                    src={this.state.show? this.props.src : this.props.placeholder}/>;
+                    src={this.state.show && this.props.src ? this.props.src : this.props.placeholder}/>;
     },
     targetDom: null,
     componentDidMount(){
