@@ -7,7 +7,7 @@
 - z-index < 10000
 - mask 100
 - popup 200
-- toast 800
+- toast 810 toast的mask 800
 - nprogress 9999
 
 ## js规范
