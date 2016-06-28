@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import classnames from 'classnames';
+import classNames from 'classnames';
+import pureRenderDecorator from '../pure.render.decorator';
 
 let dialogsContainerId = '_mgm_dialogs_container' + (Math.random() + '').slice(2);
 let dialogsContainer = document.getElementById(dialogsContainerId);
@@ -51,6 +52,7 @@ DialogStatics = {
     }
 };
 
+@pureRenderDecorator
 class Dialog extends React.Component {
     static alert = DialogStatics.alert;
     static confirm = DialogStatics.confirm;
@@ -75,7 +77,7 @@ class Dialog extends React.Component {
     render() {
         const thisProps = this.props,
             {btnText = {}} = thisProps;
-        const cls = classnames({
+        const cls = classNames({
             'weui_dialog_confirm': thisProps.confirm,
             'weui_dialog_alert': thisProps.alert
         });

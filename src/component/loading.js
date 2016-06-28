@@ -1,9 +1,12 @@
 import React from 'react';
+import classNames from 'classnames';
+import pureRenderDecorator from '../pure.render.decorator';
 
-let Loading = React.createClass({
+@pureRenderDecorator
+class Loading extends React.Component {
     render() {
         return (
-            <div {...this.props} className="loading">
+            <div {...this.props} className={classNames("loading", this.props.className)}>
                 <div className="loading-inner">
                     <div className="weui_loading_leaf weui_loading_leaf_0"></div>
                     <div className="weui_loading_leaf weui_loading_leaf_1"></div>
@@ -21,6 +24,6 @@ let Loading = React.createClass({
             </div>
         );
     }
-});
+}
 
 export default Loading;

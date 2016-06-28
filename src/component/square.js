@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-let Square = React.createClass({
+class Square extends React.Component {
     render() {
         const cn = classNames('square-inner', this.props.className);
 
@@ -13,6 +13,6 @@ let Square = React.createClass({
             </div>
         );
     }
-});
+}
 
 export default Square;

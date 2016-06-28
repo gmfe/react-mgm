@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import _ from 'underscore';
 import Flex from './flex';
 
-var Slider = React.createClass({
-    getInitialState(){
-        return {
+class Slider extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             count: 1,
             sliderWidth: 0,
             touchObject: null,
@@ -14,17 +15,24 @@ var Slider = React.createClass({
             transition: false,
             x: 0
         };
-    },
-    componentWillReceiveProps(nextProps){
+
+        this.swipeStart = ::this.swipeStart;
+        this.swipeMove = ::this.swipeMove;
+        this.swipeEnd = ::this.swipeEnd;
+        this.setSliderWidth = ::this.setSliderWidth;
+    }
+
+    componentWillReceiveProps(nextProps) {
         this.setState({
             count: toString.call(nextProps.children) === '[object Array]' ? nextProps.children.length : 1
         });
-    },
+    }
+
     render() {
         const to = this.state.touchObject;
         let offset = to ? (to.x - to.startX + this.state.x) : this.state.x;
 
-        const cn = classnames({
+        const cn = classNames({
             'slider-transition': this.state.transition
         }, this.props.className);
 
@@ -54,8 +62,9 @@ var Slider = React.createClass({
                 {this.renderFlag()}
             </div>
         );
-    },
-    renderChild(){
+    }
+
+    renderChild() {
         let components = this.props.children;
 
         if (toString.call(this.props.children) !== '[object Array]') {
@@ -64,43 +73,50 @@ var Slider = React.createClass({
         return _.map(components, (value, i) => {
             return React.cloneElement(value, {
                 style: _.extend({}, value.props.style, {width: '100%'}),
-                className: classnames('slider-cell flex flex-none', value.props.className),
+                className: classNames('slider-cell flex flex-none', value.props.className),
                 key: i
             });
         });
-    },
-    renderFlag(){
+    }
+
+    renderFlag() {
         return (
             <Flex justifyCenter className="slider-flag">
                 {_.map(_.range(this.state.count), (value, i) => <span
-                    className={classnames({active: Math.abs(this.state.x / this.state.sliderWidth) === i})}
+                    className={classNames({active: Math.abs(this.state.x / this.state.sliderWidth) === i})}
                     key={i}></span>)}
             </Flex>
         );
-    },
-    componentDidMount(){
+    }
+
+    componentDidMount() {
         this.setSliderWidth();
         this.setCount();
         window.addEventListener('resize', this.setSliderWidth);
-    },
-    setCount(){
+    }
+
+    setCount() {
         this.setState({
             count: toString.call(this.props.children) === '[object Array]' ? this.props.children.length : 1
         });
-    },
-    componentWillUnmount(){
+    }
+
+    componentWillUnmount() {
         window.removeEventListener('resize', this.setSliderWidth);
-    },
-    setSliderWidth(){
+    }
+
+    setSliderWidth() {
         const slider = ReactDom.findDOMNode(this.refs.slider);
         this.setState({
             sliderWidth: slider.offsetWidth
         });
-    },
-    getX(event){
+    }
+
+    getX(event) {
         return event.touches !== undefined ? event.touches[0].pageX : event.clientX;
-    },
-    swipeStart(event){
+    }
+
+    swipeStart(event) {
         event.preventDefault();
         this.setState({
             dragging: true,
@@ -110,8 +126,9 @@ var Slider = React.createClass({
                 x: this.getX(event)
             }
         });
-    },
-    swipeMove(event){
+    }
+
+    swipeMove(event) {
         event.preventDefault();
         this.setState({
             dragging: true,
@@ -120,8 +137,9 @@ var Slider = React.createClass({
                 x: this.getX(event)
             })
         });
-    },
-    swipeEnd(event){
+    }
+
+    swipeEnd(event) {
         event.preventDefault();
         // if (!this.state.dragging) {
         //     return;
@@ -155,6 +173,6 @@ var Slider = React.createClass({
             });
         }
     }
-});
+}
 
 export default Slider;

@@ -1,32 +1,35 @@
 import React, {PropTypes} from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
+import pureRenderDecorator from '../pure.render.decorator';
 
-const SearchBar = React.createClass({
-    propTypes: {
-        defaultFocus: PropTypes.bool,
-        value: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired,
-        placeholder: PropTypes.string,
-        onOK: PropTypes.func,
-        onCancel: PropTypes.func
-    },
-    getDefaultProps(){
-        return {
-            id: '_mgm_search_bar_id' + (Math.random() + '').slice(2),
-            defaultFocus: false,
-            onOK: () => {
-            },
-            onCancel: () => {
-            }
+@pureRenderDecorator
+class SearchBar extends React.Component {
+    static defaultProps = {
+        id: '_mgm_search_bar_id' + (Math.random() + '').slice(2),
+        defaultFocus: false,
+        onOK: () => {
+        },
+        onCancel: () => {
+        }
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            focus: props.defaultFocus
         };
-    },
-    getInitialState(){
-        return {
-            focus: this.props.defaultFocus
-        };
-    },
+
+        this.handleOK = ::this.handleOK;
+        this.handleFocus = ::this.handleFocus;
+        this.handleBlur = ::this.handleBlur;
+        this.handleChange = ::this.handleChange;
+        this.handleClear = ::this.handleClear;
+        this.handleCancel = ::this.handleCancel;
+    }
+
     render() {
-        const cn = classnames('search-bar weui_search_bar', {
+        const cn = classNames('search-bar weui_search_bar', {
             'weui_search_focusing': this.props.value || this.state.focus
         });
         return (
@@ -51,44 +54,59 @@ const SearchBar = React.createClass({
                         <span>{this.props.placeholder}</span>
                     </label>
                 </form>
-                <a href="javascript:" className="weui_search_cancel" onClick={this.handleCancle}>取消</a>
+                <a href="javascript:" className="weui_search_cancel" onClick={this.handleCancel}>取消</a>
             </div>
         );
-    },
-    handleFocus(event){
+    }
+
+    handleFocus(event) {
         event.preventDefault();
         this.setState({
             focus: true
         });
-    },
-    handleBlur(event){
+    }
+
+    handleBlur(event) {
         event.preventDefault();
         this.setState({
             focus: false
         });
-    },
-    handleClear(event){
+    }
+
+    handleClear(event) {
         event.preventDefault();
         this.props.onChange('');
         this.refs.input.focus();
-    },
-    handleCancle(event){
+    }
+
+    handleCancel(event) {
         event.preventDefault();
         this.setState({focus: false});
         this.props.onChange('');
         this.props.onCancel();
         this.refs.input.blur();
-    },
-    handleOK(event){
+    }
+
+    handleOK(event) {
         event.preventDefault();
         this.props.onOK();
         this.setState({
             focus: false
         });
-    },
-    handleChange(event){
+    }
+
+    handleChange(event) {
         this.props.onChange(event.target.value);
     }
-});
+}
+
+SearchBar.propTypes = {
+    defaultFocus: PropTypes.bool,
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
+    onOK: PropTypes.func,
+    onCancel: PropTypes.func
+};
 
 export default SearchBar;

@@ -1,23 +1,28 @@
-import React from 'react';
-import classnames from 'classnames';
+import React, {PropTypes} from 'react';
+import classNames from 'classnames';
 import Loading from './loading';
 import Flex from './flex';
 
-var Infinite = React.createClass({
-    getInitialState(){
-        return {
+// 没有必要scu
+class Infinite extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleScroll = ::this.handleScroll;
+        this.state = {
             loading: false
         };
-    },
-    getDefaultProps(){
-        return {
-            onBottom: function () {
-            },
-            bottomOffset: 50 + 50
-        };
-    },
+        this.timer = null;
+        this.scrollTop = 0;
+    }
+
+    static defaultProps = {
+        onBottom: function () {
+        },
+        bottomOffset: 50 + 50
+    };
+
     render() {
-        let cn = classnames('infinite', this.props.className);
+        const cn = classNames('infinite', this.props.className);
         return (
             <div ref="infinite" {...this.props} className={cn} onScroll={this.handleScroll}>
                 {this.props.children}
@@ -30,12 +35,15 @@ var Infinite = React.createClass({
                 </Flex>
             </div>
         );
-    },
-    timer: null,
-    handleBottom(){
-        if (this.props.done) return;
+    }
+
+    handleBottom() {
+        if (this.props.done) {
+            return;
+        }
 
         clearTimeout(this.timer);
+
         this.setState({
             loading: true
         });
@@ -60,9 +68,9 @@ var Infinite = React.createClass({
                 });
             }, 500);
         }
-    },
-    scrollTop: 0,
-    handleScroll(event){
+    }
+
+    handleScroll(event) {
         // 向下滚动才触发
         if (event.target.scrollTop > this.scrollTop) {
             if (!this.state.loading) {
@@ -74,11 +82,12 @@ var Infinite = React.createClass({
         }
         this.scrollTop = event.target.scrollTop;
     }
-});
+}
 
 Infinite.propTypes = {
-    onBottom: React.PropTypes.func.isRequired,
-    done: React.PropTypes.bool
+    bottomOffset: PropTypes.number,
+    onBottom: PropTypes.func.isRequired,
+    done: PropTypes.bool
 };
 
 export default Infinite;

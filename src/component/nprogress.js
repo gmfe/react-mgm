@@ -23,46 +23,56 @@ var NProgressStatics = {
     }
 };
 
-var NProgress = React.createClass({
-    statics: NProgressStatics,
-    getInitialState: function () {
-        return {
+class NProgress extends React.Component {
+    static start = NProgressStatics.start;
+    static done = NProgressStatics.done;
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
             precent: 0
         };
-    },
-    componentWillReceiveProps: function (nextProps) {
+
+        this.timer = null;
+    }
+
+    componentWillReceiveProps(nextProps) {
         if (nextProps.precent) {
             clearTimeout(this.timer);
             this.setState({
                 precent: nextProps.precent
             });
         }
-    },
-    render: function () {
+    }
+
+    render() {
         var percent = 100 - this.state.precent;
         return (
             <div className="nprogress" style={{transform: "translate3d(-" + percent +"%, 0px, 0px)"}}>
                 <div className="nprogress-head"></div>
             </div>
         );
-    },
-    componentDidMount: function () {
+    }
+
+    componentDidMount() {
         this.doInc();
-    },
-    componentWillUnmount: function () {
+    }
+
+    componentWillUnmount() {
         clearTimeout(this.timer);
-    },
-    doInc: function () {
-        var t = this;
-        t.timer = setTimeout(function () {
-            t.setState({
-                precent: t.state.precent + (100 - t.state.precent) * 0.2
+    }
+
+    doInc() {
+        this.timer = setTimeout(() => {
+            this.setState({
+                precent: this.state.precent + (100 - this.state.precent) * 0.2
             });
-            if (t.state.precent < 90) {
-                t.doInc();
+            if (this.state.precent < 90) {
+                this.doInc();
             }
         }, 150);
     }
-});
+}
 
 export default NProgress;

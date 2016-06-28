@@ -1,50 +1,57 @@
-import React from 'react';
-import classnames from 'classnames';
+import React, {PropTypes} from 'react';
+import classNames from 'classnames';
 import Util from 'gm-util';
+import pureRenderDecorator from '../pure.render.decorator';
 
-const LazyImg = React.createClass({
-    propType: {
-        src: React.PropTypes.string,
-        placeholder: React.PropTypes.string,
-        targetId: React.PropTypes.string // 指定监听滚动的dom id
-    },
-    getInitialState(){
-        return {
+@pureRenderDecorator
+class LazyImg extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             show: false
         };
-    },
+        this.targetDom = null;
+        this.timer = null;
+
+        this.onScroll = ::this.onScroll;
+    }
+
     render() {
-        const cn = classnames('lazy-img', this.props.className);
+        const cn = classNames('lazy-img', this.props.className);
 
         return <img ref="img" className={cn} {...this.props}
                     src={this.state.show && this.props.src ? this.props.src : this.props.placeholder}/>;
-    },
-    targetDom: null,
-    componentDidMount(){
+    }
+
+    componentDidMount() {
         this.targetDom = this.props.targetId ? document.getElementById(this.props.targetId) : document.getElementsByClassName('page-content')[0];
         if (this.targetDom) {
             this.targetDom.addEventListener('scroll', this.onScroll);
             this.doLazy();
         }
-    },
-    componentWillUnmount(){
+    }
+
+    componentWillUnmount() {
         this.removeListener();
-    },
-    removeListener(){
+    }
+
+    removeListener() {
         if (this.targetDom) {
             this.targetDom.removeEventListener('scroll', this.onScroll);
         }
-    },
-    timer: null,
-    onScroll(){
+    }
+
+    onScroll() {
         if (this.timer) {
             clearTimeout(this.timer);
         }
         this.timer = setTimeout(() => {
             this.doLazy();
         }, 500);
-    },
-    doLazy(){
+    }
+
+
+    doLazy() {
         // 显示了
         if (Util.isElementOverViewport(this.refs.img)) {
             this.setState({
@@ -53,6 +60,12 @@ const LazyImg = React.createClass({
             this.removeListener();
         }
     }
-});
+}
+
+LazyImg.propType = {
+    src: PropTypes.string,
+    placeholder: PropTypes.string,
+    targetId: PropTypes.string // 指定监听滚动的dom id
+};
 
 export default LazyImg;

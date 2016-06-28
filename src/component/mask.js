@@ -1,18 +1,14 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import classNames from 'classnames';
+import pureRenderDecorator from '../pure.render.decorator';
 
-let Mask = React.createClass({
-    propTypes: {
-        transparent: React.PropTypes.bool,
-        show: React.PropTypes.bool,
-        opacity: React.PropTypes.number
-    },
-    getDefaultProps(){
-        return {
-            transparent: false,
-            show: false
-        };
-    },
+@pureRenderDecorator
+class Mask extends React.Component {
+    static defaultProps = {
+        transparent: false,
+        show: false
+    };
+
     render() {
         let className = classNames({
             'mask': !this.props.transparent,
@@ -28,6 +24,12 @@ let Mask = React.createClass({
             <div {...this.props} className={className} style={style}></div>
         );
     }
-});
+}
+
+Mask.propTypes = {
+    transparent: PropTypes.bool,
+    show: PropTypes.bool,
+    opacity: PropTypes.number
+};
 
 export default Mask;

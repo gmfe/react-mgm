@@ -1,20 +1,12 @@
 import React, {PropTypes} from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import Flex from './flex';
 
-const Page = React.createClass({
-    propTypes: {
-        children: PropTypes.node,
-        className: PropTypes.string,
-        white: PropTypes.bool,
-        header: PropTypes.node,
-        tabbar: PropTypes.node
-    },
-    getDefaultProps(){
-        return {};
-    },
+class Page extends React.Component {
+    static defaultProps = {};
+
     render() {
-        const classes = classnames({
+        const classes = classNames({
             'page': true,
             'page-white': this.props.white
         }, this.props.className);
@@ -35,10 +27,18 @@ const Page = React.createClass({
             );
         } else {
             return (
-                <div className={classnames(classes, 'page-content')}>{this.props.children}</div>
+                <div className={classNames(classes, 'page-content')}>{this.props.children}</div>
             );
         }
     }
-});
+}
+
+Page.propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    white: PropTypes.bool,
+    header: PropTypes.node,
+    tabbar: PropTypes.node
+};
 
 export default Page;

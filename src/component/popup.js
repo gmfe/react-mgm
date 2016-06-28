@@ -1,30 +1,23 @@
 import React, {PropTypes} from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import Mask from './mask';
 import _ from 'underscore';
 
-const Popup = React.createClass({
-    propTypes: {
-        show: PropTypes.bool,
-        onChange: PropTypes.func,
-        left: PropTypes.bool,
-        bottom: PropTypes.bool,
-        width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        opacity: PropTypes.number,
-        autoHeight: PropTypes.bool // 只bottom:true 有效
-    },
-    getDefaultProps(){
-        return {
-            show: false,
-            onChange: () => {
-            }
-        };
-    },
+class Popup extends React.Component {
+    static defaultProps = {
+        show: false,
+        onChange: () => {
+        }
+    };
+
+    constructor(props) {
+        super(props);
+        this.handleChange = ::this.handleChange;
+    }
+
     render() {
         const thisProps = this.props;
-
-        const cn = classnames('popup', {
+        const cn = classNames('popup', {
             active: thisProps.show,
             'popup-left': thisProps.left,
             'popup-bottom': thisProps.bottom,
@@ -50,11 +43,23 @@ const Popup = React.createClass({
                 </div>
             </div>
         );
-    },
-    handleChange(e){
+    }
+
+    handleChange(e) {
         e.preventDefault();
         this.props.onChange(!this.props.show);
     }
-});
+}
+
+Popup.propTypes = {
+    show: PropTypes.bool,
+    onChange: PropTypes.func,
+    left: PropTypes.bool,
+    bottom: PropTypes.bool,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    opacity: PropTypes.number,
+    autoHeight: PropTypes.bool // 只bottom:true 有效
+};
 
 export default Popup;

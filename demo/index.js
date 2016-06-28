@@ -250,8 +250,8 @@ const ThemeWrap = React.createClass({
     }
 });
 
-const FlexWrap = React.createClass({
-    render(){
+class FlexWrap extends React.Component {
+    render() {
         return (
             <Page white>
                 <h2>flex
@@ -354,7 +354,7 @@ const FlexWrap = React.createClass({
             </Page>
         );
     }
-});
+}
 
 const GapWrap = React.createClass({
     render(){
@@ -426,7 +426,7 @@ const ToastWrap = React.createClass({
     handleToast(){
         // Toast.tip('tip');
         Toast.success({
-            time: 0,
+            time: 2000,
             children: (
                 <div>
                     <div>a</div>
@@ -743,40 +743,50 @@ var LazyImgWrap = React.createClass({
     }
 });
 
-var DialogWrap = React.createClass({
-    getInitialState(){
-        return {
-            confirmShow: false,
-            alertShow: false
-        };
-    },
+class DialogWrap extends React.Component {
+    constructor(props) {
+        super(props);
 
-    handleCancel(){
+        this.handleCancel = ::this.handleCancel;
+        this.handleConfirm = ::this.handleConfirm;
+        this.handleAlertShow = ::this.handleAlertShow;
+        this.handleConfirmShow = ::this.handleConfirmShow;
+        this.handleA = ::this.handleA;
+        this.handleA = ::this.handleA;
+
+        this.state = {
+            confirmShow: false,
+            alertShow: false,
+            btnText: {cancel: '不合并', confirm: '合并'}
+        };
+    }
+
+    handleCancel() {
         this.setState({
             confirmShow: false
         });
-    },
+    }
 
-    handleConfirm(){
+    handleConfirm() {
         this.setState({
             confirmShow: false,
             alertShow: false
         });
-    },
+    }
 
-    handleAlertShow(){
+    handleAlertShow() {
         this.setState({
             alertShow: true
         });
-    },
+    }
 
-    handleConfirmShow(){
+    handleConfirmShow() {
         this.setState({
             confirmShow: true
         });
-    },
+    }
 
-    render(){
+    render() {
         return (
             <page>
                 <button className="weui_btn weui_btn_primary" onClick={this.handleAlertShow}>Alert Dialog</button>
@@ -788,7 +798,7 @@ var DialogWrap = React.createClass({
                     title="Alert Dialog"
                     onCancel={this.handleCancel}
                     onConfirm={this.handleConfirm}
-                    btnText={{cancel: '不合并', confirm: '合并'}}
+                    btnText={this.state.btnText}
                 >
                     这是confirm内容
                 </Dialog>
@@ -807,15 +817,15 @@ var DialogWrap = React.createClass({
                 </button>
             </page>
         );
-    },
+    }
 
-    handleA(){
+    handleA() {
         Dialog.alert('yoyoyo').then(() => {
             console.log('ok');
         });
-    },
+    }
 
-    handleC(){
+    handleC() {
         Dialog.confirm({
             children: '确定么?',
             btnText: {confirm: '去充值'}
@@ -825,7 +835,7 @@ var DialogWrap = React.createClass({
             console.log('cancel');
         });
     }
-});
+}
 
 const Root = React.createClass({
     render(){
