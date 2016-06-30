@@ -2054,7 +2054,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        'div',
 	                        { className: 'weui_search_inner' },
 	                        _react2.default.createElement('i', { className: 'weui_icon_search' }),
-	                        _react2.default.createElement('input', { id: this.props.id, type: 'search', className: 'weui_search_input',
+	                        _react2.default.createElement('input', { id: this.props.id,
+	                            type: 'search',
+	                            className: 'weui_search_input',
 	                            placeholder: this.props.placeholder,
 	                            onFocus: this.handleFocus,
 	                            onBlur: this.handleBlur,
@@ -2118,6 +2120,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'handleOK',
 	        value: function handleOK(event) {
 	            event.preventDefault();
+	            this.refs.input.blur();
 	            this.props.onOK();
 	            this.setState({
 	                focus: false
