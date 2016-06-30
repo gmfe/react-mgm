@@ -37,7 +37,9 @@ class SearchBar extends React.Component {
                 <form className="weui_search_outer" onSubmit={this.handleOK}>
                     <div className="weui_search_inner">
                         <i className="weui_icon_search"></i>
-                        <input id={this.props.id} type="search" className="weui_search_input"
+                        <input id={this.props.id}
+                               type="search"
+                               className="weui_search_input"
                                placeholder={this.props.placeholder}
                                onFocus={this.handleFocus}
                                onBlur={this.handleBlur}
@@ -89,6 +91,7 @@ class SearchBar extends React.Component {
 
     handleOK(event) {
         event.preventDefault();
+        this.refs.input.blur();
         this.props.onOK();
         this.setState({
             focus: false
