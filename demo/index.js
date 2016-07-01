@@ -245,6 +245,20 @@ const ThemeWrap = React.createClass({
                     <h3>input placeholder</h3>
                     <input type="text" className="weui_input" placeholder="请输入xxxxx"/>
                 </div>
+                <div className="weui_panel weui_panel_access">
+                    <div className="weui_panel_hd">文字组合列表</div>
+                    <div className="weui_panel_bd">
+                        <div className="weui_media_box weui_media_text">
+                            <h4 className="weui_media_title">标题一</h4>
+                            <p className="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        </div>
+                        <div className="weui_media_box weui_media_text">
+                            <h4 className="weui_media_title">标题二</h4>
+                            <p className="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0);" className="weui_panel_ft">查看更多</a>
+                </div>
             </Page>
         );
     }
