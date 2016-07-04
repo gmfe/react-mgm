@@ -16,7 +16,8 @@ import {
     SearchBar,
     Square,
     LazyImg,
-    Dialog
+    Dialog,
+    CursorFix
 } from './../src/index';
 
 import '../node_modules/gm-mfont/iconfont.css';
@@ -132,6 +133,10 @@ const Home = React.createClass({
                     </Link>
                     <Link to="/dialog" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">dialog</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/cursorfix" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">cursorfix</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -851,6 +856,21 @@ class DialogWrap extends React.Component {
     }
 }
 
+class CursorFixWrap extends React.Component {
+    render() {
+        return (
+            <div>
+                <CursorFix component="input" type="text" className="" name="name" onClick={this.handleClick}/>
+                <input type="text"/>
+            </div>
+        );
+    }
+
+    handleClick() {
+        console.log('click');
+    }
+}
+
 const Root = React.createClass({
     render(){
         return (
@@ -873,6 +893,7 @@ const Root = React.createClass({
                     <Route path="square" component={SquareWrap}></Route>
                     <Route path="lazyimg" component={LazyImgWrap}></Route>
                     <Route path="dialog" component={DialogWrap}></Route>
+                    <Route path="cursorfix" component={CursorFixWrap}></Route>
                 </Route>
             </Router>
         );
