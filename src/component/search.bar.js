@@ -2,15 +2,18 @@ import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 import pureRenderDecorator from '../pure.render.decorator';
 
+const noop = () => {
+};
+
 @pureRenderDecorator
 class SearchBar extends React.Component {
     static defaultProps = {
         id: '_mgm_search_bar_id' + (Math.random() + '').slice(2),
         defaultFocus: false,
-        onOK: () => {
-        },
-        onCancel: () => {
-        }
+        onBlur: noop,
+        onFocus: noop,
+        onOK: noop,
+        onCancel: noop
     };
 
     constructor(props) {
@@ -63,6 +66,7 @@ class SearchBar extends React.Component {
 
     handleFocus(event) {
         event.preventDefault();
+        this.props.onFocus(event);
         this.setState({
             focus: true
         });
@@ -70,6 +74,7 @@ class SearchBar extends React.Component {
 
     handleBlur(event) {
         event.preventDefault();
+        this.props.onBlur(event);
         this.setState({
             focus: false
         });
@@ -107,6 +112,8 @@ SearchBar.propTypes = {
     defaultFocus: PropTypes.bool,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
     placeholder: PropTypes.string,
     onOK: PropTypes.func,
     onCancel: PropTypes.func

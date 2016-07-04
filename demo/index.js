@@ -706,12 +706,23 @@ var SearchBarWrap = React.createClass({
     render(){
         return (
             <Page>
-                <SearchBar placeholder="搜索商品" value={this.state.value} onChange={this.handleChange}
-                           onOK={this.handleOK}
-                           onCancel={this.handleCancel}
+                <SearchBar
+                    placeholder="搜索商品"
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    onOK={this.handleOK}
+                    onCancel={this.handleCancel}
+                    onBlur={this.handleBlur}
+                    onFocus={this.handleFocus}
                 ></SearchBar>
             </Page>
         );
+    },
+    handleFocus(){
+        console.log('focus');
+    },
+    handleBlur(){
+        console.log('blur');
     },
     handleChange(value){
         this.setState({
@@ -860,8 +871,9 @@ class CursorFixWrap extends React.Component {
     render() {
         return (
             <div>
-                <CursorFix component="input" type="text" className="" name="name" onClick={this.handleClick}/>
-                <input type="text"/>
+                <CursorFix component="input" type="text" style={{border: '1px solid black'}} name="name"
+                           onClick={this.handleClick}/>
+                <input type="text" style={{border: '1px solid black'}}/>
             </div>
         );
     }
