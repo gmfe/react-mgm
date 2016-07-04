@@ -64,11 +64,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
-	var _textarea = __webpack_require__(31);
+	var _textarea = __webpack_require__(32);
 
 	var _textarea2 = _interopRequireDefault(_textarea);
 
-	var _nprogress = __webpack_require__(23);
+	var _nprogress = __webpack_require__(24);
 
 	var _nprogress2 = _interopRequireDefault(_nprogress);
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _toast = __webpack_require__(32);
+	var _toast = __webpack_require__(33);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
@@ -84,51 +84,55 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _loading2 = _interopRequireDefault(_loading);
 
-	var _page = __webpack_require__(24);
+	var _page = __webpack_require__(25);
 
 	var _page2 = _interopRequireDefault(_page);
 
-	var _infinite = __webpack_require__(21);
+	var _infinite = __webpack_require__(22);
 
 	var _infinite2 = _interopRequireDefault(_infinite);
 
-	var _header = __webpack_require__(20);
+	var _header = __webpack_require__(21);
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _storage = __webpack_require__(30);
+	var _storage = __webpack_require__(31);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _slider = __webpack_require__(28);
+	var _slider = __webpack_require__(29);
 
 	var _slider2 = _interopRequireDefault(_slider);
 
-	var _popup = __webpack_require__(25);
+	var _popup = __webpack_require__(26);
 
 	var _popup2 = _interopRequireDefault(_popup);
 
-	var _search = __webpack_require__(27);
+	var _search = __webpack_require__(28);
 
 	var _search2 = _interopRequireDefault(_search);
 
-	var _square = __webpack_require__(29);
+	var _square = __webpack_require__(30);
 
 	var _square2 = _interopRequireDefault(_square);
 
-	var _lazy = __webpack_require__(22);
+	var _lazy = __webpack_require__(23);
 
 	var _lazy2 = _interopRequireDefault(_lazy);
 
-	var _dialog = __webpack_require__(19);
+	var _dialog = __webpack_require__(20);
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
-	var _scrollInto = __webpack_require__(26);
+	var _scrollInto = __webpack_require__(27);
 
 	var _scrollInto2 = _interopRequireDefault(_scrollInto);
 
-	__webpack_require__(33);
+	var _cursor = __webpack_require__(19);
+
+	var _cursor2 = _interopRequireDefault(_cursor);
+
+	__webpack_require__(34);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -150,6 +154,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    LazyImg: _lazy2.default,
 	    Dialog: _dialog2.default,
 	    ScrollIntoView: _scrollInto2.default,
+	    CursorFix: _cursor2.default,
 	    Util: _gmUtil2.default
 	};
 
@@ -1038,6 +1043,70 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CursorFix = function (_React$Component) {
+	    _inherits(CursorFix, _React$Component);
+
+	    function CursorFix(props) {
+	        _classCallCheck(this, CursorFix);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CursorFix).call(this, props));
+
+	        _this.handleClick = _this.handleClick.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(CursorFix, [{
+	        key: 'render',
+	        value: function render() {
+	            var props = Object.assign({}, this.props, {
+	                onClick: this.handleClick
+	            });
+
+	            return _react2.default.createElement(this.props.component, props);
+	        }
+	    }, {
+	        key: 'handleClick',
+	        value: function handleClick(event) {
+	            // 移动的的光标容易飘。click perventDefault 然后 focus 下可解决。 别问我为什么。
+	            event.preventDefault();
+	            event.target.focus();
+	            this.props.onClick && this.props.onClick(event);
+	        }
+	    }]);
+
+	    return CursorFix;
+	}(_react2.default.Component);
+
+	CursorFix.propTypes = {
+	    component: _react.PropTypes.string.isRequired
+	};
+
+	exports.default = CursorFix;
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _class, _class2, _temp;
 
 	var _react = __webpack_require__(1);
@@ -1212,7 +1281,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Dialog;
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1297,7 +1366,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Header;
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1441,7 +1510,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Infinite;
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1564,7 +1633,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = LazyImg;
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1682,7 +1751,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = NProgress;
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1779,7 +1848,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Page;
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1898,7 +1967,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Popup;
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1984,7 +2053,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = ScrollIntoView;
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2016,6 +2085,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var noop = function noop() {};
 
 	var SearchBar = (0, _pureRender2.default)(_class = (_temp = _class2 = function (_React$Component) {
 	    _inherits(SearchBar, _React$Component);
@@ -2088,6 +2159,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'handleFocus',
 	        value: function handleFocus(event) {
 	            event.preventDefault();
+	            this.props.onFocus(event);
 	            this.setState({
 	                focus: true
 	            });
@@ -2096,6 +2168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'handleBlur',
 	        value: function handleBlur(event) {
 	            event.preventDefault();
+	            this.props.onBlur(event);
 	            this.setState({
 	                focus: false
 	            });
@@ -2137,14 +2210,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react2.default.Component), _class2.defaultProps = {
 	    id: '_mgm_search_bar_id' + (Math.random() + '').slice(2),
 	    defaultFocus: false,
-	    onOK: function onOK() {},
-	    onCancel: function onCancel() {}
+	    onBlur: noop,
+	    onFocus: noop,
+	    onOK: noop,
+	    onCancel: noop
 	}, _temp)) || _class;
 
 	SearchBar.propTypes = {
 	    defaultFocus: _react.PropTypes.bool,
 	    value: _react.PropTypes.string.isRequired,
 	    onChange: _react.PropTypes.func.isRequired,
+	    onBlur: _react.PropTypes.func,
+	    onFocus: _react.PropTypes.func,
 	    placeholder: _react.PropTypes.string,
 	    onOK: _react.PropTypes.func,
 	    onCancel: _react.PropTypes.func
@@ -2153,7 +2230,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = SearchBar;
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2395,7 +2472,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Slider;
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2456,7 +2533,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Square;
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2538,7 +2615,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Storage;
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2602,7 +2679,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Textarea;
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2859,7 +2936,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Toast;
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
