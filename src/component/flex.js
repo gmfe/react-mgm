@@ -9,6 +9,7 @@ class Flex extends React.Component {
         const cn = classNames({
             'flex': true,
 
+            'flex-flex': this.props.flex,
             'flex-auto': this.props.auto,
             'flex-none': this.props.none || this.props.width || this.props.height,
 
@@ -34,7 +35,7 @@ class Flex extends React.Component {
         let style = _.extend({}, this.props.style);
         if (this.props.flex) {
             style.flex = (typeof this.props.flex === 'boolean') ? 1 : this.props.flex;
-            style['-webkit-flex'] = (typeof this.props.flex === 'boolean') ? 1 : this.props.flex;
+            style['WebkitFlex'] = (typeof this.props.flex === 'boolean') ? 1 : this.props.flex;
         }
         if (this.props.height) {
             style.height = this.props.height;
