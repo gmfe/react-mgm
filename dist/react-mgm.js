@@ -290,6 +290,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var style = _underscore2.default.extend({}, this.props.style);
 	            if (this.props.flex) {
 	                style.flex = typeof this.props.flex === 'boolean' ? 1 : this.props.flex;
+	                style['-webkit-flex'] = typeof this.props.flex === 'boolean' ? 1 : this.props.flex;
 	            }
 	            if (this.props.height) {
 	                style.height = this.props.height;
