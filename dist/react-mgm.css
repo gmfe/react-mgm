@@ -2724,7 +2724,7 @@ a.decoration {
 }
 .textarea-adapter {
   position: relative;
-  min-height: 8em;
+  min-height: 4.8em;
   border: 1px solid #D5D5D5;
   overflow: hidden;
 }
