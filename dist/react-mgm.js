@@ -1124,7 +1124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var props = Object.assign({}, this.props, {
 	                onClick: this.handleClick
 	            });
-
+	            delete props.component;
 	            return _react2.default.createElement(this.props.component, props);
 	        }
 	    }, {
