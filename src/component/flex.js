@@ -6,45 +6,64 @@ import pureRenderDecorator from '../pure.render.decorator';
 @pureRenderDecorator
 class Flex extends React.Component {
     render() {
+        const {
+            flex,
+
+            auto, none, width, height,
+
+            row, column,
+
+            wrap, nowrap,
+
+            justifyStart, justifyEnd, justifyCenter, justifyBetween, justifyAround,
+
+            alignStart, alignEnd, alignCenter, alignBaseline, alignStretch,
+
+            className, style,
+
+            ...rest
+        } = this.props;
+
         const cn = classNames({
             'flex': true,
 
-            'flex-flex': this.props.flex,
-            'flex-auto': this.props.auto,
-            'flex-none': this.props.none || this.props.width || this.props.height,
+            'flex-flex': flex,
+            'flex-auto': auto,
+            'flex-none': none || width || height,
 
-            'flex-row': this.props.row,
-            'flex-column': this.props.column,
+            'flex-row': row,
+            'flex-column': column,
 
-            'flex-wrap': this.props.wrap,
-            'flex-nowrap': this.props.nowrap,
+            'flex-wrap': wrap,
+            'flex-nowrap': nowrap,
 
-            'flex-justify-start': this.props.justifyStart,
-            'flex-justify-end': this.props.justifyEnd,
-            'flex-justify-center': this.props.justifyCenter,
-            'flex-justify-between': this.props.justifyBetween,
-            'flex-justify-around': this.props.justifyAround,
+            'flex-justify-start': justifyStart,
+            'flex-justify-end': justifyEnd,
+            'flex-justify-center': justifyCenter,
+            'flex-justify-between': justifyBetween,
+            'flex-justify-around': justifyAround,
 
-            'flex-align-start': this.props.alignStart,
-            'flex-align-end': this.props.alignEnd,
-            'flex-align-center': this.props.alignCenter,
-            'flex-align-baseline': this.props.alignBaseline,
-            'flex-align-stretch': this.props.alignStretch
-        }, this.props.className);
+            'flex-align-start': alignStart,
+            'flex-align-end': alignEnd,
+            'flex-align-center': alignCenter,
+            'flex-align-baseline': alignBaseline,
+            'flex-align-stretch': alignStretch
+        }, className);
 
-        let style = _.extend({}, this.props.style);
-        if (this.props.flex) {
-            style.flex = (typeof this.props.flex === 'boolean') ? 1 : this.props.flex;
-            style['WebkitFlex'] = (typeof this.props.flex === 'boolean') ? 1 : this.props.flex;
+        let s = _.extend({}, style);
+        // TODO 有待商榷，WebkitFlex 是否会生效？
+        if (flex) {
+            s.flex = (typeof flex === 'boolean') ? 1 : flex;
+            s.WebkitFlex = (typeof flex === 'boolean') ? 1 : flex;
         }
-        if (this.props.height) {
-            style.height = this.props.height;
+        if (height) {
+            s.height = height;
         }
-        if (this.props.width) {
-            style.width = this.props.width;
+        if (width) {
+            s.width = width;
         }
 
-        return <div {...this.props} className={cn} style={style}>{this.props.children}</div>;
+        return <div {...rest} className={cn} style={s}>{this.props.children}</div>;
     }
 }
 

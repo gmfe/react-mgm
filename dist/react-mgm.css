@@ -209,7 +209,6 @@ button.weui_btn_inline, input.weui_btn_inline, button.weui_btn_mini, input.weui_
 .weui_btn_area.weui_btn_area_inline {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 .weui_btn_area.weui_btn_area_inline .weui_btn {
@@ -218,7 +217,6 @@ button.weui_btn_inline, input.weui_btn_inline, button.weui_btn_mini, input.weui_
   width: 100%;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-      -ms-flex: 1;
           flex: 1;
 }
 .weui_btn_area.weui_btn_area_inline .weui_btn:last-child {
@@ -401,11 +399,9 @@ button.weui_btn_plain_default, input.weui_btn_plain_default {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
 }
 .weui_cell_ft {
@@ -415,7 +411,6 @@ button.weui_btn_plain_default, input.weui_btn_plain_default {
 .weui_cell_primary {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-      -ms-flex: 1;
           flex: 1;
 }
 .weui_cells_access .weui_cell:not(.no_access) {
@@ -646,7 +641,6 @@ button.weui_btn_plain_default, input.weui_btn_plain_default {
 }
 .weui_switch {
   -webkit-appearance: none;
-     -moz-appearance: none;
           appearance: none;
   position: relative;
   width: 52px;
@@ -852,7 +846,6 @@ button.weui_btn_plain_default, input.weui_btn_plain_default {
 .weui_tabbar {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   position: absolute;
   bottom: 0;
@@ -877,7 +870,6 @@ button.weui_btn_plain_default, input.weui_btn_plain_default {
   display: block;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-      -ms-flex: 1;
           flex: 1;
   padding: 7px 0 0;
   -webkit-tap-highlight-color: transparent;
@@ -906,7 +898,6 @@ button.weui_btn_plain_default, input.weui_btn_plain_default {
 .weui_navbar {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   position: absolute;
   z-index: 1;
@@ -937,7 +928,6 @@ button.weui_btn_plain_default, input.weui_btn_plain_default {
   display: block;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-      -ms-flex: 1;
           flex: 1;
   padding: 13px 0;
   text-align: center;
@@ -984,11 +974,9 @@ button.weui_btn_plain_default, input.weui_btn_plain_default {
 .weui_progress {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
 }
 .weui_progress_bar {
@@ -996,7 +984,6 @@ button.weui_btn_plain_default, input.weui_btn_plain_default {
   height: 3px;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-      -ms-flex: 1;
           flex: 1;
 }
 .weui_progress_inner_bar {
@@ -1186,11 +1173,9 @@ a.weui_media_box:active {
 .weui_media_box.weui_media_appmsg {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
 }
 .weui_media_box.weui_media_appmsg .weui_media_hd {
@@ -1208,7 +1193,6 @@ a.weui_media_box:active {
 .weui_media_box.weui_media_appmsg .weui_media_bd {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-      -ms-flex: 1;
           flex: 1;
   min-width: 0;
 }
@@ -1349,14 +1333,12 @@ a.weui_media_box:active {
   font-size: 17px;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 .weui_dialog_ft a {
   display: block;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-      -ms-flex: 1;
           flex: 1;
   color: #3CC51F;
   text-decoration: none;
@@ -1852,7 +1834,6 @@ a.weui_media_box:active {
   padding: 8px 10px;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   box-sizing: border-box;
   background-color: #EFEFF4;
@@ -1896,7 +1877,6 @@ a.weui_media_box:active {
   position: relative;
   -webkit-box-flex: 1;
   -webkit-flex: auto;
-      -ms-flex: auto;
           flex: auto;
   background-color: #EFEFF4;
 }
@@ -2436,133 +2416,105 @@ a.decoration {
 .flex-flex {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-      -ms-flex: 1;
           flex: 1;
 }
 .flex-auto {
   -webkit-box-flex: 1;
   -webkit-flex: auto;
-      -ms-flex: auto;
           flex: auto;
 }
 .flex-none {
   -webkit-box-flex: 0;
   -webkit-flex: none;
-      -ms-flex: none;
           flex: none;
 }
 .flex {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-      -ms-flex-direction: row;
           flex-direction: row;
   -webkit-flex-wrap: nowrap;
-      -ms-flex-wrap: nowrap;
           flex-wrap: nowrap;
   -webkit-box-pack: start;
   -webkit-justify-content: flex-start;
-      -ms-flex-pack: start;
           justify-content: flex-start;
   -webkit-align-content: stretch;
-      -ms-flex-line-pack: stretch;
           align-content: stretch;
   -webkit-box-align: stretch;
   -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
           align-items: stretch;
   box-sizing: border-box;
 }
 .flex.flex-wrap {
   -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
           flex-wrap: wrap;
 }
 .flex.flex-nowrap {
   -webkit-flex-wrap: nowrap;
-      -ms-flex-wrap: nowrap;
           flex-wrap: nowrap;
 }
 .flex.flex-row {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-      -ms-flex-direction: row;
           flex-direction: row;
 }
 .flex.flex-column {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-      -ms-flex-direction: column;
           flex-direction: column;
 }
 .flex.flex-justify-start {
   -webkit-box-pack: start;
   -webkit-justify-content: flex-start;
-      -ms-flex-pack: start;
           justify-content: flex-start;
 }
 .flex.flex-justify-end {
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
           justify-content: flex-end;
 }
 .flex.flex-justify-center {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
 }
 .flex.flex-justify-between {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
           justify-content: space-between;
 }
 .flex.flex-justify-around {
   -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
           justify-content: space-around;
 }
 .flex.flex-align-start {
   -webkit-box-align: start;
   -webkit-align-items: flex-start;
-      -ms-flex-align: start;
-              -ms-grid-row-align: flex-start;
           align-items: flex-start;
 }
 .flex.flex-align-end {
   -webkit-box-align: end;
   -webkit-align-items: flex-end;
-      -ms-flex-align: end;
-              -ms-grid-row-align: flex-end;
           align-items: flex-end;
 }
 .flex.flex-align-center {
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
-              -ms-grid-row-align: center;
           align-items: center;
 }
 .flex.flex-align-baseline {
   -webkit-box-align: baseline;
   -webkit-align-items: baseline;
-      -ms-flex-align: baseline;
-              -ms-grid-row-align: baseline;
           align-items: baseline;
 }
 .flex.flex-align-stretch {
   -webkit-box-align: stretch;
   -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-              -ms-grid-row-align: stretch;
           align-items: stretch;
 }
 .header {
@@ -2836,7 +2788,6 @@ a.decoration {
 .tabs {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   background: white;
@@ -2859,7 +2810,6 @@ a.decoration {
   display: block;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-      -ms-flex: 1;
           flex: 1;
   text-align: center;
   -webkit-tap-highlight-color: transparent;

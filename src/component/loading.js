@@ -5,8 +5,9 @@ import pureRenderDecorator from '../pure.render.decorator';
 @pureRenderDecorator
 class Loading extends React.Component {
     render() {
+        const {className, ...rest} = this.props;
         return (
-            <div {...this.props} className={classNames("loading", this.props.className)}>
+            <div {...rest} className={classNames("loading", className)}>
                 <div className="loading-inner">
                     <div className="weui_loading_leaf weui_loading_leaf_0"></div>
                     <div className="weui_loading_leaf weui_loading_leaf_1"></div>

@@ -410,7 +410,7 @@ const GapWrap = React.createClass({
 const TextareaWrap = React.createClass({
     getInitialState(){
         return {
-            value: 'a\na\na\na'
+            value: 'a\na'
         };
     },
     render(){
@@ -418,11 +418,11 @@ const TextareaWrap = React.createClass({
             <Page>
                 <h2>textarea</h2>
                 <hr/>
-                原生textarea不能随内容变高。
-                <Textarea value={this.state.value} onChange={this.handleChange}></Textarea>
                 固定高度
                 <Textarea value={this.state.value} onChange={this.handleChange}
-                          wrapProps={{style:{maxHeight: '10em'}}}></Textarea>
+                          wrapProps={{style:{maxHeight: '6.4em'}}}></Textarea>
+                原生textarea不能随内容变高。
+                <Textarea value={this.state.value} onChange={this.handleChange}></Textarea>
             </Page>
         );
     },

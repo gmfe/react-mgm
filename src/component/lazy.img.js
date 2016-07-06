@@ -17,10 +17,16 @@ class LazyImg extends React.Component {
     }
 
     render() {
-        const cn = classNames('lazy-img', this.props.className);
+        const {
+            className,
+            src,
+            placeholder,
+            ...rest
+        } = this.props;
+        const cn = classNames('lazy-img', className);
 
-        return <img ref="img" className={cn} {...this.props}
-                    src={this.state.show && this.props.src ? this.props.src : this.props.placeholder}/>;
+        return <img {...rest} ref="img" className={cn}
+                              src={this.state.show && src ? src : placeholder}/>;
     }
 
     componentDidMount() {
@@ -49,7 +55,6 @@ class LazyImg extends React.Component {
             this.doLazy();
         }, 500);
     }
-
 
     doLazy() {
         // 显示了

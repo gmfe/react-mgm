@@ -15,22 +15,21 @@ class Infinite extends React.Component {
         this.scrollTop = 0;
     }
 
-    static defaultProps = {
-        onBottom: function () {
-        },
-        bottomOffset: 50 + 50
-    };
-
     render() {
-        const cn = classNames('infinite', this.props.className);
+        const {
+            className, children,
+            bottomOffset, onBottom, done, // eslint-disable-line
+            ...rest
+        } = this.props;
+        const cn = classNames('infinite', className);
         return (
-            <div ref="infinite" {...this.props} className={cn} onScroll={this.handleScroll}>
-                {this.props.children}
+            <div ref="infinite" {...rest} className={cn} onScroll={this.handleScroll}>
+                {children}
                 <Flex justifyCenter alignCenter className="infinite-loading">
                     {
-                        this.props.done ?
+                        done ? (
                             <Flex justifyCenter className="text-desc text-small">没有更多数据</Flex>
-                            : this.state.loading && <Loading />
+                        ) : (this.state.loading && <Loading />)
                     }
                 </Flex>
             </div>
@@ -83,6 +82,12 @@ class Infinite extends React.Component {
         this.scrollTop = event.target.scrollTop;
     }
 }
+
+Infinite.defaultProps = {
+    onBottom: function () {
+    },
+    bottomOffset: 50 + 50
+};
 
 Infinite.propTypes = {
     bottomOffset: PropTypes.number,

@@ -3,12 +3,17 @@ import classNames from 'classnames';
 
 class Square extends React.Component {
     render() {
-        const cn = classNames('square-inner', this.props.className);
+        const {
+            className,
+            children,
+            ...rest
+        } = this.props;
+        const cn = classNames('square-inner', className);
 
         return (
             <div className="square">
-                <div {...this.props} className={cn}>
-                    {this.props.children}
+                <div {...rest} className={cn}>
+                    {children}
                 </div>
             </div>
         );

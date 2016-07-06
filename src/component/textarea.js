@@ -7,11 +7,12 @@ class Textarea extends React.Component {
     };
 
     render() {
-        let cn = classNames('textarea-adapter', this.props.wrapProps.className);
+        const cn = classNames('textarea-adapter', this.props.wrapProps.className);
+        const {wrapProps, ...rest} = this.props;
         return (
-            <div {...this.props.wrapProps} className={cn}>
+            <div {...wrapProps} className={cn}>
                 <pre>{this.props.value}</pre>
-                <textarea {...this.props} className={classNames("weui_textarea", this.props.className)}></textarea>
+                <textarea {...rest} className={classNames("weui_textarea", this.props.className)}></textarea>
             </div>
         );
     }

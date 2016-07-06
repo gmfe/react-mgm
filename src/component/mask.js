@@ -4,27 +4,34 @@ import pureRenderDecorator from '../pure.render.decorator';
 
 @pureRenderDecorator
 class Mask extends React.Component {
-    static defaultProps = {
-        transparent: false,
-        show: false
-    };
-
     render() {
-        let className = classNames({
-            'mask': !this.props.transparent,
-            'mask-transparent': this.props.transparent
-        });
+        const {
+            className, style,
+            transparent,
+            show,
+            opacity,
+            ...rest
+        } = this.props;
+        const cn = classNames({
+            'mask': !transparent,
+            'mask-transparent': transparent
+        }, className);
 
-        let style = {
-            display: this.props.show ? 'block' : 'none',
-            opacity: this.props.opacity
-        };
+        const s = Object.assign({
+            display: show ? 'block' : 'none',
+            opacity: opacity
+        }, style);
 
         return (
-            <div {...this.props} className={className} style={style}></div>
+            <div {...rest} className={cn} style={s}></div>
         );
     }
 }
+
+Mask.defaultProps = {
+    transparent: false,
+    show: false
+};
 
 Mask.propTypes = {
     transparent: PropTypes.bool,

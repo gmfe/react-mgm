@@ -59,7 +59,7 @@ module.exports = {
         }
     },
     postcss: function () {
-        return [autoprefixer, precss];
+        return [autoprefixer({browsers: ['iOS >= 8', 'Android >= 4.1']}), precss];
     },
     devServer: {
         proxy: {

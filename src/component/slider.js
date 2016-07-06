@@ -32,9 +32,13 @@ class Slider extends React.Component {
         const to = this.state.touchObject;
         let offset = to ? (to.x - to.startX + this.state.x) : this.state.x;
 
+        const {
+            className,
+            ...rest
+        } = this.props;
         const cn = classNames({
             'slider-transition': this.state.transition
-        }, this.props.className);
+        }, className);
 
         const style = {
             WebkitTransform: 'translate3d(' + offset + 'px, 0, 0)',
@@ -44,7 +48,7 @@ class Slider extends React.Component {
         return (
             <div className="slider">
                 <Flex
-                    {...this.props}
+                    {...rest}
                     ref="slider"
                     className={cn}
                     onMouseDown={this.swipeStart}
