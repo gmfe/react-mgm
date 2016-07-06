@@ -11,7 +11,7 @@ class CursorFix extends React.Component {
         const props = Object.assign({}, this.props, {
             onClick: this.handleClick
         });
-
+        delete props.component;
         return React.createElement(this.props.component, props);
     }
 
