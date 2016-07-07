@@ -21,6 +21,7 @@ class LazyImg extends React.Component {
             className,
             src,
             placeholder,
+            targetId, // eslint-disable-line
             ...rest
         } = this.props;
         const cn = classNames('lazy-img', className);
