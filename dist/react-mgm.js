@@ -1638,8 +1638,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var className = _props.className;
 	            var src = _props.src;
 	            var placeholder = _props.placeholder;
+	            var targetId = _props.targetId;
 
-	            var rest = _objectWithoutProperties(_props, ['className', 'src', 'placeholder']);
+	            var rest = _objectWithoutProperties(_props, ['className', 'src', 'placeholder', 'targetId']);
 
 	            var cn = (0, _classnames2.default)('lazy-img', className);
 
