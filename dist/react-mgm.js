@@ -2150,7 +2150,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _class, _class2, _temp;
+	var _class;
 
 	var _react = __webpack_require__(1);
 
@@ -2174,7 +2174,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var noop = function noop() {};
 
-	var SearchBar = (0, _pureRender2.default)(_class = (_temp = _class2 = function (_React$Component) {
+	var SearchBar = (0, _pureRender2.default)(_class = function (_React$Component) {
 	    _inherits(SearchBar, _React$Component);
 
 	    function SearchBar(props) {
@@ -2183,6 +2183,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SearchBar).call(this, props));
 
 	        _this.state = {
+	            id: props.id || '_mgm_search_bar_id' + (Math.random() + '').slice(2),
 	            focus: props.defaultFocus
 	        };
 
@@ -2192,6 +2193,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this.handleChange = _this.handleChange.bind(_this);
 	        _this.handleClear = _this.handleClear.bind(_this);
 	        _this.handleCancel = _this.handleCancel.bind(_this);
+	        _this.handleLabel = _this.handleLabel.bind(_this);
 	        return _this;
 	    }
 
@@ -2211,7 +2213,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        'div',
 	                        { className: 'weui_search_inner' },
 	                        _react2.default.createElement('i', { className: 'weui_icon_search' }),
-	                        _react2.default.createElement('input', { id: this.props.id,
+	                        _react2.default.createElement('input', { id: this.state.id,
 	                            type: 'search',
 	                            className: 'weui_search_input',
 	                            placeholder: this.props.placeholder,
@@ -2225,7 +2227,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    ),
 	                    _react2.default.createElement(
 	                        'label',
-	                        { htmlFor: this.props.id, className: 'weui_search_text' },
+	                        { htmlFor: this.state.id, className: 'weui_search_text', onClick: this.handleLabel },
 	                        _react2.default.createElement('i', { className: 'weui_icon_search' }),
 	                        _react2.default.createElement(
 	                            'span',
@@ -2234,12 +2236,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        )
 	                    )
 	                ),
-	                _react2.default.createElement(
+	                this.props.OKBtn ? _react2.default.createElement(
+	                    'a',
+	                    { href: 'javascript:', className: 'weui_search_cancel', onClick: this.handleOK },
+	                    this.props.OKBtn === true ? '搜索' : this.props.OKBtn
+	                ) : _react2.default.createElement(
 	                    'a',
 	                    { href: 'javascript:', className: 'weui_search_cancel', onClick: this.handleCancel },
 	                    '取消'
 	                )
 	            );
+	        }
+	    }, {
+	        key: 'handleLabel',
+	        value: function handleLabel(event) {
+	            // 避免穿透
+	            event.preventDefault();
+	            this.setState({
+	                focus: true
+	            });
+	            this.refs.input.focus();
 	        }
 	    }, {
 	        key: 'handleFocus',
@@ -2253,11 +2269,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'handleBlur',
 	        value: function handleBlur(event) {
+	            var _this2 = this;
+
 	            event.preventDefault();
 	            this.props.onBlur(event);
-	            this.setState({
-	                focus: false
-	            });
+	            // blur触发优先于handleOK，，可能会导致OK按钮消失了，点不了
+	            setTimeout(function () {
+	                _this2.setState({
+	                    focus: false
+	                });
+	            }, 500);
 	        }
 	    }, {
 	        key: 'handleClear',
@@ -2293,14 +2314,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 
 	    return SearchBar;
-	}(_react2.default.Component), _class2.defaultProps = {
-	    id: '_mgm_search_bar_id' + (Math.random() + '').slice(2),
+	}(_react2.default.Component)) || _class;
+
+	SearchBar.defaultProps = {
 	    defaultFocus: false,
 	    onBlur: noop,
 	    onFocus: noop,
 	    onOK: noop,
-	    onCancel: noop
-	}, _temp)) || _class;
+	    onCancel: noop,
+	    OKBtn: false
+	};
 
 	SearchBar.propTypes = {
 	    defaultFocus: _react.PropTypes.bool,
@@ -2310,7 +2333,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onFocus: _react.PropTypes.func,
 	    placeholder: _react.PropTypes.string,
 	    onOK: _react.PropTypes.func,
-	    onCancel: _react.PropTypes.func
+	    onCancel: _react.PropTypes.func,
+	    OKBtn: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.string]) // 就没有onCancel 时间 了，传string则替换文本
 	};
 
 	exports.default = SearchBar;
