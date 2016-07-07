@@ -904,7 +904,7 @@ class SelectWrap extends React.Component {
         this.state = {
             show: false,
             data: [
-                // {value: 1, name: '深圳'},
+                {value: 1, name: '深圳'}
                 // {value: 2, name: '罗湖'},
                 // {value: 3, name: '罗湖'},
                 // {value: 4, name: '罗湖'},

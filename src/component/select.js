@@ -32,7 +32,7 @@ class Select extends React.Component {
             <div className="select-popup">
                 <Mask show={show} opacity={0.1} onClick={this.handleCancel}></Mask>
                 <div {...rest} className={cn}>
-                    {(data || data.length === 0) && <span className="text-desc">没有数据</span>}
+                    {(!data || data.length === 0) && <span className="text-desc">没有数据</span>}
                     {_.map(data, (v, i) => (
                         <div
                             key={i}
