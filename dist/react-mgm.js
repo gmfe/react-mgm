@@ -2431,7 +2431,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                _react2.default.createElement(
 	                    'div',
 	                    _extends({}, rest, { className: cn }),
-	                    (data || data.length === 0) && _react2.default.createElement(
+	                    (!data || data.length === 0) && _react2.default.createElement(
 	                        'span',
 	                        { className: 'text-desc' },
 	                        '没有数据'
