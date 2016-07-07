@@ -1,0 +1,32 @@
+.select-popup {
+
+  .select-popup-list {
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    right: 30px;
+    background-color: white;
+    z-index: 200;
+    border: 1px solid @borderColor;
+    min-height: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .select-popup-list-item {
+      padding: 10px;
+      cursor: pointer;
+
+      .borderBottomAfter();
+
+      &:last-child {
+        &:after {
+          display: none;
+        }
+      }
+      &.active {
+        background-color: @activeColor;
+      }
+    }
+  }
+}

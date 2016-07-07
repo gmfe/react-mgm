@@ -17,11 +17,12 @@ import {
     Square,
     LazyImg,
     Dialog,
-    CursorFix
+    CursorFix,
+    Select
 } from './../src/index';
 
 import '../node_modules/gm-mfont/iconfont.css';
-import './index.less';
+// import './index.less';
 
 const App = React.createClass({
     render(){
@@ -137,6 +138,10 @@ const Home = React.createClass({
                     </Link>
                     <Link to="/cursorfix" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">cursorfix</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/select" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">select</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -893,6 +898,55 @@ class CursorFixWrap extends React.Component {
     }
 }
 
+class SelectWrap extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: false,
+            data: [
+                // {value: 1, name: '深圳'},
+                // {value: 2, name: '罗湖'},
+                // {value: 3, name: '罗湖'},
+                // {value: 4, name: '罗湖'},
+                // {value: 5, name: '罗湖'},
+                // {value: 6, name: '罗湖'},
+                // {value: 7, name: '罗湖'},
+                // {value: 8, name: '罗湖'},
+                // {value: 9, name: '罗湖'}
+            ],
+            value: null
+        };
+    }
+
+    render() {
+        return (
+            <div>
+                <button className="weui_btn weui_btn_primary" onClick={::this.handleClick}>选择</button>
+                {this.state.value && this.state.value.name}
+                <Select
+                    show={this.state.show}
+                    data={this.state.data}
+                    value={this.state.value}
+                    onChange={::this.handleChange}/>
+            </div>
+        );
+    }
+
+    handleChange(value) {
+        console.log(value);
+        this.setState({
+            value,
+            show: false
+        });
+    }
+
+    handleClick() {
+        this.setState({
+            show: true
+        });
+    }
+}
+
 const Root = React.createClass({
     render(){
         return (
@@ -916,6 +970,7 @@ const Root = React.createClass({
                     <Route path="lazyimg" component={LazyImgWrap}></Route>
                     <Route path="dialog" component={DialogWrap}></Route>
                     <Route path="cursorfix" component={CursorFixWrap}></Route>
+                    <Route path="select" component={SelectWrap}></Route>
                 </Route>
             </Router>
         );

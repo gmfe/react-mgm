@@ -17,6 +17,7 @@ import LazyImg from './component/lazy.img';
 import Dialog from './component/dialog';
 import ScrollIntoView from './component/scroll.into.view';
 import CursorFix from './component/cursor.fix';
+import Select from './component/select';
 
 import './index.less';
 
@@ -39,6 +40,7 @@ var ReactGMM = {
     Dialog,
     ScrollIntoView,
     CursorFix,
+    Select,
     Util
 };
 
