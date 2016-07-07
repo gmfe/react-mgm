@@ -715,6 +715,16 @@ var SearchBarWrap = React.createClass({
                     onBlur={this.handleBlur}
                     onFocus={this.handleFocus}
                 ></SearchBar>
+
+                <SearchBar
+                    placeholder="搜索商品"
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    onOK={this.handleOK}
+                    onCancel={this.handleCancel}
+                    onBlur={this.handleBlur}
+                    OKBtn
+                ></SearchBar>
             </Page>
         );
     },
