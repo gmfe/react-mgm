@@ -2926,3 +2926,40 @@ a.decoration {
   bottom: 0;
   left: 0;
 }
+.select-popup .select-popup-list {
+  position: absolute;
+  top: 100px;
+  left: 30px;
+  right: 30px;
+  background-color: white;
+  z-index: 200;
+  border: 1px solid #D5D5D5;
+  min-height: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.select-popup .select-popup-list .select-popup-list-item {
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+}
+.select-popup .select-popup-list .select-popup-list-item:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid #D5D5D5;
+  -webkit-transform: scaleY(0.5);
+          transform: scaleY(0.5);
+  -webkit-transform-origin: 0 100%;
+          transform-origin: 0 100%;
+}
+.select-popup .select-popup-list .select-popup-list-item:last-child:after {
+  display: none;
+}
+.select-popup .select-popup-list .select-popup-list-item.active {
+  background-color: #ededed;
+}
