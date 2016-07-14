@@ -2206,6 +2206,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _createClass(SearchBar, [{
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+
 	            var cn = (0, _classnames2.default)('search-bar weui_search_bar', {
 	                'weui_search_focusing': this.props.value || this.state.focus
 	            });
@@ -2226,8 +2228,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            onFocus: this.handleFocus,
 	                            onBlur: this.handleBlur,
 	                            onChange: this.handleChange,
-	                            ref: 'input',
-	                            value: this.props.value }),
+	                            ref: function ref(_ref) {
+	                                return _this2.input = _ref;
+	                            },
+	                            value: this.props.value,
+	                            autoFocus: this.props.defaultFocus
+	                        }),
 	                        this.props.value === '' ? undefined : _react2.default.createElement('a', { href: 'javascript:', className: 'weui_icon_clear',
 	                            onClick: this.handleClear })
 	                    ),
@@ -2261,7 +2267,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.setState({
 	                focus: true
 	            });
-	            this.refs.input.focus();
+	            this.input.focus();
 	        }
 	    }, {
 	        key: 'handleFocus',
@@ -2275,13 +2281,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'handleBlur',
 	        value: function handleBlur(event) {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            event.preventDefault();
 	            this.props.onBlur(event);
 	            // blur触发优先于handleOK，，可能会导致OK按钮消失了，点不了
 	            setTimeout(function () {
-	                _this2.setState({
+	                _this3.setState({
 	                    focus: false
 	                });
 	            }, 500);
@@ -2291,7 +2297,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function handleClear(event) {
 	            event.preventDefault();
 	            this.props.onChange('');
-	            this.refs.input.focus();
+	            this.input.focus();
 	        }
 	    }, {
 	        key: 'handleCancel',
@@ -2300,13 +2306,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.setState({ focus: false });
 	            this.props.onChange('');
 	            this.props.onCancel();
-	            this.refs.input.blur();
+	            this.input.blur();
 	        }
 	    }, {
 	        key: 'handleOK',
 	        value: function handleOK(event) {
 	            event.preventDefault();
-	            this.refs.input.blur();
+	            this.input.blur();
 	            this.props.onOK();
 	            this.setState({
 	                focus: false

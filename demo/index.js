@@ -729,6 +729,7 @@ var SearchBarWrap = React.createClass({
                     onCancel={this.handleCancel}
                     onBlur={this.handleBlur}
                     OKBtn
+                    defaultFocus
                 ></SearchBar>
             </Page>
         );

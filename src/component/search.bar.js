@@ -32,7 +32,7 @@ class SearchBar extends React.Component {
             <div className={cn}>
                 <form className="weui_search_outer" onSubmit={this.handleOK}>
                     <div className="weui_search_inner">
-                        <i className="weui_icon_search"></i>
+                        <i className="weui_icon_search"/>
                         <input id={this.state.id}
                                type="search"
                                className="weui_search_input"
@@ -40,15 +40,17 @@ class SearchBar extends React.Component {
                                onFocus={this.handleFocus}
                                onBlur={this.handleBlur}
                                onChange={this.handleChange}
-                               ref="input"
-                               value={this.props.value}/>
+                               ref={(ref) => this.input = ref}
+                               value={this.props.value}
+                               autoFocus={this.props.defaultFocus}
+                        />
                         {this.props.value === '' ? undefined : (
                             <a href="javascript:" className="weui_icon_clear"
-                               onClick={this.handleClear}></a>
+                               onClick={this.handleClear}/>
                         )}
                     </div>
                     <label htmlFor={this.state.id} className="weui_search_text" onClick={this.handleLabel}>
-                        <i className="weui_icon_search"></i>
+                        <i className="weui_icon_search"/>
                         <span>{this.props.placeholder}</span>
                     </label>
                 </form>
@@ -69,7 +71,7 @@ class SearchBar extends React.Component {
         this.setState({
             focus: true
         });
-        this.refs.input.focus();
+        this.input.focus();
     }
 
     handleFocus(event) {
@@ -94,7 +96,7 @@ class SearchBar extends React.Component {
     handleClear(event) {
         event.preventDefault();
         this.props.onChange('');
-        this.refs.input.focus();
+        this.input.focus();
     }
 
     handleCancel(event) {
@@ -102,12 +104,12 @@ class SearchBar extends React.Component {
         this.setState({focus: false});
         this.props.onChange('');
         this.props.onCancel();
-        this.refs.input.blur();
+        this.input.blur();
     }
 
     handleOK(event) {
         event.preventDefault();
-        this.refs.input.blur();
+        this.input.blur();
         this.props.onOK();
         this.setState({
             focus: false
