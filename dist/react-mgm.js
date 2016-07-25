@@ -60,15 +60,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _flex2 = _interopRequireDefault(_flex);
 
-	var _gmUtil = __webpack_require__(11);
+	var _gmUtil = __webpack_require__(8);
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
-	var _textarea = __webpack_require__(33);
+	var _textarea = __webpack_require__(34);
 
 	var _textarea2 = _interopRequireDefault(_textarea);
 
-	var _nprogress = __webpack_require__(24);
+	var _nprogress = __webpack_require__(25);
 
 	var _nprogress2 = _interopRequireDefault(_nprogress);
 
@@ -76,47 +76,47 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _toast = __webpack_require__(34);
+	var _toast = __webpack_require__(35);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
-	var _loading = __webpack_require__(8);
+	var _loading = __webpack_require__(9);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
-	var _page = __webpack_require__(25);
+	var _page = __webpack_require__(26);
 
 	var _page2 = _interopRequireDefault(_page);
 
-	var _infinite = __webpack_require__(22);
+	var _infinite = __webpack_require__(23);
 
 	var _infinite2 = _interopRequireDefault(_infinite);
 
-	var _header = __webpack_require__(21);
+	var _header = __webpack_require__(22);
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _storage = __webpack_require__(32);
+	var _storage = __webpack_require__(33);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _slider = __webpack_require__(30);
+	var _slider = __webpack_require__(31);
 
 	var _slider2 = _interopRequireDefault(_slider);
 
-	var _popup = __webpack_require__(26);
+	var _popup = __webpack_require__(27);
 
 	var _popup2 = _interopRequireDefault(_popup);
 
-	var _search = __webpack_require__(28);
+	var _search = __webpack_require__(29);
 
 	var _search2 = _interopRequireDefault(_search);
 
-	var _square = __webpack_require__(31);
+	var _square = __webpack_require__(32);
 
 	var _square2 = _interopRequireDefault(_square);
 
-	var _lazy = __webpack_require__(23);
+	var _lazy = __webpack_require__(24);
 
 	var _lazy2 = _interopRequireDefault(_lazy);
 
@@ -124,7 +124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
-	var _scrollInto = __webpack_require__(27);
+	var _scrollInto = __webpack_require__(28);
 
 	var _scrollInto2 = _interopRequireDefault(_scrollInto);
 
@@ -132,11 +132,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _cursor2 = _interopRequireDefault(_cursor);
 
-	var _select = __webpack_require__(29);
+	var _select = __webpack_require__(30);
 
 	var _select2 = _interopRequireDefault(_select);
 
-	__webpack_require__(35);
+	var _droper = __webpack_require__(21);
+
+	var _droper2 = _interopRequireDefault(_droper);
+
+	__webpack_require__(36);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -160,6 +164,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ScrollIntoView: _scrollInto2.default,
 	    CursorFix: _cursor2.default,
 	    Select: _select2.default,
+	    Droper: _droper2.default,
 	    Util: _gmUtil2.default
 	};
 
@@ -463,6 +468,54 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
+
+	var _Request = __webpack_require__(14);
+
+	var _Request2 = _interopRequireDefault(_Request);
+
+	var _RequestInterceptor = __webpack_require__(10);
+
+	var _RequestInterceptor2 = _interopRequireDefault(_RequestInterceptor);
+
+	var _param = __webpack_require__(12);
+
+	var _param2 = _interopRequireDefault(_param);
+
+	var _format = __webpack_require__(11);
+
+	var _format2 = _interopRequireDefault(_format);
+
+	var _isElementInViewport = __webpack_require__(16);
+
+	var _isElementInViewport2 = _interopRequireDefault(_isElementInViewport);
+
+	var _isElementOverViewport = __webpack_require__(17);
+
+	var _isElementOverViewport2 = _interopRequireDefault(_isElementOverViewport);
+
+	var _is = __webpack_require__(15);
+
+	var _is2 = _interopRequireDefault(_is);
+
+	module.exports = {
+	    Request: _Request2['default'],
+	    RequestInterceptor: _RequestInterceptor2['default'],
+	    format: _format2['default'],
+	    param: _param2['default'],
+	    isElementInViewport: _isElementInViewport2['default'],
+	    isElementOverViewport: _isElementOverViewport2['default'],
+	    is: _is2['default']
+	};
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
@@ -541,7 +594,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Loading;
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -622,7 +675,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -662,54 +715,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports['default'] = format;
 	module.exports = exports['default'];
-
-/***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	function _interopRequireDefault(obj) {
-	    return obj && obj.__esModule ? obj : { 'default': obj };
-	}
-
-	var _Request = __webpack_require__(14);
-
-	var _Request2 = _interopRequireDefault(_Request);
-
-	var _RequestInterceptor = __webpack_require__(9);
-
-	var _RequestInterceptor2 = _interopRequireDefault(_RequestInterceptor);
-
-	var _param = __webpack_require__(12);
-
-	var _param2 = _interopRequireDefault(_param);
-
-	var _format = __webpack_require__(10);
-
-	var _format2 = _interopRequireDefault(_format);
-
-	var _isElementInViewport = __webpack_require__(16);
-
-	var _isElementInViewport2 = _interopRequireDefault(_isElementInViewport);
-
-	var _isElementOverViewport = __webpack_require__(17);
-
-	var _isElementOverViewport2 = _interopRequireDefault(_isElementOverViewport);
-
-	var _is = __webpack_require__(15);
-
-	var _is2 = _interopRequireDefault(_is);
-
-	module.exports = {
-	    Request: _Request2['default'],
-	    RequestInterceptor: _RequestInterceptor2['default'],
-	    format: _format2['default'],
-	    param: _param2['default'],
-	    isElementInViewport: _isElementInViewport2['default'],
-	    isElementOverViewport: _isElementOverViewport2['default'],
-	    is: _is2['default']
-	};
 
 /***/ },
 /* 12 */
@@ -830,7 +835,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _paramJs2 = _interopRequireDefault(_paramJs);
 
-	var _formatJs = __webpack_require__(10);
+	var _formatJs = __webpack_require__(11);
 
 	var _formatJs2 = _interopRequireDefault(_formatJs);
 
@@ -838,7 +843,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _RequestInterceptor = __webpack_require__(9);
+	var _RequestInterceptor = __webpack_require__(10);
 
 	var _RequestInterceptor2 = _interopRequireDefault(_RequestInterceptor);
 
@@ -1346,6 +1351,258 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _gmUtil = __webpack_require__(8);
+
+	var _gmUtil2 = _interopRequireDefault(_gmUtil);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Droper = function (_React$Component) {
+	    _inherits(Droper, _React$Component);
+
+	    function Droper(props, context) {
+	        _classCallCheck(this, Droper);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Droper).call(this, props, context));
+
+	        _this.onClick = _this.onClick.bind(_this);
+	        _this.onDragEnter = _this.onDragEnter.bind(_this);
+	        _this.onDragLeave = _this.onDragLeave.bind(_this);
+	        _this.onDragOver = _this.onDragOver.bind(_this);
+	        _this.onDrop = _this.onDrop.bind(_this);
+
+	        _this.state = {
+	            isDragActive: false,
+	            isWX: _gmUtil2.default.is.weixin()
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Droper, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.enterCounter = 0;
+	        }
+	    }, {
+	        key: 'accept',
+	        value: function accept(file, acceptedFiles) {
+	            if (file && acceptedFiles) {
+	                var _ret = function () {
+	                    var acceptedFilesArray = acceptedFiles.split(',');
+	                    var fileName = file.name || '';
+	                    var mimeType = file.type || '';
+	                    var baseMimeType = mimeType.replace(/\/.*$/, '');
+
+	                    return {
+	                        v: acceptedFilesArray.some(function (type) {
+	                            var validType = type.trim();
+	                            if (validType.charAt(0) === '.') {
+	                                return fileName.toLowerCase().endsWith(validType.toLowerCase());
+	                            } else if (/\/\*$/.test(validType)) {
+	                                // This is something like a image/* mime type
+	                                return baseMimeType === validType.replace(/\/.*$/, '');
+	                            }
+	                            return mimeType === validType;
+	                        })
+	                    };
+	                }();
+
+	                if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	            }
+	            return true;
+	        }
+	    }, {
+	        key: 'allFilesAccepted',
+	        value: function allFilesAccepted(files) {
+	            var _this2 = this;
+
+	            return files.every(function (file) {
+	                return _this2.accept(file, _this2.props.accept);
+	            });
+	        }
+	    }, {
+	        key: 'onDragEnter',
+	        value: function onDragEnter(e) {
+	            e.preventDefault();
+
+	            ++this.enterCounter;
+
+	            // This is tricky. During the drag even the dataTransfer.files is null
+	            // But Chrome implements some drag store, which is accesible via dataTransfer.items
+	            var dataTransferItems = e.dataTransfer && e.dataTransfer.items ? e.dataTransfer.items : [];
+
+	            // Now we need to convert the DataTransferList to Array
+	            var itemsArray = Array.prototype.slice.call(dataTransferItems);
+	            var allFilesAccepted = this.allFilesAccepted(itemsArray);
+
+	            this.setState({
+	                isDragActive: allFilesAccepted,
+	                isDragReject: !allFilesAccepted
+	            });
+
+	            if (this.props.onDragEnter) {
+	                this.props.onDragEnter(e);
+	            }
+	        }
+	    }, {
+	        key: 'onDragOver',
+	        value: function onDragOver(e) {
+	            e.preventDefault();
+	        }
+	    }, {
+	        key: 'onDragLeave',
+	        value: function onDragLeave(e) {
+	            e.preventDefault();
+
+	            if (--this.enterCounter > 0) {
+	                return;
+	            }
+
+	            this.setState({
+	                isDragActive: false,
+	                isDragReject: false
+	            });
+
+	            if (this.props.onDragLeave) {
+	                this.props.onDragLeave(e);
+	            }
+	        }
+	    }, {
+	        key: 'onDrop',
+	        value: function onDrop(e) {
+	            e.preventDefault();
+
+	            // Reset the counter along with the drag on a drop.
+	            this.enterCounter = 0;
+
+	            this.setState({
+	                isDragActive: false,
+	                isDragReject: false
+	            });
+
+	            var droppedFiles = e.dataTransfer ? e.dataTransfer.files : e.target.files;
+	            var max = this.props.multiple ? droppedFiles.length : 1;
+	            var files = [];
+
+	            for (var i = 0; i < max; i++) {
+	                var file = droppedFiles[i];
+	                file.preview = window.URL.createObjectURL(file);
+	                files.push(file);
+	            }
+
+	            if (this.props.onDrop) {
+	                this.props.onDrop(files, e);
+	            }
+
+	            if (this.allFilesAccepted(files)) {
+	                if (this.props.onDropAccepted) {
+	                    this.props.onDropAccepted(files, e);
+	                }
+	            } else {
+	                if (this.props.onDropRejected) {
+	                    this.props.onDropRejected(files, e);
+	                }
+	            }
+	        }
+	    }, {
+	        key: 'onClick',
+	        value: function onClick() {
+	            if (!this.props.disableClick) {
+	                this.open();
+	            }
+	        }
+	    }, {
+	        key: 'open',
+	        value: function open() {
+	            var fileInput = this.refs.fileInput;
+	            fileInput.value = null;
+	            fileInput.click();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var className = 'droper ';
+	            className += this.props.className ? this.props.className : ' droper-default ';
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    {
+	                        className: className,
+	                        onClick: this.onClick,
+	                        onDragEnter: this.onDragEnter,
+	                        onDragOver: this.onDragOver,
+	                        onDragLeave: this.onDragLeave,
+	                        onDrop: this.onDrop
+	                    },
+	                    this.props.children
+	                ),
+	                this.state.isWX ? _react2.default.createElement('input', {
+	                    type: 'file',
+	                    ref: 'fileInput',
+	                    className: 'droper-input',
+	                    accept: this.props.accept,
+	                    onChange: this.onDrop
+	                }) : _react2.default.createElement('input', {
+	                    type: 'file',
+	                    ref: 'fileInput',
+	                    className: 'droper-input',
+	                    multiple: this.props.multiple,
+	                    accept: this.props.accept,
+	                    onChange: this.onDrop
+	                })
+	            );
+	        }
+	    }]);
+
+	    return Droper;
+	}(_react2.default.Component);
+
+	Droper.defaultProps = {
+	    disableClick: false,
+	    multiple: true
+	};
+
+	Droper.propTypes = {
+	    onDrop: _react2.default.PropTypes.func,
+	    onDropAccepted: _react2.default.PropTypes.func,
+	    onDropRejected: _react2.default.PropTypes.func,
+	    onDragEnter: _react2.default.PropTypes.func,
+	    onDragLeave: _react2.default.PropTypes.func,
+
+	    disableClick: _react2.default.PropTypes.bool,
+	    multiple: _react2.default.PropTypes.bool,
+	    accept: _react2.default.PropTypes.string
+	};
+
+	exports.default = Droper;
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _class;
@@ -1422,7 +1679,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Header;
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1443,7 +1700,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _loading = __webpack_require__(8);
+	var _loading = __webpack_require__(9);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
@@ -1462,7 +1719,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	// 没有必要scu
-
 	var Infinite = function (_React$Component) {
 	    _inherits(Infinite, _React$Component);
 
@@ -1577,7 +1833,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Infinite;
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1600,7 +1856,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _gmUtil = __webpack_require__(11);
+	var _gmUtil = __webpack_require__(8);
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
@@ -1710,7 +1966,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = LazyImg;
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1828,7 +2084,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = NProgress;
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1933,7 +2189,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Page;
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2059,7 +2315,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Popup;
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2145,7 +2401,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = ScrollIntoView;
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2352,7 +2608,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = SearchBar;
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2496,7 +2752,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Select;
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2745,7 +3001,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Slider;
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2814,7 +3070,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Square;
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2896,7 +3152,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Storage;
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2967,7 +3223,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Textarea;
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2988,7 +3244,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _loading = __webpack_require__(8);
+	var _loading = __webpack_require__(9);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
@@ -3224,7 +3480,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Toast;
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
