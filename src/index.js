@@ -18,6 +18,7 @@ import Dialog from './component/dialog';
 import ScrollIntoView from './component/scroll.into.view';
 import CursorFix from './component/cursor.fix';
 import Select from './component/select';
+import Droper from './component/droper';
 
 import './index.less';
 
@@ -41,6 +42,7 @@ var ReactGMM = {
     ScrollIntoView,
     CursorFix,
     Select,
+    Droper,
     Util
 };
 

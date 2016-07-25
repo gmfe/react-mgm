@@ -18,8 +18,10 @@ import {
     LazyImg,
     Dialog,
     CursorFix,
-    Select
+    Select,
+    Droper
 } from './../src/index';
+import _ from 'underscore';
 
 import '../node_modules/gm-mfont/iconfont.css';
 // import './index.less';
@@ -142,6 +144,10 @@ const Home = React.createClass({
                     </Link>
                     <Link to="/select" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">select</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/droper" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">droper</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -425,7 +431,7 @@ const TextareaWrap = React.createClass({
                 <hr/>
                 固定高度
                 <Textarea value={this.state.value} onChange={this.handleChange}
-                          wrapProps={{style:{maxHeight: '6.4em'}}}></Textarea>
+                          wrapProps={{style: {maxHeight: '6.4em'}}}></Textarea>
                 原生textarea不能随内容变高。
                 <Textarea value={this.state.value} onChange={this.handleChange}></Textarea>
             </Page>
@@ -947,6 +953,77 @@ class SelectWrap extends React.Component {
     }
 }
 
+class DroperWrap extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            img: ''
+        };
+        this.lrz = null;
+    }
+
+    render() {
+        return (
+            <div>
+                <Droper onDrop={::this.handleDrop}>
+                    默认选择图片样式
+                </Droper>
+
+                <Droper className="border">
+                    <button className="weui_btn weui_btn_primary">自定义选择图片</button>
+                </Droper>
+
+                <div>
+                    原图
+                    <img style={{width: '100%'}} src={this.state.img} alt=""/>
+
+                </div>
+                <div>压缩
+                    <img src={this.state.resizeImg ? this.state.resizeImg.base64 : ''} alt=""/>
+                </div>
+            </div>
+        );
+    }
+
+    handleDrop(files, event) {
+        console.log(files, event);
+        this.setState({
+            img: files[0].preview,
+            resizeImg: null
+        });
+
+        const option = {
+            width: 300,
+            height: 300,
+            quality: 1
+        };
+
+        this.getLrz().then(lrz => {
+            Promise.all(_.map(files, (file) => {
+                return lrz(file, option);
+            })).then(rsts => {
+                console.log(rsts[0]);
+                this.setState({
+                    resizeImg: rsts[0]
+                });
+            });
+        });
+    }
+
+    getLrz() {
+        if (this.lrz) {
+            return Promise.resolve(this.lrz);
+        } else {
+            return new Promise((resolve) => {
+                require.ensure(['lrz'], require => {
+                    this.lrz = require('lrz');
+                    resolve(this.lrz);
+                });
+            });
+        }
+    }
+}
+
 const Root = React.createClass({
     render(){
         return (
@@ -971,6 +1048,7 @@ const Root = React.createClass({
                     <Route path="dialog" component={DialogWrap}></Route>
                     <Route path="cursorfix" component={CursorFixWrap}></Route>
                     <Route path="select" component={SelectWrap}></Route>
+                    <Route path="droper" component={DroperWrap}></Route>
                 </Route>
             </Router>
         );
