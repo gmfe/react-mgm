@@ -2963,3 +2963,17 @@ a.decoration {
 .select-popup .select-popup-list .select-popup-list-item.active {
   background-color: #ededed;
 }
+.droper-default {
+  width: 100px;
+  height: 100px;
+  border-width: 2px;
+  border-color: #666;
+  border-style: dashed;
+  border-radius: 5px;
+}
+.droper-wrap {
+  display: inline-block;
+}
+.droper-input[type="file"] {
+  display: none;
+}
