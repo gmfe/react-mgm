@@ -3,13 +3,13 @@ import classNames from 'classnames';
 import Flex from './flex';
 
 class Page extends React.Component {
-
     render() {
         const {
             className,
             white,
             header,
             tabbar,
+            bottom,
             children,
             ...rest
         } = this.props;
@@ -21,15 +21,16 @@ class Page extends React.Component {
         if (header || tabbar) {
             return (
                 <Flex column {...rest} className={cn}>
-                    {header && (
+                    {header ? (
                         <Flex column>{header}</Flex>
-                    )}
+                    ) : undefined}
                     <Flex flex column className="page-content block">
                         {children}
                     </Flex>
-                    {tabbar && (
+                    {tabbar ? (
                         <Flex column className="page-tabbar">{tabbar}</Flex>
-                    )}
+                    ) : undefined}
+                    {bottom ? bottom : undefined}
                 </Flex>
             );
         } else {
@@ -45,7 +46,8 @@ Page.propTypes = {
     className: PropTypes.string,
     white: PropTypes.bool,
     header: PropTypes.node,
-    tabbar: PropTypes.node
+    tabbar: PropTypes.node,
+    bottom: PropTypes.node,
 };
 
 export default Page;
