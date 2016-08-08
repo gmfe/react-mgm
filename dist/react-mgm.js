@@ -2136,9 +2136,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var white = _props.white;
 	            var header = _props.header;
 	            var tabbar = _props.tabbar;
+	            var bottom = _props.bottom;
 	            var children = _props.children;
 
-	            var rest = _objectWithoutProperties(_props, ['className', 'white', 'header', 'tabbar', 'children']);
+	            var rest = _objectWithoutProperties(_props, ['className', 'white', 'header', 'tabbar', 'bottom', 'children']);
 
 	            var cn = (0, _classnames2.default)({
 	                'page': true,
@@ -2149,21 +2150,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return _react2.default.createElement(
 	                    _flex2.default,
 	                    _extends({ column: true }, rest, { className: cn }),
-	                    header && _react2.default.createElement(
+	                    header ? _react2.default.createElement(
 	                        _flex2.default,
 	                        { column: true },
 	                        header
-	                    ),
+	                    ) : undefined,
 	                    _react2.default.createElement(
 	                        _flex2.default,
 	                        { flex: true, column: true, className: 'page-content block' },
 	                        children
 	                    ),
-	                    tabbar && _react2.default.createElement(
+	                    tabbar ? _react2.default.createElement(
 	                        _flex2.default,
 	                        { column: true, className: 'page-tabbar' },
 	                        tabbar
-	                    )
+	                    ) : undefined,
+	                    bottom ? bottom : undefined
 	                );
 	            } else {
 	                return _react2.default.createElement(
@@ -2183,7 +2185,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    className: _react.PropTypes.string,
 	    white: _react.PropTypes.bool,
 	    header: _react.PropTypes.node,
-	    tabbar: _react.PropTypes.node
+	    tabbar: _react.PropTypes.node,
+	    bottom: _react.PropTypes.node
 	};
 
 	exports.default = Page;
