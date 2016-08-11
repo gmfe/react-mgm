@@ -64,11 +64,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _gmUtil2 = _interopRequireDefault(_gmUtil);
 
-	var _textarea = __webpack_require__(34);
+	var _textarea = __webpack_require__(36);
 
 	var _textarea2 = _interopRequireDefault(_textarea);
 
-	var _nprogress = __webpack_require__(25);
+	var _nprogress = __webpack_require__(27);
 
 	var _nprogress2 = _interopRequireDefault(_nprogress);
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _mask2 = _interopRequireDefault(_mask);
 
-	var _toast = __webpack_require__(35);
+	var _toast = __webpack_require__(37);
 
 	var _toast2 = _interopRequireDefault(_toast);
 
@@ -84,63 +84,63 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _loading2 = _interopRequireDefault(_loading);
 
-	var _page = __webpack_require__(26);
+	var _page = __webpack_require__(28);
 
 	var _page2 = _interopRequireDefault(_page);
 
-	var _infinite = __webpack_require__(23);
+	var _infinite = __webpack_require__(25);
 
 	var _infinite2 = _interopRequireDefault(_infinite);
 
-	var _header = __webpack_require__(22);
+	var _header = __webpack_require__(24);
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _storage = __webpack_require__(33);
+	var _storage = __webpack_require__(35);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _slider = __webpack_require__(31);
+	var _slider = __webpack_require__(33);
 
 	var _slider2 = _interopRequireDefault(_slider);
 
-	var _popup = __webpack_require__(27);
+	var _popup = __webpack_require__(29);
 
 	var _popup2 = _interopRequireDefault(_popup);
 
-	var _search = __webpack_require__(29);
+	var _search = __webpack_require__(31);
 
 	var _search2 = _interopRequireDefault(_search);
 
-	var _square = __webpack_require__(32);
+	var _square = __webpack_require__(34);
 
 	var _square2 = _interopRequireDefault(_square);
 
-	var _lazy = __webpack_require__(24);
+	var _lazy = __webpack_require__(26);
 
 	var _lazy2 = _interopRequireDefault(_lazy);
 
-	var _dialog = __webpack_require__(20);
+	var _dialog = __webpack_require__(22);
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
-	var _scrollInto = __webpack_require__(28);
+	var _scrollInto = __webpack_require__(30);
 
 	var _scrollInto2 = _interopRequireDefault(_scrollInto);
 
-	var _cursor = __webpack_require__(19);
+	var _cursor = __webpack_require__(21);
 
 	var _cursor2 = _interopRequireDefault(_cursor);
 
-	var _select = __webpack_require__(30);
+	var _select = __webpack_require__(32);
 
 	var _select2 = _interopRequireDefault(_select);
 
-	var _droper = __webpack_require__(21);
+	var _droper = __webpack_require__(23);
 
 	var _droper2 = _interopRequireDefault(_droper);
 
-	__webpack_require__(36);
+	__webpack_require__(38);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -198,7 +198,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _shallowCompare = __webpack_require__(18);
+	var _shallowCompare = __webpack_require__(20);
 
 	var _shallowCompare2 = _interopRequireDefault(_shallowCompare);
 
@@ -488,17 +488,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _format2 = _interopRequireDefault(_format);
 
-	var _isElementInViewport = __webpack_require__(16);
+	var _isElementInViewport = __webpack_require__(18);
 
 	var _isElementInViewport2 = _interopRequireDefault(_isElementInViewport);
 
-	var _isElementOverViewport = __webpack_require__(17);
+	var _isElementOverViewport = __webpack_require__(19);
 
 	var _isElementOverViewport2 = _interopRequireDefault(_isElementOverViewport);
 
-	var _is = __webpack_require__(15);
+	var _is = __webpack_require__(17);
 
 	var _is2 = _interopRequireDefault(_is);
+
+	var _contains = __webpack_require__(15);
+
+	var _contains2 = _interopRequireDefault(_contains);
+
+	var _createChainedFunction = __webpack_require__(16);
+
+	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
 	module.exports = {
 	    Request: _Request2['default'],
@@ -507,7 +515,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    param: _param2['default'],
 	    isElementInViewport: _isElementInViewport2['default'],
 	    isElementOverViewport: _isElementOverViewport2['default'],
-	    is: _is2['default']
+	    is: _is2['default'],
+	    contains: _contains2['default'],
+	    createChainedFunction: _createChainedFunction2['default']
 	};
 
 /***/ },
@@ -853,7 +863,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    return new Promise(function (resolve, reject) {
 	        setTimeout(function () {
-	            reject('request timeout');
+	            reject('连接超时，请稍后重试');
 	        }, ms);
 	        promise.then(resolve, reject);
 	    });
@@ -1018,6 +1028,56 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports["default"] = contains;
+
+	function contains(root, n) {
+	    var node = n;
+	    while (node) {
+	        if (node === root) {
+	            return true;
+	        }
+	        node = node.parentNode;
+	    }
+
+	    return false;
+	}
+
+	;
+	module.exports = exports["default"];
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports["default"] = createChainedFunction;
+
+	function createChainedFunction() {
+	    var args = arguments;
+	    return function chainedFunction() {
+	        for (var i = 0; i < args.length; i++) {
+	            if (args[i] && args[i].apply) {
+	                args[i].apply(this, arguments);
+	            }
+	        }
+	    };
+	}
+
+	module.exports = exports["default"];
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	var is = {};
 
 	is.weixin = function () {
@@ -1029,7 +1089,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 16 */
+/* 18 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1046,7 +1106,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 17 */
+/* 19 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1063,7 +1123,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 18 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1093,7 +1153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = shallowCompare;
 
 /***/ },
-/* 19 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1157,7 +1217,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = CursorFix;
 
 /***/ },
-/* 20 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1342,7 +1402,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Dialog;
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1594,7 +1654,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Droper;
 
 /***/ },
-/* 22 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1679,7 +1739,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Header;
 
 /***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1833,7 +1893,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Infinite;
 
 /***/ },
-/* 24 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1966,7 +2026,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = LazyImg;
 
 /***/ },
-/* 25 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2084,7 +2144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = NProgress;
 
 /***/ },
-/* 26 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2192,7 +2252,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Page;
 
 /***/ },
-/* 27 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2318,7 +2378,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Popup;
 
 /***/ },
-/* 28 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2404,7 +2464,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = ScrollIntoView;
 
 /***/ },
-/* 29 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2611,7 +2671,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = SearchBar;
 
 /***/ },
-/* 30 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2755,7 +2815,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Select;
 
 /***/ },
-/* 31 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3004,7 +3064,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Slider;
 
 /***/ },
-/* 32 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3073,7 +3133,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Square;
 
 /***/ },
-/* 33 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3155,7 +3215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Storage;
 
 /***/ },
-/* 34 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3226,7 +3286,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Textarea;
 
 /***/ },
-/* 35 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3483,7 +3543,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = Toast;
 
 /***/ },
-/* 36 */
+/* 38 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
