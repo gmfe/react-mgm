@@ -5,3 +5,4 @@
 /bower_components/weui/src/example
 .idea
 node_modules
+*.log

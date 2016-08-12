@@ -1,11 +1,10 @@
 #! /bin/sh
 
-echo $1;
-echo $2;
+msg=${*:-"c"}
 
 npm run deploy;
 git add --all;
-git commit -m $1;
+git commit -m "$msg";
 npm version patch;
 git push origin master:master;
 npm publish;

@@ -12,9 +12,7 @@
     "deploy": "npm install; npm run build && npm run build:min",
     "build": "webpack --progress --color --profile",
     "build:min": "webpack --config webpack.config.min.js",
-    "publishpatch": "npm run deploy; git add --all; git commit -m 'c'; npm version patch; git push origin master:master; npm publish; npm publish --registry='https://registry.npmjs.org'; cnpm sync react-mgm; npm version;",
-    "q": "sh deploy/publish.sh",
-    "qq": "echo $1"
+    "publishpatch": "sh deploy/publish.sh"
   },
   "repository": {
     "type": "git",
