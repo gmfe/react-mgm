@@ -4,6 +4,7 @@ import Loading from './loading';
 import Flex from './flex';
 
 // 没有必要scu
+// mark 菜小蜜会单独获取和设置这里的 scrollTop。 如果结构变更请考虑沟通清楚评估后再变更。
 class Infinite extends React.Component {
     constructor(props) {
         super(props);
