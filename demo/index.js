@@ -507,10 +507,13 @@ const InfiniteWrap = React.createClass({
             done: false
         };
     },
+    componentDidMount(){
+        ReactDOM.findDOMNode(this.refs.infinite).scrollTop = 200;
+    },
     render(){
         return (
             <Page white>
-                <Infinite done={this.state.done} onBottom={this.handleBottom} style={{height: '100%'}}>
+                <Infinite ref="infinite" done={this.state.done} onBottom={this.handleBottom} style={{height: '100%'}}>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
