@@ -1779,6 +1779,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	// 没有必要scu
+	// mark 菜小蜜会单独获取和设置这里的 scrollTop。 如果结构变更请考虑沟通清楚评估后再变更。
 	var Infinite = function (_React$Component) {
 	    _inherits(Infinite, _React$Component);
 
@@ -1955,18 +1956,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _createClass(LazyImg, [{
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+
 	            var _props = this.props;
 	            var className = _props.className;
 	            var src = _props.src;
 	            var placeholder = _props.placeholder;
+	            var delay = _props.delay;
 	            var targetId = _props.targetId;
 
-	            var rest = _objectWithoutProperties(_props, ['className', 'src', 'placeholder', 'targetId']);
+	            var rest = _objectWithoutProperties(_props, ['className', 'src', 'placeholder', 'delay', 'targetId']);
 
 	            var cn = (0, _classnames2.default)('lazy-img', className);
 
-	            return _react2.default.createElement('img', _extends({}, rest, { ref: 'img', className: cn,
-	                src: this.state.show && src ? src : placeholder }));
+	            return _react2.default.createElement('img', _extends({}, rest, {
+	                ref: function ref(_ref) {
+	                    return _this2.refImg = _ref;
+	                },
+	                className: cn,
+	                src: this.state.show && src ? src : placeholder
+	            }));
 	        }
 	    }, {
 	        key: 'componentDidMount',
@@ -1992,20 +2001,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'onScroll',
 	        value: function onScroll() {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            if (this.timer) {
 	                clearTimeout(this.timer);
 	            }
 	            this.timer = setTimeout(function () {
-	                _this2.doLazy();
-	            }, 500);
+	                _this3.doLazy();
+	            }, this.props.delay);
 	        }
 	    }, {
 	        key: 'doLazy',
 	        value: function doLazy() {
 	            // 显示了
-	            if (_gmUtil2.default.isElementOverViewport(this.refs.img)) {
+	            if (_gmUtil2.default.isElementOverViewport(this.refImg)) {
 	                this.setState({
 	                    show: true
 	                });
@@ -2020,7 +2029,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	LazyImg.propType = {
 	    src: _react.PropTypes.string,
 	    placeholder: _react.PropTypes.string,
-	    targetId: _react.PropTypes.string // 指定监听滚动的dom id
+	    targetId: _react.PropTypes.string, // 指定监听滚动的dom id
+	    delay: _react.PropTypes.number
+	};
+
+	LazyImg.defaultProps = {
+	    delay: 500
 	};
 
 	exports.default = LazyImg;

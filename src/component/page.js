@@ -47,7 +47,7 @@ Page.propTypes = {
     white: PropTypes.bool,
     header: PropTypes.node,
     tabbar: PropTypes.node,
-    bottom: PropTypes.node,
+    bottom: PropTypes.node
 };
 
 export default Page;

@@ -21,13 +21,18 @@ class LazyImg extends React.Component {
             className,
             src,
             placeholder,
+            delay, // eslint-disable-line
             targetId, // eslint-disable-line
             ...rest
         } = this.props;
         const cn = classNames('lazy-img', className);
 
-        return <img {...rest} ref="img" className={cn}
-                              src={this.state.show && src ? src : placeholder}/>;
+        return <img
+            {...rest}
+            ref={ref => this.refImg = ref}
+            className={cn}
+            src={this.state.show && src ? src : placeholder}
+        />;
     }
 
     componentDidMount() {
@@ -54,12 +59,12 @@ class LazyImg extends React.Component {
         }
         this.timer = setTimeout(() => {
             this.doLazy();
-        }, 500);
+        }, this.props.delay);
     }
 
     doLazy() {
         // 显示了
-        if (Util.isElementOverViewport(this.refs.img)) {
+        if (Util.isElementOverViewport(this.refImg)) {
             this.setState({
                 show: true
             });
@@ -71,7 +76,12 @@ class LazyImg extends React.Component {
 LazyImg.propType = {
     src: PropTypes.string,
     placeholder: PropTypes.string,
-    targetId: PropTypes.string // 指定监听滚动的dom id
+    targetId: PropTypes.string, // 指定监听滚动的dom id
+    delay: PropTypes.number
+};
+
+LazyImg.defaultProps = {
+    delay: 500
 };
 
 export default LazyImg;
