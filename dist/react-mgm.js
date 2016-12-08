@@ -2465,7 +2465,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (!iPhone) {
 	                setTimeout(function () {
 	                    if (_this2.target) {
-	                        _this2.target.scrollIntoView();
+	                        _this2.target.scrollIntoViewIfNeeded();
 	                    }
 	                }, 500);
 	            }
