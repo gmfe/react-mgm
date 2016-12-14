@@ -49,7 +49,7 @@ class NProgress extends React.Component {
     render() {
         var percent = 100 - this.state.precent;
         return (
-            <div className="nprogress" style={{transform: "translate3d(-" + percent +"%, 0px, 0px)"}}>
+            <div className="nprogress" style={{transform: "translate3d(-" + percent + "%, 0, 0)"}}>
                 <div className="nprogress-head"></div>
             </div>
         );
