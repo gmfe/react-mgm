@@ -2127,7 +2127,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var percent = 100 - this.state.precent;
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'nprogress', style: { transform: "translate3d(-" + percent + "%, 0px, 0px)" } },
+	                { className: 'nprogress', style: { transform: "translate3d(-" + percent + "%, 0, 0)" } },
 	                _react2.default.createElement('div', { className: 'nprogress-head' })
 	            );
 	        }
