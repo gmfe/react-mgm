@@ -19,7 +19,9 @@ import {
     Dialog,
     CursorFix,
     Select,
-    Droper
+    Droper,
+    Trigger,
+    Tooltip
 } from './../src/index';
 import _ from 'underscore';
 
@@ -148,6 +150,10 @@ const Home = React.createClass({
                     </Link>
                     <Link to="/droper" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">droper</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/tooltip" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">tooltip</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -1028,6 +1034,103 @@ class DroperWrap extends React.Component {
     }
 }
 
+class TriggerWrap extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+
+        this.renderPopup = ::this.renderPopup;
+    }
+
+    renderPopup() {
+        return (
+            <div className="gm-border" style={{width: '200px', height: '200px', background: 'red'}}>
+                <div>popup</div>
+            </div>
+        );
+    }
+
+    render() {
+        return (
+            <Trigger component={<div/>} popup={this.renderPopup()}>
+                <button className="btn btn-default">focus me(default)</button>
+            </Trigger>
+        );
+    }
+}
+
+class TooltipWrap extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+        this.renderPopup = ::this.renderPopup;
+    }
+
+    renderPopup() {
+        return (
+            <Tooltip placement="bottomRight" style={{width: '250px'}}>
+                这是一个tooltip bottomRight (default)
+            </Tooltip>
+        );
+    }
+
+    render() {
+        return (
+            <Flex column>
+                <Flex style={{margin: '5px 15px'}}>
+                    Tooltip需要配合Trigger使用，注意Tooltip的'topLeft', 'topRight', 'bottomLeft', 'bottomRight'合Trigger的'right'、'top'的搭配
+                </Flex>
+                <Flex justifyEnd style={{margin: "30px 20px"}}>
+                    <Trigger component={<div/>} right adjustX={20} popup={this.renderPopup()}>
+                        <button className="weui_btn weui_btn_primary weui_btn_mini">bottomRight (default)
+                        </button>
+                    </Trigger>
+                </Flex>
+
+                <Flex style={{margin: "30px 20px"}}>
+                    <Trigger component={<div/>} popup={<Tooltip placement="bottomLeft" style={{width: '250px'}}>
+                        这是一个tooltip bottomLeft
+                    </Tooltip>}
+                    >
+                        <button className="weui_btn weui_btn_primary weui_btn_mini">bottomLeft
+                        </button>
+                    </Trigger>
+                </Flex>
+
+                <Flex justifyEnd style={{margin: "30px 20px"}}>
+                    <Trigger component={<div/>} top right adjustX={20} mask popup={<Tooltip placement="topRight" style={{width: '250px'}}>
+                        这是一个tooltip topRight
+                    </Tooltip>}
+                    >
+                        <button className="weui_btn weui_btn_primary weui_btn_mini">topRight with mask
+                        </button>
+                    </Trigger>
+                </Flex>
+
+                <Flex style={{margin: "30px 20px"}}>
+                    <Trigger component={<div/>} top adjustX={30} mask popup={<Tooltip placement="topLeft" style={{width: '250px'}}>
+                        这是一个tooltip topLeft
+                    </Tooltip>}
+                    >
+                        <button className="weui_btn weui_btn_primary weui_btn_mini">topLeft with mask
+                        </button>
+                    </Trigger>
+                </Flex>
+
+                <Flex style={{margin: "30px 20px"}}>
+                    <Trigger component={<div/>} type="hover" top mask popup={<Tooltip placement="topLeft" style={{width: '250px'}}>
+                        这是一个tooltip topLeft (hover)
+                    </Tooltip>}
+                    >
+                        <button className="weui_btn weui_btn_primary weui_btn_mini">topLeft (hover)
+                        </button>
+                    </Trigger>
+                </Flex>
+            </Flex>
+        );
+    }
+}
+
 const Root = React.createClass({
     render(){
         return (
@@ -1053,6 +1156,8 @@ const Root = React.createClass({
                     <Route path="cursorfix" component={CursorFixWrap}></Route>
                     <Route path="select" component={SelectWrap}></Route>
                     <Route path="droper" component={DroperWrap}></Route>
+                    <Route path="trigger" component={TriggerWrap}></Route>
+                    <Route path="tooltip" component={TooltipWrap}></Route>
                 </Route>
             </Router>
         );
@@ -1061,4 +1166,4 @@ const Root = React.createClass({
 
 ReactDOM.render(
     <Root></Root>
-    , document.getElementById('appContainer'));
+    , window.document.getElementById('appContainer'));

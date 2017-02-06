@@ -36,7 +36,7 @@ class LazyImg extends React.Component {
     }
 
     componentDidMount() {
-        this.targetDom = this.props.targetId ? document.getElementById(this.props.targetId) : document.getElementsByClassName('page-content')[0];
+        this.targetDom = this.props.targetId ? window.document.getElementById(this.props.targetId) : window.document.getElementsByClassName('page-content')[0];
         if (this.targetDom) {
             this.targetDom.addEventListener('scroll', this.onScroll);
             this.doLazy();
