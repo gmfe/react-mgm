@@ -5,13 +5,13 @@ import Loading from './loading';
 import _ from 'underscore';
 
 let toastsContainerId = '_mgm_toasts_container' + (Math.random() + '').slice(2);
-let toastsContainer = document.getElementById(toastsContainerId);
+let toastsContainer = window.document.getElementById(toastsContainerId);
 
 if (!toastsContainer) {
-    toastsContainer = document.createElement('div');
+    toastsContainer = window.document.createElement('div');
     toastsContainer.className = 'mgm-toasts';
     toastsContainer.id = toastsContainerId;
-    document.body.appendChild(toastsContainer);
+    window.document.body.appendChild(toastsContainer);
 }
 
 let ToastStatics = {};
@@ -31,7 +31,7 @@ ToastStatics = {
         ToastStatics._ing = true;
         let _b_onFinish = options.onFinish;
 
-        let div = document.createElement('div');
+        let div = window.document.createElement('div');
         div.className = 'mgm-toasts-cell';
         toastsContainer.appendChild(div);
 

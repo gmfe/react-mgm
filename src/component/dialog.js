@@ -4,20 +4,20 @@ import classNames from 'classnames';
 import pureRenderDecorator from '../pure.render.decorator';
 
 let dialogsContainerId = '_mgm_dialogs_container' + (Math.random() + '').slice(2);
-let dialogsContainer = document.getElementById(dialogsContainerId);
+let dialogsContainer = window.document.getElementById(dialogsContainerId);
 
 if (!dialogsContainer) {
-    dialogsContainer = document.createElement('div');
+    dialogsContainer = window.document.createElement('div');
     dialogsContainer.className = 'mgm-dialogs';
     dialogsContainer.id = dialogsContainerId;
-    document.body.appendChild(dialogsContainer);
+    window.document.body.appendChild(dialogsContainer);
 }
 
 let DialogStatics = {};
 DialogStatics = {
     dialog(options){
         return new Promise((resolve, reject) => {
-            const div = document.createElement('div');
+            const div = window.document.createElement('div');
             dialogsContainer.appendChild(div);
             options.title = options.title || '提示';
             options.show = true;

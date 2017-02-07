@@ -19,10 +19,12 @@ import ScrollIntoView from './component/scroll.into.view';
 import CursorFix from './component/cursor.fix';
 import Select from './component/select';
 import Droper from './component/droper';
+import Trigger from './component/trigger';
+import Tooltip from './component/tooltip';
 
 import './index.less';
 
-var ReactGMM = {
+const ReactGMM = {
     Flex,
     Infinite,
     Textarea,
@@ -43,6 +45,8 @@ var ReactGMM = {
     CursorFix,
     Select,
     Droper,
+    Trigger,
+    Tooltip,
     Util
 };
 
