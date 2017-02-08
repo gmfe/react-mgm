@@ -1088,11 +1088,11 @@ class TooltipWrap extends React.Component {
                 </Flex>
 
                 <Flex style={{margin: "30px 20px"}}>
-                    <Trigger component={<div/>} popup={<Tooltip placement="bottomLeft" style={{width: '250px'}}>
+                    <Trigger component={<div/>} timeout={2000} popup={<Tooltip placement="bottomLeft" style={{width: '250px'}}>
                         这是一个tooltip bottomLeft
                     </Tooltip>}
                     >
-                        <button className="weui_btn weui_btn_primary weui_btn_mini">bottomLeft
+                        <button className="weui_btn weui_btn_primary weui_btn_mini">bottomLeft with timeout
                         </button>
                     </Trigger>
                 </Flex>

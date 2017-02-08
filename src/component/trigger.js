@@ -14,9 +14,12 @@ class Trigger extends React.Component {
         this.handleMouseEnter = ::this.handleMouseEnter;
         this.handleMouseLeave = ::this.handleMouseLeave;
         this.handleBodyClick = ::this.handleBodyClick;
+        this.handleTimeoutHide = ::this.handleTimeoutHide;
 
         this.timer = null;
+        this.timeouter = null;
         this.refPopup = null;
+        this.refMask = null;
     }
 
     componentDidMount() {
@@ -31,6 +34,8 @@ class Trigger extends React.Component {
         const target = event.target;
         const root = findDOMNode(this);
         if (!contains(root, target)) {
+            clearTimeout(this.timeouter);
+
             this.setState({
                 active: false
             });
@@ -38,7 +43,7 @@ class Trigger extends React.Component {
     }
 
     handleClick(event) {
-        const {disabled, children, type, mask} = this.props;
+        const {disabled, children, type, mask, timeout} = this.props;
         // 优先获取props的disabled
         if (disabled === true) {
             return;
@@ -62,6 +67,8 @@ class Trigger extends React.Component {
         }
 
         if (disabled === false) {
+            timeout && clearTimeout(this.timeouter);
+
             this.setState({
                 active
             });
@@ -70,7 +77,20 @@ class Trigger extends React.Component {
         if (!children.props.disabled) {
             this.setState({
                 active
-            });
+            }, this.handleTimeoutHide);
+        }
+    }
+
+    handleTimeoutHide() {
+        const {timeout} = this.props;
+        timeout && clearTimeout(this.timeouter);
+
+        if (timeout && this.state.active) {
+            this.timeouter = setTimeout(() => {
+                this.setState({
+                    active: false
+                });
+            }, timeout);
         }
     }
 
@@ -125,7 +145,7 @@ class Trigger extends React.Component {
     }
 
     render() {
-        const {component, children, popup, type, right, top, adjustX, mask} = this.props;
+        const {component, children, popup, type, right, top, adjustX, mask, opacity} = this.props;
         const child = React.Children.only(children);
         const {active} = this.state;
 
@@ -160,7 +180,7 @@ class Trigger extends React.Component {
                 }, popup) : null,
                 active && mask && type !== 'hover' ? <Mask
                         show
-                        opacity={0.2}
+                        opacity={opacity}
                         ref={ref => this.refMask = ref}
                     /> : null]
         }));
@@ -176,12 +196,15 @@ Trigger.propTypes = {
     top: PropTypes.bool,
     disabled: PropTypes.bool,
     mask: PropTypes.bool,
+    opacity: PropTypes.number,
+    timeout: PropTypes.number, // tigger自动隐藏时间间隔
     adjustX: PropTypes.number // 调整X方向的偏移
 };
 
 Trigger.defaultProps = {
     type: 'click',
-    mask: false
+    mask: false,
+    opacity: 0.5
 };
 
 export default Trigger;
