@@ -3689,9 +3689,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this.handleMouseEnter = _this.handleMouseEnter.bind(_this);
 	        _this.handleMouseLeave = _this.handleMouseLeave.bind(_this);
 	        _this.handleBodyClick = _this.handleBodyClick.bind(_this);
+	        _this.handleTimeoutHide = _this.handleTimeoutHide.bind(_this);
 
 	        _this.timer = null;
+	        _this.timeouter = null;
 	        _this.refPopup = null;
+	        _this.refMask = null;
 	        return _this;
 	    }
 
@@ -3711,6 +3714,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var target = event.target;
 	            var root = (0, _reactDom.findDOMNode)(this);
 	            if (!(0, _gmUtil.contains)(root, target)) {
+	                clearTimeout(this.timeouter);
+
 	                this.setState({
 	                    active: false
 	                });
@@ -3724,6 +3729,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var children = _props.children;
 	            var type = _props.type;
 	            var mask = _props.mask;
+	            var timeout = _props.timeout;
 	            // 优先获取props的disabled
 
 	            if (disabled === true) {
@@ -3748,6 +3754,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 
 	            if (disabled === false) {
+	                timeout && clearTimeout(this.timeouter);
+
 	                this.setState({
 	                    active: active
 	                });
@@ -3756,7 +3764,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (!children.props.disabled) {
 	                this.setState({
 	                    active: active
-	                });
+	                }, this.handleTimeoutHide);
+	            }
+	        }
+	    }, {
+	        key: 'handleTimeoutHide',
+	        value: function handleTimeoutHide() {
+	            var _this2 = this;
+
+	            var timeout = this.props.timeout;
+
+	            timeout && clearTimeout(this.timeouter);
+
+	            if (timeout && this.state.active) {
+	                this.timeouter = setTimeout(function () {
+	                    _this2.setState({
+	                        active: false
+	                    });
+	                }, timeout);
 	            }
 	        }
 	    }, {
@@ -3789,7 +3814,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'handleMouseLeave',
 	        value: function handleMouseLeave() {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            var _props3 = this.props;
 	            var disabled = _props3.disabled;
@@ -3804,7 +3829,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            if (disabled === false) {
 	                this.timer = setTimeout(function () {
-	                    _this2.setState({
+	                    _this3.setState({
 	                        active: false
 	                    });
 	                }, 500);
@@ -3813,7 +3838,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // 如果没有props disabled，判定children是否不可用状态
 	            if (!children.props.disabled) {
 	                this.timer = setTimeout(function () {
-	                    _this2.setState({
+	                    _this3.setState({
 	                        active: false
 	                    });
 	                }, 500);
@@ -3822,7 +3847,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this3 = this;
+	            var _this4 = this;
 
 	            var _props4 = this.props;
 	            var component = _props4.component;
@@ -3833,6 +3858,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var top = _props4.top;
 	            var adjustX = _props4.adjustX;
 	            var mask = _props4.mask;
+	            var opacity = _props4.opacity;
 
 	            var child = _react2.default.Children.only(children);
 	            var active = this.state.active;
@@ -3862,7 +3888,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                children: [child, active ? _react2.default.createElement('div', {
 	                    key: 'popup',
 	                    ref: function ref(_ref) {
-	                        return _this3.refPopup = _ref;
+	                        return _this4.refPopup = _ref;
 	                    },
 	                    className: (0, _classnames2.default)('gm-trigger-popup ', {
 	                        'gm-trigger-popup-right': right,
@@ -3871,9 +3897,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    style: popupStyle
 	                }, popup) : null, active && mask && type !== 'hover' ? _react2.default.createElement(_mask2.default, {
 	                    show: true,
-	                    opacity: 0.2,
+	                    opacity: opacity,
 	                    ref: function ref(_ref2) {
-	                        return _this3.refMask = _ref2;
+	                        return _this4.refMask = _ref2;
 	                    }
 	                }) : null]
 	            }));
@@ -3892,12 +3918,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    top: _react.PropTypes.bool,
 	    disabled: _react.PropTypes.bool,
 	    mask: _react.PropTypes.bool,
+	    opacity: _react.PropTypes.number,
+	    timeout: _react.PropTypes.number, // tigger自动隐藏时间间隔
 	    adjustX: _react.PropTypes.number // 调整X方向的偏移
 	};
 
 	Trigger.defaultProps = {
 	    type: 'click',
-	    mask: false
+	    mask: false,
+	    opacity: 0.5
 	};
 
 	exports.default = Trigger;
