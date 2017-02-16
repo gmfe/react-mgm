@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDom from 'react-dom';
 import classNames from 'classnames';
 import _ from 'underscore';
@@ -88,7 +88,7 @@ class Slider extends React.Component {
             <Flex justifyCenter className="slider-flag">
                 {_.map(_.range(this.state.count), (value, i) => <span
                     className={classNames({active: Math.abs(this.state.x / this.state.sliderWidth) === i})}
-                    key={i}></span>)}
+                    key={i}/>)}
             </Flex>
         );
     }
@@ -121,7 +121,7 @@ class Slider extends React.Component {
     }
 
     swipeStart(event) {
-        event.preventDefault();
+        // event.preventDefault();
         this.setState({
             dragging: true,
             transition: false,
@@ -133,7 +133,7 @@ class Slider extends React.Component {
     }
 
     swipeMove(event) {
-        event.preventDefault();
+        // event.preventDefault();
         this.setState({
             dragging: true,
             transition: false,
@@ -176,7 +176,15 @@ class Slider extends React.Component {
                 touchObject: null
             });
         }
+
+        if (this.props.onChange) {
+            this.props.onChange(Math.abs(x / this.state.sliderWidth));
+        }
     }
 }
+
+Slider.propTypes = {
+    onChange: PropTypes.func
+};
 
 export default Slider;

@@ -21,7 +21,8 @@ import {
     Select,
     Droper,
     Trigger,
-    Tooltip
+    Tooltip,
+    PreviewImage
 } from './../src/index';
 import _ from 'underscore';
 
@@ -154,6 +155,10 @@ const Home = React.createClass({
                     </Link>
                     <Link to="/tooltip" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">tooltip</div>
+                        <div className="weui_cell_ft"></div>
+                    </Link>
+                    <Link to="/previewimage" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">preview image</div>
                         <div className="weui_cell_ft"></div>
                     </Link>
                 </div>
@@ -658,6 +663,7 @@ var PopupWrap = React.createClass({
             <Page>
                 <button className="weui_btn weui_btn_primary" onClick={this.handleShow}>open popup left</button>
                 <button className="weui_btn weui_btn_primary" onClick={this.handleShow2}>open popup bottom</button>
+                <button className="weui_btn weui_btn_primary" onClick={this.handleShow3}>open popup static api</button>
                 <Popup left show={this.state.show} onChange={this.handleChange}>
                     asdfa
                 </Popup>
@@ -704,6 +710,13 @@ var PopupWrap = React.createClass({
             show2: !this.state.show2
         });
     },
+    handleShow3(){
+        Popup.render({
+            left: true,
+            children: 'adfaf',
+            onChange: Popup.hide
+        });
+    },
     handleChange(show){
         this.setState({
             show
@@ -734,7 +747,7 @@ var SearchBarWrap = React.createClass({
                     onCancel={this.handleCancel}
                     onBlur={this.handleBlur}
                     onFocus={this.handleFocus}
-                ></SearchBar>
+                />
 
                 <SearchBar
                     placeholder="搜索商品"
@@ -745,7 +758,7 @@ var SearchBarWrap = React.createClass({
                     onBlur={this.handleBlur}
                     OKBtn
                     defaultFocus
-                ></SearchBar>
+                />
             </Page>
         );
     },
@@ -1078,7 +1091,8 @@ class TooltipWrap extends React.Component {
         return (
             <Flex column>
                 <Flex style={{margin: '5px 15px'}}>
-                    Tooltip需要配合Trigger使用，注意Tooltip的'topLeft', 'topRight', 'bottomLeft', 'bottomRight'合Trigger的'right'、'top'的搭配
+                    Tooltip需要配合Trigger使用，注意Tooltip的'topLeft', 'topRight', 'bottomLeft',
+                    'bottomRight'合Trigger的'right'、'top'的搭配
                 </Flex>
                 <Flex justifyEnd style={{margin: "30px 20px"}}>
                     <Trigger component={<div/>} right adjustX={20} popup={this.renderPopup()}>
@@ -1088,9 +1102,10 @@ class TooltipWrap extends React.Component {
                 </Flex>
 
                 <Flex style={{margin: "30px 20px"}}>
-                    <Trigger component={<div/>} timeout={2000} popup={<Tooltip placement="bottomLeft" style={{width: '250px'}}>
-                        这是一个tooltip bottomLeft
-                    </Tooltip>}
+                    <Trigger component={<div/>} timeout={2000}
+                             popup={<Tooltip placement="bottomLeft" style={{width: '250px'}}>
+                                 这是一个tooltip bottomLeft
+                             </Tooltip>}
                     >
                         <button className="weui_btn weui_btn_primary weui_btn_mini">bottomLeft with timeout
                         </button>
@@ -1098,9 +1113,10 @@ class TooltipWrap extends React.Component {
                 </Flex>
 
                 <Flex justifyEnd style={{margin: "30px 20px"}}>
-                    <Trigger component={<div/>} top right adjustX={20} mask popup={<Tooltip placement="topRight" style={{width: '250px'}}>
-                        这是一个tooltip topRight
-                    </Tooltip>}
+                    <Trigger component={<div/>} top right adjustX={20} mask
+                             popup={<Tooltip placement="topRight" style={{width: '250px'}}>
+                                 这是一个tooltip topRight
+                             </Tooltip>}
                     >
                         <button className="weui_btn weui_btn_primary weui_btn_mini">topRight with mask
                         </button>
@@ -1108,9 +1124,10 @@ class TooltipWrap extends React.Component {
                 </Flex>
 
                 <Flex style={{margin: "30px 20px"}}>
-                    <Trigger component={<div/>} top adjustX={30} mask popup={<Tooltip placement="topLeft" style={{width: '250px'}}>
-                        这是一个tooltip topLeft
-                    </Tooltip>}
+                    <Trigger component={<div/>} top adjustX={30} mask
+                             popup={<Tooltip placement="topLeft" style={{width: '250px'}}>
+                                 这是一个tooltip topLeft
+                             </Tooltip>}
                     >
                         <button className="weui_btn weui_btn_primary weui_btn_mini">topLeft with mask
                         </button>
@@ -1118,9 +1135,10 @@ class TooltipWrap extends React.Component {
                 </Flex>
 
                 <Flex style={{margin: "30px 20px"}}>
-                    <Trigger component={<div/>} type="hover" top mask popup={<Tooltip placement="topLeft" style={{width: '250px'}}>
-                        这是一个tooltip topLeft (hover)
-                    </Tooltip>}
+                    <Trigger component={<div/>} type="hover" top mask
+                             popup={<Tooltip placement="topLeft" style={{width: '250px'}}>
+                                 这是一个tooltip topLeft (hover)
+                             </Tooltip>}
                     >
                         <button className="weui_btn weui_btn_primary weui_btn_mini">topLeft (hover)
                         </button>
@@ -1131,39 +1149,66 @@ class TooltipWrap extends React.Component {
     }
 }
 
+class PreviewImageWrap extends React.Component {
+    handleShow() {
+        PreviewImage.render({
+            images: [{
+                url: 'https://bshop.guanmai.cn/static/icon/icon-veg.4fa23256.png',
+                name: 'aaaa菜心'
+            }, {
+                url: 'https://bshop.guanmai.cn/static/productpic/aa5defe86bb7adaa.jpg',
+                name: '菠菜aaaaaaa'
+            }, {
+                url: 'https://bshop.guanmai.cn/static/station_pic/gm_banner.jpg',
+                name: '宽宽图'
+            }, {
+                url: 'http://7xlnio.com1.z0.glb.clouddn.com/17-2-16/53032612-file_1487254642623_73b9.png',
+                name: '高高高图'
+            }]
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <button className="weui_btn weui_btn_default" onClick={this.handleShow}>show images</button>
+            </div>
+        );
+    }
+}
+
 const Root = React.createClass({
     render(){
         return (
             <Router history={hashHistory}>
                 <Route path="/" component={App}>
-                    <IndexRoute component={Home}></IndexRoute>
-                    <Route path="theme" component={ThemeWrap}></Route>
-                    <Route path="gap" component={GapWrap}></Route>
-                    <Route path="flex" component={FlexWrap}></Route>
-                    <Route path="textarea" component={TextareaWrap}></Route>
-                    <Route path="toast" component={ToastWrap}></Route>
-                    <Route path="loading" component={LoadingWrap}></Route>
-                    <Route path="nprogress" component={NProgressWrap}></Route>
-                    <Route path="infinite" component={InfiniteWrap}></Route>
-                    <Route path="page" component={PageWrap}></Route>
-                    <Route path="slider" component={SliderWrap}></Route>
-                    <Route path="tabs" component={TabsWrap}></Route>
-                    <Route path="popup" component={PopupWrap}></Route>
-                    <Route path="searchbar" component={SearchBarWrap}></Route>
-                    <Route path="square" component={SquareWrap}></Route>
-                    <Route path="lazyimg" component={LazyImgWrap}></Route>
-                    <Route path="dialog" component={DialogWrap}></Route>
-                    <Route path="cursorfix" component={CursorFixWrap}></Route>
-                    <Route path="select" component={SelectWrap}></Route>
-                    <Route path="droper" component={DroperWrap}></Route>
-                    <Route path="trigger" component={TriggerWrap}></Route>
-                    <Route path="tooltip" component={TooltipWrap}></Route>
+                    <IndexRoute component={Home}/>
+                    <Route path="theme" component={ThemeWrap}/>
+                    <Route path="gap" component={GapWrap}/>
+                    <Route path="flex" component={FlexWrap}/>
+                    <Route path="textarea" component={TextareaWrap}/>
+                    <Route path="toast" component={ToastWrap}/>
+                    <Route path="loading" component={LoadingWrap}/>
+                    <Route path="nprogress" component={NProgressWrap}/>
+                    <Route path="infinite" component={InfiniteWrap}/>
+                    <Route path="page" component={PageWrap}/>
+                    <Route path="slider" component={SliderWrap}/>
+                    <Route path="tabs" component={TabsWrap}/>
+                    <Route path="popup" component={PopupWrap}/>
+                    <Route path="searchbar" component={SearchBarWrap}/>
+                    <Route path="square" component={SquareWrap}/>
+                    <Route path="lazyimg" component={LazyImgWrap}/>
+                    <Route path="dialog" component={DialogWrap}/>
+                    <Route path="cursorfix" component={CursorFixWrap}/>
+                    <Route path="select" component={SelectWrap}/>
+                    <Route path="droper" component={DroperWrap}/>
+                    <Route path="trigger" component={TriggerWrap}/>
+                    <Route path="tooltip" component={TooltipWrap}/>
+                    <Route path="previewimage" component={PreviewImageWrap}/>
                 </Route>
             </Router>
         );
     }
 });
 
-ReactDOM.render(
-    <Root></Root>
-    , window.document.getElementById('appContainer'));
+ReactDOM.render(<Root/>, window.document.getElementById('appContainer'));

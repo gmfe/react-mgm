@@ -21,6 +21,7 @@ import Select from './component/select';
 import Droper from './component/droper';
 import Trigger from './component/trigger';
 import Tooltip from './component/tooltip';
+import PreviewImage from './component/preview.image';
 
 import './index.less';
 
@@ -47,6 +48,7 @@ const ReactGMM = {
     Droper,
     Trigger,
     Tooltip,
+    PreviewImage,
     Util
 };
 

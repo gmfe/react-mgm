@@ -17,19 +17,31 @@ let DialogStatics = {};
 DialogStatics = {
     dialog(options){
         return new Promise((resolve, reject) => {
+
+            let isCancel = true;
+
+            const popstate = () => {
+                dialogsContainer.removeChild(div);
+                window.removeEventListener('popstate', popstate);
+                isCancel ? reject() : resolve();
+            };
+
+            window.addEventListener('popstate', popstate);
+
             const div = window.document.createElement('div');
             dialogsContainer.appendChild(div);
             options.title = options.title || '提示';
             options.show = true;
             options.onConfirm = () => {
-                dialogsContainer.removeChild(div);
-                resolve();
+                isCancel = false;
+                window.history.go(-1);
             };
             options.onCancel = () => {
-                dialogsContainer.removeChild(div);
-                reject();
+                isCancel = true;
+                window.history.go(-1);
             };
-            ReactDOM.render(<Dialog {...options}></Dialog>, div);
+            window.history.pushState({}, null);
+            ReactDOM.render(<Dialog {...options}/>, div);
         });
     },
     alert(options){
