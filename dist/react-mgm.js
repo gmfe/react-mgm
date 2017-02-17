@@ -2826,7 +2826,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'preview-image-inner' },
-	                    _react2.default.createElement(
+	                    images.length === 1 ? _react2.default.createElement(
+	                        _flex2.default,
+	                        { className: 'flex-align-center flex-justify-center' },
+	                        _react2.default.createElement('img', { src: images[0].url, style: {
+	                                maxHeight: maxHeight
+	                            } })
+	                    ) : _react2.default.createElement(
 	                        _slider2.default,
 	                        { onChange: this.handleChange },
 	                        _underscore2.default.map(images, function (v, i) {
@@ -2842,7 +2848,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'text-center preview-image-name' },
-	                        images[this.state.index].name
+	                        images[this.state.index] && images[this.state.index].name
 	                    )
 	                )
 	            );

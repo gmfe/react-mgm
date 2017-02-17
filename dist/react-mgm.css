@@ -3138,6 +3138,7 @@ a.decoration {
   border-style: solid;
 }
 .preview-image {
+  z-index: 600;
   position: absolute;
   top: 0;
   left: 0;

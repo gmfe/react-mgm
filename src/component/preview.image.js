@@ -82,17 +82,25 @@ class PreviewImage extends React.Component {
             <Flex column justifyCenter {...rest} className={cn}>
                 <div className="preview-image-close" onClick={this.handleClose}>X</div>
                 <div className="preview-image-inner">
-                    <Slide onChange={this.handleChange}>
-                        {_.map(images, (v, i) => (
-                            <div key={i + v.url} className="flex-align-center flex-justify-center">
-                                <img src={v.url} style={{
-                                    maxHeight
-                                }}/>
-                            </div>
-                        ))}
-                    </Slide>
+                    {images.length === 1 ? (
+                        <Flex className="flex-align-center flex-justify-center">
+                            <img src={images[0].url} style={{
+                                maxHeight
+                            }}/>
+                        </Flex>
+                    ) : (
+                        <Slide onChange={this.handleChange}>
+                            {_.map(images, (v, i) => (
+                                <div key={i + v.url} className="flex-align-center flex-justify-center">
+                                    <img src={v.url} style={{
+                                        maxHeight
+                                    }}/>
+                                </div>
+                            ))}
+                        </Slide>
+                    )}
                     <div className="text-center preview-image-name">
-                        {images[this.state.index].name}
+                        {images[this.state.index] && images[this.state.index].name}
                     </div>
                 </div>
             </Flex>

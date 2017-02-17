@@ -1168,10 +1168,20 @@ class PreviewImageWrap extends React.Component {
         });
     }
 
+    handleShowSingle(){
+        PreviewImage.render({
+            images: [{
+                url: 'https://bshop.guanmai.cn/static/productpic/aa5defe86bb7adaa.jpg',
+                name: '菠菜aaaaaaa'
+            }]
+        });
+    }
+
     render() {
         return (
             <div>
-                <button className="weui_btn weui_btn_default" onClick={this.handleShow}>show images</button>
+                <button className="weui_btn weui_btn_primary" onClick={this.handleShow}>show images</button>
+                <button className="weui_btn weui_btn_primary" onClick={this.handleShowSingle}>show image</button>
             </div>
         );
     }
