@@ -2818,10 +2818,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            return _react2.default.createElement(
 	                _flex2.default,
-	                _extends({ column: true, justifyCenter: true }, rest, { className: cn }),
+	                _extends({ column: true, justifyCenter: true }, rest, { className: cn, onClick: this.handleClose }),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'preview-image-close', onClick: this.handleClose },
+	                    { className: 'preview-image-close' },
 	                    'X'
 	                ),
 	                _react2.default.createElement(

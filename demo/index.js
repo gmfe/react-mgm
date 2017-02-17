@@ -1164,16 +1164,18 @@ class PreviewImageWrap extends React.Component {
             }, {
                 url: 'http://7xlnio.com1.z0.glb.clouddn.com/17-2-16/53032612-file_1487254642623_73b9.png',
                 name: '高高高图'
-            }]
+            }],
+            onHide: PreviewImage.hide
         });
     }
 
-    handleShowSingle(){
+    handleShowSingle() {
         PreviewImage.render({
             images: [{
                 url: 'https://bshop.guanmai.cn/static/productpic/aa5defe86bb7adaa.jpg',
                 name: '菠菜aaaaaaa'
-            }]
+            }],
+            onHide: PreviewImage.hide
         });
     }
 

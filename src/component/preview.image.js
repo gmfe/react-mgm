@@ -80,8 +80,8 @@ class PreviewImage extends React.Component {
         }
 
         return (
-            <Flex column justifyCenter {...rest} className={cn}>
-                <div className="preview-image-close" onClick={this.handleClose}>X</div>
+            <Flex column justifyCenter {...rest} className={cn} onClick={this.handleClose}>
+                <div className="preview-image-close">X</div>
                 <div className="preview-image-inner">
                     {images.length === 1 ? (
                         <Flex className="flex-align-center flex-justify-center">
