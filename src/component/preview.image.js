@@ -58,7 +58,8 @@ class PreviewImage extends React.Component {
         });
     }
 
-    handleClose() {
+    handleClose(e) {
+        e.preventDefault();
         if (this.props.onHide) {
             this.props.onHide();
         }

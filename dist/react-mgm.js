@@ -2793,7 +2793,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }, {
 	        key: 'handleClose',
-	        value: function handleClose() {
+	        value: function handleClose(e) {
+	            e.preventDefault();
 	            if (this.props.onHide) {
 	                this.props.onHide();
 	            }
