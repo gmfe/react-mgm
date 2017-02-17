@@ -3163,3 +3163,9 @@ a.decoration {
   border: 2px solid #555555;
   border-radius: 50%;
 }
+.preview-image .slider-flag span {
+  background: grey;
+}
+.preview-image .slider-flag span.active {
+  background: #D5D5D5;
+}
