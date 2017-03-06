@@ -1544,30 +1544,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	DialogStatics = {
 	    dialog: function dialog(options) {
 	        return new Promise(function (resolve, reject) {
-
-	            var isCancel = true;
-
-	            var popstate = function popstate() {
-	                dialogsContainer.removeChild(div);
-	                window.removeEventListener('popstate', popstate);
-	                isCancel ? reject() : resolve();
-	            };
-
-	            window.addEventListener('popstate', popstate);
-
 	            var div = window.document.createElement('div');
 	            dialogsContainer.appendChild(div);
 	            options.title = options.title || '提示';
 	            options.show = true;
 	            options.onConfirm = function () {
-	                isCancel = false;
-	                window.history.go(-1);
+	                dialogsContainer.removeChild(div);
+	                resolve();
 	            };
 	            options.onCancel = function () {
-	                isCancel = true;
-	                window.history.go(-1);
+	                dialogsContainer.removeChild(div);
+	                reject();
 	            };
-	            window.history.pushState({}, null);
 	            _reactDom2.default.render(_react2.default.createElement(Dialog, options), div);
 	        });
 	    },

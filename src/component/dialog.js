@@ -17,31 +17,19 @@ let DialogStatics = {};
 DialogStatics = {
     dialog(options){
         return new Promise((resolve, reject) => {
-
-            let isCancel = true;
-
-            const popstate = () => {
-                dialogsContainer.removeChild(div);
-                window.removeEventListener('popstate', popstate);
-                isCancel ? reject() : resolve();
-            };
-
-            window.addEventListener('popstate', popstate);
-
             const div = window.document.createElement('div');
             dialogsContainer.appendChild(div);
             options.title = options.title || '提示';
             options.show = true;
             options.onConfirm = () => {
-                isCancel = false;
-                window.history.go(-1);
+                dialogsContainer.removeChild(div);
+                resolve();
             };
             options.onCancel = () => {
-                isCancel = true;
-                window.history.go(-1);
+                dialogsContainer.removeChild(div);
+                reject();
             };
-            window.history.pushState({}, null);
-            ReactDOM.render(<Dialog {...options}/>, div);
+            ReactDOM.render(<Dialog {...options}></Dialog>, div);
         });
     },
     alert(options){
@@ -68,24 +56,24 @@ DialogStatics = {
 class Dialog extends React.Component {
     static alert = DialogStatics.alert;
     static confirm = DialogStatics.confirm;
-
+    
     constructor(props) {
         super(props);
-
+        
         this.handleCancel = ::this.handleCancel;
         this.handleConfirm = ::this.handleConfirm;
     }
-
+    
     handleConfirm(e) {
         e.preventDefault();
         this.props.onConfirm();
     }
-
+    
     handleCancel(e) {
         e.preventDefault();
         this.props.onCancel && this.props.onCancel();
     }
-
+    
     render() {
         const thisProps = this.props,
             {btnText = {}} = thisProps;
@@ -93,11 +81,11 @@ class Dialog extends React.Component {
             'weui_dialog_confirm': thisProps.confirm,
             'weui_dialog_alert': thisProps.alert
         });
-
+        
         if (!thisProps.show) {
             return null;
         }
-
+        
         return (
             <div className={cls} style={{display: 'block'}}>
                 <div className="weui_mask"></div>
