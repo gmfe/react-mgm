@@ -626,6 +626,18 @@ var SliderWrap = React.createClass({
                 <Slider>
                     <div className="border" style={style}>1</div>
                 </Slider>
+    
+                <Slider flagInner>
+                    <div className="border" style={style}>1</div>
+                    <div style={style}>2</div>
+                </Slider>
+    
+                <Slider enableAutoSlide>
+                    <div className="border" style={style}>1</div>
+                    <div style={style}>2</div>
+                    <div style={style}>3</div>
+                    <div style={style}>4</div>
+                </Slider>
             </div>
         );
     }

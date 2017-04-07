@@ -1,6 +1,7 @@
 .slider {
   overflow: hidden;
-  
+  position: relative;
+
   .slider-cell {
     overflow: hidden;
   }
@@ -19,6 +20,15 @@
       &.active {
         background: grey;
       }
+    }
+  }
+
+  &.slider-flag-inner {
+    .slider-flag {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
   }
 }
