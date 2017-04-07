@@ -2770,6 +2770,7 @@ a.decoration {
 }
 .slider {
   overflow: hidden;
+  position: relative;
 }
 .slider .slider-cell {
   overflow: hidden;
@@ -2787,6 +2788,12 @@ a.decoration {
 }
 .slider .slider-flag span.active {
   background: grey;
+}
+.slider.slider-flag-inner .slider-flag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 .tabs {
   display: -webkit-box;

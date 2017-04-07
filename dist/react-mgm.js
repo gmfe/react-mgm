@@ -828,6 +828,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this.swipeMove = _this.swipeMove.bind(_this);
 	        _this.swipeEnd = _this.swipeEnd.bind(_this);
 	        _this.setSliderWidth = _this.setSliderWidth.bind(_this);
+	        _this.doAutoSlider = _this.doAutoSlider.bind(_this);
+
+	        _this.timer = null;
 	        return _this;
 	    }
 
@@ -839,78 +842,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	            });
 	        }
 	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var to = this.state.touchObject;
-	            var offset = to ? to.x - to.startX + this.state.x : this.state.x;
-
-	            var _props = this.props;
-	            var className = _props.className;
-
-	            var rest = _objectWithoutProperties(_props, ['className']);
-
-	            var cn = (0, _classnames2.default)({
-	                'slider-transition': this.state.transition
-	            }, className);
-
-	            var style = {
-	                WebkitTransform: 'translate3d(' + offset + 'px, 0, 0)',
-	                transform: 'translate3d(' + offset + 'px, 0, 0)'
-	            };
-
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'slider' },
-	                _react2.default.createElement(
-	                    _flex2.default,
-	                    _extends({}, rest, {
-	                        ref: 'slider',
-	                        className: cn,
-	                        onMouseDown: this.swipeStart,
-	                        onMouseMove: this.swipeMove,
-	                        onMouseUp: this.swipeEnd,
-	                        onMouseLeave: this.swipeEnd,
-	                        onTouchStart: this.swipeStart,
-	                        onTouchMove: this.swipeMove,
-	                        onTouchEnd: this.swipeEnd,
-	                        onTouchCancel: this.swipeEnd,
-	                        style: style
-	                    }),
-	                    this.renderChild()
-	                ),
-	                this.renderFlag()
-	            );
-	        }
-	    }, {
-	        key: 'renderChild',
-	        value: function renderChild() {
-	            var components = this.props.children;
-
-	            if (toString.call(this.props.children) !== '[object Array]') {
-	                components = [this.props.children];
-	            }
-	            return _underscore2.default.map(components, function (value, i) {
-	                return _react2.default.cloneElement(value, {
-	                    style: _underscore2.default.extend({}, value.props.style, { width: '100%' }),
-	                    className: (0, _classnames2.default)('slider-cell flex flex-none', value.props.className),
-	                    key: i
-	                });
-	            });
-	        }
-	    }, {
-	        key: 'renderFlag',
-	        value: function renderFlag() {
+	        key: 'doAutoSlider',
+	        value: function doAutoSlider() {
 	            var _this2 = this;
 
-	            return _react2.default.createElement(
-	                _flex2.default,
-	                { justifyCenter: true, className: 'slider-flag' },
-	                _underscore2.default.map(_underscore2.default.range(this.state.count), function (value, i) {
-	                    return _react2.default.createElement('span', {
-	                        className: (0, _classnames2.default)({ active: Math.abs(_this2.state.x / _this2.state.sliderWidth) === i }),
-	                        key: i });
-	                })
-	            );
+	            var autoSlideTime = this.props.autoSlideTime;
+
+	            clearInterval(this.timer);
+	            this.timer = setInterval(function () {
+	                var _state = _this2.state;
+	                var dragging = _state.dragging;
+	                var x = _state.x;
+	                var sliderWidth = _state.sliderWidth;
+	                var count = _state.count;
+
+	                if (dragging) {
+	                    return;
+	                }
+
+	                x -= _this2.state.sliderWidth;
+	                if (x > 0) {
+	                    x = 0;
+	                }
+	                if (x < -(sliderWidth * (count - 1))) {
+	                    x = 0;
+	                }
+	                _this2.setState({
+	                    transition: true,
+	                    dragging: false,
+	                    touchObject: null,
+	                    x: x
+	                });
+	            }, autoSlideTime);
+	        }
+	    }, {
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            if (this.props.enableAutoSlide) {
+	                this.doAutoSlider();
+	            }
 	        }
 	    }, {
 	        key: 'componentDidMount',
@@ -918,6 +888,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.setSliderWidth();
 	            this.setCount();
 	            window.addEventListener('resize', this.setSliderWidth);
+	        }
+	    }, {
+	        key: 'componentWillUnMount',
+	        value: function componentWillUnMount() {
+	            clearInterval(this.timer);
 	        }
 	    }, {
 	        key: 'setCount',
@@ -976,6 +951,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // if (!this.state.dragging) {
 	            //     return;
 	            // }
+	            this.doAutoSlider();
+
 	            var to = this.state.touchObject;
 	            var diff = to.x - to.startX;
 	            var x = this.state.x;
@@ -1009,13 +986,101 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.props.onChange(Math.abs(x / this.state.sliderWidth));
 	            }
 	        }
+	    }, {
+	        key: 'renderChild',
+	        value: function renderChild() {
+	            var components = this.props.children;
+
+	            if (toString.call(this.props.children) !== '[object Array]') {
+	                components = [this.props.children];
+	            }
+	            return _underscore2.default.map(components, function (value, i) {
+	                return _react2.default.cloneElement(value, {
+	                    style: _underscore2.default.extend({}, value.props.style, { width: '100%' }),
+	                    className: (0, _classnames2.default)('slider-cell flex flex-none', value.props.className),
+	                    key: i
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'renderFlag',
+	        value: function renderFlag() {
+	            var _this3 = this;
+
+	            return _react2.default.createElement(
+	                _flex2.default,
+	                { justifyCenter: true, className: 'slider-flag' },
+	                _underscore2.default.map(_underscore2.default.range(this.state.count), function (value, i) {
+	                    return _react2.default.createElement('span', {
+	                        className: (0, _classnames2.default)({ active: Math.abs(_this3.state.x / _this3.state.sliderWidth) === i }),
+	                        key: i });
+	                })
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var to = this.state.touchObject;
+	            var offset = to ? to.x - to.startX + this.state.x : this.state.x;
+
+	            var _props = this.props;
+	            var className = _props.className;
+	            var flagInner = _props.flagInner;
+	            var enableAutoSlide = _props.enableAutoSlide;
+	            var autoSlideTime = _props.autoSlideTime;
+
+	            var rest = _objectWithoutProperties(_props, ['className', 'flagInner', 'enableAutoSlide', 'autoSlideTime']);
+
+	            var cn = (0, _classnames2.default)({
+	                'slider-transition': this.state.transition
+	            }, className);
+
+	            var style = {
+	                WebkitTransform: 'translate3d(' + offset + 'px, 0, 0)',
+	                transform: 'translate3d(' + offset + 'px, 0, 0)'
+	            };
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: (0, _classnames2.default)("slider", {
+	                        'slider-flag-inner': flagInner
+	                    }) },
+	                _react2.default.createElement(
+	                    _flex2.default,
+	                    _extends({}, rest, {
+	                        ref: 'slider',
+	                        className: cn,
+	                        onMouseDown: this.swipeStart,
+	                        onMouseMove: this.swipeMove,
+	                        onMouseUp: this.swipeEnd,
+	                        onMouseLeave: this.swipeEnd,
+	                        onTouchStart: this.swipeStart,
+	                        onTouchMove: this.swipeMove,
+	                        onTouchEnd: this.swipeEnd,
+	                        onTouchCancel: this.swipeEnd,
+	                        style: style
+	                    }),
+	                    this.renderChild()
+	                ),
+	                this.renderFlag()
+	            );
+	        }
 	    }]);
 
 	    return Slider;
 	}(_react2.default.Component);
 
 	Slider.propTypes = {
-	    onChange: _react.PropTypes.func
+	    onChange: _react.PropTypes.func,
+	    flagInner: _react.PropTypes.bool,
+	    enableAutoSlide: _react.PropTypes.bool,
+	    autoSlideTime: _react.PropTypes.number
+	};
+
+	Slider.defaultProps = {
+	    flagInner: false,
+	    enableAutoSlide: false,
+	    autoSlideTime: 5000
 	};
 
 	exports.default = Slider;
