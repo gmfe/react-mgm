@@ -3,8 +3,6 @@
 # 微信
 移动端（主微信端）项目
 
-文档见wiki
-
 ## demo
 http://gmfe.github.io/react-mgm/demo
 

@@ -1,44 +1,56 @@
-var webpack = require('webpack');
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
-var precss = require('precss');
+const path = require('path');
+const AssetsPlugin = require('assets-webpack-plugin');
 
-module.exports = {
-    entry: './src/index',
-    externals: {
-        'react': 'react',
-        'react-dom': 'react-dom',
-        'underscore': 'underscore',
-        'classnames': 'classnames'
-
+const config = {
+    entry: {
+        'index': [
+            './demo/index'
+        ]
     },
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'react-mgm.js',
-        library: 'ReactMGM',
-        libraryTarget: 'umd'
+        path: path.join(__dirname, 'build'),
+        filename: '[name].[hash].js',
+        publicPath: '/react-mgm/build/'
     },
-    resolve: {
-        extensions: ['', '.js', '.css', '.less']
-    },
-    plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
-        }),
-        new ExtractTextPlugin('react-mgm.css')
-    ],
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
-            loader: 'babel'
+            use: ['babel-loader']
         }, {
             test: /\.(css|less)$/,
-            loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!postcss!less')
+            use: [
+                'style-loader',
+                'css-loader?-autoprefixer',
+                'postcss-loader',
+                'less-loader'
+            ]
+        }, {
+            test: /iconfont\.(woff|woff2|ttf|eot|svg)($|\?)/,
+            use: [{
+                loader: 'url-loader',
+                options: {
+                    limit: 1024,
+                    name: 'fonts/[name].[ext]'
+                }
+            }]
         }]
     },
-    postcss: function () {
-        return [autoprefixer({browsers: ['iOS >= 8', 'Android >= 4.1']}), precss];
+    plugins: [
+        new AssetsPlugin({
+            filename: 'build/webpack-assets.js',
+            processOutput: function (assets) {
+                return 'window.WEBPACK_ASSETS = ' + JSON.stringify(assets);
+            }
+        })
+    ],
+    devServer: {
+        proxy: {
+            '/api/*': {
+                target: 'http://localhost:8082',
+                secure: false
+            }
+        }
     }
 };
+
+module.exports = config;

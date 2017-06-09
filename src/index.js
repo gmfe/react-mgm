@@ -1,5 +1,4 @@
 import Flex from './component/flex';
-import Util from 'gm-util';
 import Textarea from './component/textarea';
 import NProgress from './component/nprogress';
 import Mask from './component/mask';
@@ -11,21 +10,21 @@ import Header from './component/header';
 import Storage from './component/storage';
 import Slider from './component/slider';
 import Popup from './component/popup';
-import SearchBar from './component/search.bar';
+import SearchBar from './component/searc_bar';
 import Square from './component/square';
-import LazyImg from './component/lazy.img';
+import LazyImg from './component/lazy_img';
 import Dialog from './component/dialog';
-import ScrollIntoView from './component/scroll.into.view';
-import CursorFix from './component/cursor.fix';
+import ScrollIntoView from './component/scroll_into_view';
+import CursorFix from './component/cursor_fix';
 import Select from './component/select';
-import Droper from './component/droper';
+import Dropper from './component/dropper';
 import Trigger from './component/trigger';
 import Tooltip from './component/tooltip';
-import PreviewImage from './component/preview.image';
+import PreviewImage from './component/preview_image';
 
 import './index.less';
 
-const ReactGMM = {
+export {
     Flex,
     Infinite,
     Textarea,
@@ -45,12 +44,8 @@ const ReactGMM = {
     ScrollIntoView,
     CursorFix,
     Select,
-    Droper,
+    Dropper,
     Trigger,
     Tooltip,
-    PreviewImage,
-    Util
+    PreviewImage
 };
-
-module.exports = ReactGMM;
-

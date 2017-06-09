@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, hashHistory, Link} from 'react-router';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import {
+    HashRouter as Router,
+    Route,
+    Redirect,
+    Switch,
+    Link
+} from 'react-router-dom';
 import {
     Flex,
     Textarea,
@@ -19,153 +24,143 @@ import {
     Dialog,
     CursorFix,
     Select,
-    Droper,
+    Dropper,
     Trigger,
     Tooltip,
     PreviewImage
 } from './../src/index';
-import _ from 'underscore';
+import _ from 'lodash';
+import createHistory from 'history/createHashHistory';
 
 import '../node_modules/gm-mfont/iconfont.css';
-// import './index.less';
+import './index.less';
 
-const App = React.createClass({
-    render(){
-        const action = this.props.location.action;
-        let transitionName = 'page';
-        // REPLEASE
-        if (action === 'PUSH') {
-            transitionName = 'page-r2l';
-        } else if (action === 'POP') {
-            transitionName = 'page-l2r';
-        }
-        return (
-            <ReactCSSTransitionGroup
-                component="div"
-                transitionName={transitionName}
-                transitionEnterTimeout={200}
-                transitionLeaveTimeout={200}
-            >
-                {React.cloneElement(this.props.children, {
-                    key: this.props.location.pathname
-                })}
-            </ReactCSSTransitionGroup>
-        );
+let history = createHistory();
+
+
+class App extends React.Component {
+    render() {
+        return React.cloneElement(this.props.children, {
+            key: this.props.location.pathname
+        });
     }
-});
+}
 
-const Home = React.createClass({
-    getInitialState(){
-        return {
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             left: false
         };
-    },
-    render(){
+    }
+
+    render() {
         return (
-            <Page header={<Header title="React MGM" history={hashHistory}></Header>} tabbar={this.renderTabbar()}>
+            <Page header={<Header title="React MGM" history={history}/>} tabbar={this.renderTabbar()}>
                 <h2>React MGM</h2>
                 <div className="weui_cells_title">CSS</div>
                 <div className="weui_cells weui_cells_access">
                     <a href="http://weui.github.io/weui/#/" target="_blank" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">WEUI</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </a>
                     <a href="http://gmfe.github.io/gm-mfont/demo.html" target="_blank" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">icon</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </a>
                     <Link to="/theme" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">theme</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/gap" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">gap</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/tabs" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">tabs</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                 </div>
                 <div className="weui_cells_title">Component</div>
                 <div className="weui_cells weui_cells_access">
                     <Link to="/flex" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">flex</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/textarea" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">textarea</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/toast" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">toast</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/loading" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">loading</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/nprogress" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">nprogress</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/infinite" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">infinite</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/page" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">page</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/slider" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">slider</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/popup" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">popup</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/searchbar" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">search bar</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/square" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">square</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/lazyimg" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">lazy img</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/dialog" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">dialog</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/cursorfix" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">cursorfix</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/select" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">select</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
-                    <Link to="/droper" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">droper</div>
-                        <div className="weui_cell_ft"></div>
+                    <Link to="/dropper" className="weui_cell">
+                        <div className="weui_cell_bd weui_cell_primary">dropper</div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/tooltip" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">tooltip</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                     <Link to="/previewimage" className="weui_cell">
                         <div className="weui_cell_bd weui_cell_primary">preview image</div>
-                        <div className="weui_cell_ft"></div>
+                        <div className="weui_cell_ft"/>
                     </Link>
                 </div>
             </Page>
         );
-    },
-    renderTabbar(){
+    }
+
+    renderTabbar() {
         return (
             <div className="weui_tabbar">
                 <a href="javascript:;" className="weui_tabbar_item weui_bar_item_on">
@@ -195,28 +190,29 @@ const Home = React.createClass({
             </div>
         );
     }
-});
+}
 
-const ThemeWrap = React.createClass({
-    render(){
+
+class ThemeWrap extends React.Component {
+    render() {
         return (
             <Page white>
                 <div className="color">
                     <h3>色系</h3>
                     <div>
-                        <span className="strip default"></span>默认字体色
+                        <span className="strip default"/>默认字体色
                     </div>
                     <div>
-                        <span className="strip primary"></span>主色
+                        <span className="strip primary"/>主色
                     </div>
                     <div>
-                        <span className="strip warn"></span>危险色
+                        <span className="strip warn"/>危险色
                     </div>
                     <div>
-                        <span className="strip desc"></span>辅助色
+                        <span className="strip desc"/>辅助色
                     </div>
                     <div>
-                        <span className="strip border"></span>边框色
+                        <span className="strip border"/>边框色
                     </div>
                 </div>
                 <div className="bg">
@@ -284,12 +280,12 @@ const ThemeWrap = React.createClass({
                             <p className="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
                         </div>
                     </div>
-                    <a href="javascript:void(0);" className="weui_panel_ft">查看更多</a>
+                    <a href="javascript:;" className="weui_panel_ft">查看更多</a>
                 </div>
             </Page>
         );
     }
-});
+}
 
 class FlexWrap extends React.Component {
     render() {
@@ -397,8 +393,8 @@ class FlexWrap extends React.Component {
     }
 }
 
-const GapWrap = React.createClass({
-    render(){
+class GapWrap extends React.Component {
+    render() {
         return (
             <Page white>
                 <h2>gap</h2>
@@ -427,44 +423,49 @@ const GapWrap = React.createClass({
             </Page>
         );
     }
-});
+}
 
-const TextareaWrap = React.createClass({
-    getInitialState(){
-        return {
+class TextareaWrap extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             value: 'a\na'
         };
-    },
-    render(){
+        this.handleChange = ::this.handleChange;
+    }
+
+    render() {
         return (
             <Page>
                 <h2>textarea</h2>
                 <hr/>
                 固定高度
                 <Textarea value={this.state.value} onChange={this.handleChange}
-                          wrapProps={{style: {maxHeight: '6.4em'}}}></Textarea>
+                          wrapProps={{style: {maxHeight: '6.4em'}}}/>
                 原生textarea不能随内容变高。
-                <Textarea value={this.state.value} onChange={this.handleChange}></Textarea>
+                <Textarea value={this.state.value} onChange={this.handleChange}/>
             </Page>
         );
-    },
-    handleChange(event){
+    }
+
+    handleChange(event) {
         this.setState({
             value: event.target.value
         });
     }
-});
+}
 
-const ToastWrap = React.createClass({
-    render(){
+class ToastWrap extends React.Component {
+    render() {
         return (
             <Page white>
                 <h2>toast</h2>
                 <button className="weui_btn weui_btn_primary weui_btn_mini" onClick={this.handleToast}>Toast</button>
             </Page>
         );
-    },
-    handleToast(){
+    }
+
+    handleToast() {
         // Toast.tip('tip');
         Toast.success({
             time: 2000,
@@ -480,22 +481,21 @@ const ToastWrap = React.createClass({
         // Toast.danger('danger');
         // Toast.loading('loading');
     }
-});
+}
 
-const LoadingWrap = React.createClass({
-    render(){
+class LoadingWrap extends React.Component {
+    render() {
         return (
             <Page white>
                 <h2>loading</h2>
-                <Loading></Loading>
+                <Loading/>
             </Page>
         );
     }
-});
+}
 
-
-const NProgressWrap = React.createClass({
-    render(){
+class NProgressWrap extends React.Component {
+    render() {
         return (
             <Page white>
                 <h2>nprogress</h2>
@@ -503,28 +503,33 @@ const NProgressWrap = React.createClass({
                 <button className="weui_btn weui_btn_default weui_btn_mini" onClick={this.handleDone}>done</button>
             </Page>
         );
-    },
-    handleStart(){
+    }
+
+    handleStart() {
         NProgress.start();
-    },
-    handleDone(){
+    }
+
+    handleDone() {
         NProgress.done();
     }
-});
+}
 
-const InfiniteWrap = React.createClass({
-    getInitialState(){
-        return {
-            done: false
-        };
-    },
-    componentDidMount(){
-        ReactDOM.findDOMNode(this.refs.infinite).scrollTop = 200;
-    },
-    render(){
+class InfiniteWrap extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {done: false};
+        this.handleBottom = ::this.handleBottom;
+    }
+
+    componentDidMount() {
+        ReactDOM.findDOMNode(this.refInfinite).scrollTop = 200;
+    }
+
+    render() {
         return (
             <Page white>
-                <Infinite ref="infinite" done={this.state.done} onBottom={this.handleBottom} style={{height: '100%'}}>
+                <Infinite ref={ref => this.refInfinite = ref} done={this.state.done} onBottom={this.handleBottom}
+                          style={{height: '100%'}}>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
@@ -555,27 +560,31 @@ const InfiniteWrap = React.createClass({
                 </Infinite>
             </Page>
         );
-    },
-    handleBottom(){
-        var me = this;
+    }
+
+    handleBottom() {
         return new Promise(resolve => {
             setTimeout(() => {
-                me.setState({
+                this.setState({
                     done: true
                 });
                 resolve();
             }, 2000);
         });
     }
-});
+}
 
-const PageWrap = React.createClass({
-    getInitialState(){
-        return {
+class PageWrap extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             show: false
         };
-    },
-    render(){
+        this.handleOtherPage = ::this.handleOtherPage;
+        this.handleClose = ::this.handleClose;
+    }
+
+    render() {
         return (
             <Page white>
                 <h2>page</h2>
@@ -593,21 +602,23 @@ const PageWrap = React.createClass({
                 )}
             </Page>
         );
-    },
-    handleOtherPage(){
-        this.setState({
-            show: !this.state.show
-        });
-    },
-    handleClose(){
+    }
+
+    handleOtherPage() {
         this.setState({
             show: !this.state.show
         });
     }
-});
 
-var SliderWrap = React.createClass({
-    render: function () {
+    handleClose() {
+        this.setState({
+            show: !this.state.show
+        });
+    }
+}
+
+class SliderWrap extends React.Component {
+    render() {
         const style = {
             background: '#71B5DE',
             height: '5em',
@@ -626,12 +637,12 @@ var SliderWrap = React.createClass({
                 <Slider>
                     <div className="border" style={style}>1</div>
                 </Slider>
-    
+
                 <Slider flagInner>
                     <div className="border" style={style}>1</div>
                     <div style={style}>2</div>
                 </Slider>
-    
+
                 <Slider enableAutoSlide>
                     <div className="border" style={style}>1</div>
                     <div style={style}>2</div>
@@ -641,10 +652,10 @@ var SliderWrap = React.createClass({
             </div>
         );
     }
-});
+}
 
-var TabsWrap = React.createClass({
-    render(){
+class TabsWrap extends React.Component {
+    render() {
         return (
             <div>
                 <div className="tabs">
@@ -661,16 +672,24 @@ var TabsWrap = React.createClass({
             </div>
         );
     }
-});
+}
 
-var PopupWrap = React.createClass({
-    getInitialState(){
-        return {
+class PopupWrap extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             show: false,
             show2: false
         };
-    },
-    render(){
+
+        this.handleShow = ::this.handleShow;
+        this.handleShow2 = ::this.handleShow2;
+        this.handleShow3 = ::this.handleShow3;
+        this.handleChange = ::this.handleChange;
+        this.handleChange2 = ::this.handleChange2;
+    }
+
+    render() {
         return (
             <Page>
                 <button className="weui_btn weui_btn_primary" onClick={this.handleShow}>open popup left</button>
@@ -711,44 +730,55 @@ var PopupWrap = React.createClass({
                 <div>asdf</div>
             </Page>
         );
-    },
-    handleShow(){
+    }
+
+    handleShow() {
         this.setState({
             show: !this.state.show
         });
-    },
-    handleShow2(){
+    }
+
+    handleShow2() {
         this.setState({
             show2: !this.state.show2
         });
-    },
-    handleShow3(){
+    }
+
+    handleShow3() {
         Popup.render({
             left: true,
             children: 'adfaf',
             onChange: Popup.hide
         });
-    },
-    handleChange(show){
+    }
+
+    handleChange(show) {
         this.setState({
             show
         });
-    },
-    handleChange2(show2){
+    }
+
+    handleChange2(show2) {
         this.setState({
             show2
         });
     }
-});
+}
 
-var SearchBarWrap = React.createClass({
-    getInitialState(){
-        return {
+
+class SearchBarWrap extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
             defaultFocus: false,
             value: ''
         };
-    },
-    render(){
+
+        this.handleChange = ::this.handleChange;
+    }
+
+    render() {
         return (
             <Page>
                 <SearchBar
@@ -773,29 +803,34 @@ var SearchBarWrap = React.createClass({
                 />
             </Page>
         );
-    },
-    handleFocus(){
+    }
+
+    handleFocus() {
         console.log('focus');
-    },
-    handleBlur(){
+    }
+
+    handleBlur() {
         console.log('blur');
-    },
-    handleChange(value){
+    }
+
+    handleChange(value) {
         this.setState({
             value
         });
-    },
-    handleOK(){
+    }
+
+    handleOK() {
         console.log('ok');
-    },
-    handleCancel(){
+    }
+
+    handleCancel() {
         console.log('cancel');
     }
-});
+}
 
 
-var SquareWrap = React.createClass({
-    render(){
+class SquareWrap extends React.Component {
+    render() {
         return (
             <Page>
                 <div style={{width: '50%'}}>
@@ -806,28 +841,27 @@ var SquareWrap = React.createClass({
             </Page>
         );
     }
-});
+}
 
-
-var LazyImgWrap = React.createClass({
-    render(){
+class LazyImgWrap extends React.Component {
+    render() {
         return (
             <Page className="lazy-img-wrap">
                 <LazyImg
                     placeholder={'https://placeholdit.imgix.net/~text?txtsize=23&bg=f7f7f7&txt=loading&w=250&h=250'}
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
-                <div style={{height: '600px'}}></div>
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/>
+                <div style={{height: '600px'}}/>
                 <LazyImg
                     placeholder={'https://placeholdit.imgix.net/~text?txtsize=23&bg=f7f7f7&txt=loading&w=250&h=250'}
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/>
                 <LazyImg
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/>
                 <LazyImg
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"></LazyImg>
+                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/>
             </Page>
         );
     }
-});
+}
 
 class DialogWrap extends React.Component {
     constructor(props) {
@@ -945,15 +979,15 @@ class SelectWrap extends React.Component {
         this.state = {
             show: false,
             data: [
-                {value: 1, name: '深圳'}
-                // {value: 2, name: '罗湖'},
-                // {value: 3, name: '罗湖'},
-                // {value: 4, name: '罗湖'},
-                // {value: 5, name: '罗湖'},
-                // {value: 6, name: '罗湖'},
-                // {value: 7, name: '罗湖'},
-                // {value: 8, name: '罗湖'},
-                // {value: 9, name: '罗湖'}
+                {value: 1, name: '深圳'},
+                {value: 2, name: '罗湖'},
+                {value: 3, name: '罗湖'},
+                {value: 4, name: '罗湖'},
+                {value: 5, name: '罗湖'},
+                {value: 6, name: '罗湖'},
+                {value: 7, name: '罗湖'},
+                {value: 8, name: '罗湖'},
+                {value: 9, name: '罗湖'}
             ],
             value: null
         };
@@ -988,25 +1022,27 @@ class SelectWrap extends React.Component {
     }
 }
 
-class DroperWrap extends React.Component {
+class DropperWrap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             img: ''
         };
         this.lrz = null;
+
+        this.handleDrop = ::this.handleDrop;
     }
 
     render() {
         return (
             <div>
-                <Droper onDrop={::this.handleDrop}>
+                <Dropper onDrop={this.handleDrop}>
                     默认选择图片样式
-                </Droper>
+                </Dropper>
 
-                <Droper className="border">
+                <Dropper className="border">
                     <button className="weui_btn weui_btn_primary">自定义选择图片</button>
-                </Droper>
+                </Dropper>
 
                 <div>
                     原图
@@ -1201,38 +1237,47 @@ class PreviewImageWrap extends React.Component {
     }
 }
 
-const Root = React.createClass({
-    render(){
-        return (
-            <Router history={hashHistory}>
-                <Route path="/" component={App}>
-                    <IndexRoute component={Home}/>
-                    <Route path="theme" component={ThemeWrap}/>
-                    <Route path="gap" component={GapWrap}/>
-                    <Route path="flex" component={FlexWrap}/>
-                    <Route path="textarea" component={TextareaWrap}/>
-                    <Route path="toast" component={ToastWrap}/>
-                    <Route path="loading" component={LoadingWrap}/>
-                    <Route path="nprogress" component={NProgressWrap}/>
-                    <Route path="infinite" component={InfiniteWrap}/>
-                    <Route path="page" component={PageWrap}/>
-                    <Route path="slider" component={SliderWrap}/>
-                    <Route path="tabs" component={TabsWrap}/>
-                    <Route path="popup" component={PopupWrap}/>
-                    <Route path="searchbar" component={SearchBarWrap}/>
-                    <Route path="square" component={SquareWrap}/>
-                    <Route path="lazyimg" component={LazyImgWrap}/>
-                    <Route path="dialog" component={DialogWrap}/>
-                    <Route path="cursorfix" component={CursorFixWrap}/>
-                    <Route path="select" component={SelectWrap}/>
-                    <Route path="droper" component={DroperWrap}/>
-                    <Route path="trigger" component={TriggerWrap}/>
-                    <Route path="tooltip" component={TooltipWrap}/>
-                    <Route path="previewimage" component={PreviewImageWrap}/>
-                </Route>
-            </Router>
-        );
-    }
-});
+
+const routeMap = {
+    theme: ThemeWrap,
+    gap: GapWrap,
+    flex: FlexWrap,
+    textarea: TextareaWrap,
+    toast: ToastWrap,
+    loading: LoadingWrap,
+    nprogress: NProgressWrap,
+    infinite: InfiniteWrap,
+    page: PageWrap,
+    slider: SliderWrap,
+    tabs: TabsWrap,
+    popup: PopupWrap,
+    searchbar: SearchBarWrap,
+    square: SquareWrap,
+    lazyimg: LazyImgWrap,
+    dialog: DialogWrap,
+    cursorfix: CursorFixWrap,
+    select: SelectWrap,
+    dropper: DropperWrap,
+    trigger: TriggerWrap,
+    tooltip: TooltipWrap,
+    previewimage: PreviewImageWrap
+};
+
+const Root = () => (
+    <Router>
+        <Route path="/" component={(props) => (
+            <App {...props}>
+                <Switch>
+                    <Route exact path="/" render={() => <Redirect from="/" to="/home"/>}/>
+                    <Route exact path="/home" component={Home}/>
+                    {_.map(routeMap, (v, k) => (
+                        <Route key={k} exact path={'/' + k} component={v}/>
+                    ))}
+                </Switch>
+            </App>
+        )}>
+        </Route>
+    </Router>
+);
 
 ReactDOM.render(<Root/>, window.document.getElementById('appContainer'));
