@@ -1,0 +1,7 @@
+.idea
+.happypack
+/build
+/demo
+/deploy
+/docs
+.DS_Store
