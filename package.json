@@ -58,7 +58,7 @@
     "lodash": "^4.17.4",
     "lrz": "^4.9.36",
     "path": "^0.12.7",
-    "postcss-loader": "^0.8.2",
+    "postcss-loader": "^2.0.5",
     "precss": "^1.4.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
