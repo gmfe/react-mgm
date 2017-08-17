@@ -17,6 +17,7 @@ import {
     Infinite,
     Header,
     Slider,
+    SliderLess,
     Popup,
     SearchBar,
     Square,
@@ -618,6 +619,11 @@ class PageWrap extends React.Component {
 }
 
 class SliderWrap extends React.Component {
+
+    handleChange(index) {
+        console.log(index);
+    }
+
     render() {
         const style = {
             background: '#71B5DE',
@@ -629,7 +635,8 @@ class SliderWrap extends React.Component {
         };
         return (
             <div>
-                <Slider>
+                <div>Slider</div>
+                <Slider onChange={this.handleChange} flagType="line">
                     <div className="border" style={style}>1</div>
                     <div style={style}>2</div>
                 </Slider>
@@ -638,17 +645,40 @@ class SliderWrap extends React.Component {
                     <div className="border" style={style}>1</div>
                 </Slider>
 
-                <Slider flagInner>
+                <Slider flag="inner" activeFlagStyle={{
+                    background: 'red'
+                }}>
                     <div className="border" style={style}>1</div>
                     <div style={style}>2</div>
                 </Slider>
 
-                <Slider enableAutoSlide>
+                <Slider flag="none">
                     <div className="border" style={style}>1</div>
                     <div style={style}>2</div>
-                    <div style={style}>3</div>
-                    <div style={style}>4</div>
                 </Slider>
+
+                <Slider enableAutoSlide slideTimeKey="lalala">
+                    <div className="border" style={style}>1</div>
+                    <div className="border" style={style}>2</div>
+                    <div className="border" style={style}>3</div>
+                    <div className="border" style={style}>4</div>
+                </Slider>
+
+                <Slider enableAutoSlide slideTimeKey="lalala">
+                    <div className="border" style={style}>1</div>
+                    <div className="border" style={style}>2</div>
+                    <div className="border" style={style}>3</div>
+                    <div className="border" style={style}>4</div>
+                </Slider>
+
+                <div>SliderLess</div>
+
+                <SliderLess enableAutoSlide>
+                    <div className="border" style={style}>1111111111111111111111111111111111</div>
+                    <div className="border" style={style}>22222222222222222222222222222222222</div>
+                    <div className="border" style={style}>33333333333333333333333333333333333</div>
+                    <div className="border" style={style}>444444444444444444444444444444444444</div>
+                </SliderLess>
             </div>
         );
     }

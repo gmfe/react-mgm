@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Mask from '../mask/index';
-import _ from 'lodash';
 
 class Popup extends React.Component {
     constructor(props) {
@@ -31,7 +30,7 @@ class Popup extends React.Component {
             'popup-bottom-auto-height': autoHeight
         }, className);
 
-        let s = _.assign({}, style);
+        let s = Object.assign({}, style);
         if (left && width) {
             s.width = width;
         } else if (bottom) {

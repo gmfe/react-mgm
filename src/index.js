@@ -9,6 +9,7 @@ import Infinite from './component/infinite';
 import Header from './component/header';
 import Storage from './component/storage';
 import Slider from './component/slider';
+import SliderLess from './component/slider_less';
 import Popup from './component/popup';
 import SearchBar from './component/searc_bar';
 import Square from './component/square';
@@ -36,6 +37,7 @@ export {
     Header,
     Storage,
     Slider,
+    SliderLess,
     Popup,
     SearchBar,
     Square,

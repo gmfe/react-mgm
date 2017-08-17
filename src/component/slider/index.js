@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import _ from 'lodash';
 import Flex from '../flex/index';
+import SliderFlag from '../slider_flag';
+import {timeSync} from 'gm-util';
 
 class Slider extends React.Component {
     constructor(props) {
@@ -16,33 +18,33 @@ class Slider extends React.Component {
             transition: false,
             x: 0
         };
-    
+
         this.swipeStart = ::this.swipeStart;
         this.swipeMove = ::this.swipeMove;
         this.swipeEnd = ::this.swipeEnd;
         this.setSliderWidth = ::this.setSliderWidth;
-        this.doAutoSlider = ::this.doAutoSlider;
-    
-        this.timer = null;
+        this.setAutoSlider = ::this.setAutoSlider;
+        this.doChange = ::this.doChange;
+
+        this.slideTimeKey = props.slideTimeKey || (Math.random() + '').slice(2);
         this.refSlider = null;
     }
-    
+
     componentWillReceiveProps(nextProps) {
         this.setState({
-            count: toString.call(nextProps.children) === '[object Array]' ? nextProps.children.length : 1
+            count: _.isArray(nextProps.children) ? nextProps.children.length : 1
         });
     }
-    
-    doAutoSlider() {
+
+    setAutoSlider() {
         const {autoSlideTime} = this.props;
-        clearInterval(this.timer);
-        this.timer = setInterval(() => {
-            console.log('interval');
+
+        timeSync.add(this.slideTimeKey, () => {
             let {dragging, x, sliderWidth, count} = this.state;
             if (dragging) {
                 return;
             }
-            
+
             x -= this.state.sliderWidth;
             if (x > 0) {
                 x = 0;
@@ -50,50 +52,63 @@ class Slider extends React.Component {
             if (x < -(sliderWidth * (count - 1))) {
                 x = 0;
             }
+
             this.setState({
                 transition: true,
                 dragging: false,
                 touchObject: null,
                 x
             });
+
+            this.doChange(x);
         }, autoSlideTime);
+
+        timeSync.start(this.slideTimeKey);
     }
-    
+
     componentWillMount() {
         if (this.props.enableAutoSlide) {
-            this.doAutoSlider();
+            this.setAutoSlider();
         }
     }
-    
+
     componentDidMount() {
-        this.setSliderWidth();
+        const sliderWidth = this.setSliderWidth();
         this.setCount();
+        this.setDefaultX(sliderWidth);
         window.addEventListener('resize', this.setSliderWidth);
     }
 
     componentWillUnmount() {
-        clearInterval(this.timer);
+        timeSync.clear(this.slideTimeKey);
         window.removeEventListener('resize', this.setSliderWidth);
     }
-    
-    setCount() {
+
+    setDefaultX(sliderWidth) {
+        const {defaultIndex} = this.props;
         this.setState({
-            count: toString.call(this.props.children) === '[object Array]' ? this.props.children.length : 1
+            x: -defaultIndex * sliderWidth
         });
     }
 
+    setCount() {
+        this.setState({
+            count: _.isArray(this.props.children) ? this.props.children.length : 1
+        });
+    }
 
     setSliderWidth() {
-        const slider = ReactDom.findDOMNode(this.refSlider);
+        const slider = ReactDOM.findDOMNode(this.refSlider);
         this.setState({
             sliderWidth: slider.offsetWidth
         });
+        return slider.offsetWidth;
     }
-    
+
     getX(event) {
         return event.touches !== undefined ? event.touches[0].pageX : event.clientX;
     }
-    
+
     swipeStart(event) {
         // event.preventDefault();
         this.setState({
@@ -104,47 +119,58 @@ class Slider extends React.Component {
                 x: this.getX(event)
             }
         });
+
+        // 复杂了
+        const {enableAutoSlide} = this.props;
+        if (enableAutoSlide) {
+            timeSync.stop(this.slideTimeKey);
+        }
     }
-    
+
     swipeMove(event) {
         // event.preventDefault();
         this.setState({
             dragging: true,
             transition: false,
-            touchObject: _.assign({}, this.state.touchObject, {
+            touchObject: Object.assign({}, this.state.touchObject, {
                 x: this.getX(event)
             })
         });
     }
-    
+
     swipeEnd(event) {
         event.preventDefault();
-        // if (!this.state.dragging) {
-        //     return;
-        // }
-        this.doAutoSlider();
-        
-        const to = this.state.touchObject;
+
+        const {enableAutoSlide} = this.props;
+        let {touchObject, x, sliderWidth, count} = this.state;
+
+        if (enableAutoSlide) {
+            timeSync.start(this.slideTimeKey);
+        }
+
+        const to = touchObject;
         const diff = to.x - to.startX;
-        let x = this.state.x;
         if (to && Math.abs(diff) > 50) {
             if (diff > 0) {
-                x += this.state.sliderWidth;
+                x += sliderWidth;
             } else {
-                x -= this.state.sliderWidth;
+                x -= sliderWidth;
             }
             if (x > 0) {
                 x = 0;
             }
-            if (x < -(this.state.sliderWidth * (this.state.count - 1))) {
-                x = -(this.state.sliderWidth * (this.state.count - 1));
+            if (x < -(sliderWidth * (count - 1))) {
+                x = -(sliderWidth * (count - 1));
             }
+
             this.setState({
                 transition: true,
                 dragging: false,
                 touchObject: null,
                 x
             });
+
+            this.doChange(x);
         } else {
             this.setState({
                 transition: true,
@@ -152,62 +178,56 @@ class Slider extends React.Component {
                 touchObject: null
             });
         }
-        
-        if (this.props.onChange) {
-            this.props.onChange(Math.abs(x / this.state.sliderWidth));
-        }
     }
-    
+
+    doChange(x) {
+        const {onChange} = this.props;
+        const {sliderWidth} = this.state;
+
+        onChange(Math.abs(x / sliderWidth));
+    }
+
     renderChild() {
-        let components = this.props.children;
-        
-        if (toString.call(this.props.children) !== '[object Array]') {
-            components = [this.props.children];
+        let {children} = this.props;
+
+        if (!_.isArray(children)) {
+            children = [children];
         }
-        return _.map(components, (value, i) => {
+
+        return _.map(children, (value, i) => {
             return React.cloneElement(value, {
-                style: _.assign({}, value.props.style, {width: '100%'}),
+                style: Object.assign({}, value.props.style, {width: '100%'}),
                 className: classNames('slider-cell flex flex-none', value.props.className),
                 key: i
             });
         });
     }
-    
-    renderFlag() {
-        return (
-            <Flex justifyCenter className="slider-flag">
-                {_.map(_.range(this.state.count), (value, i) => <span
-                    className={classNames({active: Math.abs(this.state.x / this.state.sliderWidth) === i})}
-                    key={i}/>)}
-            </Flex>
-        );
-    }
-    
+
     render() {
-        const to = this.state.touchObject;
-        let offset = to ? (to.x - to.startX + this.state.x) : this.state.x;
-        
+        const {count, x, sliderWidth, touchObject} = this.state;
+
+        let offset = touchObject ? (touchObject.x - touchObject.startX + x) : x;
+
         const {
             className,
-            flagInner,
-            enableAutoSlide, autoSlideTime, // eslint-disable-line
-            ...rest
+            flag,
+            flagType,
+            activeFlagStyle
         } = this.props;
         const cn = classNames({
             'slider-transition': this.state.transition
         }, className);
-        
+
         const style = {
             WebkitTransform: 'translate3d(' + offset + 'px, 0, 0)',
             transform: 'translate3d(' + offset + 'px, 0, 0)'
         };
-        
+
         return (
             <div className={classNames("slider", {
-                'slider-flag-inner': flagInner
+                'slider-flag-inner': flagType === 'inner'
             })}>
                 <Flex
-                    {...rest}
                     ref={ref => this.refSlider = ref}
                     className={cn}
                     onMouseDown={this.swipeStart}
@@ -222,21 +242,36 @@ class Slider extends React.Component {
                 >
                     {this.renderChild()}
                 </Flex>
-                {this.renderFlag()}
+                {flag !== 'none' && (
+                    <SliderFlag
+                        flag={flag}
+                        type={flagType}
+                        activeStyle={activeFlagStyle}
+                        count={count}
+                        index={Math.abs(x / sliderWidth)}
+                    />
+                )}
             </div>
         );
     }
 }
 
 Slider.propTypes = {
+    defaultIndex: PropTypes.number,
     onChange: PropTypes.func,
-    flagInner: PropTypes.bool,
+    flag: PropTypes.oneOf(['default', 'inner', 'none']),
+    flagType: PropTypes.oneOf(['dot', 'line']),
+    activeFlagStyle: PropTypes.object,
     enableAutoSlide: PropTypes.bool,
-    autoSlideTime: PropTypes.number
+    autoSlideTime: PropTypes.number,
+    slideTimeKey: PropTypes.string
 };
 
 Slider.defaultProps = {
-    flagInner: false,
+    defaultIndex: 0,
+    onChange: _.noop,
+    flag: 'default',
+    flagType: 'dot',
     enableAutoSlide: false,
     autoSlideTime: 5000
 };

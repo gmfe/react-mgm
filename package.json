@@ -1,6 +1,6 @@
 {
   "name": "react-mgm",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "description": "",
   "main": "src/index.js",
   "module": "src/index.js",
@@ -31,7 +31,7 @@
   "peerDependencies": {
     "classnames": "^2.2.5",
     "gm-mfont": "^1.1.5",
-    "gm-util": "^5.0.6",
+    "gm-util": "^5.2.1",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -51,7 +51,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.11.2",
     "gm-mfont": "^1.1.5",
-    "gm-util": "^5.0.6",
+    "gm-util": "^5.2.1",
     "husky": "^0.13.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",

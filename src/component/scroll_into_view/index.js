@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import _ from 'lodash';
 
 const iPhone = window.navigator.userAgent.indexOf('iPhone') > -1;
 
@@ -16,7 +17,7 @@ class ScrollIntoView extends React.Component {
     }
 
     componentWillMount() {
-        if (toString.call(this.props.children) !== '[object Object]') {
+        if (!_.isObject(this.props.children)) {
             console.error('There must be one and only one component');
         }
     }

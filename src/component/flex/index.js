@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import _ from 'lodash';
 import pureRenderDecorator from '../../pure.render.decorator';
 
 @pureRenderDecorator
@@ -51,7 +50,7 @@ class Flex extends React.Component {
             'flex-align-stretch': alignStretch
         }, className);
 
-        let s = _.assign({}, style);
+        let s = Object.assign({}, style);
         if (flex) {
             s.flex = (typeof flex === 'boolean') ? 1 : flex;
             s.WebkitFlex = (typeof flex === 'boolean') ? 1 : flex;

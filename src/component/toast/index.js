@@ -63,7 +63,7 @@ ToastStatics = {
                 children: options
             };
         }
-        options = _.assign({show: true}, options);
+        options = Object.assign({show: true}, options);
         ToastStatics._queue.push(options);
         return ToastStatics._render();
     },
@@ -73,7 +73,7 @@ ToastStatics = {
                 children: options
             };
         }
-        return ToastStatics.tip(_.assign({success: true}, options));
+        return ToastStatics.tip(Object.assign({success: true}, options));
     },
     info(options) {
         if (typeof options === 'string') {
@@ -81,7 +81,7 @@ ToastStatics = {
                 children: options
             };
         }
-        return ToastStatics.tip(_.assign({info: true}, options));
+        return ToastStatics.tip(Object.assign({info: true}, options));
     },
     warning(options) {
         if (typeof options === 'string') {
@@ -89,7 +89,7 @@ ToastStatics = {
                 children: options
             };
         }
-        return ToastStatics.tip(_.assign({warning: true}, options));
+        return ToastStatics.tip(Object.assign({warning: true}, options));
     },
     danger(options) {
         if (typeof options === 'string') {
@@ -97,7 +97,7 @@ ToastStatics = {
                 children: options
             };
         }
-        return ToastStatics.tip(_.assign({danger: true}, options));
+        return ToastStatics.tip(Object.assign({danger: true}, options));
     },
     loading(options) {
         if (typeof options === 'string') {
@@ -105,7 +105,7 @@ ToastStatics = {
                 children: options
             };
         }
-        return ToastStatics.tip(_.assign({loading: true}, options));
+        return ToastStatics.tip(Object.assign({loading: true}, options));
     }
 };
 
@@ -196,7 +196,8 @@ class Toast extends React.Component {
         );
     }
 }
-_.assign(Toast, ToastStatics);
+
+Object.assign(Toast, ToastStatics);
 
 Toast.propTypes = {
     onClick: PropTypes.func,
