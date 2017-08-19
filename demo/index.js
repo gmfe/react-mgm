@@ -664,20 +664,16 @@ class SliderWrap extends React.Component {
                     <div className="border" style={style}>4</div>
                 </Slider>
 
-                <Slider enableAutoSlide slideTimeKey="lalala">
-                    <div className="border" style={style}>1</div>
-                    <div className="border" style={style}>2</div>
-                    <div className="border" style={style}>3</div>
-                    <div className="border" style={style}>4</div>
-                </Slider>
-
                 <div>SliderLess</div>
 
-                <SliderLess enableAutoSlide>
+                <SliderLess enableAutoSlide slideTimeKey="aaaa">
                     <div className="border" style={style}>1111111111111111111111111111111111</div>
                     <div className="border" style={style}>22222222222222222222222222222222222</div>
-                    <div className="border" style={style}>33333333333333333333333333333333333</div>
-                    <div className="border" style={style}>444444444444444444444444444444444444</div>
+                </SliderLess>
+
+                <SliderLess enableAutoSlide slideTimeKey="aaaa">
+                    <div className="border" style={style}>1111111111111111111111111111111111</div>
+                    <div className="border" style={style}>22222222222222222222222222222222222</div>
                 </SliderLess>
             </div>
         );

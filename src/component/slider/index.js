@@ -23,7 +23,7 @@ class Slider extends React.Component {
         this.swipeMove = ::this.swipeMove;
         this.swipeEnd = ::this.swipeEnd;
         this.setSliderWidth = ::this.setSliderWidth;
-        this.setAutoSlider = ::this.setAutoSlider;
+        this.doAutoSlider = ::this.doAutoSlider;
         this.doChange = ::this.doChange;
 
         this.slideTimeKey = props.slideTimeKey || (Math.random() + '').slice(2);
@@ -36,51 +36,48 @@ class Slider extends React.Component {
         });
     }
 
-    setAutoSlider() {
-        const {autoSlideTime} = this.props;
-
-        timeSync.add(this.slideTimeKey, () => {
-            let {dragging, x, sliderWidth, count} = this.state;
-            if (dragging) {
-                return;
-            }
-
-            x -= this.state.sliderWidth;
-            if (x > 0) {
-                x = 0;
-            }
-            if (x < -(sliderWidth * (count - 1))) {
-                x = 0;
-            }
-
-            this.setState({
-                transition: true,
-                dragging: false,
-                touchObject: null,
-                x
-            });
-
-            this.doChange(x);
-        }, autoSlideTime);
-
-        timeSync.start(this.slideTimeKey);
-    }
-
-    componentWillMount() {
-        if (this.props.enableAutoSlide) {
-            this.setAutoSlider();
+    doAutoSlider() {
+        let {dragging, x, sliderWidth, count} = this.state;
+        if (dragging) {
+            return;
         }
+
+        x -= this.state.sliderWidth;
+        if (x > 0) {
+            x = 0;
+        }
+        if (x < -(sliderWidth * (count - 1))) {
+            x = 0;
+        }
+
+        this.setState({
+            transition: true,
+            dragging: false,
+            touchObject: null,
+            x
+        });
+
+        this.doChange(x);
     }
 
     componentDidMount() {
         const sliderWidth = this.setSliderWidth();
         this.setCount();
         this.setDefaultX(sliderWidth);
+
+        // 要在这里做，非componentWillMount。背景 SliderLess 和 timeSync 的缘故。
+        // SliderLess 每次onChange都换key。此时未来组件先 willMount， 前组件后WillUmmount。 结合 timeSync 看就出问题了。
+        const {autoSlideTime, enableAutoSlide} = this.props;
+        if (enableAutoSlide) {
+            timeSync.add(this.slideTimeKey, this.doAutoSlider, autoSlideTime);
+            timeSync.start(this.slideTimeKey);
+        }
+
         window.addEventListener('resize', this.setSliderWidth);
     }
 
     componentWillUnmount() {
-        timeSync.clear(this.slideTimeKey);
+        timeSync.remove(this.slideTimeKey, this.doAutoSlider);
         window.removeEventListener('resize', this.setSliderWidth);
     }
 
