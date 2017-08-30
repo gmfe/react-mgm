@@ -185,7 +185,6 @@ Dropper.propTypes = {
     onDropRejected: PropTypes.func,
     onDragEnter: PropTypes.func,
     onDragLeave: PropTypes.func,
-
     disableClick: PropTypes.bool,
     multiple: PropTypes.bool,
     accept: PropTypes.string

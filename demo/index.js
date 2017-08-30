@@ -710,7 +710,6 @@ class PopupWrap extends React.Component {
 
         this.handleShow = ::this.handleShow;
         this.handleShow2 = ::this.handleShow2;
-        this.handleShow3 = ::this.handleShow3;
         this.handleChange = ::this.handleChange;
         this.handleChange2 = ::this.handleChange2;
     }
@@ -720,7 +719,6 @@ class PopupWrap extends React.Component {
             <Page>
                 <button className="weui_btn weui_btn_primary" onClick={this.handleShow}>open popup left</button>
                 <button className="weui_btn weui_btn_primary" onClick={this.handleShow2}>open popup bottom</button>
-                <button className="weui_btn weui_btn_primary" onClick={this.handleShow3}>open popup static api</button>
                 <Popup left show={this.state.show} onChange={this.handleChange}>
                     asdfa
                 </Popup>
@@ -767,14 +765,6 @@ class PopupWrap extends React.Component {
     handleShow2() {
         this.setState({
             show2: !this.state.show2
-        });
-    }
-
-    handleShow3() {
-        Popup.render({
-            left: true,
-            children: 'adfaf',
-            onChange: Popup.hide
         });
     }
 
@@ -1061,7 +1051,7 @@ class DropperWrap extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="dropperWrap">
                 <Dropper onDrop={this.handleDrop}>
                     默认选择图片样式
                 </Dropper>
@@ -1071,11 +1061,11 @@ class DropperWrap extends React.Component {
                 </Dropper>
 
                 <div>
-                    原图
+                    <h4>原图</h4>
                     <img style={{width: '100%'}} src={this.state.img} alt=""/>
-
                 </div>
-                <div>压缩
+                <div>
+                    <h4>压缩</h4>
                     <img src={this.state.resizeImg ? this.state.resizeImg.base64 : ''} alt=""/>
                 </div>
             </div>

@@ -140,7 +140,7 @@ SearchBar.propTypes = {
     placeholder: PropTypes.string,
     onOK: PropTypes.func,
     onCancel: PropTypes.func,
-    OKBtn: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]) // 就没有onCancel 时间 了，传string则替换文本
+    OKBtn: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]) // 就没有 onCancel 事件了，传 string 则替换文本
 };
 
 export default SearchBar;

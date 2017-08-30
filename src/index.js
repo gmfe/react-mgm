@@ -11,7 +11,7 @@ import Storage from './component/storage';
 import Slider from './component/slider';
 import SliderLess from './component/slider_less';
 import Popup from './component/popup';
-import SearchBar from './component/searc_bar';
+import SearchBar from './component/search_bar';
 import Square from './component/square';
 import LazyImg from './component/lazy_img';
 import Dialog from './component/dialog';

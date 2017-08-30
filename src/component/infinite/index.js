@@ -86,8 +86,7 @@ class Infinite extends React.Component {
 }
 
 Infinite.defaultProps = {
-    onBottom: function () {
-    },
+    onBottom: function () {},
     bottomOffset: 50 + 50
 };
 
