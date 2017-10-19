@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {isElementOverViewport} from 'gm-util';
-import pureRenderDecorator from '../../pure.render.decorator';
+import pureRenderDecorator from '../../util/pure.render.decorator';
+import _ from 'lodash';
 
 @pureRenderDecorator
 class LazyImg extends React.Component {
@@ -14,32 +15,14 @@ class LazyImg extends React.Component {
         this.targetDom = null;
         this.timer = null;
 
-        this.onScroll = ::this.onScroll;
-    }
-
-    render() {
-        const {
-            className,
-            src,
-            placeholder,
-            delay, // eslint-disable-line
-            targetId, // eslint-disable-line
-            ...rest
-        } = this.props;
-        const cn = classNames('lazy-img', className);
-
-        return <img
-            {...rest}
-            ref={ref => this.refImg = ref}
-            className={cn}
-            src={this.state.show && src ? src : placeholder}
-        />;
+        this.debounceDoLazy = _.debounce(this.doLazy, props.delay).bind(this);
     }
 
     componentDidMount() {
-        this.targetDom = this.props.targetId ? window.document.getElementById(this.props.targetId) : window.document.getElementsByClassName('page-content')[0];
+        const {targetId} = this.props;
+        this.targetDom = targetId ? window.document.getElementById(targetId) : window.document.getElementsByClassName('page-content')[0];
         if (this.targetDom) {
-            this.targetDom.addEventListener('scroll', this.onScroll);
+            this.targetDom.addEventListener('scroll', this.debounceDoLazy);
             this.doLazy();
         }
     }
@@ -50,27 +33,34 @@ class LazyImg extends React.Component {
 
     removeListener() {
         if (this.targetDom) {
-            this.targetDom.removeEventListener('scroll', this.onScroll);
+            this.targetDom.removeEventListener('scroll', this.debounceDoLazy);
         }
-    }
-
-    onScroll() {
-        if (this.timer) {
-            clearTimeout(this.timer);
-        }
-        this.timer = setTimeout(() => {
-            this.doLazy();
-        }, this.props.delay);
     }
 
     doLazy() {
-        // 显示了
         if (isElementOverViewport(this.refImg)) {
             this.setState({
                 show: true
             });
             this.removeListener();
         }
+    }
+
+    render() {
+        const {
+            className,
+            src,
+            placeholder,
+            delay, targetId, // eslint-disable-line
+            ...rest
+        } = this.props;
+
+        return <img
+            {...rest}
+            ref={ref => this.refImg = ref}
+            className={classNames('lazy-img', className)}
+            src={this.state.show && src ? src : placeholder}
+        />;
     }
 }
 

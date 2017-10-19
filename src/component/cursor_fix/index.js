@@ -8,19 +8,22 @@ class CursorFix extends React.Component {
         this.handleClick = ::this.handleClick;
     }
 
-    render() {
-        const props = Object.assign({}, this.props, {
-            onClick: this.handleClick
-        });
-        delete props.component;
-        return React.createElement(this.props.component, props);
-    }
-
     handleClick(event) {
-        // 移动的的光标容易飘。click perventDefault 然后 focus 下可解决。 别问我为什么。
+        // 移动的的光标容易飘。click perventDefault 然后 focus 下可解决。
+        // 别问我为什么。
         event.preventDefault();
         event.target.focus();
         this.props.onClick && this.props.onClick(event);
+    }
+
+    render() {
+        const {
+            component,
+            ...rest
+        } = this.props;
+        return React.createElement(component, Object.assign(rest, {
+            onClick: this.handleClick
+        }));
     }
 }
 

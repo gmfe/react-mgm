@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Mask from '../mask/index';
 import _ from 'lodash';
-import pureRenderDecorator from '../../pure.render.decorator';
+import pureRenderDecorator from '../../util/pure.render.decorator';
 
 @pureRenderDecorator
 class Select extends React.Component {

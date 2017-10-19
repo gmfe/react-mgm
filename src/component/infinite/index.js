@@ -1,41 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Loading from '../loading/index';
 import Flex from '../flex/index';
+import _ from 'lodash';
+import {is} from 'gm-util';
 
-// 没有必要scu
-// mark 菜小蜜会单独获取和设置这里的 scrollTop。 如果结构变更请考虑沟通清楚评估后再变更。
 class Infinite extends React.Component {
     constructor(props) {
         super(props);
-        this.handleScroll = ::this.handleScroll;
+
         this.state = {
             loading: false
         };
         this.timer = null;
         this.scrollTop = 0;
+
+        this.handleScroll = ::this.handleScroll;
+        this.noLoading = ::this.noLoading;
     }
 
-    render() {
-        const {
-            className, children,
-            bottomOffset, onBottom, done, // eslint-disable-line
-            ...rest
-        } = this.props;
-        const cn = classNames('infinite', className);
-        return (
-            <div {...rest} className={cn} onScroll={this.handleScroll}>
-                {children}
-                <Flex justifyCenter alignCenter className="infinite-loading">
-                    {
-                        done ? (
-                            <Flex justifyCenter className="text-desc text-small">没有更多数据</Flex>
-                        ) : (this.state.loading && <Loading />)
-                    }
-                </Flex>
-            </div>
-        );
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.done) {
+            this.noLoading();
+        }
+    }
+
+    noLoading() {
+        this.setState({
+            loading: false
+        });
     }
 
     handleBottom() {
@@ -51,23 +44,11 @@ class Infinite extends React.Component {
 
         const result = this.props.onBottom();
         // 简单判断是否promise
-        if (result && result.then) {
-            result.then(() => {
-                this.setState({
-                    loading: false
-                });
-            }, () => {
-                this.setState({
-                    loading: false
-                });
-            });
+        if (is.promise(result)) {
+            result.then(this.noLoading, this.noLoading);
         } else {
-            // 假设要点时间
-            this.timer = setTimeout(() => {
-                this.setState({
-                    loading: false
-                });
-            }, 500);
+            // 假设要点时间 500
+            this.timer = setTimeout(this.noLoading, 500);
         }
     }
 
@@ -83,17 +64,40 @@ class Infinite extends React.Component {
         }
         this.scrollTop = event.target.scrollTop;
     }
+
+    render() {
+        const {
+            className, children, done,
+            bottomOffset, onBottom, // eslint-disable-line
+            ...rest
+        } = this.props;
+
+        const {loading} = this.state;
+
+        return (
+            <div
+                {...rest}
+                className={classNames('infinite', className)}
+                onScroll={this.handleScroll}
+            >
+                {children}
+                <Flex justifyCenter alignCenter className="text-center">
+                    {loading && <i className="weui-loading"/>}
+                    {done && <Flex justifyCenter className="text-desc text-small margin-top-12">没有更多数据</Flex>}
+                </Flex>
+            </div>
+        );
+    }
 }
 
 Infinite.defaultProps = {
-    onBottom: function () {
-    },
-    bottomOffset: 50 + 50
+    onBottom: _.noop,
+    bottomOffset: 20 + 50 // loading 高度 + 50
 };
 
 Infinite.propTypes = {
-    bottomOffset: PropTypes.number,
     onBottom: PropTypes.func.isRequired,
+    bottomOffset: PropTypes.number,
     done: PropTypes.bool
 };
 

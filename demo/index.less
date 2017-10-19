@@ -1,15 +1,17 @@
+@import "../node_modules/weui/src/style/weui.less";
 @import "../src/index.less";
 
 .strip {
   display: inline-block;
   width: 100px;
-  height: 10px;
+  height: 20px;
 }
 
 .color {
   .default {
     background: @defaultColor;
   }
+
   .primary {
     background: @primaryColor;
   }
@@ -19,12 +21,44 @@
   }
 
   .desc {
-    background: @descColor
+    background: @descColor;
+  }
+
+  .disabled {
+    background: @disabledColor;
   }
 
   .border {
     background: @borderColor;
   }
+
+  .red {
+    background: @redColor;
+  }
+
+  .coral {
+    background: #DD4F63;
+  }
+
+  .apricot {
+    background: #EA9958;
+  }
+
+  .mint {
+    background: #A4D3D1;
+  }
+
+  .teal {
+    background: #4EAEBB;
+  }
+
+  .arctic {
+    background: #626CAE;
+  }
+  .violet {
+    background: #564180;
+  }
+
 }
 
 .bg {

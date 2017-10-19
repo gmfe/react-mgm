@@ -1,46 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import pureRenderDecorator from '../../pure.render.decorator';
+import pureRenderDecorator from '../../util/pure.render.decorator';
 import _ from 'lodash';
 import Slide from '../slider/index';
 import Flex from '../flex/index';
-
-let previewImageContainerId = '_mgm_previewImage_container' + (Math.random() + '').slice(2);
-let previewImageContainer = window.document.getElementById(previewImageContainerId);
-
-if (!previewImageContainer) {
-    previewImageContainer = window.document.createElement('div');
-    previewImageContainer.className = 'mgm-previewImage';
-    previewImageContainer.id = previewImageContainerId;
-    window.document.body.appendChild(previewImageContainer);
-}
+import LayoutRoot from '../layout_root';
 
 let PreviewImageStatics = {
-    render(options){
+    render(options) {
         const popstate = () => {
-            previewImageContainer.removeChild(div);
+            LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP);
+
             window.removeEventListener('popstate', popstate);
         };
 
         window.addEventListener('popstate', popstate);
 
-        const div = window.document.createElement('div');
-        previewImageContainer.appendChild(div);
         options.show = true;
         options.onHide = () => {
             PreviewImageStatics.hide();
         };
         window.history.pushState({}, null);
-        ReactDOM.render(<PreviewImage {...options}/>, div);
+        LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <PreviewImage {...options}/>);
     },
-    hide(){
+    hide() {
         window.history.go(-1);
     }
 };
-
-const maxHeight = window.document.documentElement.clientHeight - 150;
 
 @pureRenderDecorator
 class PreviewImage extends React.Component {
@@ -61,9 +48,7 @@ class PreviewImage extends React.Component {
 
     handleClose(e) {
         e.preventDefault();
-        if (this.props.onHide) {
-            this.props.onHide();
-        }
+        this.props.onHide();
     }
 
     render() {
@@ -74,34 +59,30 @@ class PreviewImage extends React.Component {
             onHide, // eslint-disable-line
             ...rest
         } = this.props;
-        const cn = classNames('preview-image', className);
 
         if (!show) {
             return null;
         }
 
         return (
-            <Flex column justifyCenter {...rest} className={cn} onClick={this.handleClose}>
+            <Flex column justifyCenter {...rest} className={classNames('preview-image', className)}
+                  onClick={this.handleClose}>
                 <div className="preview-image-close">X</div>
                 <div className="preview-image-inner">
                     {images.length === 1 ? (
                         <Flex className="flex-align-center flex-justify-center">
-                            <img src={images[0].url} style={{
-                                maxHeight
-                            }}/>
+                            <img src={images[0].url}/>
                         </Flex>
                     ) : (
                         <Slide onChange={this.handleChange}>
                             {_.map(images, (v, i) => (
                                 <div key={i + v.url} className="flex-align-center flex-justify-center">
-                                    <img src={v.url} style={{
-                                        maxHeight
-                                    }}/>
+                                    <img src={v.url}/>
                                 </div>
                             ))}
                         </Slide>
                     )}
-                    <div className="text-center preview-image-name">
+                    <div className="text-center preview-image-name" style={{color: '#555'}}>
                         {images[this.state.index] && images[this.state.index].name}
                     </div>
                 </div>
@@ -113,7 +94,8 @@ class PreviewImage extends React.Component {
 Object.assign(PreviewImage, PreviewImageStatics);
 
 PreviewImage.defaultProps = {
-    show: false
+    show: false,
+    onHide: _.noop
 };
 
 PreviewImage.propTypes = {

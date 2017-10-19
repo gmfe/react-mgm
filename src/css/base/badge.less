@@ -1,0 +1,25 @@
+.badge {
+  .borderAllAfter();
+  font-size: 12px;
+  height: 15px;
+  line-height: 16px;
+  padding: 0px 6px;
+  display: inline-block;
+  &:after {
+    border-radius: 16px;
+  }
+}
+
+.badge-primary {
+  color: @primaryColor;
+  &:after {
+    border-color: @primaryColor;
+  }
+}
+
+.badge-apricot {
+  color: @apricotColor;
+  &:after {
+    border-color: @apricotColor;
+  }
+}

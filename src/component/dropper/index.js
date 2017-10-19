@@ -181,6 +181,7 @@ Dropper.defaultProps = {
 
 Dropper.propTypes = {
     onDrop: PropTypes.func,
+
     onDropAccepted: PropTypes.func,
     onDropRejected: PropTypes.func,
     onDragEnter: PropTypes.func,

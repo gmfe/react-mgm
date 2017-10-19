@@ -13,7 +13,8 @@ clone下来，npm install; npm start;
 ## 依赖
 - react
 - react-dom
-- underscore
+- react-addons-shallow-compare
+- lodash
 - classnames
 - weui(会一同打包进去，方便定制weui主题)
 - gm-mfont

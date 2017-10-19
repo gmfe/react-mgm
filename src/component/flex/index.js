@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import pureRenderDecorator from '../../pure.render.decorator';
+import pureRenderDecorator from '../../util/pure.render.decorator';
 
 @pureRenderDecorator
 class Flex extends React.Component {
@@ -9,7 +9,9 @@ class Flex extends React.Component {
         const {
             flex,
 
-            auto, none, width, height,
+            auto, none,
+
+            width, height,
 
             row, column,
 
@@ -70,8 +72,8 @@ Flex.propTypes = {
     flex: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     auto: PropTypes.bool,
     none: PropTypes.bool,
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    width: PropTypes.string,
+    height: PropTypes.string,
     row: PropTypes.bool,
     column: PropTypes.bool,
     wrap: PropTypes.bool,

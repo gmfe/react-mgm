@@ -59,6 +59,13 @@
   transform-origin: 0 100%;
 }
 
+.borderAllBefore() {
+  position: relative;
+  &:before {
+    .borderAll();
+  }
+}
+
 .borderAllAfter() {
   position: relative;
   &:after {
@@ -72,6 +79,14 @@
     .borderTop();
   }
 }
+
+.borderTopAfter() {
+  position: relative;
+  &:after {
+    .borderTop();
+  }
+}
+
 
 .borderLeftBefore() {
   position: relative;
@@ -98,6 +113,13 @@
   position: relative;
   &:after {
     .borderRight();
+  }
+}
+
+.borderBottomBefore() {
+  position: relative;
+  &:before {
+    .borderBottom();
   }
 }
 

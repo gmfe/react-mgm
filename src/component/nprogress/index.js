@@ -1,58 +1,41 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import LayoutRoot from '../layout_root';
 
-const containerId = '_mgm_nprogress_container' + (Math.random() + '').slice(2);
-let container = window.document.getElementById(containerId);
-if (!container) {
-    container = window.document.createElement('div');
-    container.className = 'nprogress-container';
-    container.id = containerId;
-    window.document.body.appendChild(container);
-}
-
+let timer = null;
+let key = null;
 const NProgressStatics = {
     start: function () {
-        ReactDOM.unmountComponentAtNode(container);
-        ReactDOM.render(<NProgress/>, container);
+        clearTimeout(timer);
+        key = Math.random();
+        LayoutRoot.setComponent(LayoutRoot.TYPE.NPROGRESS, <NProgress key={key}/>);
     },
     done: function () {
-        ReactDOM.render(<NProgress precent={100}/>, container);
-        setTimeout(function () {
-            ReactDOM.unmountComponentAtNode(container);
+        clearTimeout(timer);
+        LayoutRoot.setComponent(LayoutRoot.TYPE.NPROGRESS, <NProgress key={key} percent={100}/>);
+        timer = setTimeout(function () {
+            LayoutRoot.removeComponent(LayoutRoot.TYPE.NPROGRESS);
         }, 250);
     }
 };
 
 class NProgress extends React.Component {
-    static start = NProgressStatics.start;
-    static done = NProgressStatics.done;
-
     constructor(props) {
         super(props);
 
         this.state = {
-            precent: 0
+            percent: props.percent || 0
         };
 
         this.timer = null;
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.precent) {
+        if (nextProps.percent !== undefined) {
             clearTimeout(this.timer);
             this.setState({
-                precent: nextProps.precent
+                percent: nextProps.percent
             });
         }
-    }
-
-    render() {
-        const percent = 100 - this.state.precent;
-        return (
-            <div className="nprogress" style={{transform: "translate3d(-" + percent + "%, 0, 0)"}}>
-                <div className="nprogress-head"/>
-            </div>
-        );
     }
 
     componentDidMount() {
@@ -66,13 +49,24 @@ class NProgress extends React.Component {
     doInc() {
         this.timer = setTimeout(() => {
             this.setState({
-                precent: this.state.precent + (100 - this.state.precent) * 0.2
+                percent: this.state.percent + (100 - this.state.percent) * 0.2
             });
-            if (this.state.precent < 90) {
+            if (this.state.percent < 90) {
                 this.doInc();
             }
         }, 150);
     }
+
+    render() {
+        const percent = 100 - this.state.percent;
+        return (
+            <div className="nprogress" style={{transform: "translate3d(-" + percent + "%, 0, 0)"}}>
+                <div className="nprogress-head"/>
+            </div>
+        );
+    }
 }
+
+Object.assign(NProgress, NProgressStatics);
 
 export default NProgress;
