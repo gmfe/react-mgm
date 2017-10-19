@@ -1,5 +1,6 @@
 const path = require('path');
-const AssetsPlugin = require('assets-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const isPro = process.env.NODE_ENV === 'production';
 
 const config = {
     entry: {
@@ -9,8 +10,8 @@ const config = {
     },
     output: {
         path: path.join(__dirname, 'build'),
-        filename: '[name].[hash].js',
-        publicPath: '/react-mgm/build/'
+        filename: '[name].[hash:8].js',
+        publicPath: isPro ? '/react-mgm/build/' : '/'
     },
     module: {
         rules: [{
@@ -20,7 +21,7 @@ const config = {
             test: /\.(css|less)$/,
             use: [
                 'style-loader',
-                'css-loader?-autoprefixer',
+                'css-loader',
                 'postcss-loader',
                 'less-loader'
             ]
@@ -29,18 +30,16 @@ const config = {
             use: [{
                 loader: 'url-loader',
                 options: {
-                    limit: 1024,
+                    limit: 0,
                     name: 'fonts/[name].[ext]'
                 }
             }]
         }]
     },
     plugins: [
-        new AssetsPlugin({
-            filename: 'build/webpack-assets.js',
-            processOutput: function (assets) {
-                return 'window.WEBPACK_ASSETS = ' + JSON.stringify(assets);
-            }
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'index.template'
         })
     ],
     devServer: {

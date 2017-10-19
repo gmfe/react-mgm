@@ -1,4 +1,4 @@
-import shallowCompare from 'react/lib/shallowCompare';
+import shallowCompare from 'react-addons-shallow-compare';
 
 function shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
