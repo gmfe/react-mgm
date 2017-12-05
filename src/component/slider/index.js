@@ -135,9 +135,7 @@ class Slider extends React.Component {
         });
     }
 
-    swipeEnd(event) {
-        event.preventDefault();
-
+    swipeEnd() {
         const {enableAutoSlide} = this.props;
         let {touchObject, x, sliderWidth, count} = this.state;
 

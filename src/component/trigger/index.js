@@ -169,13 +169,13 @@ class Trigger extends React.Component {
         }
 
         return React.cloneElement(component, Object.assign({}, componentProps, {
-            className: classNames(component.props.className, 'gm-trigger'),
+            className: classNames(component.props.className, 'trigger'),
             children: [child, active ? React.createElement('div', {
                     key: 'popup',
                     ref: ref => this.refPopup = ref,
-                    className: classNames('gm-trigger-popup ', {
-                        'gm-trigger-popup-right': right,
-                        'gm-trigger-popup-top': top
+                className: classNames('trigger-popup ', {
+                    'trigger-popup-right': right,
+                    'trigger-popup-top': top
                     }),
                     style: popupStyle
                 }, popup) : null,

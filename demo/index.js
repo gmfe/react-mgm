@@ -4,15 +4,14 @@ import {
     HashRouter as Router,
     Route,
     Redirect,
-    Switch,
-    Link
+    Switch
 } from 'react-router-dom';
 import {
+    Button,
     Flex,
     Textarea,
     NProgress,
     Toast,
-    Loading,
     Page,
     Infinite,
     Header,
@@ -28,22 +27,44 @@ import {
     Dropper,
     Trigger,
     Tooltip,
-    PreviewImage
+    PreviewImage,
+    LayoutRoot,
+    Price,
+    Counter,
+    Cells, CellsTitle, Cell, CellBody, CellFooter, CellSwiped, CellSwipDeleteEdit
 } from './../src/index';
 import _ from 'lodash';
-import createHistory from 'history/createHashHistory';
+
+import { setCurrency } from '../src/util/currency';
 
 import '../node_modules/gm-mfont/iconfont.css';
 import './index.less';
 
-let history = createHistory();
-
-
 class App extends React.Component {
     render() {
-        return React.cloneElement(this.props.children, {
-            key: this.props.location.pathname
-        });
+        return (
+            <div>
+                {React.cloneElement(this.props.children, {
+                    key: this.props.location.pathname
+                })}
+                <LayoutRoot/>
+            </div>
+        );
+    }
+}
+
+class DemoWrap extends React.Component {
+    render() {
+        return (
+            <Page
+                infiniteLoader
+                ptrOnRefresh={resolve => setTimeout(() => resolve(), 50000)}
+            >
+                <div>
+                    asdfaf
+                </div>
+            </Page>
+        );
     }
 }
 
@@ -53,144 +74,198 @@ class Home extends React.Component {
         this.state = {
             left: false
         };
+
+        this.list = [[{
+            title: 'CSS',
+            list: [{
+                to: 'javascript:window.open("https://weui.io/")',
+                text: 'WEUI'
+            }, {
+                to: 'javascript:window.open("http://www.iconfont.cn/")',
+                text: 'icon'
+            },
+                'theme', 'border', 'gap', 'tabs', 'badge'
+            ]
+        }], [{
+            title: 'Component',
+            list: [
+                'button', 'flex', 'textarea', 'toast', 'nprogress',
+                'infinite', 'page', 'slider', 'popup', 'search',
+                'square', 'lazyimg', 'dialog', 'cursorfix', 'select',
+                'dropper', 'tooltip', 'previewimage', 'price', 'cell',
+                'counter'
+            ]
+        }]];
     }
 
     render() {
         return (
-            <Page header={<Header title="React MGM" history={history}/>} tabbar={this.renderTabbar()}>
-                <h2>React MGM</h2>
-                <div className="weui_cells_title">CSS</div>
-                <div className="weui_cells weui_cells_access">
-                    <a href="http://weui.github.io/weui/#/" target="_blank" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">WEUI</div>
-                        <div className="weui_cell_ft"/>
-                    </a>
-                    <a href="http://gmfe.github.io/gm-mfont/demo.html" target="_blank" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">icon</div>
-                        <div className="weui_cell_ft"/>
-                    </a>
-                    <Link to="/theme" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">theme</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/gap" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">gap</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/tabs" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">tabs</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
+            <Page header={<Header title={
+                <div className="inline-block">
+                    <Flex alignCenter>
+                        <img
+                            height="30px"
+                            src="https://avatars1.githubusercontent.com/u/14875414?s=200&v=4"
+                        />
+                        React MGM
+                    </Flex>
                 </div>
-                <div className="weui_cells_title">Component</div>
-                <div className="weui_cells weui_cells_access">
-                    <Link to="/flex" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">flex</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/textarea" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">textarea</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/toast" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">toast</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/loading" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">loading</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/nprogress" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">nprogress</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/infinite" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">infinite</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/page" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">page</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/slider" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">slider</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/popup" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">popup</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/searchbar" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">search bar</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/square" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">square</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/lazyimg" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">lazy img</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/dialog" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">dialog</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/cursorfix" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">cursorfix</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/select" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">select</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/dropper" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">dropper</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/tooltip" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">tooltip</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                    <Link to="/previewimage" className="weui_cell">
-                        <div className="weui_cell_bd weui_cell_primary">preview image</div>
-                        <div className="weui_cell_ft"/>
-                    </Link>
-                </div>
+            } left={<div/>}/>} tabbar={this.renderTabbar()}>
+                <Flex>
+                    {_.map(this.list, (l, i) => (
+                        <Flex column flex key={i} className="margin-8">
+                            {_.map(l, eList => (
+                                <div key={eList.title}>
+                                    <CellsTitle>{eList.title}</CellsTitle>
+                                    <Cells>
+                                        {_.map(eList.list, v => ( v.text ? (
+                                                <Cell key={v.text} href={v.to} access>
+                                                    <CellBody>{v.text}</CellBody>
+                                                    <CellFooter/>
+                                                </Cell>
+                                            ) : (
+                                                <Cell key={v} href={'#/' + v} access>
+                                                    <CellBody>{v}</CellBody>
+                                                    <CellFooter/>
+                                                </Cell>
+                                            )
+                                        ))}
+                                    </Cells>
+                                </div>
+                            ))}
+                        </Flex>
+                    ))}
+                </Flex>
             </Page>
         );
     }
 
     renderTabbar() {
         return (
-            <div className="weui_tabbar">
-                <a href="javascript:;" className="weui_tabbar_item weui_bar_item_on">
-                    <div className="weui_tabbar_icon">
+            <div className="weui-tabbar">
+                <a href="javascript:;" className="weui-tabbar__item weui-bar__item_on">
+                    <div className="weui-tabbar__icon">
                         <img src="https://bshop.guanmai.cn/static/app/img/nav11.png" alt=""/>
                     </div>
-                    <p className="weui_tabbar_label">全部菜品</p>
+                    <p className="weui-tabbar__label">全部菜品</p>
                 </a>
-                <a href="javascript:;" className="weui_tabbar_item">
-                    <div className="weui_tabbar_icon">
+                <a href="javascript:;" className="weui-tabbar__item">
+                    <div className="weui-tabbar__icon">
                         <img src="https://bshop.guanmai.cn/static/app/img/nav2.png" alt=""/>
                     </div>
-                    <p className="weui_tabbar_label">购物车</p>
+                    <p className="weui-tabbar__label">购物车</p>
                 </a>
-                <a href="javascript:;" className="weui_tabbar_item">
-                    <div className="weui_tabbar_icon">
+                <a href="javascript:;" className="weui-tabbar__item">
+                    <div className="weui-tabbar__icon">
                         <img src="https://bshop.guanmai.cn/static/app/img/nav3.png" alt=""/>
                     </div>
-                    <p className="weui_tabbar_label">我的订单</p>
+                    <p className="weui-tabbar__label">我的订单</p>
                 </a>
-                <a href="javascript:;" className="weui_tabbar_item">
-                    <div className="weui_tabbar_icon">
+                <a href="javascript:;" className="weui-tabbar__item">
+                    <div className="weui-tabbar__icon">
                         <img src="https://bshop.guanmai.cn/static/app/img/nav4.png" alt=""/>
                     </div>
-                    <p className="weui_tabbar_label">我的</p>
+                    <p className="weui-tabbar__label">我的</p>
                 </a>
             </div>
         );
     }
+}
+
+class CellWrap extends  React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleDelete = ::this.handleDelete;
+        this.handleEdit = ::this.handleEdit;
+
+        this.state = {
+            data: [{
+                id: 1,
+                text: '正文',
+                footer: '可删除'
+            }, {
+                in: 2,
+                text: '正文',
+                footer: '可删除|可编辑'
+            }]
+        };
+    }
+
+    handleDelete(data) {
+        console.log('delete', data);
+    }
+
+    handleEdit(data, name) {
+        console.log('edit: ', data, name);
+    }
+
+    render() {
+        const { data } = this.state;
+        return (
+            <Page>
+                <CellsTitle>仅正文（可点击）</CellsTitle>
+                <Cells>
+                    <Cell access>
+                        <CellBody>正文</CellBody>
+                        <CellFooter/>
+                    </Cell>
+                </Cells>
+                <CellsTitle>正文 & 辅助文字，辅助字体颜色为 descColor（可点击）</CellsTitle>
+                <Cells>
+                    <Cell access>
+                        <CellBody>正文</CellBody>
+                        <CellFooter className="text-desc">辅助文字</CellFooter>
+                    </Cell>
+                </Cells>
+
+                <CellsTitle>正文 & 可变辅助文字，辅助字体颜色为 defaultColor（可点击）</CellsTitle>
+                <Cells>
+                    <Cell access>
+                        <CellBody>正文</CellBody>
+                        <CellFooter className="text">可变辅助文字</CellFooter>
+                    </Cell>
+                </Cells>
+
+                <CellsTitle>正文 & 辅助文字，辅助字体颜色为 defaultColor（可点击）</CellsTitle>
+                <Cells>
+                    <Cell>
+                        <CellBody>正文</CellBody>
+                        <CellFooter className="text">辅助文字</CellFooter>
+                    </Cell>
+                </Cells>
+                <CellsTitle>可删除</CellsTitle>
+                <Cells>
+                    <CellSwiped
+                        key='1'
+                        bodyText={data[0].text}
+                        footerText={data[0].footer}
+                        onPress={()=>(console.log('hello world'))}
+                        right={[{
+                            text: '不想看',
+                            onPress: this.handleDelete.bind(this, data[0]),
+                            style: {
+                                background: 'red'
+                            }
+                        }]}
+                    />
+                </Cells>
+                <CellsTitle>可删除+重命名</CellsTitle>
+                <Cells>
+                    <CellSwipDeleteEdit
+                        key='2'
+                        onDelete={this.handleDelete}
+                        list={data[1]}
+                        bodyText={data[1].text}
+                        footerText={data[1].footer}
+                        onPress={()=>(console.log('hello world'))}
+                        onEdit={this.handleEdit}
+                    />
+                </Cells>
+            </Page>
+        );
+    }
+
 }
 
 
@@ -198,90 +273,119 @@ class ThemeWrap extends React.Component {
     render() {
         return (
             <Page white>
-                <div className="color">
+                <div className="color padding-12">
                     <h3>色系</h3>
                     <div>
-                        <span className="strip default"/>默认字体色
+                        <span className="strip default"/> 默认字体色
                     </div>
                     <div>
-                        <span className="strip primary"/>主色
+                        <span className="strip desc"/> 辅助字体色
                     </div>
                     <div>
-                        <span className="strip warn"/>危险色
+                        <span className="strip disabled"/> 不可用字体色
+                    </div>
+                    <hr/>
+                    <div>
+                        <span className="strip primary"/> 主色(覆盖weui的主色)
                     </div>
                     <div>
-                        <span className="strip desc"/>辅助色
+                        <span className="strip warn"/> 危险色(删除操作)
+                    </div>
+                    <hr/>
+                    <div>
+                        <span className="strip border"/> 边框色
                     </div>
                     <div>
-                        <span className="strip border"/>边框色
+                        <span className="strip red"/> 红色(价格 红点)
                     </div>
-                </div>
-                <div className="bg">
-                    <h3>背景</h3>
-                    两种:1 白色背景色
-                    <div className="default">2 默认背景色</div>
-                </div>
-                <div>
-                    <h3>边框</h3>
-                    <div className="border margin-5">
-                        border
-                    </div>
-                    <div className="border-bottom margin-5">
-                        border bottom
-                    </div>
-                    <div className="border-top margin-5">
-                        border top
-                    </div>
-                </div>
-                <div>
-                    <h3>1x 边框(用前请了解其原理)</h3>
-                    <div className="border-1px margin-5">
-                        border 1x
-                    </div>
-                    <div className="border-1px-bottom margin-5">
-                        border 1x bottom
-                    </div>
-                    <div className="border-1px-top margin-5">
-                        border 1x top
-                    </div>
-                </div>
-                <div>
-                    <h3>按钮(正常和不可点状态)</h3>
+                    <hr/>
                     <div>
-                        <button className="weui_btn weui_btn_primary active">primary</button>
-                        <button className="weui_btn weui_btn_primary weui_btn_disabled" disabled>warn</button>
+                        <span className="strip coral"/> 珊瑚红 Coral
                     </div>
                     <div>
-                        <button className="weui_btn weui_btn_warn">warn</button>
-                        <button className="weui_btn weui_btn_warn weui_btn_disabled" disabled>warn</button>
+                        <span className="strip apricot"/> 杏 Apricot
                     </div>
                     <div>
-                        <button className="weui_btn weui_btn_default">default</button>
-                        <button className="weui_btn weui_btn_default weui_btn_disabled" disabled>default</button>
+                        <span className="strip mint"/> 薄荷蓝 Mint
                     </div>
                     <div>
-                        <button className="weui_btn weui_btn_plain_primary">plain primary</button>
-                        <button className="weui_btn weui_btn_plain_default">plain default</button>
+                        <span className="strip teal"/> 蓝绿 Teal
+                    </div>
+                    <div>
+                        <span className="strip arctic"/> 青蓝 Arctic
+                    </div>
+                    <div>
+                        <span className="strip violet"/> 蓝紫 Violet
                     </div>
 
                 </div>
-                <div>
-                    <h3>input placeholder</h3>
-                    <input type="text" className="weui_input" placeholder="请输入xxxxx"/>
+                <div className="bg">
+                    <h3>背景</h3>
+                    两种:
+                    <div>1 白色背景色</div>
+                    <div className="default">2 默认背景色</div>
                 </div>
-                <div className="weui_panel weui_panel_access">
-                    <div className="weui_panel_hd">文字组合列表</div>
-                    <div className="weui_panel_bd">
-                        <div className="weui_media_box weui_media_text">
-                            <h4 className="weui_media_title">标题一</h4>
-                            <p className="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                        </div>
-                        <div className="weui_media_box weui_media_text">
-                            <h4 className="weui_media_title">标题二</h4>
-                            <p className="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                        </div>
-                    </div>
-                    <a href="javascript:;" className="weui_panel_ft">查看更多</a>
+                <div>
+                    <h3>按钮</h3>
+                    <button className="weui-btn weui-btn_primary">primary</button>
+                    <button className="weui-btn weui-btn_primary weui-btn_disabled" disabled>primary disabled</button>
+
+                    <button className="weui-btn weui-btn_warn">warn</button>
+                    <button className="weui-btn weui-btn_warn weui-btn_disabled" disabled>warn</button>
+
+                    <button className="weui-btn weui-btn_plain-primary">plain primary</button>
+                    <button className="weui-btn weui-btn_plain-default weui-btn_disabled" disabled>plain default</button>
+
+                    <h4 className="margin-top-12">通用按钮 size</h4>
+                    <button className="weui-btn weui-btn_plain-primary btn-default-size-sm">primary sm</button>
+                    <button className="weui-btn weui-btn_plain-primary btn-default-size">primary default</button>
+                    <button className="weui-btn weui-btn_plain-primary weui-btn_disabled btn-default-size-130" disabled>primary 130 width</button>
+                </div>
+            </Page>
+        );
+    }
+}
+
+class BorderWrap extends React.Component {
+    render() {
+        return (
+            <Page white>
+                <h3>边框</h3>
+                <div className="border margin-4">
+                    border
+                </div>
+                <div className="border-bottom margin-4">
+                    border bottom
+                </div>
+                <div className="border-top margin-4">
+                    border top
+                </div>
+
+                <h3>1x 边框(用前请了解其原理)</h3>
+                <div className="border-1px-before margin-4">
+                    border 1x
+                </div>
+                <div className="border-1px-bottom-after margin-4">
+                    border 1x bottom
+                </div>
+                <div className="border-1px-top-before margin-4">
+                    border 1x top
+                </div>
+            </Page>
+        );
+    }
+}
+
+class BadgeWrap extends React.Component {
+    render() {
+        return (
+            <Page className="padding-8">
+                <div className="badge badge-primary">
+                    ¥ 10086 / 斤
+                </div>
+                <br/>
+                <div className="badge badge-apricot">
+                    ¥ 10086 / 斤
                 </div>
             </Page>
         );
@@ -296,7 +400,7 @@ class FlexWrap extends React.Component {
                     <small><i>具体见代码容易理解</i></small>
                 </h2>
                 <hr/>
-                <div className="padding-15">
+                <div className="padding-12">
                     横向 默认 Flex
                     <Flex>
                         <Flex className="border">
@@ -310,83 +414,83 @@ class FlexWrap extends React.Component {
                         <Flex className="border">2</Flex>
                     </Flex>
                 </div>
-                <div className="padding-15">
+                <div className="padding-12">
                     不换行 默认 宽度会被压缩 FLex
                     <Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
                     </Flex>
                     换行 FLex wrap
                     <Flex wrap>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
                     </Flex>
                 </div>
-                <div className="padding-15">
-                    Flex width height 如果定了width/height则不能被压缩
+                <div className="padding-12">
+                    Flex width height 如果定了width|height则不能被压缩
                     <Flex>
-                        <Flex className="border" width={100}>100</Flex>
-                        <Flex className="border" width={100}>100</Flex>
-                        <Flex className="border" width={100}>100</Flex>
-                        <Flex className="border" width={100}>100</Flex>
+                        <Flex className="border" width={"100px"}>100px</Flex>
+                        <Flex className="border" width={"100px"}>100px</Flex>
+                        <Flex className="border" width={"100px"}>100px</Flex>
+                        <Flex className="border" width={"100px"}>100px</Flex>
                     </Flex>
                 </div>
-                <div className="padding-15">
+                <div className="padding-12">
                     主轴对齐方式 默认 Flex
                     <Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
                     </Flex>
                     主轴对齐方式 Flex justifyCenter
                     <Flex justifyCenter>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
                     </Flex>
                     主轴对齐方式 Flex justifyEnd
                     <Flex justifyEnd>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
                     </Flex>
                     主轴对齐方式 Flex justifyBetween
                     <Flex justifyBetween>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
                     </Flex>
                     主轴对齐方式 Flex justifyAround
                     <Flex justifyAround>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
-                        <Flex className="border" style={{width: 100}}>100</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
+                        <Flex className="border" style={{width: "100px"}}>100px</Flex>
                     </Flex>
                 </div>
-                <div className="padding-15">
+                <div className="padding-12">
                     交叉轴对齐 默认 Flex
                     <Flex>
-                        <Flex className="border" style={{width: 50}}>50 50</Flex>
-                        <Flex className="border" style={{width: 50, height: 100}}>50 100</Flex>
+                        <Flex className="border" style={{width: "50px"}}>50 50</Flex>
+                        <Flex className="border" style={{width: "50px", height: "100px"}}>50 100</Flex>
                     </Flex>
                     交叉轴对齐 Flex alignEnd
                     <Flex alignEnd>
-                        <Flex className="border" style={{width: 50}}>1<br/>2</Flex>
-                        <Flex className="border" style={{width: 50}}>1<br/>2<br/>3</Flex>
+                        <Flex className="border" style={{width: "50px"}}>1<br/>2</Flex>
+                        <Flex className="border" style={{width: "50px"}}>1<br/>2<br/>3</Flex>
                     </Flex>
                     交叉轴对齐 Flex alignCenter
                     <Flex alignCenter>
-                        <Flex className="border" style={{width: 50}}>1<br/>2</Flex>
-                        <Flex className="border" style={{width: 50}}>1<br/>2<br/>3</Flex>
+                        <Flex className="border" style={{width: "50px"}}>1<br/>2</Flex>
+                        <Flex className="border" style={{width: "50px"}}>1<br/>2<br/>3</Flex>
                     </Flex>
                     交叉轴对齐 Flex alignStretch
                     <Flex alignStretch>
-                        <Flex className="border" style={{width: 50}}>1<br/>2</Flex>
-                        <Flex className="border" style={{width: 50}}>1<br/>2<br/>3</Flex>
+                        <Flex className="border" style={{width: "50px"}}>1<br/>2</Flex>
+                        <Flex className="border" style={{width: "50px"}}>1<br/>2<br/>3</Flex>
                     </Flex>
                     交叉轴对齐 Flex alignBaseline
                     <Flex alignBaseline>
-                        <Flex className="border" style={{width: 50}}>1<br/>2</Flex>
-                        <Flex className="border padding-top-10" style={{width: 50}}>1<br/>2<br/>3</Flex>
+                        <Flex className="border" style={{width: "50px"}}>1<br/>2</Flex>
+                        <Flex className="border padding-top-8" style={{width: "50px"}}>1<br/>2<br/>3</Flex>
                     </Flex>
                 </div>
             </Page>
@@ -401,26 +505,144 @@ class GapWrap extends React.Component {
                 <h2>gap</h2>
                 <hr/>
                 <div>gap 即间距的，用来快速布局</div>
-                <div>有4种尺寸，分别是0 5 10 15</div>
+                <div>有 5 种尺寸，分别是0 4 8 12 16(px)</div>
                 <div>有以下形式：</div>
-                <div className="border padding-10">
-                    padding-10
+                <div className="border padding-8">
+                    padding-8
                 </div>
-                <div className="border padding-top-10">
-                    padding-top-10
+                <div className="border padding-top-8">
+                    padding-top-8
                 </div>
-                <div className="border padding-bottom-10">
-                    padding-bottom-10
+                <div className="border padding-bottom-8">
+                    padding-bottom-8
                 </div>
-                <div className="border padding-lr-10">
-                    padding-lr-10 lr表示左右
+                <div className="border padding-left-8">
+                    padding-left-8
                 </div>
-                <div className="border padding-tb-10">
-                    padding-tb-10
+                <div className="border padding-right-8">
+                    padding-right-8
+                </div>
+                <div className="border padding-lr-8">
+                    padding-lr-8 lr表示左右
+                </div>
+                <div className="border padding-tb-8">
+                    padding-tb-8 tb表示上下
                 </div>
                 <div>
-                    margin-x margin-top-x margin-bottom-x margin-lr-x margin-bt-x 同理
+                    margin-x margin-top-x margin-bottom-x margin-left-x margin-right-x margin-lr-x margin-tb-x 同理
                 </div>
+
+            </Page>
+        );
+    }
+}
+
+class PriceWrap extends React.Component {
+    constructor(props) {
+        super(props);
+        setCurrency('$');
+    }
+
+    render() {
+        return (
+            <div>
+                <h3>用法</h3>
+                <div className="margin-bottom-12">
+                    在入口调用 './src/util/setCurrency' 文件中的 setCurrency 方法。方法只接收一个参数，即货币符号。
+                    默认是为 ¥。
+                </div>
+                <div>&lt;Price&gt;100&lt;/Price&gt;</div>
+                <Price style={{"color": "red"}}>100</Price>
+            </div>
+        );
+    }
+}
+
+class CounterWrap extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleCountMinus = ::this.handleCountMinus;
+        this.handleCountPlus = ::this.handleCountPlus;
+        this.handleCountNumEdit = ::this.handleCountNumEdit;
+        this.handleCountInputBlur = ::this.handleCountInputBlur;
+
+        this.state = ({
+            amount: 9,
+            maxAmount: 999
+        });
+    }
+
+    handleCountMinus(amount) {
+        console.log('minus: ', amount);
+
+        this.setState({
+            amount: amount
+        });
+    }
+
+    handleCountPlus(amount) {
+        console.log('add: ', amount);
+
+
+        this.setState({
+            amount: amount
+        });
+    }
+
+    handleCountNumEdit(amount) {
+        console.log('edit: ', amount);
+        const { maxAmount } = this.state;
+
+        if (amount > maxAmount) {
+            amount = maxAmount;
+        }
+
+        this.setState({
+            amount: amount
+        });
+    }
+
+    handleCountInputBlur(amount) {
+        console.log('Blur: ', amount);
+
+        this.setState({
+            amount: amount
+        });
+    }
+
+    render() {
+        const { amount, maxAmount } = this.state;
+        const plusDisabled =  amount >= maxAmount;
+
+        return (
+            <div>
+                <Counter key='counter'
+                    onCountMinus={this.handleCountMinus}
+                    onCountPlus={this.handleCountPlus}
+                    onCountNumEdit={this.handleCountNumEdit}
+                    onCountInputBlur={this.handleCountInputBlur}
+                    amount={amount}
+                    isPlusDisabled={plusDisabled}
+                />
+            </div>
+        );
+    }
+}
+
+class ButtonWrap extends React.Component {
+    handleClick() {
+        console.log('click');
+        return new Promise(resolve => setTimeout(() => resolve('12'), 2000));
+    }
+
+    render() {
+        return (
+            <Page white>
+                <h2>Button 只封装了loading</h2>
+                <hr/>
+                loading 2s
+                <Button hasLoading className="weui-btn weui-btn_default" onClick={this.handleClick}>asdfa</Button>
             </Page>
         );
     }
@@ -457,39 +679,44 @@ class TextareaWrap extends React.Component {
 }
 
 class ToastWrap extends React.Component {
+    handleToast(type) {
+        if (type === 'success') {
+            Toast.success({
+                time: 2000,
+                children: (
+                    <div>
+                        <div>a</div>
+                        <div>b</div>
+                    </div>
+                )
+            });
+        } else {
+            Toast[type](type);
+        }
+    }
+
     render() {
         return (
             <Page white>
                 <h2>toast</h2>
-                <button className="weui_btn weui_btn_primary weui_btn_mini" onClick={this.handleToast}>Toast</button>
-            </Page>
-        );
-    }
-
-    handleToast() {
-        // Toast.tip('tip');
-        Toast.success({
-            time: 2000,
-            children: (
-                <div>
-                    <div>a</div>
-                    <div>b</div>
-                </div>
-            )
-        });
-        // Toast.info('我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们我们');
-        // Toast.warning('warning');
-        // Toast.danger('danger');
-        // Toast.loading('loading');
-    }
-}
-
-class LoadingWrap extends React.Component {
-    render() {
-        return (
-            <Page white>
-                <h2>loading</h2>
-                <Loading/>
+                <button className="weui-btn weui-btn_primary"
+                        onClick={this.handleToast.bind(this, 'tip')}>Toast tip
+                </button>
+                <button className="weui-btn weui-btn_primary"
+                        onClick={this.handleToast.bind(this, 'success')}>Toast success
+                </button>
+                <button className="weui-btn weui-btn_primary"
+                        onClick={this.handleToast.bind(this, 'info')}>Toast info
+                </button>
+                <button className="weui-btn weui-btn_primary"
+                        onClick={this.handleToast.bind(this, 'warning')}>Toast warning
+                </button>
+                <button className="weui-btn weui-btn_primary"
+                        onClick={this.handleToast.bind(this, 'danger')}>Toast danger
+                </button>
+                <button className="weui-btn weui-btn_primary"
+                        onClick={this.handleToast.bind(this, 'loading')}>Toast loading
+                </button>
             </Page>
         );
     }
@@ -500,18 +727,12 @@ class NProgressWrap extends React.Component {
         return (
             <Page white>
                 <h2>nprogress</h2>
-                <button className="weui_btn weui_btn_default weui_btn_mini" onClick={this.handleStart}>start</button>
-                <button className="weui_btn weui_btn_default weui_btn_mini" onClick={this.handleDone}>done</button>
+                <button className="weui-btn weui-btn_default weui-btn_mini" onClick={() => NProgress.start()}>start
+                </button>
+                <button className="weui-btn weui-btn_default weui-btn_mini" onClick={() => NProgress.done()}>done
+                </button>
             </Page>
         );
-    }
-
-    handleStart() {
-        NProgress.start();
-    }
-
-    handleDone() {
-        NProgress.done();
     }
 }
 
@@ -523,14 +744,29 @@ class InfiniteWrap extends React.Component {
     }
 
     componentDidMount() {
-        ReactDOM.findDOMNode(this.refInfinite).scrollTop = 200;
+        // ReactDOM.findDOMNode(this.refInfinite).scrollTop = 200;
+    }
+
+    handleBottom() {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                this.setState({
+                    done: true
+                });
+                resolve();
+            }, 2000);
+        });
     }
 
     render() {
         return (
             <Page white>
-                <Infinite ref={ref => this.refInfinite = ref} done={this.state.done} onBottom={this.handleBottom}
-                          style={{height: '100%'}}>
+                <Infinite
+                    ref={ref => this.refInfinite = ref}
+                    done={this.state.done}
+                    onBottom={this.handleBottom}
+                    style={{height: '100%'}}
+                >
                     <div>aaaaa</div>
                     <div>aaaaa</div>
                     <div>aaaaa</div>
@@ -562,17 +798,6 @@ class InfiniteWrap extends React.Component {
             </Page>
         );
     }
-
-    handleBottom() {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                this.setState({
-                    done: true
-                });
-                resolve();
-            }, 2000);
-        });
-    }
 }
 
 class PageWrap extends React.Component {
@@ -583,26 +808,6 @@ class PageWrap extends React.Component {
         };
         this.handleOtherPage = ::this.handleOtherPage;
         this.handleClose = ::this.handleClose;
-    }
-
-    render() {
-        return (
-            <Page white>
-                <h2>page</h2>
-                <hr/>
-                <div>
-                    everyway 每个页面都是Page
-                </div>
-
-                <button className="weui_btn weui_btn_primary" onClick={this.handleOtherPage}>showOtherPage</button>
-                {this.state.show && (
-                    <Page className="enter">
-                        adf
-                        <button className="weui_btn weui_btn_primary" onClick={this.handleClose}>close</button>
-                    </Page>
-                )}
-            </Page>
-        );
     }
 
     handleOtherPage() {
@@ -616,12 +821,36 @@ class PageWrap extends React.Component {
             show: !this.state.show
         });
     }
+
+    render() {
+        return (
+            <Page white>
+                <h2>page</h2>
+                <hr/>
+                <div>
+                    everyway 每个页面都是Page
+                </div>
+
+                <button className="weui-btn weui-btn_primary" onClick={this.handleOtherPage}>showOtherPage</button>
+                {this.state.show && (
+                    <Page className="enter">
+                        adf
+                        <button className="weui-btn weui-btn_primary" onClick={this.handleClose}>close</button>
+                    </Page>
+                )}
+            </Page>
+        );
+    }
 }
 
 class SliderWrap extends React.Component {
 
     handleChange(index) {
         console.log(index);
+    }
+
+    handleClick() {
+        console.log('click');
     }
 
     render() {
@@ -637,8 +866,12 @@ class SliderWrap extends React.Component {
             <div>
                 <div>Slider</div>
                 <Slider onChange={this.handleChange} flagType="line">
-                    <div className="border" style={style}>1</div>
-                    <div style={style}>2</div>
+                    <div className="border" style={style}>
+                        <div onClick={this.handleClick}>12312</div>
+                    </div>
+                    <div style={style}>
+                        <div onClick={this.handleClick}>2</div>
+                    </div>
                 </Slider>
 
                 <Slider>
@@ -715,18 +948,76 @@ class PopupWrap extends React.Component {
         this.handleChange2 = ::this.handleChange2;
     }
 
+
+    handleShow() {
+        this.setState({
+            show: !this.state.show
+        });
+    }
+
+    handleShow2() {
+        this.setState({
+            show2: !this.state.show2
+        });
+    }
+
+    handleShow3() {
+       Popup.render({
+           left: true,
+           children: <div>
+                        调用静态方法
+                    </div>
+       });
+    }
+
+    handleChange() {
+        this.setState({
+            show: !this.state.show
+        });
+    }
+
+    handleChange2() {
+        this.setState({
+            show2: !this.state.show2
+        });
+    }
+
     render() {
         return (
             <Page>
-                <button className="weui_btn weui_btn_primary" onClick={this.handleShow}>open popup left</button>
-                <button className="weui_btn weui_btn_primary" onClick={this.handleShow2}>open popup bottom</button>
-                <button className="weui_btn weui_btn_primary" onClick={this.handleShow3}>open popup static api</button>
-                <Popup left show={this.state.show} onChange={this.handleChange}>
-                    asdfa
+                <button className="weui-btn weui-btn_primary" onClick={this.handleShow}>open popup left</button>
+                <button className="weui-btn weui-btn_primary" onClick={this.handleShow2}>open popup bottom</button>
+                <button className="weui-btn weui-btn_primary" onClick={this.handleShow3}>open popup API left</button>
+                <Popup left show={this.state.show} onHide={this.handleChange}>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
+                    <div>asdf</div>
                 </Popup>
 
-                <Popup opacity={0.8} bottom autoHeight show={this.state.show2} onChange={this.handleChange2}>
-                    height 350px
+                <Popup opacity={0.8} bottom show={this.state.show2} onHide={this.handleChange2}>
+                    <div style={{height: '100px'}}>height 100px</div>
                 </Popup>
 
                 <div>asdf</div>
@@ -756,38 +1047,6 @@ class PopupWrap extends React.Component {
                 <div>asdf</div>
             </Page>
         );
-    }
-
-    handleShow() {
-        this.setState({
-            show: !this.state.show
-        });
-    }
-
-    handleShow2() {
-        this.setState({
-            show2: !this.state.show2
-        });
-    }
-
-    handleShow3() {
-        Popup.render({
-            left: true,
-            children: 'adfaf',
-            onChange: Popup.hide
-        });
-    }
-
-    handleChange(show) {
-        this.setState({
-            show
-        });
-    }
-
-    handleChange2(show2) {
-        this.setState({
-            show2
-        });
     }
 }
 
@@ -871,19 +1130,24 @@ class SquareWrap extends React.Component {
 
 class LazyImgWrap extends React.Component {
     render() {
+        const gmLogo = 'https://js.guanmai.cn/static_storage/json/common/logo/default/logo2.png';
+
         return (
             <Page className="lazy-img-wrap">
                 <LazyImg
                     placeholder={'https://placeholdit.imgix.net/~text?txtsize=23&bg=f7f7f7&txt=loading&w=250&h=250'}
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/>
-                <div style={{height: '600px'}}/>
+                    src={gmLogo}
+                />
+                <div style={{height: '600px'}}>
+                    滚到下面看图片
+                </div>
                 <LazyImg
                     placeholder={'https://placeholdit.imgix.net/~text?txtsize=23&bg=f7f7f7&txt=loading&w=250&h=250'}
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/>
+                    src={gmLogo}
+                />
                 <LazyImg
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/>
-                <LazyImg
-                    src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/>
+                    src={gmLogo}
+                />
             </Page>
         );
     }
@@ -893,76 +1157,14 @@ class DialogWrap extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleCancel = ::this.handleCancel;
-        this.handleConfirm = ::this.handleConfirm;
-        this.handleAlertShow = ::this.handleAlertShow;
-        this.handleConfirmShow = ::this.handleConfirmShow;
         this.handleA = ::this.handleA;
         this.handleA = ::this.handleA;
 
         this.state = {
-            confirmShow: false,
-            alertShow: false,
-            btnText: {cancel: '不合并', confirm: '合并'}
+            confirm: false,
+            alert: false,
+            btnText: {cancelText: '不合并', confirmText: '合并'}
         };
-    }
-
-    handleCancel() {
-        this.setState({
-            confirmShow: false
-        });
-    }
-
-    handleConfirm() {
-        this.setState({
-            confirmShow: false,
-            alertShow: false
-        });
-    }
-
-    handleAlertShow() {
-        this.setState({
-            alertShow: true
-        });
-    }
-
-    handleConfirmShow() {
-        this.setState({
-            confirmShow: true
-        });
-    }
-
-    render() {
-        return (
-            <page>
-                <button className="weui_btn weui_btn_primary" onClick={this.handleAlertShow}>Alert Dialog</button>
-                <button className="weui_btn weui_btn_primary" onClick={this.handleConfirmShow}>Confirm Dialog</button>
-
-                <Dialog
-                    confirm
-                    show={this.state.confirmShow}
-                    title="Alert Dialog"
-                    onCancel={this.handleCancel}
-                    onConfirm={this.handleConfirm}
-                    btnText={this.state.btnText}
-                >
-                    这是confirm内容
-                </Dialog>
-
-                <Dialog
-                    alert
-                    show={this.state.alertShow}
-                    title="Alert Dialog"
-                    onConfirm={this.handleConfirm}
-                >
-                    这是alert
-                </Dialog>
-
-                <button className="weui_btn weui_btn_warn" onClick={this.handleA}>Alert Dialog（API+Promise）</button>
-                <button className="weui_btn weui_btn_warn" onClick={this.handleC}>Confirm Dialog（API+Promise）
-                </button>
-            </page>
-        );
     }
 
     handleA() {
@@ -974,12 +1176,52 @@ class DialogWrap extends React.Component {
     handleC() {
         Dialog.confirm({
             children: '确定么?',
-            btnText: {confirm: '去充值'}
+            confirmText: '去充值'
         }).then(() => {
             console.log('ok');
         }).catch(() => {
             console.log('cancel');
         });
+    }
+
+    render() {
+        const {alert, confirm, btnText} = this.state;
+        return (
+            <Page>
+                <button className="weui-btn weui-btn_primary" onClick={() => this.setState({
+                    alert: !alert
+                })}>Alert Dialog
+                </button>
+                <button className="weui-btn weui-btn_primary" onClick={() => this.setState({
+                    confirm: !confirm
+                })}>Confirm Dialog
+                </button>
+
+                <Dialog
+                    alert
+                    show={alert}
+                    title="Alert Dialog"
+                    onConfirm={() => this.setState({alert: !alert})}
+                >
+                    这是alert
+                </Dialog>
+
+                <Dialog
+                    confirm
+                    show={confirm}
+                    title="Alert Dialog"
+                    onCancel={() => this.setState({confirm: !confirm})}
+                    onConfirm={() => this.setState({confirm: !confirm})}
+                    {...btnText}
+                >
+                    这是confirm内容
+                </Dialog>
+
+                <button className="weui-btn weui-btn_warn" onClick={this.handleA}>Alert Dialog（API+Promise）</button>
+                <button className="weui-btn weui-btn_warn" onClick={this.handleC}>Confirm Dialog（API+Promise）
+                </button>
+            </Page>
+        );
     }
 }
 
@@ -1022,7 +1264,7 @@ class SelectWrap extends React.Component {
     render() {
         return (
             <div>
-                <button className="weui_btn weui_btn_primary" onClick={::this.handleClick}>选择</button>
+                <button className="weui-btn weui-btn_primary" onClick={::this.handleClick}>选择</button>
                 {this.state.value && this.state.value.name}
                 <Select
                     show={this.state.show}
@@ -1067,7 +1309,7 @@ class DropperWrap extends React.Component {
                 </Dropper>
 
                 <Dropper className="border">
-                    <button className="weui_btn weui_btn_primary">自定义选择图片</button>
+                    <button className="weui-btn weui-btn_primary">自定义选择图片</button>
                 </Dropper>
 
                 <div>
@@ -1170,7 +1412,7 @@ class TooltipWrap extends React.Component {
                 </Flex>
                 <Flex justifyEnd style={{margin: "30px 20px"}}>
                     <Trigger component={<div/>} right adjustX={20} popup={this.renderPopup()}>
-                        <button className="weui_btn weui_btn_primary weui_btn_mini">bottomRight (default)
+                        <button className="weui-btn weui-btn_primary weui-btn_mini">bottomRight (default)
                         </button>
                     </Trigger>
                 </Flex>
@@ -1181,7 +1423,7 @@ class TooltipWrap extends React.Component {
                                  这是一个tooltip bottomLeft
                              </Tooltip>}
                     >
-                        <button className="weui_btn weui_btn_primary weui_btn_mini">bottomLeft with timeout
+                        <button className="weui-btn weui-btn_primary weui-btn_mini">bottomLeft with timeout
                         </button>
                     </Trigger>
                 </Flex>
@@ -1192,7 +1434,7 @@ class TooltipWrap extends React.Component {
                                  这是一个tooltip topRight
                              </Tooltip>}
                     >
-                        <button className="weui_btn weui_btn_primary weui_btn_mini">topRight with mask
+                        <button className="weui-btn weui-btn_primary weui-btn_mini">topRight with mask
                         </button>
                     </Trigger>
                 </Flex>
@@ -1203,7 +1445,7 @@ class TooltipWrap extends React.Component {
                                  这是一个tooltip topLeft
                              </Tooltip>}
                     >
-                        <button className="weui_btn weui_btn_primary weui_btn_mini">topLeft with mask
+                        <button className="weui-btn weui-btn_primary weui-btn_mini">topLeft with mask
                         </button>
                     </Trigger>
                 </Flex>
@@ -1214,7 +1456,7 @@ class TooltipWrap extends React.Component {
                                  这是一个tooltip topLeft (hover)
                              </Tooltip>}
                     >
-                        <button className="weui_btn weui_btn_primary weui_btn_mini">topLeft (hover)
+                        <button className="weui-btn weui-btn_primary weui-btn_mini">topLeft (hover)
                         </button>
                     </Trigger>
                 </Flex>
@@ -1230,10 +1472,10 @@ class PreviewImageWrap extends React.Component {
                 url: 'https://bshop.guanmai.cn/static/icon/icon-veg.4fa23256.png',
                 name: 'aaaa菜心'
             }, {
-                url: 'https://bshop.guanmai.cn/static/productpic/aa5defe86bb7adaa.jpg',
+                url: 'https://img.guanmai.cn/station_pic/logo_2017.png',
                 name: '菠菜aaaaaaa'
             }, {
-                url: 'https://bshop.guanmai.cn/static/station_pic/gm_banner.jpg',
+                url: 'https://img.guanmai.cn/station_pic/logo_2017.png',
                 name: '宽宽图'
             }, {
                 url: 'http://7xlnio.com1.z0.glb.clouddn.com/17-2-16/53032612-file_1487254642623_73b9.png',
@@ -1246,7 +1488,7 @@ class PreviewImageWrap extends React.Component {
     handleShowSingle() {
         PreviewImage.render({
             images: [{
-                url: 'https://bshop.guanmai.cn/static/productpic/aa5defe86bb7adaa.jpg',
+                url: 'https://img.guanmai.cn/station_pic/logo_2017.png',
                 name: '菠菜aaaaaaa'
             }],
             onHide: PreviewImage.hide
@@ -1256,8 +1498,8 @@ class PreviewImageWrap extends React.Component {
     render() {
         return (
             <div>
-                <button className="weui_btn weui_btn_primary" onClick={this.handleShow}>show images</button>
-                <button className="weui_btn weui_btn_primary" onClick={this.handleShowSingle}>show image</button>
+                <button className="weui-btn weui-btn_primary" onClick={this.handleShow}>show images</button>
+                <button className="weui-btn weui-btn_primary" onClick={this.handleShowSingle}>show image</button>
             </div>
         );
     }
@@ -1265,19 +1507,21 @@ class PreviewImageWrap extends React.Component {
 
 
 const routeMap = {
+    demo: DemoWrap,
     theme: ThemeWrap,
+    border: BorderWrap,
     gap: GapWrap,
+    button: ButtonWrap,
     flex: FlexWrap,
     textarea: TextareaWrap,
     toast: ToastWrap,
-    loading: LoadingWrap,
     nprogress: NProgressWrap,
     infinite: InfiniteWrap,
     page: PageWrap,
     slider: SliderWrap,
     tabs: TabsWrap,
     popup: PopupWrap,
-    searchbar: SearchBarWrap,
+    search: SearchBarWrap,
     square: SquareWrap,
     lazyimg: LazyImgWrap,
     dialog: DialogWrap,
@@ -1286,7 +1530,11 @@ const routeMap = {
     dropper: DropperWrap,
     trigger: TriggerWrap,
     tooltip: TooltipWrap,
-    previewimage: PreviewImageWrap
+    previewimage: PreviewImageWrap,
+    badge: BadgeWrap,
+    price: PriceWrap,
+    cell:  CellWrap,
+    counter: CounterWrap
 };
 
 const Root = () => (

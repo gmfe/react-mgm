@@ -14,31 +14,22 @@ class Page extends React.Component {
             children,
             ...rest
         } = this.props;
+
         const cn = classNames({
             'page': true,
             'page-white': white
         }, className);
-        // 如果没有header tabbar 就简化html结构
-        if (header || tabbar) {
-            return (
-                <Flex column {...rest} className={cn}>
-                    {header ? (
-                        <Flex column>{header}</Flex>
-                    ) : undefined}
-                    <Flex flex column className="page-content block">
-                        {children}
-                    </Flex>
-                    {tabbar ? (
-                        <Flex column className="page-tabbar">{tabbar}</Flex>
-                    ) : undefined}
-                    {bottom ? bottom : undefined}
+
+        return (
+            <Flex column {...rest} className={cn}>
+                {header && <Flex column>{header}</Flex>}
+                <Flex flex column className="page-content block">
+                    {children}
                 </Flex>
-            );
-        } else {
-            return (
-                <div {...rest} className={classNames(cn, 'page-content')}>{children}</div>
-            );
-        }
+                {tabbar && <Flex column className="page-tabbar">{tabbar}</Flex>}
+                {bottom}
+            </Flex>
+        );
     }
 }
 

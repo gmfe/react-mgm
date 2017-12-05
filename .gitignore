@@ -1,9 +1,6 @@
 /build
-/webpack-assets.js
-# Created by .ignore support plugin (hsz.mobi)
-/bower_components/weui/dist/example
-/bower_components/weui/src/example
 .idea
 node_modules
 *.log
 package-lock.json
+/.eslintcache

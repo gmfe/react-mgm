@@ -1,177 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import Mask from '../mask/index';
-import Loading from '../loading/index';
-import _ from 'lodash';
+import LayoutRoot from '../layout_root';
 
-let toastsContainerId = '_mgm_toasts_container' + (Math.random() + '').slice(2);
-let toastsContainer = window.document.getElementById(toastsContainerId);
-
-if (!toastsContainer) {
-    toastsContainer = window.document.createElement('div');
-    toastsContainer.className = 'mgm-toasts';
-    toastsContainer.id = toastsContainerId;
-    window.document.body.appendChild(toastsContainer);
-}
-
-let ToastStatics = {};
-ToastStatics = {
-    _queue: [],
-    _ing: false,
-    _render(){
-        if (ToastStatics._ing) {
-            return;
-        }
-
-        let options = ToastStatics._queue.shift();
-        if (options === undefined) {
-            return;
-        }
-
-        ToastStatics._ing = true;
-        let _b_onFinish = options.onFinish;
-
-        let div = window.document.createElement('div');
-        div.className = 'mgm-toasts-cell';
-        toastsContainer.appendChild(div);
-
-        options.onFinish = function () {
-            if (_b_onFinish) {
-                _b_onFinish();
-            }
-            toastsContainer.removeChild(div);
-            ToastStatics._ing = false;
-            if (ToastStatics._queue.length > 0) {
-                setTimeout(function () {
-                    ToastStatics._render();
-                }, 500);
-            }
-        };
-
-        ReactDOM.render(<Toast {...options}>{options.children}</Toast>, div);
-        return div;
+let timer = null;
+let ToastStatics = {
+    clear() {
+        clearTimeout(timer);
+        LayoutRoot.removeComponent(LayoutRoot.TYPE.TIP);
     },
-    clear(div){
-        ReactDOM.unmountComponentAtNode(div);
-        // 上一步就会把div给移除. 估不需要了
-        //toastsContainer.removeChild(div);
+    _tip(options, type) {
+        if (typeof options === 'string') {
+            options = {
+                children: options
+            };
+        }
+
+        if (type) {
+            options[type] = true;
+        }
+
+        timer = setTimeout(() => {
+            ToastStatics.clear();
+        }, options.time || 2000);
+
+        LayoutRoot.setComponent(LayoutRoot.TYPE.TIP, <Toast {...options}/>);
     },
     tip(options) {
-        if (typeof options === 'string') {
-            options = {
-                children: options
-            };
-        }
-        options = Object.assign({show: true}, options);
-        ToastStatics._queue.push(options);
-        return ToastStatics._render();
+        ToastStatics._tip(options);
     },
     success(options) {
-        if (typeof options === 'string') {
-            options = {
-                children: options
-            };
-        }
-        return ToastStatics.tip(Object.assign({success: true}, options));
+        ToastStatics._tip(options, 'success');
     },
     info(options) {
-        if (typeof options === 'string') {
-            options = {
-                children: options
-            };
-        }
-        return ToastStatics.tip(Object.assign({info: true}, options));
+        ToastStatics._tip(options, 'info');
     },
     warning(options) {
-        if (typeof options === 'string') {
-            options = {
-                children: options
-            };
-        }
-        return ToastStatics.tip(Object.assign({warning: true}, options));
+        ToastStatics._tip(options, 'warning');
     },
     danger(options) {
-        if (typeof options === 'string') {
-            options = {
-                children: options
-            };
-        }
-        return ToastStatics.tip(Object.assign({danger: true}, options));
+        ToastStatics._tip(options, 'danger');
     },
     loading(options) {
-        if (typeof options === 'string') {
-            options = {
-                children: options
-            };
-        }
-        return ToastStatics.tip(Object.assign({loading: true}, options));
+        ToastStatics._tip(options, 'loading');
     }
 };
 
 class Toast extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            show: props.show
-        };
-
-        this.timer = null;
-        this.isFinished = false;
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.show !== undefined) {
-            this.setState({
-                show: nextProps.show
-            });
-        }
-    }
-
-
-    componentDidMount() {
-        const {time} = this.props;
-        if (time) {
-            this.timer = setTimeout(() => {
-                this.setState({
-                    show: false
-                });
-                this.handleFinish();
-            }, time);
-        }
-    }
-
-    componentWillUnmount() {
-        clearTimeout(this.timer);
-        this.setState({
-            show: false
-        });
-        this.handleFinish();
-    }
-
-    componentDidUpdate() {
-        if (this.state.show === false) {
-            this.handleFinish();
-        }
-    }
-
-    handleClick() {
-        this.props.onClick();
-    }
-
-    handleFinish() {
-        if (!this.isFinished) {
-            this.isFinished = true;
-            this.props.onFinish();
-        }
-    }
-
     render() {
-        let {icon, children, loading, success, info, warning, danger} = this.props;
-        const {show} = this.state;
+        let {children, loading, success, info, warning, danger} = this.props;
 
+        let icon = null;
         if (loading) {
-            icon = <Loading/>;
+            icon = <i className="weui-loading"/>;
             children = children || '加载中...';
         } else if (success) {
             icon = <i className="ifont ifont-success"/>;
@@ -184,13 +65,11 @@ class Toast extends React.Component {
         }
 
         return (
-            <div style={{display: show ? 'block' : 'none'}}>
-                <Mask show={show} opacity={0.1}/>
-                <div className="toast-container">
-                    <div className="toast" onClick={this.handleClick}>
-                        {icon}
-                        <div className="toast-content">{children}</div>
-                    </div>
+            <div className="toast-container">
+                <Mask show={true} opacity={0.01}/>
+                <div className="toast">
+                    {icon}
+                    <div className="toast-content">{children}</div>
                 </div>
             </div>
         );
@@ -200,12 +79,8 @@ class Toast extends React.Component {
 Object.assign(Toast, ToastStatics);
 
 Toast.propTypes = {
-    onClick: PropTypes.func,
-    onFinish: PropTypes.func,
-    show: PropTypes.bool,
-    time: PropTypes.any,
+    time: PropTypes.any, // 在组件上没意义，单纯给静态方法调用参考
     loading: PropTypes.bool,
-    icon: PropTypes.any,
     success: PropTypes.bool,
     info: PropTypes.bool,
     warning: PropTypes.bool,
@@ -213,12 +88,8 @@ Toast.propTypes = {
 };
 
 Toast.defaultProps = {
-    show: false,
     time: 2000,
-    loading: false,
-    icon: null,
-    onClick: _.noop,
-    onFinish: _.noop
+    loading: false
 };
 
 export default Toast;

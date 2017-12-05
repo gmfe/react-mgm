@@ -12,7 +12,7 @@ class Textarea extends React.Component {
         return (
             <div {...wrapProps} className={cn}>
                 <pre>{this.props.value}</pre>
-                <textarea {...rest} className={classNames("weui_textarea", this.props.className)}></textarea>
+                <textarea {...rest} className={classNames("weui-textarea", this.props.className)}/>
             </div>
         );
     }

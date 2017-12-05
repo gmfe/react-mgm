@@ -1,23 +1,51 @@
-// number 4种规格尺寸
+// number 字体或者间距的规格
 @n0: 0;
-@n5: 5px;
+@n4: 4px;
+@n8: 8px;
 @n10: 10px;
-@n15: 15px;
+@n12: 12px;
+@n14: 14px;
+@n16: 16px;
+@n18: 18px;
+@n24: 24px;
+@n30: 30px;
 
 // page
 @headerHeight: 45px;
 @tabbarHeight: 55px;
 
+// text color
+@defaultColor: rgba(0, 0, 0, .9);
+@descColor: rgba(0, 0, 0, .6);
+@disabledColor: rgba(0, 0, 0, .3);
+
 // color
-@defaultColor: #555555;
-@primaryColor: #34BE66;
-@primaryColorActive: #02AF63;
-@warnColor: #CE8585;
-@darkColor: #58565B;
+@primaryColor: #68B446;
+@primaryColorActive: darken(@primaryColor, 10%);
+@primaryColorDisabledBg: lighten(@primaryColor, 10%);
+
+@warnColor: @weuiColorWarn; // 保留warnColor的定义，直接用weui的色值
+
 @redColor: #FF3333;
-@warnColorActive: #b17272;
-@linkColor: @globalLinkColor;
-@descColor: #A3A3A3;
+@linkColor: @weuiLinkColorDefault; // 保留linkColor的定义，直接用weui的色值
+
+@coralColor: #DD4F63;
+@apricotColor: #EA9958;
+@mintColor: #A4D3D1;
+@tealColor: #4EAEBB;
+@arcticColor: #626CAE;
+@violetColor: #564180;
+
+// font size
+@fontSize30: @n30;
+@fontSize24: @n24;
+@fontSize18: @n18;
+@fontSize16: @n16;
+@fontSize14: @n14;
+@fontSize12: @n12;
+@fontSize10: @n10;
+@fontSize8: @n8;
+
 
 // :active
 @activeColor: #ededed;
@@ -26,11 +54,12 @@
 @placeholderColor: #989898;
 
 // border
-@borderColor: #D5D5D5;
+@borderColor: #EDEDED;
 
 // bg
-@defaultBg: #F7F7F7;
+@defaultBg: #F4F4F4;
 @whiteBg: white;
+@titleBg: #FAFAFA;
 
 // page head
 @headerBg: #4EBB6E;
@@ -44,5 +73,8 @@
 // slider
 @sliderBg: @borderColor;
 @activeSliderBg: grey;
+
+//counter
+@counterMinus: #b7b6b6;
 
 @import "./variable-cover-weui";

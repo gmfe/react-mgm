@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import pureRenderDecorator from '../../pure.render.decorator';
+import pureRenderDecorator from '../../util/pure.render.decorator';
+import _ from 'lodash';
 
 @pureRenderDecorator
 class Header extends React.Component {
@@ -9,32 +10,40 @@ class Header extends React.Component {
         this.handleBack = ::this.handleBack;
     }
 
+    handleBack(event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        this.props.onBack();
+    }
+
     render() {
         return (
             <div className="header">
-                {this.props.left ? this.props.left : (
-                    <a href="javascript:void(0);" className="button button-link pull-left header-left"
-                       onClick={this.handleBack}>
-                        <i className="ifont ifont-angle-left"></i>返回</a>)}
-                {this.props.right ? this.props.right : null}
+                {this.props.left || (
+                    <a
+                        href="javascript:;"
+                        className="button button-link pull-left header-left"
+                        onClick={this.handleBack}
+                    >
+                        <i className="ifont ifont-angle-left"/>返回
+                    </a>)}
+                {this.props.right}
                 <h1 className="header-title">{this.props.title}</h1>
             </div>
         );
     }
-
-    handleBack(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (this.props.history) {
-            this.props.history.go(-1);
-        }
-    }
 }
 
 Header.propTypes = {
-    left: PropTypes.object,
-    right: PropTypes.object,
-    title: PropTypes.string
+    left: PropTypes.element,
+    right: PropTypes.element,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    onBack: PropTypes.func
+};
+
+Header.defaultProps = {
+    onBack: _.noop
 };
 
 export default Header;

@@ -1,39 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import classNames from 'classnames';
-import pureRenderDecorator from '../../pure.render.decorator';
+import pureRenderDecorator from '../../util/pure.render.decorator';
+import LayoutRoot from '../layout_root';
+import _ from 'lodash';
 
-let dialogsContainerId = '_mgm_dialogs_container' + (Math.random() + '').slice(2);
-let dialogsContainer = window.document.getElementById(dialogsContainerId);
-
-if (!dialogsContainer) {
-    dialogsContainer = window.document.createElement('div');
-    dialogsContainer.className = 'mgm-dialogs';
-    dialogsContainer.id = dialogsContainerId;
-    window.document.body.appendChild(dialogsContainer);
-}
-
-let DialogStatics = {};
-DialogStatics = {
-    dialog(options){
+const DialogStatics = {
+    dialog(options) {
         return new Promise((resolve, reject) => {
-            const div = window.document.createElement('div');
-            dialogsContainer.appendChild(div);
-            options.title = options.title || '提示';
-            options.show = true;
+            const _onConfirm = options.onConfirm || _.noop;
             options.onConfirm = () => {
-                dialogsContainer.removeChild(div);
-                resolve();
+                Promise.resolve(_onConfirm()).then(() => {
+                    LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL);
+                    resolve();
+                });
             };
+
+            const _onCancel = options.onCancel || _.noop;
             options.onCancel = () => {
-                dialogsContainer.removeChild(div);
+                _onCancel();
+                LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL);
                 reject();
             };
-            ReactDOM.render(<Dialog {...options}></Dialog>, div);
+
+            const popstate = () => {
+                LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL);
+
+                window.removeEventListener('popstate: ', popstate);
+            };
+
+            window.addEventListener('popstate', popstate);
+
+            options.show = true;
+
+            window.history.pushState({}, null);
+
+            LayoutRoot.setComponent(LayoutRoot.TYPE.MODAL, <Dialog {...options}/>);
         });
     },
-    alert(options){
+
+    alert(options) {
         if (typeof options === 'string') {
             options = {
                 children: options
@@ -42,7 +47,8 @@ DialogStatics = {
         options.alert = true;
         return DialogStatics.dialog(options);
     },
-    confirm(options){
+
+    confirm(options) {
         if (typeof options === 'string') {
             options = {
                 children: options
@@ -55,57 +61,61 @@ DialogStatics = {
 
 @pureRenderDecorator
 class Dialog extends React.Component {
-    static alert = DialogStatics.alert;
-    static confirm = DialogStatics.confirm;
-    
     constructor(props) {
         super(props);
-        
+
         this.handleCancel = ::this.handleCancel;
         this.handleConfirm = ::this.handleConfirm;
     }
-    
+
     handleConfirm(e) {
         e.preventDefault();
         this.props.onConfirm();
     }
-    
+
     handleCancel(e) {
         e.preventDefault();
         this.props.onCancel && this.props.onCancel();
     }
-    
+
     render() {
-        const thisProps = this.props,
-            {btnText = {}} = thisProps;
-        const cls = classNames({
-            'weui_dialog_confirm': thisProps.confirm,
-            'weui_dialog_alert': thisProps.alert
-        });
-        
-        if (!thisProps.show) {
+        const {
+            show,
+            title,
+            confirm,
+            confirmText,
+            cancelText,
+            children
+        } = this.props;
+
+        if (!show) {
             return null;
         }
-        
+
         return (
-            <div className={cls} style={{display: 'block'}}>
-                <div className="weui_mask"/>
-                <div className="weui_dialog">
-                    <div className="weui_dialog_hd"><strong className="weui_dialog_title">{thisProps.title}</strong>
+            <div>
+                {/*有一种情况是在 popup 组件中使用 dialog 组件，popup z-index 为 2000，而 mask 为 1000，就不能在 popup 之上*/}
+                {/*因此将这里的 mask z-index 设置成和 dialog 一样*/}
+                <div className="weui-mask" style={{zIndex: 5000}}/>
+                <div className="weui-dialog">
+                    <div className="weui-dialog__hd">
+                        <strong className="weui-dialog_title">{title}</strong>
                     </div>
-                    <div className="weui_dialog_bd">
-                        {thisProps.children}
+                    <div className="weui-dialog__bd">
+                        {children}
                     </div>
-                    <div className="weui_dialog_ft">
-                        {
-                            thisProps.confirm ?
-                                <a href="javascript:;" className="weui_btn_dialog default"
-                                   onClick={this.handleCancel}>{btnText.cancel ? btnText.cancel : '取消'}</a>
-                                :
-                                null
+                    <div className="weui-dialog__ft">
+                        {confirm && <a
+                            href="javascript:;"
+                            className="weui-dialog__btn weui-dialog__btn_default"
+                            onClick={this.handleCancel}
+                        >{cancelText}</a>
                         }
-                        <a href="javascript:;" className="weui_btn_dialog primary"
-                           onClick={this.handleConfirm}>{btnText.confirm ? btnText.confirm : '确定'}</a>
+                        <a
+                            href="javascript:;"
+                            className="weui-dialog__btn weui-dialog__btn_primary"
+                            onClick={this.handleConfirm}
+                        >{confirmText}</a>
                     </div>
                 </div>
             </div>
@@ -113,14 +123,23 @@ class Dialog extends React.Component {
     }
 }
 
+Object.assign(Dialog, DialogStatics);
+
 Dialog.propTypes = {
     show: PropTypes.bool,
-    onConfirm: PropTypes.func.isRequired,
-    onCancel: PropTypes.func,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     alert: PropTypes.bool,
     confirm: PropTypes.bool,
-    btnText: PropTypes.object
+    onConfirm: PropTypes.func.isRequired,
+    onCancel: PropTypes.func,
+    confirmText: PropTypes.string,
+    cancelText: PropTypes.string
+};
+
+Dialog.defaultProps = {
+    title: '提示',
+    confirmText: '确定',
+    cancelText: '取消'
 };
 
 export default Dialog;

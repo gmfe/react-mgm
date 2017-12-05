@@ -24,7 +24,7 @@ class Storage extends React.Component {
     }
 }
 
-Storage.statics = {
+let storageStatics = {
     set(key, value) {
         window.localStorage.setItem(prefix + key, JSON.stringify(value));
     },
@@ -51,6 +51,9 @@ Storage.statics = {
         return _.keys(result) ? result : null;
     }
 };
+
+Object.assign(Storage, storageStatics);
+
 Storage.propTypes = {
     name: PropTypes.string.isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array]),

@@ -1,0 +1,50 @@
+// 覆盖weui的
+.weui-tabbar {
+  background-color: @tabbarBg;
+}
+
+.weui-tabbar__item {
+  &.weui-bar__item_on {
+    .weui-tabbar__label {
+      color: @primaryColor;
+    }
+  }
+}
+
+.weui-tabbar__icon {
+  & + .weui-tabbar__label {
+    margin-top: 1px;
+    margin-bottom: 4px
+  }
+}
+
+.weui-cells_checkbox {
+  .weui-check {
+    &:checked {
+      & + .weui-icon-checked {
+        &:before {
+          color: @primaryColor;
+        }
+      }
+    }
+  }
+}
+
+.weui-cell {
+  padding-top: @n12;
+  padding-bottom: @n12;
+  padding-left: @n16;
+  padding-right: @n8;
+  line-height: 1.3;
+}
+
+.weui-form-preview__bd {
+  padding-top: @n12;
+  padding-bottom: @n12;
+  padding-left: @n16;
+  padding-right: @n8;
+}
+
+.weui-form-preview__hd {
+  padding: @n8 @n16;
+}

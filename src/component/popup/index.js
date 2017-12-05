@@ -2,6 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Mask from '../mask/index';
+import LayoutRoot from '../layout_root';
+import _ from 'lodash';
+
+const PopupStatics = {
+    render(options) {
+        const popstate = () => {
+            LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP);
+
+            window.removeEventListener('popstate: ', popstate);
+        };
+
+        window.addEventListener('popstate', popstate);
+
+        options.show = true;
+
+        options.onHide = () => {
+            PopupStatics.hide();
+        };
+
+        window.history.pushState({}, null);
+
+        LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <Popup {...options}/>);
+    },
+
+    hide() {
+        window.history.go(-1);
+    }
+};
 
 class Popup extends React.Component {
     constructor(props) {
@@ -9,8 +37,12 @@ class Popup extends React.Component {
         this.handleChange = ::this.handleChange;
     }
 
+    handleChange(e) {
+        e.preventDefault();
+        this.props.onHide();
+    }
+
     render() {
-        const thisProps = this.props;
         const {
             show,
             left,
@@ -18,16 +50,17 @@ class Popup extends React.Component {
             width,
             height,
             opacity,
-            autoHeight,
             className,
             style,
+            onHide, // eslint-disable-line
+            children,
             ...rest
-        } = thisProps;
+        } = this.props;
+
         const cn = classNames('popup', {
             active: show,
             'popup-left': left,
-            'popup-bottom': bottom,
-            'popup-bottom-auto-height': autoHeight
+            'popup-bottom': bottom
         }, className);
 
         let s = Object.assign({}, style);
@@ -37,39 +70,39 @@ class Popup extends React.Component {
             s.height = height;
         }
 
+        if(!show){
+            return null;
+        }
+
         return (
-            <div className="popup-wrap">
-                <Mask show={thisProps.show} opacity={opacity || 0.1} onClick={this.handleChange}/>
+            <div className="popup-container">
+                <Mask show opacity={opacity || 0.1} onClick={this.handleChange}/>
                 <div {...rest} className={cn} style={s}>
                     <div className="popup-content">
-                        {thisProps.children}
+                        {children}
                     </div>
                 </div>
             </div>
         );
     }
-
-    handleChange(e) {
-        e.preventDefault();
-        this.props.onChange(!this.props.show);
-    }
 }
 
-Popup.defaultProps = {
-    show: false,
-    onChange: () => {
-    }
-};
+Object.assign(Popup, PopupStatics);
 
+// 这里的 onChange 命名不合理，假如子组件中由一个 onChange 事件，当被触发的时候，那这个父组件的 onChange 事件会因为事件冒泡而被执行，与预期不符
 Popup.propTypes = {
     show: PropTypes.bool,
-    onChange: PropTypes.func,
+    onHide: PropTypes.func,
     left: PropTypes.bool,
     bottom: PropTypes.bool,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    opacity: PropTypes.number,
-    autoHeight: PropTypes.bool // 只bottom:true 有效
+    opacity: PropTypes.number
+};
+
+Popup.defaultProps = {
+    show: false,
+    onHide: _.noop
 };
 
 export default Popup;

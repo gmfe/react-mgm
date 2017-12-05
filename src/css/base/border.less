@@ -18,15 +18,23 @@
   border-bottom: 1px solid @borderColor;
 }
 
-.border-1px {
+.border-1px-before {
+  .borderAllBefore();
+}
+
+.border-1px-after {
   .borderAllAfter();
 }
 
-.border-1px-top {
+.border-1px-top-before {
   .borderTopBefore();
 }
 
-.border-1px-left {
+.border-1px-top-after {
+  .borderTopAfter();
+}
+
+.border-1px-left-before {
   .borderLeftBefore();
 }
 
@@ -34,15 +42,18 @@
   .borderLeftAfter();
 }
 
-.border-1px-right {
-  .borderRightAfter();
-}
-
-.border-1px-right-after {
+.border-1px-right-before {
   .borderRightBefore();
 }
 
-.border-1px-bottom {
-  .borderBottomAfter();
+.border-1px-right-after {
+  .borderRightAfter();
 }
 
+.border-1px-bottom-before {
+  .borderBottomBefore();
+}
+
+.border-1px-bottom-after {
+  .borderBottomAfter();
+}
