@@ -12,6 +12,7 @@ const DialogStatics = {
                 Promise.resolve(_onConfirm()).then(() => {
                     LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL);
                     resolve();
+                    window.history.go(-1);
                 });
             };
 
@@ -20,6 +21,7 @@ const DialogStatics = {
                 _onCancel();
                 LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL);
                 reject();
+                window.history.go(-1);
             };
 
             const popstate = () => {
