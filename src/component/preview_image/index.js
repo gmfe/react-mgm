@@ -24,6 +24,7 @@ let PreviewImageStatics = {
         window.history.pushState({}, null);
         LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <PreviewImage {...options}/>);
     },
+
     hide() {
         window.history.go(-1);
     }
