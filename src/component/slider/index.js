@@ -184,6 +184,7 @@ class Slider extends React.Component {
 
     renderChild() {
         let {children} = this.props;
+        const {x, sliderWidth, dragging} = this.state, index = Math.abs(x / sliderWidth);
 
         if (!_.isArray(children)) {
             children = [children];
@@ -192,7 +193,7 @@ class Slider extends React.Component {
         return _.map(children, (value, i) => {
             return React.cloneElement(value, {
                 style: Object.assign({}, value.props.style, {width: '100%'}),
-                className: classNames('slider-cell flex flex-none', value.props.className),
+                className: classNames('slider-cell flex flex-none', value.props.className, {'slider-cell-show': (index === i || (index === i-1 && dragging) || (index === i+1 && dragging))}),
                 key: i
             });
         });
