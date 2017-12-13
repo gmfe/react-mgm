@@ -10,18 +10,22 @@ const DialogStatics = {
             const _onConfirm = options.onConfirm || _.noop;
             options.onConfirm = () => {
                 Promise.resolve(_onConfirm()).then(() => {
-                    LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL);
-                    resolve();
                     window.history.go(-1);
+
+                    setTimeout(()=>{
+                        resolve();
+                    }, 10);
                 });
             };
 
             const _onCancel = options.onCancel || _.noop;
             options.onCancel = () => {
                 _onCancel();
-                LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL);
-                reject();
                 window.history.go(-1);
+
+                setTimeout(()=>{
+                    reject();
+                }, 10);
             };
 
             const popstate = () => {
