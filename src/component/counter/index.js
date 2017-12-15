@@ -79,7 +79,7 @@ class Counter extends React.Component {
                 </span>
                 {
                     <ScrollIntoView>
-                    <input className="counter-num" type="text"
+                    <input className="counter-num" type="number"
                            onChange={this.handleCountNumEdit}
                            onBlur={this.handleCountInputBlur}
                            value={amount || ''}
