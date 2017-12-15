@@ -7,10 +7,12 @@ import _ from 'lodash';
 
 const PopupStatics = {
     render(options) {
-        const popstate = () => {
-            LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP);
+        const popstate = (e) => {
+            if (e.state === null || (e.state && e.state.type !== 'popup')) {
+                LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP);
 
-            window.removeEventListener('popstate: ', popstate);
+                window.removeEventListener('popstate: ', popstate);
+            }
         };
 
         window.addEventListener('popstate', popstate);

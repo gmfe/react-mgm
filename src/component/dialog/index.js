@@ -28,10 +28,12 @@ const DialogStatics = {
                 }, 10);
             };
 
-            const popstate = () => {
-                LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL);
+            const popstate = (e) => {
+                if (e.state === null || (e.state && e.state.type !== 'dialog')) {
+                    LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL);
 
-                window.removeEventListener('popstate: ', popstate);
+                    window.removeEventListener('popstate: ', popstate);
+                }
             };
 
             window.addEventListener('popstate', popstate);
