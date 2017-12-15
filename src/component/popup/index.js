@@ -21,7 +21,7 @@ const PopupStatics = {
             PopupStatics.hide();
         };
 
-        window.history.pushState({}, null);
+        window.history.pushState({type: 'popup'}, null);
 
         LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <Popup {...options}/>);
     },

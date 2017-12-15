@@ -32,7 +32,7 @@ const DialogStatics = {
 
             options.show = true;
 
-            window.history.pushState({}, null);
+            window.history.pushState({type: 'dialog'}, null);
 
             LayoutRoot.setComponent(LayoutRoot.TYPE.MODAL, <Dialog {...options}/>);
         });
