@@ -32,7 +32,7 @@ const DialogStatics = {
                 if (e.state === null || (e.state && e.state.type !== 'dialog')) {
                     LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL);
 
-                    window.removeEventListener('popstate: ', popstate);
+                    window.removeEventListener('popstate', popstate);
                 }
             };
 
