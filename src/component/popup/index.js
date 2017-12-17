@@ -11,7 +11,7 @@ const PopupStatics = {
             if (e.state === null || (e.state && e.state.type !== 'popup')) {
                 LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP);
 
-                window.removeEventListener('popstate: ', popstate);
+                window.removeEventListener('popstate', popstate);
             }
         };
 
