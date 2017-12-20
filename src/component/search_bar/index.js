@@ -22,7 +22,7 @@ class SearchBar extends React.Component {
         this.handleChange = ::this.handleChange;
         this.handleClear = ::this.handleClear;
         this.handleCancel = ::this.handleCancel;
-        this.handleLabel = ::this.handleLabel;
+        this.handleInputFocus = ::this.handleInputFocus;
     }
 
     render() {
@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
         return (
             <div className={cn}>
                 <form className="weui-search-bar__form" onSubmit={this.handleOK}>
-                    <div className="weui-search-bar__box">
+                    <div className="weui-search-bar__box" onClick={this.handleInputFocus}>
                         <i className="weui-icon-search"/>
                         <input id={this.state.id}
                                type="search"
@@ -52,7 +52,7 @@ class SearchBar extends React.Component {
                                onClick={this.handleClear}/>
                         )}
                     </div>
-                    <label htmlFor={this.state.id} className='flex flex-align-center weui-search-bar__label' onClick={this.handleLabel}>
+                    <label htmlFor={this.state.id} className='flex flex-align-center weui-search-bar__label' onClick={this.handleInputFocus}>
                         <i className="weui-icon-search"/>
                         <span>{this.props.placeholder}</span>
                     </label>
@@ -68,7 +68,7 @@ class SearchBar extends React.Component {
         );
     }
 
-    handleLabel(e) {
+    handleInputFocus(e) {
         // 避免穿透
         e && e.preventDefault();
         this.setState({
