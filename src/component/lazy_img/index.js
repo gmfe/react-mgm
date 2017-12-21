@@ -38,7 +38,7 @@ class LazyImg extends React.Component {
     }
 
     doLazy() {
-        if (isElementOverViewport(this.refImg)) {
+        if (this.refImg && isElementOverViewport(this.refImg)) {
             this.setState({
                 show: true
             });
