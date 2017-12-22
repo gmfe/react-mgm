@@ -4,29 +4,16 @@ import Flex from '../flex';
 import classNames from 'classnames';
 import ScrollIntoView from '../scroll_into_view';
 import Big from 'big.js';
+import InputNumber from '../input/input.number';
 
 class Counter extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleCountNumEdit = ::this.handleCountNumEdit;
-        this.handleCountMinus = ::this.handleCountMinus;
-        this.handleCountPlus = ::this.handleCountPlus;
-        this.handleCountInputBlur = ::this.handleCountInputBlur;
-    }
-
-    // 编辑时触发
-    handleCountNumEdit(e) {
-        let amount = e.target.value;
-        const { onCountNumEdit } = this.props;
-        const isPrice = /^\d{0,8}\.{0,1}(\d{1,2})?$/.test(amount + '');
-
-        if(!isPrice) {
-            return;
-        }
-
-        const amount_new = Number((amount + '').replace(/^[0]/, ''));
-        onCountNumEdit(amount_new);
+        this.handleCountNumEdit = :: this.handleCountNumEdit;
+        this.handleCountMinus = :: this.handleCountMinus;
+        this.handleCountPlus = :: this.handleCountPlus;
+        this.handleCountInputBlur = :: this.handleCountInputBlur;
     }
 
     // 点减号时触发
@@ -38,7 +25,7 @@ class Counter extends React.Component {
             return;
         }
 
-        const amount_new =  Number(Big(amount || 1).minus(1).toString());
+        const amount_new = Number(Big(amount || 1).minus(1).toString());
         onCountMinus(amount_new);
     }
 
@@ -79,11 +66,12 @@ class Counter extends React.Component {
                 </span>
                 {
                     <ScrollIntoView>
-                    <input className="counter-num" type="number"
-                           onChange={this.handleCountNumEdit}
-                           onBlur={this.handleCountInputBlur}
-                           value={amount || ''}
-                    />
+                        <InputNumber
+                            className="counter-num"
+                            onChange={this.props.onCountNumEdit}
+                            onBlur={this.handleCountInputBlur}
+                            value={amount || ''}
+                        />
                     </ScrollIntoView>
                 }
                 <span
@@ -105,4 +93,4 @@ Counter.propTypes = {
     amount: PropTypes.any.isRequired
 };
 
-export  default Counter;
+export default Counter;
