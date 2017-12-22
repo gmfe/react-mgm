@@ -10,7 +10,6 @@ class Counter extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleCountNumEdit = :: this.handleCountNumEdit;
         this.handleCountMinus = :: this.handleCountMinus;
         this.handleCountPlus = :: this.handleCountPlus;
         this.handleCountInputBlur = :: this.handleCountInputBlur;
