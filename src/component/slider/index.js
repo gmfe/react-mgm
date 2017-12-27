@@ -144,6 +144,9 @@ class Slider extends React.Component {
         }
 
         const to = touchObject;
+
+        if (!to) return;
+
         const diff = to.x - to.startX;
         if (to && Math.abs(diff) > 50) {
             if (diff > 0) {
