@@ -55,6 +55,9 @@ class Counter extends React.Component {
         const plusIconClass = classNames('counter-add-btn ifont ifont-add-circle', {
             'disable': isPlusDisabled
         });
+        const inputClass = classNames('counter-num', {
+            'counter-num-border': amount > 0
+        });
 
         return (
             <Flex alignCenter className="counter-container-option">
@@ -66,7 +69,7 @@ class Counter extends React.Component {
                 {
                     <ScrollIntoView>
                         <InputNumber
-                            className="counter-num"
+                            className={inputClass}
                             onChange={this.props.onCountNumEdit}
                             onBlur={this.handleCountInputBlur}
                             value={amount || ''}
