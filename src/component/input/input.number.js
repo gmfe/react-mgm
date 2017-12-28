@@ -46,7 +46,7 @@ class InputNumber extends React.Component {
         return (
             <input
                 {...rest}
-                type="text"
+                type="number"
                 onChange={this.handleChange}
             />
         );
