@@ -14,7 +14,7 @@ const DialogStatics = {
 
                     setTimeout(()=>{
                         resolve();
-                    }, 10);
+                    }, 50);
                 });
             };
 
@@ -25,7 +25,7 @@ const DialogStatics = {
 
                 setTimeout(()=>{
                     reject();
-                }, 10);
+                }, 50);
             };
 
             const popstate = (e) => {
