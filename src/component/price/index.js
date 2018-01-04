@@ -12,7 +12,7 @@ class Price extends React.Component {
         const child = this.props.children ? this.props.children : 0;
 
         return (
-            <span {...rest}>{this.currency +  child}</span>
+            <span {...rest}><span className='currency'>{this.currency}</span>{child}</span>
         );
     }
 }
