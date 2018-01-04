@@ -1,6 +1,5 @@
 import React from 'react';
 import { getCurrency } from './../../util/currency';
-import classNames from 'classnames';
 
 class Price extends React.Component {
     constructor(props) {
@@ -9,11 +8,11 @@ class Price extends React.Component {
     }
 
     render() {
-        let {className, ...rest} = this.props;
+        let {...rest} = this.props;
         const child = this.props.children ? this.props.children : 0;
 
         return (
-            <p className={classNames('inline-block', className)} {...rest}><span className='currency'>{this.currency}</span>{child}</p>
+            <span {...rest}><span className='currency'>{this.currency}</span>{child}</span>
         );
     }
 }
