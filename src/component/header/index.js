@@ -26,7 +26,7 @@ class Header extends React.Component {
                         className="button button-link pull-left header-left"
                         onClick={this.handleBack}
                     >
-                        <i className="ifont ifont-angle-left"/>返回
+                        <i className="ifont ifont-angle-left"/>
                     </a>)}
                 {this.props.right}
                 <h1 className="header-title">{this.props.title}</h1>
