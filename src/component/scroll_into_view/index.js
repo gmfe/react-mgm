@@ -12,7 +12,7 @@ class ScrollIntoView extends React.Component {
 
     render() {
         return React.cloneElement(this.props.children, {
-            onFocus: ::this.handleFocus
+            onFocus: :: this.handleFocus
         });
     }
 
@@ -31,6 +31,10 @@ class ScrollIntoView extends React.Component {
     }
 
     handleFocus() {
+        const { onFocus } = this.props.children.props;
+
+        onFocus && onFocus();
+
         if (!iPhone) {
             setTimeout(() => {
                 if (this.target) {

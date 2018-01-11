@@ -39,7 +39,7 @@ class InputNumber extends React.Component {
 
     render() {
         const {
-            precision, minus, onFoc, // eslint-disable-line
+            precision, minus, // eslint-disable-line
             ...rest
         } = this.props;
 
@@ -48,7 +48,6 @@ class InputNumber extends React.Component {
                 {...rest}
                 type="number"
                 onChange={this.handleChange}
-                onFocus={this.props.onFoc}
             />
         );
     }
@@ -64,14 +63,12 @@ InputNumber.propTypes = {
     onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     className: PropTypes.string,
-    minus: PropTypes.bool, // 是否支持输入负数
-    onFoc: PropTypes.func
+    minus: PropTypes.bool // 是否支持输入负数
 };
 
 InputNumber.defaultProps = {
     precision: 2,
-    minus: false,
-    onFoc: () => { }
+    minus: false
 };
 
 
