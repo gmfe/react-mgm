@@ -72,6 +72,7 @@ class Counter extends React.Component {
                             className={inputClass}
                             onChange={this.props.onCountNumEdit}
                             onBlur={this.handleCountInputBlur}
+                            onFocus={this.props.onCountInputFocus}
                             value={amount || ''}
                         />
                     </ScrollIntoView>
