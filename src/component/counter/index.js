@@ -13,7 +13,6 @@ class Counter extends React.Component {
         this.handleCountMinus = :: this.handleCountMinus;
         this.handleCountPlus = :: this.handleCountPlus;
         this.handleCountInputBlur = :: this.handleCountInputBlur;
-        this.handleFocus = ::this.handleFocus;
     }
 
     // 点减号时触发
@@ -45,14 +44,7 @@ class Counter extends React.Component {
         const { onCountInputBlur } = this.props;
         const amount = e.target.value;
 
-        window.document.body.classList.remove('body-pointer-events');
-        onCountInputBlur(e, amount);
-    }
-
-    handleFocus() {
-        // 禁止页面点击，防止 click 事件导致页面跳转而触发不了 blur 事件
-        window.document.body.classList.add('body-pointer-events');
-        this.props.onCountInputFocus();
+        onCountInputBlur(amount);
     }
 
     render() {
@@ -80,7 +72,7 @@ class Counter extends React.Component {
                             className={inputClass}
                             onChange={this.props.onCountNumEdit}
                             onBlur={this.handleCountInputBlur}
-                            onFocus={this.handleFocus}
+                            onFocus={this.props.onCountInputFocus}
                             value={amount || ''}
                         />
                     </ScrollIntoView>
@@ -99,7 +91,6 @@ Counter.propTypes = {
     onCountMinus: PropTypes.func.isRequired,
     onCountPlus: PropTypes.func.isRequired,
     onCountNumEdit: PropTypes.func.isRequired,
-    onCountInputFocus: PropTypes.func.isRequired,
     onCountInputBlur: PropTypes.func.isRequired,
     isPlusDisabled: PropTypes.bool,
     amount: PropTypes.any.isRequired
