@@ -20,6 +20,7 @@ import {
     Popup,
     SearchBar,
     Square,
+    Loading,
     LazyImg,
     Dialog,
     CursorFix,
@@ -89,7 +90,7 @@ class Home extends React.Component {
         }], [{
             title: 'Component',
             list: [
-                'button', 'flex', 'textarea', 'toast', 'nprogress',
+                'button', 'flex', 'textarea', 'loading', 'toast', 'nprogress',
                 'infinite', 'page', 'slider', 'popup', 'search',
                 'square', 'lazyimg', 'dialog', 'cursorfix', 'select',
                 'dropper', 'tooltip', 'previewimage', 'price', 'cell',
@@ -678,11 +679,32 @@ class TextareaWrap extends React.Component {
     }
 }
 
+class LoadingWrap extends React.Component {
+    render() {
+        return (
+            <Page white>
+                <h2>loading</h2>
+                <Loading type="primary">loading...</Loading>
+            </Page>
+        );
+    }
+}
+
 class ToastWrap extends React.Component {
     handleToast(type) {
         if (type === 'success') {
             Toast.success({
                 time: 2000,
+                children: (
+                    <div>
+                        <div>a</div>
+                        <div>b</div>
+                    </div>
+                )
+            });
+        } else if (type === 'loading_linear') {
+            Toast.loading_linear({
+                time: 5000,
                 children: (
                     <div>
                         <div>a</div>
@@ -716,6 +738,9 @@ class ToastWrap extends React.Component {
                 </button>
                 <button className="weui-btn weui-btn_primary"
                         onClick={this.handleToast.bind(this, 'loading')}>Toast loading
+                </button>
+                <button className="weui-btn weui-btn_primary"
+                        onClick={this.handleToast.bind(this, 'loading_linear')}>Toast loading_linear
                 </button>
             </Page>
         );
@@ -1514,6 +1539,7 @@ const routeMap = {
     button: ButtonWrap,
     flex: FlexWrap,
     textarea: TextareaWrap,
+    loading: LoadingWrap,
     toast: ToastWrap,
     nprogress: NProgressWrap,
     infinite: InfiniteWrap,
