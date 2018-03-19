@@ -24,6 +24,7 @@ import PreviewImage from './component/preview_image';
 import LayoutRoot from './component/layout_root';
 import Price from './component/price';
 import Counter from './component/counter';
+import Loading from './component/Loading';
 import {
     Cells,
     Cell,
@@ -57,6 +58,7 @@ export {
     SearchBar,
     Square,
     LazyImg,
+    Loading,
     Dialog, Alert, Confirm,
     ScrollIntoView,
     CursorFix,

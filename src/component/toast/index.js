@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Mask from '../mask/index';
 import LayoutRoot from '../layout_root';
+import Loading from '../loading';
 
 let timer = null;
 let ToastStatics = {
@@ -43,12 +44,15 @@ let ToastStatics = {
     },
     loading(options) {
         ToastStatics._tip(options, 'loading');
+    },
+    loading_linear(options) {
+        ToastStatics._tip(options, 'loading_linear');
     }
 };
 
 class Toast extends React.Component {
     render() {
-        let {children, loading, success, info, warning, danger} = this.props;
+        let {children, loading, loading_linear, success, info, warning, danger} = this.props;
 
         let icon = null;
         if (loading) {
@@ -62,6 +66,8 @@ class Toast extends React.Component {
             icon = <i className="ifont ifont-warning"/>;
         } else if (danger) {
             icon = <i className="ifont ifont-close"/>;
+        } else if (loading_linear) {
+            icon = <Loading/>;
         }
 
         return (
@@ -81,6 +87,7 @@ Object.assign(Toast, ToastStatics);
 Toast.propTypes = {
     time: PropTypes.any, // 在组件上没意义，单纯给静态方法调用参考
     loading: PropTypes.bool,
+    loading_linear: PropTypes.bool,
     success: PropTypes.bool,
     info: PropTypes.bool,
     warning: PropTypes.bool,
