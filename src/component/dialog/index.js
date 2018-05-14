@@ -12,7 +12,7 @@ const DialogStatics = {
                 Promise.resolve(_onConfirm()).then(() => {
                     window.history.go(-1);
 
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         resolve();
                     }, 50);
                 });
@@ -23,7 +23,7 @@ const DialogStatics = {
                 _onCancel();
                 window.history.go(-1);
 
-                setTimeout(()=>{
+                setTimeout(() => {
                     reject();
                 }, 50);
             };
@@ -74,6 +74,7 @@ class Dialog extends React.Component {
 
         this.handleCancel = ::this.handleCancel;
         this.handleConfirm = ::this.handleConfirm;
+        this.handleOtherClick = ::this.handleOtherClick;
     }
 
     handleConfirm(e) {
@@ -84,6 +85,11 @@ class Dialog extends React.Component {
     handleCancel(e) {
         e.preventDefault();
         this.props.onCancel && this.props.onCancel();
+    }
+
+    handleOtherClick(e) {
+        e.preventDefault();
+        this.props.onOtherClick && this.props.onOtherClick();
     }
 
     render() {
@@ -113,15 +119,15 @@ class Dialog extends React.Component {
                     </div>
                     <div className="weui-dialog__bd">
                         {children}
-                        {picture&&  <div>
-                            <img src={picture} style={{height:'200px',width:'200px'}}/>
+                        {picture && <div>
+                            <img src={picture} style={{height: '200px', width: '200px'}}/>
                         </div>}
                     </div>
                     <div className="weui-dialog__ft">
-                        {otherText&&<a
+                        {otherText && <a
                             href="javascript:;"
                             className="weui-dialog__btn weui-dialog__btn_default"
-                            onClick={this.handleCancel}
+                            onClick={this.handleOtherClick}
                         >{otherText}</a>
                         }
                         {confirm && <a
@@ -153,8 +159,9 @@ Dialog.propTypes = {
     onCancel: PropTypes.func,
     confirmText: PropTypes.string,
     cancelText: PropTypes.string,
-    otherText:PropTypes.string,//当有三个按钮时
-    picture:PropTypes.string   //图片路径
+    otherText: PropTypes.string,//当有三个按钮时
+    onOtherClick: PropTypes.func,
+    picture: PropTypes.string   //图片路径
 };
 
 Dialog.defaultProps = {
