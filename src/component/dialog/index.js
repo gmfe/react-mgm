@@ -93,6 +93,8 @@ class Dialog extends React.Component {
             confirm,
             confirmText,
             cancelText,
+            otherText,
+            picture,
             children
         } = this.props;
 
@@ -111,8 +113,17 @@ class Dialog extends React.Component {
                     </div>
                     <div className="weui-dialog__bd">
                         {children}
+                        {picture&&  <div>
+                            <img src={picture} style={{height:'200px',width:'200px'}}/>
+                        </div>}
                     </div>
                     <div className="weui-dialog__ft">
+                        {otherText&&<a
+                            href="javascript:;"
+                            className="weui-dialog__btn weui-dialog__btn_default"
+                            onClick={this.handleCancel}
+                        >{otherText}</a>
+                        }
                         {confirm && <a
                             href="javascript:;"
                             className="weui-dialog__btn weui-dialog__btn_default"
@@ -141,7 +152,9 @@ Dialog.propTypes = {
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func,
     confirmText: PropTypes.string,
-    cancelText: PropTypes.string
+    cancelText: PropTypes.string,
+    otherText:PropTypes.string,//当有三个按钮时
+    picture:PropTypes.string   //图片路径
 };
 
 Dialog.defaultProps = {
