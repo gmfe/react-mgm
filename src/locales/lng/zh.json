@@ -1,0 +1,29 @@
+{
+  "cell": {
+    "rename": "重命名",
+    "delete": "删除",
+    "placeholder": "请输入列表名称(5个字以内)",
+    "info1": "列表名称不能为空",
+    "info2": "列表名称限5个字以内",
+    "warning": "删除警告",
+    "warningConfirm": "是否确定删除"
+  },
+  "dialog": {
+    "title": "提示",
+    "confirmText": "确定",
+    "cancelText": "取消"
+  },
+  "infinite": {
+    "noMore": "没有更多数据"
+  },
+  "searchBar": {
+    "search": "搜索",
+    "cancel": "取消"
+  },
+  "select": {
+    "noData": "没有数据"
+  },
+  "toast": {
+    "loading": "加载中..."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "cell": {
+    "rename": "Rename",
+    "delete": "Delete",
+    "placeholder": "Enter the name (within 5 letters)",
+    "info1": "List name cannot be empty",
+    "info2": "List name is limited to 5 letters",
+    "warning": "Warning",
+    "warningConfirm": "Do you want to delete "
+  },
+  "dialog": {
+    "title": "Tips",
+    "confirmText": "OK",
+    "cancelText": "Cancel"
+  },
+  "infinite": {
+    "noMore": "No more data"
+  },
+  "searchBar": {
+    "search": "Search",
+    "cancel": "Cancel"
+  },
+  "select": {
+    "noData": "No data here"
+  },
+  "toast": {
+    "loading": "Loading..."
+  }
+}

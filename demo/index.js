@@ -32,7 +32,7 @@ import {
     LayoutRoot,
     Price,
     Counter,
-    Cells, CellsTitle, Cell, CellBody, CellFooter, CellSwiped, CellSwipDeleteEdit
+    Cells, CellsTitle, Cell, CellBody, CellFooter, CellSwipe, CellSwipeDeleteEdit
 } from './../src/index';
 import _ from 'lodash';
 
@@ -40,6 +40,7 @@ import { setCurrency } from '../src/util/currency';
 
 import '../node_modules/gm-mfont/iconfont.css';
 import './index.less';
+
 
 class App extends React.Component {
     render() {
@@ -237,7 +238,7 @@ class CellWrap extends  React.Component {
                 </Cells>
                 <CellsTitle>可删除</CellsTitle>
                 <Cells>
-                    <CellSwiped
+                    <CellSwipe
                         key='1'
                         bodyText={data[0].text}
                         footerText={data[0].footer}
@@ -253,7 +254,7 @@ class CellWrap extends  React.Component {
                 </Cells>
                 <CellsTitle>可删除+重命名</CellsTitle>
                 <Cells>
-                    <CellSwipDeleteEdit
+                    <CellSwipeDeleteEdit
                         key='2'
                         onDelete={this.handleDelete}
                         list={data[1]}
