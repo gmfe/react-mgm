@@ -4,6 +4,7 @@ import CellSwipe from './cell_swipe';
 import Toast from '../toast';
 import Dialog from '../dialog';
 const Confirm =  Dialog.confirm;
+import {getLocale} from '../../locales';
 
 class CellSwipeDeleteEdit extends React.Component {
     constructor(props) {
@@ -15,14 +16,14 @@ class CellSwipeDeleteEdit extends React.Component {
 
         let name = '';
         Confirm({
-            title: '重命名',
+            title: getLocale('cell', 'rename'),
             children: (
                 <div className="border" style={{padding: '2px 4px'}}>
                     <input
                         id="nameInput"
                         className="weui-input"
                         type="text"
-                        placeholder="请输入列表名称(5个字以内)"
+                        placeholder={getLocale('cell', 'placeholder')}
                         defaultValue={bodyText}
                     />
                 </div>
@@ -31,11 +32,11 @@ class CellSwipeDeleteEdit extends React.Component {
                 name = window.document.getElementById('nameInput').value;
 
                 if (!name) {
-                    Toast.info('列表名称不能为空');
+                    Toast.info(getLocale('cell', 'info1'));
                     return Promise.reject();
                 }
                 if (name.length > 5) {
-                    Toast.info('列表名称限5个字以内');
+                    Toast.info(getLocale('cell', 'info2'));
                     return Promise.reject();
                 }
 
@@ -48,8 +49,8 @@ class CellSwipeDeleteEdit extends React.Component {
         const { onDelete } = this.props;
 
         Confirm({
-            title: '删除警告',
-            children: `是否确定删除${bodyText}?`
+            title: getLocale('cell', 'warning'),
+            children: `${getLocale('cell', 'warningConfirm')}${bodyText}?`
         }).then(() => {
             onDelete(list);
         }).then(onClose);
@@ -64,14 +65,14 @@ class CellSwipeDeleteEdit extends React.Component {
                 footerText={footerText}
                 onPress={onPress}
                 right={[{
-                    text: '重命名',
+                    text: getLocale('cell', 'rename'),
                     onPress: this.handleEdit.bind(this, bodyText, list),
                     style: {
                         background: '#C7C7CC',
                         width: '90px'
                     }
                 }, {
-                    text: '删除',
+                    text: getLocale('cell', 'delete'),
                     onPress: this.handleDelete.bind(this, bodyText, list),
                     style: {
                         background: '#E64340',

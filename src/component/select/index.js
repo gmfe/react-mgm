@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Mask from '../mask/index';
 import _ from 'lodash';
 import pureRenderDecorator from '../../util/pure.render.decorator';
+import {getLocale} from "../../locales";
 
 @pureRenderDecorator
 class Select extends React.Component {
@@ -33,7 +34,7 @@ class Select extends React.Component {
             <div className="select-popup">
                 <Mask show={show} opacity={0.1} onClick={this.handleCancel}/>
                 <div {...rest} className={cn}>
-                    {(!data || data.length === 0) && <span className="text-desc">没有数据</span>}
+                    {(!data || data.length === 0) && <span className="text-desc">{getLocale('select', 'noData')}</span>}
                     {_.map(data, (v, i) => (
                         <div
                             key={i}

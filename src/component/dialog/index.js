@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import pureRenderDecorator from '../../util/pure.render.decorator';
 import LayoutRoot from '../layout_root';
 import _ from 'lodash';
+import {getLocale} from "../../locales";
 
 const DialogStatics = {
     dialog(options) {
@@ -165,9 +166,9 @@ Dialog.propTypes = {
 };
 
 Dialog.defaultProps = {
-    title: '提示',
-    confirmText: '确定',
-    cancelText: '取消'
+    title: getLocale('dialog', 'title'),
+    confirmText: getLocale('dialog', 'confirmText'),
+    cancelText: getLocale('dialog', 'cancelText')
 };
 
 export default Dialog;

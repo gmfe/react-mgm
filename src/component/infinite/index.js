@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Flex from '../flex/index';
 import _ from 'lodash';
 import {is} from 'gm-util';
+import {getLocale} from "../../locales";
 
 class Infinite extends React.Component {
     constructor(props) {
@@ -83,7 +84,7 @@ class Infinite extends React.Component {
                 {children}
                 <Flex justifyCenter alignCenter className="text-center">
                     {loading && <i className="weui-loading"/>}
-                    {done && <Flex justifyCenter className="text-desc text-small margin-top-12">没有更多数据</Flex>}
+                    {done && <Flex justifyCenter className="text-desc text-small margin-top-12">{getLocale('infinite', 'noMore')}</Flex>}
                 </Flex>
             </div>
         );

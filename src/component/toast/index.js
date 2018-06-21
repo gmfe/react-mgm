@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Mask from '../mask/index';
 import LayoutRoot from '../layout_root';
 import Loading from '../loading';
+import {getLocale} from "../../locales";
 
 let timer = null;
 let ToastStatics = {
@@ -57,7 +58,7 @@ class Toast extends React.Component {
         let icon = null;
         if (loading) {
             icon = <i className="weui-loading"/>;
-            children = children || '加载中...';
+            children = children || getLocale('toast', 'loading');
         } else if (success) {
             icon = <i className="ifont ifont-success"/>;
         } else if (info) {

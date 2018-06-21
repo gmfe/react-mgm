@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import pureRenderDecorator from '../../util/pure.render.decorator';
+import {getLocale} from "../../locales";
 
 const noop = () => {
 };
@@ -59,10 +60,10 @@ class SearchBar extends React.Component {
                 </form>
                 {this.props.OKBtn ? (
                     <a href="javascript:" className="weui-search-bar__cancel-btn" onClick={this.handleOK}>
-                        {this.props.OKBtn === true ? '搜索' : this.props.OKBtn}
+                        {this.props.OKBtn === true ? getLocale('searchBar', 'search') : this.props.OKBtn}
                     </a>
                 ) : (
-                    <a href="javascript:" className="weui-search-bar__cancel-btn" onClick={this.handleCancel}>取消</a>
+                    <a href="javascript:" className="weui-search-bar__cancel-btn" onClick={this.handleCancel}>{getLocale('searchBar', 'cancel')}</a>
                 )}
             </div>
         );
