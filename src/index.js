@@ -38,6 +38,7 @@ import {
 } from './component/cell';
 import Button from './component/button';
 import Tabs from './component/tabs';
+import {setLocale} from './locales';
 
 const Alert = Dialog.alert, Confirm = Dialog.confirm;
 
@@ -80,5 +81,6 @@ export {
     CellFooter,
     CellSwipe,
     CellSwipeDeleteEdit,
-    Tabs
+    Tabs,
+    setLocale
 };
