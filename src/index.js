@@ -25,6 +25,7 @@ import LayoutRoot from './component/layout_root';
 import Price from './component/price';
 import Counter from './component/counter';
 import Loading from './component/loading';
+import Divider from './component/divider';
 import {
     Cells,
     Cell,
@@ -71,6 +72,7 @@ export {
     LayoutRoot,
     Price,
     Counter,
+    Divider,
 
     Cells,
     Cell,

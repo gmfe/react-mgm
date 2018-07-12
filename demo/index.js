@@ -32,6 +32,7 @@ import {
     LayoutRoot,
     Price,
     Counter,
+    Divider,
     Cells, CellsTitle, Cell, CellBody, CellFooter, CellSwipe, CellSwipeDeleteEdit
 } from './../src/index';
 import _ from 'lodash';
@@ -95,7 +96,7 @@ class Home extends React.Component {
                 'infinite', 'page', 'slider', 'popup', 'search',
                 'square', 'lazyimg', 'dialog', 'cursorfix', 'select',
                 'dropper', 'tooltip', 'previewimage', 'price', 'cell',
-                'counter'
+                'counter', 'divider'
             ]
         }]];
     }
@@ -1531,6 +1532,15 @@ class PreviewImageWrap extends React.Component {
     }
 }
 
+class dividerWrap extends React.Component {
+    render() {
+        return (
+            <div>
+                <Divider>lalala</Divider>
+            </div>
+        );
+    }
+}
 
 const routeMap = {
     demo: DemoWrap,
@@ -1561,7 +1571,8 @@ const routeMap = {
     badge: BadgeWrap,
     price: PriceWrap,
     cell:  CellWrap,
-    counter: CounterWrap
+    counter: CounterWrap,
+    divider: dividerWrap
 };
 
 const Root = () => (
