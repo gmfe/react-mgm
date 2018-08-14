@@ -29,13 +29,13 @@ class Counter extends React.Component {
     }
 
     // 点加号时触发
-    handleCountPlus() {
+    handleCountPlus(e) {
         const { onCountPlus } = this.props;
         const { amount } = this.props;
 
         let amount_new = Number(Big(amount || 0).plus(1).toString());
 
-        onCountPlus(amount_new);
+        onCountPlus(amount_new, e);
     }
 
 
