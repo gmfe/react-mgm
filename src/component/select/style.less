@@ -1,12 +1,11 @@
 .select-popup {
-
   .select-popup-list {
     position: absolute;
     top: 100px;
     left: 30px;
     right: 30px;
     background-color: white;
-    z-index: 2000;
+    z-index: @popupZIndex;
     border: 1px solid @borderColor;
     min-height: 200px;
     max-height: 300px;
@@ -20,10 +19,11 @@
       .borderBottomAfter();
 
       &:last-child {
-        &:after {
+        &::after {
           display: none;
         }
       }
+
       &.active {
         background-color: @activeColor;
       }

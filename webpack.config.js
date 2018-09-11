@@ -1,55 +1,13 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const isPro = process.env.NODE_ENV === 'production';
+const webpackConfig = require('gm-webpack/webpack.config.js')
 
-const config = {
-    entry: {
-        'index': [
-            './demo/index'
-        ]
-    },
-    output: {
-        path: path.join(__dirname, 'build'),
-        filename: '[name].[hash:8].js',
-        publicPath: isPro ? '/react-mgm/build/' : '/'
-    },
-    module: {
-        rules: [{
-            test: /\.js$/,
-            use: ['babel-loader']
-        }, {
-            test: /\.(css|less)$/,
-            use: [
-                'style-loader',
-                'css-loader?-autoprefixer',
-                'postcss-loader',
-                'less-loader'
-            ]
-        }, {
-            test: /iconfont\.(woff|woff2|ttf|eot|svg)($|\?)/,
-            use: [{
-                loader: 'url-loader',
-                options: {
-                    limit: 0,
-                    name: 'fonts/[name].[ext]'
-                }
-            }]
-        }]
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'index.template'
-        })
-    ],
-    devServer: {
-        proxy: {
-            '/api/*': {
-                target: 'http://localhost:8082',
-                secure: false
-            }
-        }
-    }
-};
+const config = webpackConfig({
+  publicPath: '/react-mgm/build/',
+  port: 4000,
+  projectShortName: 'index',
+  index: './demo/index.js',
+  commons: [
+    'gm-util'
+  ]
+})
 
-module.exports = config;
+module.exports = config

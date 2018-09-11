@@ -1,38 +1,38 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import pureRenderDecorator from '../../util/pure.render.decorator';
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import pureRenderDecorator from '../../util/pure.render.decorator'
 
 @pureRenderDecorator
 class Mask extends React.Component {
-    render() {
-        const {
-            className, style,
-            show,
-            opacity,
-            ...rest
-        } = this.props;
+  render () {
+    const {
+      className, style,
+      show,
+      opacity,
+      ...rest
+    } = this.props
 
-        const s = Object.assign({opacity}, style);
+    const s = Object.assign({opacity}, style)
 
-        if (!show) {
-            return null;
-        }
-
-        return (
-            <div {...rest} className={classNames('mask', className)} style={s}/>
-        );
+    if (!show) {
+      return null
     }
+
+    return (
+      <div {...rest} className={classNames('mask', className)} style={s}/>
+    )
+  }
 }
 
 Mask.propTypes = {
-    show: PropTypes.bool,
-    opacity: PropTypes.number
-};
+  show: PropTypes.bool,
+  opacity: PropTypes.number
+}
 
 Mask.defaultProps = {
-    show: false,
-    opacity: .5
-};
+  show: false,
+  opacity: 0.5
+}
 
-export default Mask;
+export default Mask
