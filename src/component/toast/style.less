@@ -1,17 +1,43 @@
-.toast-container {
+.toast {
   position: absolute;
-  top: 0;
+  top: 180px;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 7000;
+  right: 0;
 
-  .toast {
+  .toast-inner {
     background: rgba(40, 40, 40, 0.75);
+    z-index: @toastZIndex;
     text-align: center;
-    border-radius: 5px;
-    color: #FFFFFF;
-    margin: 180px 30px;
-    padding: 5px;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    max-width: 80vw;
+
+    .loading-icon {
+      margin: 5px 32px 0;
+    }
+
+    .toast-content {
+      padding: 8px 12px;
+    }
+
+    .ifont {
+      font-size: 36px;
+      line-height: 1;
+    }
+
+    .weui-loading {
+      height: 36px;
+      width: 36px;
+    }
+
+    .loading-linear {
+      margin: 18px 6px 6px;
+      text-align: center;
+
+      .line {
+        background: white;
+      }
+    }
   }
 }

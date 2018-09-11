@@ -1,9 +1,11 @@
 module.exports = {
-    "plugins": [
-        "gm"
-    ],
-    "extends": ["plugin:gm/recommended"],
-    "rules": {
-        "react/no-find-dom-node": 0
-    }
-};
+  'parser': 'babel-eslint',
+  'extends': [
+    'standard',
+    'standard-jsx'
+  ],
+  'rules': {
+    'react/jsx-tag-spacing': ['error', {'beforeSelfClosing': 'never'}],
+    'camelcase': 0
+  }
+}

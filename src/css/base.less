@@ -1,8 +1,10 @@
-html, body {
+html,
+body {
   height: 100%;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   color: @defaultColor;
+  font-size: @fontSize14;
 }
 
 * {
@@ -11,6 +13,10 @@ html, body {
 
 ::-webkit-input-placeholder {
   color: @placeholderColor;
+}
+
+.ifont {
+  font-size: @fontSize14;
 }
 
 .container {
@@ -32,6 +38,10 @@ a.decoration {
   float: left;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .absolute-right {
   position: absolute;
   right: 0;
@@ -43,12 +53,13 @@ a.decoration {
 }
 
 .clearfix {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: " ";
-    display: table
+    display: table;
   }
-  &:after {
+
+  &::after {
     clear: both;
   }
 }
@@ -84,7 +95,7 @@ a.decoration {
 .img-responsive {
   display: block;
   max-width: 100%;
-  height: auto;;
+  height: auto;
 }
 
 .text-ellipsis {
@@ -99,6 +110,28 @@ a.decoration {
 
 .line-height {
   line-height: 1;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow {
+  overflow: auto;
+}
+
+.overflow-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.overflow-y {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 // 让容器占满父元素

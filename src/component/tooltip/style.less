@@ -1,13 +1,13 @@
 .topMixin() {
   padding-bottom: 5px;
 
-  .gm-tooltip-arrow {
+  .tooltip-arrow {
     bottom: 0;
     margin-left: -5px;
     border-width: 5px 5px 0;
     border-top-color: @borderColor;
 
-    &:after {
+    &::after {
       bottom: 1px;
       margin-left: -5px;
       border-width: 5px 5px 0;
@@ -19,13 +19,13 @@
 .bottomMixin() {
   padding-top: 5px;
 
-  .gm-tooltip-arrow {
+  .tooltip-arrow {
     top: 0;
     margin-left: -5px;
     border-width: 0 5px 5px;
     border-bottom-color: @borderColor;
 
-    &:after {
+    &::after {
       top: 1px;
       margin-left: -5px;
       border-width: 0 5px 5px;
@@ -34,60 +34,12 @@
   }
 }
 
-.gm-tooltip {
+.tooltip {
   position: relative;
   display: inline-block;
   font-size: 12px;
 
-  &.gm-tooltip-top {
-    .topMixin();
-
-    .gm-tooltip-arrow {
-      left: 50%;
-    }
-  }
-
-  &.gm-tooltip-topRight {
-    .topMixin();
-
-    .gm-tooltip-arrow {
-      right: 8px;
-    }
-  }
-
-  &.gm-tooltip-topLeft {
-    .topMixin();
-
-    .gm-tooltip-arrow {
-      left: 12px;
-    }
-  }
-
-  &.gm-tooltip-bottom {
-    .bottomMixin();
-
-    .gm-tooltip-arrow {
-      left: 50%;
-    }
-  }
-
-  &.gm-tooltip-bottomRight {
-    .bottomMixin();
-
-    .gm-tooltip-arrow {
-      right: 8px;
-    }
-  }
-
-  &.gm-tooltip-bottomLeft {
-    .bottomMixin();
-
-    .gm-tooltip-arrow {
-      left: 12px;
-    }
-  }
-
-  .gm-tooltip-inner {
+  .tooltip-inner {
     padding: 3px 8px;
     color: @defaultColor;
     text-align: center;
@@ -96,14 +48,14 @@
     border-radius: 5px;
   }
 
-  .gm-tooltip-arrow {
+  .tooltip-arrow {
     position: absolute;
     width: 0;
     height: 0;
     border-color: transparent;
     border-style: solid;
 
-    &:after {
+    &::after {
       content: " ";
       position: absolute;
       border-color: transparent;
@@ -111,6 +63,54 @@
       width: 0;
       height: 0;
       border-style: solid;
+    }
+  }
+
+  &.tooltip-top {
+    .topMixin();
+
+    .tooltip-arrow {
+      left: 50%;
+    }
+  }
+
+  &.tooltip-topRight {
+    .topMixin();
+
+    .tooltip-arrow {
+      right: 8px;
+    }
+  }
+
+  &.tooltip-topLeft {
+    .topMixin();
+
+    .tooltip-arrow {
+      left: 12px;
+    }
+  }
+
+  &.tooltip-bottom {
+    .bottomMixin();
+
+    .tooltip-arrow {
+      left: 50%;
+    }
+  }
+
+  &.tooltip-bottomRight {
+    .bottomMixin();
+
+    .tooltip-arrow {
+      right: 8px;
+    }
+  }
+
+  &.tooltip-bottomLeft {
+    .bottomMixin();
+
+    .tooltip-arrow {
+      left: 12px;
     }
   }
 }

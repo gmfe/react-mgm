@@ -1,5 +1,5 @@
 .preview-image {
-  z-index: 4000;
+  z-index: @previewImageZIndex;
   position: absolute;
   top: 0;
   left: 0;
@@ -9,6 +9,7 @@
 
   .preview-image-inner {
     width: 100%;
+
     img {
       max-width: 100%;
       max-height: ~"calc(100vh - 150px)";
@@ -18,7 +19,7 @@
   .preview-image-close {
     color: white;
     position: absolute;
-    opacity: .5;
+    opacity: 0.5;
     top: 10px;
     right: 10px;
     width: 25px;
@@ -32,10 +33,10 @@
   .slider-flag {
     span {
       background: grey;
+
       &.active {
         background: @borderColor;
       }
     }
   }
-
 }

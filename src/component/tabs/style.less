@@ -17,17 +17,17 @@
 
     .borderRightBefore();
 
-    &:before {
+    &::before {
       transform: scale(0.5);
       transform-origin: 100% 50%;
     }
 
-    &:last-child:before {
+    &:last-child::before {
       display: none;
     }
 
     .tabs-item-text {
-      padding: 10px 1em;
+      padding: 10px 4px;
     }
 
     &.active .tabs-item-text {
@@ -35,7 +35,7 @@
       color: @primaryColor;
       position: relative;
 
-      &:after {
+      &::after {
         content: " ";
         position: absolute;
         left: 0;

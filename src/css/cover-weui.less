@@ -3,6 +3,11 @@
   background-color: @tabbarBg;
 }
 
+.weui-tabbar__icon + .weui-tabbar__label {
+  margin-top: 1px;
+  margin-bottom: 4px;
+}
+
 .weui-tabbar__item {
   &.weui-bar__item_on {
     .weui-tabbar__label {
@@ -11,18 +16,11 @@
   }
 }
 
-.weui-tabbar__icon {
-  & + .weui-tabbar__label {
-    margin-top: 1px;
-    margin-bottom: 4px
-  }
-}
-
 .weui-cells_checkbox {
   .weui-check {
     &:checked {
       & + .weui-icon-checked {
-        &:before {
+        &::before {
           color: @primaryColor;
         }
       }
@@ -36,6 +34,19 @@
   padding-left: @n16;
   padding-right: @n8;
   line-height: 1.3;
+}
+
+.weui-cell_switch {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.weui-switch {
+  height: 30px;
+
+  &:after {
+    height: 28px;
+  }
 }
 
 .weui-form-preview__bd {
