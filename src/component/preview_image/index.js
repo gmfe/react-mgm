@@ -26,6 +26,9 @@ let PreviewImageStatics = {
     },
 
     hide() {
+      // TODO mark 重复 remove，没关系
+      LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
+
         window.history.go(-1);
     }
 };
