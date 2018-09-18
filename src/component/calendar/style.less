@@ -1,0 +1,33 @@
+.calendar {
+  .calendar-color-second-primary {
+    color: #aeecbe;
+  }
+
+  .calendar-day-name {
+    height: 30px;
+  }
+
+  .calendar-day {
+    height: 40px;
+
+    &.calendar-day-label {
+      height: 46px;
+      line-height: 1.4;
+    }
+
+    &.calendar-day-active {
+      background-color: #aeecbe;
+      border-radius: 4px;
+    }
+
+    &.calendar-day-point {
+      background-color: #60da7f;
+      border-radius: 4px;
+    }
+
+    &.calendar-day-disabled {
+      color: @descColor;
+      cursor: not-allowed;
+    }
+  }
+}

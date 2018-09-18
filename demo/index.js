@@ -34,9 +34,11 @@ import {
   Counter,
   Divider,
   Cells, CellsTitle, Cell, CellBody, CellFooter, CellSwipe, CellSwipeDeleteEdit,
-  Picker, ConfirmPicker
+  Picker, ConfirmPicker,
+  Calendar
 } from './../src/index'
 import _ from 'lodash'
+import moment from 'moment'
 
 import { setCurrency } from '../src/util/currency'
 
@@ -102,7 +104,7 @@ class Home extends React.Component {
         'infinite', 'page', 'slider', 'popup', 'search',
         'square', 'lazyimg', 'dialog', 'cursorfix', 'select',
         'dropper', 'tooltip', 'previewimage', 'price', 'cell',
-        'counter', 'divider', 'picker'
+        'counter', 'divider', 'picker', 'calendar'
       ]
     }]]
   }
@@ -1657,6 +1659,34 @@ class PickerWrap extends React.Component {
   }
 }
 
+class CalendarWrap extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      begin: moment().add(-30, 'd').toDate(),
+      end: moment().add(2, 'd').toDate()
+    }
+  }
+
+  render () {
+    return (
+      <div className='padding-8'>
+        <Calendar
+          begin={this.state.begin}
+          end={this.state.end}
+          onSelect={({begin, end}) => this.setState({begin, end})}
+          min={moment().add(-5, 'd')}
+          max={moment().add(5, 'd')}
+        />
+        {/*<Calendar*/}
+          {/*label*/}
+        {/*/>*/}
+      </div>
+    )
+  }
+}
+
 const routeMap = {
   demo: DemoWrap,
   theme: ThemeWrap,
@@ -1688,7 +1718,8 @@ const routeMap = {
   cell: CellWrap,
   counter: CounterWrap,
   divider: DividerWrap,
-  picker: PickerWrap
+  picker: PickerWrap,
+  calendar: CalendarWrap
 }
 
 const Root = () => (

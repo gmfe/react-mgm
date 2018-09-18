@@ -25,5 +25,36 @@
   },
   "toast": {
     "loading": "Loading..."
+  },
+  "picker": {
+    "confirmText": "OK",
+    "cancelText": "Cancel"
+  },
+  "calendar": {
+    "today": "Today",
+    "year": "Years",
+    "weekDays": [
+      "Su",
+      "Mo",
+      "Tu",
+      "We",
+      "Th",
+      "Fr",
+      "Sa"
+    ],
+    "months": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ]
   }
 }

@@ -40,8 +40,9 @@ import {
 } from './component/cell'
 import Button from './component/button'
 import Tabs from './component/tabs'
-import {Picker, ConfirmPicker} from './component/picker'
+import { Picker, ConfirmPicker } from './component/picker'
 import { setLocale } from './locales'
+import { Calendar } from './component/calendar'
 
 const Alert = Dialog.alert
 const Confirm = Dialog.confirm
@@ -92,6 +93,8 @@ export {
 
   Picker,
   ConfirmPicker,
+
+  Calendar,
 
   setLocale
 }
