@@ -19,8 +19,10 @@ const PopupStatics = {
 
     options.show = true
 
+    const _onHide = options.onHide
     options.onHide = () => {
       PopupStatics.hide()
+      _onHide && _onHide()
     }
 
     window.history.pushState({type: 'popup'}, null)
@@ -30,7 +32,7 @@ const PopupStatics = {
 
   hide () {
     // TODO mark 重复 remove，没关系
-    LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP);
+    LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
 
     window.history.go(-1)
   }
@@ -57,7 +59,7 @@ class Popup extends React.Component {
       opacity,
       className,
       style,
-            onHide, // eslint-disable-line
+      onHide, // eslint-disable-line
       children,
       ...rest
     } = this.props

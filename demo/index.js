@@ -34,7 +34,7 @@ import {
   Counter,
   Divider,
   Cells, CellsTitle, Cell, CellBody, CellFooter, CellSwipe, CellSwipeDeleteEdit,
-  Picker, PopupPicker
+  Picker, ConfirmPicker
 } from './../src/index'
 import _ from 'lodash'
 
@@ -1591,12 +1591,12 @@ class PickerWrap extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      valueGroups: [
+      values: [
         'Mr.',
         'Micheal',
         'Jordan'
       ],
-      optionGroups: [
+      data: [
         ['Mr.', 'Mrs.', 'Ms.', 'Dr.'],
         ['John', 'Micheal', 'Elizabeth'],
         ['Lennon', 'Jackson', 'Jordan', 'Legend', 'Taylor']
@@ -1604,35 +1604,38 @@ class PickerWrap extends React.Component {
     }
   }
 
-  handleChange = (index, value) => {
-    const {valueGroups} = this.state
-
-    valueGroups[index] = value
-
+  handleChange = (values) => {
     this.setState({
-      valueGroups
+      values
     })
   }
 
   handleClick = () => {
-    const {optionGroups, valueGroups} = this.state
+    const {data, values} = this.state
 
-    PopupPicker.render({
-      optionGroups,
-      valueGroups
+    ConfirmPicker.render({
+      data,
+      values
+    }).then(v => {
+      console.log('resolve', v)
+      this.setState({
+        values: v
+      })
+    }, () => {
+      console.log('reject')
     })
   }
 
   render () {
-    const {optionGroups, valueGroups} = this.state
+    const {data, values} = this.state
 
     return (
       <div>
         <button className='weui-btn' onClick={this.handleClick}>picker</button>
 
         <Picker
-          optionGroups={optionGroups}
-          valueGroups={valueGroups}
+          data={data}
+          values={values}
           onChange={this.handleChange}
         />
       </div>

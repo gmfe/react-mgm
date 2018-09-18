@@ -40,8 +40,7 @@ import {
 } from './component/cell'
 import Button from './component/button'
 import Tabs from './component/tabs'
-import Picker from './component/picker'
-import PopupPicker from './component/popup_picker'
+import {Picker, ConfirmPicker} from './component/picker'
 import { setLocale } from './locales'
 
 const Alert = Dialog.alert
@@ -90,8 +89,9 @@ export {
   CellSwitch,
 
   Tabs,
+
   Picker,
-  PopupPicker,
+  ConfirmPicker,
 
   setLocale
 }
