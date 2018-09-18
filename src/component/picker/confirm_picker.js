@@ -31,7 +31,7 @@ class ConfirmPicker extends React.Component {
   }
 
   render () {
-    const {itemHeight, data} = this.props
+    const {itemHeight, datas} = this.props
     const {values} = this.state
 
     return (
@@ -47,7 +47,7 @@ class ConfirmPicker extends React.Component {
           >{getLocale('dialog', 'confirmText')}</div>
         </Flex>
         <Picker
-          data={data}
+          datas={datas}
           values={values}
           itemHeight={itemHeight}
           onChange={this.handleChange}
@@ -92,7 +92,7 @@ ConfirmPicker.hide = () => {
 }
 
 ConfirmPicker.propTypes = {
-  data: PropTypes.array.isRequired,
+  datas: PropTypes.array.isRequired,
   values: PropTypes.array.isRequired,
   itemHeight: PropTypes.number,
   onConfirm: PropTypes.func.isRequired,

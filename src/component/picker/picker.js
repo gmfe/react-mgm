@@ -181,7 +181,7 @@ class Picker extends React.Component {
 
   render () {
     const {
-      data,
+      datas,
       values,
       itemHeight,
       onChange, // eslint-disable-line
@@ -200,7 +200,7 @@ class Picker extends React.Component {
         className={classNames('picker', className)}
       >
         <div className='picker-inner' style={{height: itemHeight * 6}}>
-          {_.map(data, (v, i) => (
+          {_.map(datas, (v, i) => (
             <PickerColumn
               key={i}
               index={i}
@@ -219,7 +219,7 @@ class Picker extends React.Component {
 }
 
 Picker.propTyps = {
-  data: PropTypes.array.isRequired,
+  datas: PropTypes.array.isRequired,
   values: PropTypes.array.isRequired,
   itemHeight: PropTypes.number,
   onChange: PropTypes.func.isRequired

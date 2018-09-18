@@ -6,4 +6,4 @@
 
 html body font-size: 14px
 
-移除 Loading
+select 的 value 从引用改为值的形式

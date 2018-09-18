@@ -1300,30 +1300,13 @@ class SelectWrap extends React.Component {
       data: [
         {value: 1, name: '深圳'},
         {value: 2, name: '罗湖'},
-        {value: 3, name: '罗湖'},
-        {value: 4, name: '罗湖'},
-        {value: 5, name: '罗湖'},
-        {value: 6, name: '罗湖'},
-        {value: 7, name: '罗湖'},
-        {value: 8, name: '罗湖'},
-        {value: 9, name: '罗湖'}
+        {value: 3, name: '南山'},
+        {value: 4, name: '宝安'},
+        {value: 5, name: '福田'},
+        {value: 6, name: '龙岗'}
       ],
       value: null
     }
-  }
-
-  render () {
-    return (
-      <div>
-        <button className='weui-btn weui-btn_primary' onClick={::this.handleClick}>选择</button>
-        {this.state.value && this.state.value.name}
-        <Select
-          show={this.state.show}
-          data={this.state.data}
-          value={this.state.value}
-          onChange={::this.handleChange}/>
-      </div>
-    )
   }
 
   handleChange (value) {
@@ -1338,6 +1321,37 @@ class SelectWrap extends React.Component {
     this.setState({
       show: true
     })
+  }
+
+  handleClickStatic = () => {
+    const {data, value} = this.state
+
+    Select.render({
+      data,
+      value
+    }).then(v => {
+      console.log(v)
+      this.setState({
+        value: v
+      })
+    })
+  }
+
+  render () {
+    const item = _.find(this.state.data, v => v.value === this.state.value)
+
+    return (
+      <div>
+        <button className='weui-btn weui-btn_primary' onClick={::this.handleClick}>选择</button>
+        <button className='weui-btn weui-btn_primary' onClick={::this.handleClickStatic}>选择(静态方法)</button>
+        {item && item.name}
+        <Select
+          show={this.state.show}
+          data={this.state.data}
+          value={this.state.value}
+          onChange={::this.handleChange}/>
+      </div>
+    )
   }
 }
 
@@ -1596,7 +1610,7 @@ class PickerWrap extends React.Component {
         'Micheal',
         'Jordan'
       ],
-      data: [
+      datas: [
         ['Mr.', 'Mrs.', 'Ms.', 'Dr.'],
         ['John', 'Micheal', 'Elizabeth'],
         ['Lennon', 'Jackson', 'Jordan', 'Legend', 'Taylor']
@@ -1611,10 +1625,10 @@ class PickerWrap extends React.Component {
   }
 
   handleClick = () => {
-    const {data, values} = this.state
+    const {datas, values} = this.state
 
     ConfirmPicker.render({
-      data,
+      datas,
       values
     }).then(v => {
       console.log('resolve', v)
@@ -1627,14 +1641,14 @@ class PickerWrap extends React.Component {
   }
 
   render () {
-    const {data, values} = this.state
+    const {datas, values} = this.state
 
     return (
       <div>
         <button className='weui-btn' onClick={this.handleClick}>picker</button>
 
         <Picker
-          data={data}
+          datas={datas}
           values={values}
           onChange={this.handleChange}
         />
