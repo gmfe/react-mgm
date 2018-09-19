@@ -80,7 +80,7 @@ class Toast extends React.Component {
     return (
       <div>
         {(loading || loading_linear) && <Mask show opacity={0.01}/>}
-        <div className='toast'>
+        <div className='toast animated-fade-in'>
           <div className='toast-inner'>
             {icon && (
               <div className='loading-icon'>

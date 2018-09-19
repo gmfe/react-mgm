@@ -11,14 +11,9 @@
 
     &.popup-left {
       top: 0;
-      left: -100%;
+      left: 0;
       width: 70%;
       height: 100%;
-      transition: left 0.2s ease-out;
-
-      &.active {
-        left: 0;
-      }
 
       .popup-content {
         position: absolute;
@@ -37,12 +32,6 @@
       margin: auto;
       height: auto;
       max-height: 100%;
-      transition: transform 0.2s ease-out;
-      transform: translate3d(0, 100%, 0);
-
-      &.active {
-        transform: translate3d(0, 0, 0);
-      }
 
       .popup-content {
         height: auto;

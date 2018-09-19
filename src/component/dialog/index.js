@@ -121,7 +121,7 @@ class Dialog extends React.Component {
         {/* 有一种情况是在 popup 组件中使用 dialog 组件，popup z-index 为 2000，而 mask 为 1000，就不能在 popup 之上 */}
         {/* 因此将这里的 mask z-index 设置成和 dialog 一样 */}
         <div className='weui-mask' style={{zIndex: 5000}}/>
-        <div className='weui-dialog'>
+        <div className='weui-dialog animated-fade-in'>
           <div className='weui-dialog__hd'>
             <strong className='weui-dialog_title'>{title}</strong>
           </div>

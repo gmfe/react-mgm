@@ -1067,7 +1067,7 @@ class PopupWrap extends React.Component {
         </Popup>
 
         <Popup opacity={0.8} bottom show={this.state.show2} onHide={this.handleChange2}>
-          <div style={{height: '100px'}}>height 100px</div>
+          <div style={{height: '300px'}}>height 100px</div>
         </Popup>
 
         <div>asdf</div>
