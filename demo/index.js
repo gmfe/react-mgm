@@ -1664,8 +1664,8 @@ class CalendarWrap extends React.Component {
     super(props)
 
     this.state = {
-      begin: moment().add(-30, 'd').toDate(),
-      end: moment().add(2, 'd').toDate()
+      begin: null,
+      end: null
     }
   }
 
@@ -1673,15 +1673,16 @@ class CalendarWrap extends React.Component {
     return (
       <div className='padding-8'>
         <Calendar
+          min={moment().add(-1, 'month').toDate()}
+          max={moment().toDate()}
           begin={this.state.begin}
           end={this.state.end}
-          onSelect={({begin, end}) => this.setState({begin, end})}
-          min={moment().add(-5, 'd')}
-          max={moment().add(5, 'd')}
+          onChange={({begin, end}) => {
+            console.log(moment(begin).format('YYYY-MM-DD'), moment(end).format('YYYY-MM-DD'))
+            this.setState({begin, end})
+          }}
+          label
         />
-        {/*<Calendar*/}
-          {/*label*/}
-        {/*/>*/}
       </div>
     )
   }
