@@ -31,7 +31,7 @@ class ConfirmPicker extends React.Component {
   }
 
   render () {
-    const {itemHeight, datas} = this.props
+    const {itemHeight, datas, title} = this.props
     const {values} = this.state
 
     return (
@@ -41,6 +41,7 @@ class ConfirmPicker extends React.Component {
             className='text-link padding-lr-12 padding-tb-8'
             onClick={this.handleCancel}
           >{getLocale('dialog', 'cancelText')}</div>
+          <div className='padding-tb-8'>{title}</div>
           <div
             className='text-link padding-lr-12 padding-tb-8'
             onClick={this.handleConfirm}
@@ -69,6 +70,7 @@ ConfirmPicker.render = (props) => {
       children: (
         <ConfirmPicker
           {...props}
+          title='选择选择'
           onConfirm={values => {
             Popup.hide()
             setTimeout(() => {
@@ -92,6 +94,7 @@ ConfirmPicker.hide = () => {
 }
 
 ConfirmPicker.propTypes = {
+  title: PropTypes.string,
   datas: PropTypes.array.isRequired,
   values: PropTypes.array.isRequired,
   itemHeight: PropTypes.number,
