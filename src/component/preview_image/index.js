@@ -16,12 +16,11 @@ let PreviewImageStatics = {
 
     window.addEventListener('popstate', popstate)
 
-    options.show = true
     options.onHide = () => {
       PreviewImageStatics.hide()
     }
     window.history.pushState({}, '')
-    LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <PreviewImage {...options}/>)
+    LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <PreviewImage {...options} show/>)
   },
 
   hide () {
