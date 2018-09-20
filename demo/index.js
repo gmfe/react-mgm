@@ -709,10 +709,10 @@ class ToastWrap extends React.Component {
   handleToast (type) {
     if (type === 'success') {
       Toast.success({
-        time: 10000,
+        time: 0,
         children: (
           <div>
-            <div>保存成功啦</div>
+            <div>保存成功啦保存成功啦保存成功啦保存成功啦</div>
           </div>
         )
       })

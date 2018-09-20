@@ -4,6 +4,7 @@ import LayoutRoot from '../layout_root'
 import Loading from '../loading'
 import Mask from '../mask'
 import { getLocale } from '../../locales'
+import Flex from '../flex'
 
 let timer = null
 let ToastStatics = {
@@ -80,7 +81,7 @@ class Toast extends React.Component {
     return (
       <div>
         {(loading || loading_linear) && <Mask show opacity={0.01}/>}
-        <div className='toast animated-fade-in'>
+        <Flex justifyCenter className='toast animated-fade-in'>
           <div className='toast-inner'>
             {icon && (
               <div className='loading-icon'>
@@ -89,7 +90,7 @@ class Toast extends React.Component {
             )}
             <div className='toast-content'>{children}</div>
           </div>
-        </div>
+        </Flex>
       </div>
     )
   }
