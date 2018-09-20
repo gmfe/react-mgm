@@ -7,17 +7,12 @@ import _ from 'lodash'
 
 const PopupStatics = {
   render (options) {
-    const popstate = (e) => {
-      if (e.state === null || (e.state && e.state.type !== 'popup')) {
-        LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
-
-        window.removeEventListener('popstate', popstate)
-      }
+    const popstate = () => {
+      LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
+      window.removeEventListener('popstate', popstate)
     }
 
     window.addEventListener('popstate', popstate)
-
-    options.show = true
 
     const _onHide = options.onHide
     options.onHide = () => {
@@ -25,9 +20,9 @@ const PopupStatics = {
       _onHide && _onHide()
     }
 
-    window.history.pushState({type: 'popup'}, null)
+    window.history.pushState({}, '')
 
-    LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <Popup {...options}/>)
+    LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <Popup {...options} show/>)
   },
 
   hide () {

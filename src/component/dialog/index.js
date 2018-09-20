@@ -36,21 +36,16 @@ const DialogStatics = {
         }, 50)
       }
 
-      const popstate = (e) => {
-        if (e.state === null || (e.state && e.state.type !== 'dialog')) {
-          LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
-
-          window.removeEventListener('popstate', popstate)
-        }
+      const popstate = () => {
+        LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
+        window.removeEventListener('popstate', popstate)
       }
 
       window.addEventListener('popstate', popstate)
 
-      options.show = true
+      window.history.pushState({}, '')
 
-      window.history.pushState({type: 'dialog'}, null)
-
-      LayoutRoot.setComponent(LayoutRoot.TYPE.MODAL, <Dialog {...options}/>)
+      LayoutRoot.setComponent(LayoutRoot.TYPE.MODAL, <Dialog {...options} show/>)
     })
   },
 

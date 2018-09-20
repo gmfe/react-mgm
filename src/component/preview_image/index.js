@@ -11,7 +11,6 @@ let PreviewImageStatics = {
   render (options) {
     const popstate = () => {
       LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
-
       window.removeEventListener('popstate', popstate)
     }
 
@@ -21,7 +20,7 @@ let PreviewImageStatics = {
     options.onHide = () => {
       PreviewImageStatics.hide()
     }
-    window.history.pushState({}, null)
+    window.history.pushState({}, '')
     LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <PreviewImage {...options}/>)
   },
 
