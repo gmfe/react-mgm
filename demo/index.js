@@ -35,7 +35,8 @@ import {
   Divider,
   Cells, CellsTitle, Cell, CellBody, CellFooter, CellSwipe, CellSwipeDeleteEdit,
   Picker, ConfirmPicker,
-  Calendar
+  Calendar,
+  FlipNumber
 } from './../src/index'
 import _ from 'lodash'
 import moment from 'moment'
@@ -104,7 +105,7 @@ class Home extends React.Component {
         'infinite', 'page', 'slider', 'popup', 'search',
         'square', 'lazyimg', 'dialog', 'cursorfix', 'select',
         'dropper', 'tooltip', 'previewimage', 'price', 'cell',
-        'counter', 'divider', 'picker', 'calendar'
+        'counter', 'divider', 'picker', 'calendar', 'flipnumber'
       ]
     }]]
   }
@@ -1687,6 +1688,24 @@ class CalendarWrap extends React.Component {
     )
   }
 }
+class FlipNumberWrap extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      begin: null,
+      end: null
+    }
+  }
+
+  render () {
+    return (
+      <div className='padding-8'>
+        <FlipNumber useGroup delay={1000} decimal={2} from={0} to={123.456}/>
+      </div>
+    )
+  }
+}
 
 const routeMap = {
   demo: DemoWrap,
@@ -1720,7 +1739,8 @@ const routeMap = {
   counter: CounterWrap,
   divider: DividerWrap,
   picker: PickerWrap,
-  calendar: CalendarWrap
+  calendar: CalendarWrap,
+  flipnumber: FlipNumberWrap
 }
 
 const Root = () => (

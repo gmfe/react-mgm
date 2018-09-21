@@ -43,6 +43,7 @@ import Tabs from './component/tabs'
 import { Picker, ConfirmPicker } from './component/picker'
 import { setLocale } from './locales'
 import { Calendar } from './component/calendar'
+import FlipNumber from './component/flip_number'
 
 const Alert = Dialog.alert
 const Confirm = Dialog.confirm
@@ -95,6 +96,8 @@ export {
   ConfirmPicker,
 
   Calendar,
+
+  FlipNumber,
 
   setLocale
 }
