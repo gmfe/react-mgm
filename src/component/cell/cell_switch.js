@@ -36,4 +36,8 @@ CellSwitch.propTypes = {
   onChange: PropTypes.func.isRequired
 }
 
+CellSwitch.defaultProps = {
+  bodyProps: {}
+}
+
 export default CellSwitch
