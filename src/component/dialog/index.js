@@ -11,7 +11,6 @@ const DialogStatics = {
       const _onConfirm = options.onConfirm || _.noop
       options.onConfirm = () => {
         Promise.resolve(_onConfirm()).then(() => {
-          // TODO mark 重复 remove，没关系
           LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
 
           window.history.go(-1)
@@ -26,7 +25,6 @@ const DialogStatics = {
       options.onCancel = () => {
         _onCancel()
 
-        // TODO mark 重复 remove，没关系
         LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
 
         window.history.go(-1)

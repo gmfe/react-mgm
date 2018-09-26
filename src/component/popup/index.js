@@ -26,7 +26,6 @@ const PopupStatics = {
   },
 
   hide () {
-    // TODO mark 重复 remove，没关系
     LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
 
     window.history.go(-1)
@@ -48,6 +47,7 @@ class Popup extends React.Component {
     const {
       show,
       left,
+      right,
       bottom,
       width,
       height,
@@ -62,13 +62,15 @@ class Popup extends React.Component {
     const cn = classNames('popup', {
       active: show,
       'popup-left': left,
+      'popup-right': right,
       'popup-bottom': bottom,
       'animated-fade-in-left': left,
+      'animated-fade-in-right': right,
       'animated-fade-in-bottom': bottom
     }, className)
 
     let s = Object.assign({}, style)
-    if (left && width) {
+    if ((left || right) && width) {
       s.width = width
     } else if (bottom) {
       s.height = height
@@ -98,9 +100,10 @@ Popup.propTypes = {
   show: PropTypes.bool,
   onHide: PropTypes.func,
   left: PropTypes.bool,
+  right: PropTypes.bool,
   bottom: PropTypes.bool,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width: PropTypes.string,
+  height: PropTypes.string,
   opacity: PropTypes.number
 }
 

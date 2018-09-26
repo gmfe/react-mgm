@@ -1021,6 +1021,15 @@ class PopupWrap extends React.Component {
     })
   }
 
+  handleShow4 () {
+    Popup.render({
+      right: true,
+      children: <div>
+        调用静态方法
+      </div>
+    })
+  }
+
   handleChange () {
     this.setState({
       show: !this.state.show
@@ -1039,6 +1048,7 @@ class PopupWrap extends React.Component {
         <button className='weui-btn weui-btn_primary' onClick={this.handleShow}>open popup left</button>
         <button className='weui-btn weui-btn_primary' onClick={this.handleShow2}>open popup bottom</button>
         <button className='weui-btn weui-btn_primary' onClick={this.handleShow3}>open popup API left</button>
+        <button className='weui-btn weui-btn_primary' onClick={this.handleShow4}>open popup API right</button>
         <Popup left show={this.state.show} onHide={this.handleChange}>
           <div>asdf</div>
           <div>asdf</div>
@@ -1688,6 +1698,7 @@ class CalendarWrap extends React.Component {
     )
   }
 }
+
 class FlipNumberWrap extends React.Component {
   constructor (props) {
     super(props)
