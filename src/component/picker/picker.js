@@ -51,6 +51,7 @@ class PickerColumn extends React.Component {
   }
 
   handleTouchMove = (event) => {
+    event.preventDefault()
     const touchY = event.targetTouches[0].pageY
     this.setState(({isMoving, startTouchY, startScrollerTranslate, minTranslate, maxTranslate}) => {
       if (!isMoving) {
@@ -75,6 +76,7 @@ class PickerColumn extends React.Component {
     if (!this.state.isMoving) {
       return
     }
+
     this.setState({
       isMoving: false,
       startTouchY: 0,
@@ -226,7 +228,7 @@ Picker.propTyps = {
 }
 
 Picker.defaultProps = {
-  itemHeight: 32
+  itemHeight: 36
 }
 
 export default Picker
