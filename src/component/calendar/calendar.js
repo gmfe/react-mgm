@@ -49,7 +49,7 @@ class Day extends React.Component {
         {label && (
           <small className='text-desc'>
             {v === bv && '起始'}
-            {v !== bv && v === ev && '结束'}
+            {v === ev && '结束'}
           </small>
         )}
       </Flex>
