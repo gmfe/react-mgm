@@ -1,4 +1,5 @@
 import React from 'react'
+import { findDOMNode } from 'react-dom'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import classNames from 'classnames'
@@ -105,6 +106,13 @@ class Calendar extends React.Component {
     }
   }
 
+  apiScrollToBegin = () => {
+    const $dom = findDOMNode(this.refCalendar).querySelector('.calendar-day-point')
+    if ($dom) {
+      $dom.scrollIntoView()
+    }
+  }
+
   handleSelectDay = (m) => {
     const {begin, end} = this.props
     const {isSelectBegin} = this.state
@@ -185,7 +193,7 @@ class Calendar extends React.Component {
     const itemList = _.groupBy(_.range(42), v => parseInt(v / 7))
 
     return (
-      <div>
+      <div ref={ref => (this.refCalendar = ref)}>
         {_.map(this.computedMonthList(), (currentMoment, cmi) => {
           const m = moment(currentMoment).day(0).add(-1, 'day')
 
