@@ -15,9 +15,6 @@ class Infinite extends React.Component {
     }
     this.timer = null
     this.scrollTop = 0
-
-    this.handleScroll = ::this.handleScroll
-    this.noLoading = ::this.noLoading
   }
 
   componentWillReceiveProps (nextProps) {
@@ -26,7 +23,7 @@ class Infinite extends React.Component {
     }
   }
 
-  noLoading () {
+  noLoading = () => {
     this.setState({
       loading: false
     })
@@ -53,7 +50,8 @@ class Infinite extends React.Component {
     }
   }
 
-  handleScroll (event) {
+  handleScroll = (event) => {
+    // TODO 优化
     // 向下滚动才触发
     if (event.target.scrollTop > this.scrollTop) {
       if (!this.state.loading) {
@@ -73,7 +71,7 @@ class Infinite extends React.Component {
       ...rest
     } = this.props
 
-    const { loading } = this.state
+    const {loading} = this.state
 
     return (
       <div
@@ -84,7 +82,7 @@ class Infinite extends React.Component {
         {children}
         <Flex justifyCenter alignCenter className='text-center'>
           {loading && (
-            <Flex column justifyCenter style={{ height: '30px' }}>
+            <Flex column justifyCenter style={{height: '30px'}}>
               <i className='weui-loading'/>
             </Flex>
           )}
@@ -92,8 +90,8 @@ class Infinite extends React.Component {
             <Flex
               column
               justifyCenter
-              className='text-desc text-small'
-              style={{ height: '30px' }}
+              className='text-desc text-small infinite-no-more'
+              style={{height: '30px'}}
             >{getLocale('infinite', 'noMore')}</Flex>
           )}
         </Flex>
