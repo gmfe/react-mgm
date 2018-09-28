@@ -62,6 +62,8 @@ class Infinite extends React.Component {
       }
     }
     this.scrollTop = event.target.scrollTop
+
+    this.props.onScroll()
   }
 
   render () {
@@ -102,13 +104,15 @@ class Infinite extends React.Component {
 
 Infinite.defaultProps = {
   onBottom: _.noop,
-  bottomOffset: 30 + 50 // loading 高度 + 50
+  bottomOffset: 30 + 50, // loading 高度 + 50
+  onScroll: _.noop
 }
 
 Infinite.propTypes = {
   onBottom: PropTypes.func.isRequired,
   bottomOffset: PropTypes.number,
-  done: PropTypes.bool
+  done: PropTypes.bool,
+  onScroll: PropTypes.func
 }
 
 export default Infinite
