@@ -70,7 +70,6 @@ ConfirmPicker.render = (props) => {
       children: (
         <ConfirmPicker
           {...props}
-          title='选择选择'
           onConfirm={values => {
             Popup.hide()
             setTimeout(() => {

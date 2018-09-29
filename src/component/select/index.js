@@ -59,7 +59,7 @@ class Select extends React.Component {
   }
 }
 
-Select.render = ({data, value}) => {
+Select.render = ({data, value, title}) => {
   // 转换下
   const datas = [_.map(data, v => v.name)]
   const values = []
@@ -73,6 +73,7 @@ Select.render = ({data, value}) => {
   }
 
   return ConfirmPicker.render({
+    title: title || '选择',
     datas,
     values
   }).then(values => {
@@ -89,6 +90,7 @@ Select.hide = () => {
 Select.propTypes = {
   show: PropTypes.bool.isRequired,
   data: PropTypes.array,
+  title: PropTypes.string,
   value: PropTypes.any,
   onChange: PropTypes.func.isRequired,
   onCancel: PropTypes.func

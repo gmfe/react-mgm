@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import _ from 'lodash'
@@ -12,6 +13,14 @@ class PickerColumn extends React.Component {
       startScrollerTranslate: 0,
       ...this.computeTranslate(props)
     }
+  }
+
+  componentDidMount () {
+    ReactDOM.findDOMNode(this.refScroll).addEventListener('touchmove', this.handleTouchMove)
+  }
+
+  componentWillUnmount () {
+    ReactDOM.findDOMNode(this.refScroll).removeEventListener('touchmove', this.handleTouchMove)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -52,6 +61,7 @@ class PickerColumn extends React.Component {
 
   handleTouchMove = (event) => {
     event.preventDefault()
+
     const touchY = event.targetTouches[0].pageY
     this.setState(({isMoving, startTouchY, startScrollerTranslate, minTranslate, maxTranslate}) => {
       if (!isMoving) {
@@ -149,10 +159,11 @@ class PickerColumn extends React.Component {
     return (
       <div className='picker-column'>
         <div
+          ref={ref => (this.refScroll = ref)}
           className='picker-scroll'
           style={style}
           onTouchStart={this.handleTouchStart}
-          onTouchMove={this.handleTouchMove}
+          // onTouchMove={this.handleTouchMove}
           onTouchEnd={this.handleTouchEnd}
           onTouchCancel={this.handleTouchCancel}>
           {this.renderItems()}
