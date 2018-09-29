@@ -48,7 +48,7 @@ class Day extends React.Component {
       >
         {nowMountStart === +value.startOf('day') ? getLocale('calendar', 'today') : value.date()}
         {label && (
-          <small className='text-desc'>
+          <small>
             {v === bv && v === ev && '单天'}
             {v === bv && v !== ev && '起始'}
             {v !== bv && v === ev && '结束'}
@@ -126,7 +126,8 @@ class Calendar extends React.Component {
       sb = m.toDate()
       se = m.toDate()
 
-      this.setState({        isSelectBegin: false
+      this.setState({
+        isSelectBegin: false
       })
     } else {
       // 如果结束时间小于开始时间，则认为还是选择开始时间
