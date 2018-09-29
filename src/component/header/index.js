@@ -18,8 +18,14 @@ class Header extends React.Component {
     }
 
     render() {
+        const {height, marginTop} = this.props;
+        const style = height && marginTop ? {
+            height: height + 'px',
+            marginTop: marginTop + 'px'
+        } : {};
+
         return (
-            <div className="header">
+            <div className="header" style={style}>
                 {this.props.left || (
                     <a
                         href="javascript:;"
@@ -39,7 +45,9 @@ Header.propTypes = {
     left: PropTypes.element,
     right: PropTypes.element,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    onBack: PropTypes.func
+    onBack: PropTypes.func,
+    height: PropTypes.number,
+    marginTop: PropTypes.number
 };
 
 Header.defaultProps = {
