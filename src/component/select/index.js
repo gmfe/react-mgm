@@ -51,7 +51,7 @@ class Select extends React.Component {
                 active: v.value === value
               })}
               onClick={this.handleClick}
-            >{v.name}</div>
+            >{v.text}</div>
           ))}
         </div>
       </div>
@@ -61,16 +61,18 @@ class Select extends React.Component {
 
 Select.render = ({data, value, title}) => {
   // 转换下
-  const datas = [_.map(data, v => v.name)]
+  const datas = [data]
   const values = []
 
   // 找不到得有个默认的
   const item = _.find(data, v => v.value === value)
   if (item) {
-    values[0] = item.name
+    values[0] = item.value
   } else {
-    values[0] = data[0].name
+    values[0] = data[0].value
   }
+
+  console.log(datas)
 
   return ConfirmPicker.render({
     title: title || '选择',
@@ -78,7 +80,7 @@ Select.render = ({data, value, title}) => {
     values
   }).then(values => {
     // 转回去
-    const item = _.find(data, v => v.name === values[0])
+    const item = _.find(data, v => v.value === values[0])
     return item.value
   })
 }
@@ -97,7 +99,7 @@ Select.propTypes = {
 }
 
 Select.defaultProps = {
-  data: [],
+  data: [], // [{value, text}]
   value: null,
   onCancel: _.noop
 }

@@ -1311,12 +1311,12 @@ class SelectWrap extends React.Component {
     this.state = {
       show: false,
       data: [
-        {value: 1, name: '深圳'},
-        {value: 2, name: '罗湖'},
-        {value: 3, name: '南山'},
-        {value: 4, name: '宝安'},
-        {value: 5, name: '福田'},
-        {value: 6, name: '龙岗'}
+        {value: 1, text: '深圳'},
+        {value: 2, text: '罗湖'},
+        {value: 3, text: '南山'},
+        {value: 4, text: '宝安'},
+        {value: 5, text: '福田'},
+        {value: 6, text: '龙岗'}
       ],
       value: null
     }
@@ -1673,9 +1673,15 @@ class PickerWrap extends React.Component {
         'Jordan'
       ],
       datas: [
-        ['Mr.', 'Mrs.', 'Ms.', 'Dr.'],
-        ['John', 'Micheal', 'Elizabeth'],
-        ['Lennon', 'Jackson', 'Jordan', 'Legend', 'Taylor']
+        [{value: 'Mr.', text: 'Mr.'}, {value: 'Mrs.', text: 'Mrs.'}, {value: 'Ms.', text: 'Ms.'}, {
+          value: 'Dr.',
+          text: 'Dr.'
+        }],
+        [{value: 'John', text: 'John'}, {value: 'Micheal', text: 'Micheal'}, {value: 'Elizabeth', text: 'Elizabeth'}],
+        [{value: 'Lennon', text: 'Lennon'}, {value: 'Jackson', text: 'Jackson'}, {
+          value: 'Jordan',
+          text: 'Jordan'
+        }, {value: 'Legend', text: 'Legend'}, {value: 'Taylor', text: 'Taylor'}]
       ]
     }
   }
@@ -1691,7 +1697,13 @@ class PickerWrap extends React.Component {
 
     ConfirmPicker.render({
       datas,
-      values
+      values,
+      renderOption: (index, option) => {
+        if (index === 0) {
+          return <div>{option.value} <span style={{color: 'red'}}>red</span></div>
+        }
+        return option.value
+      }
     }).then(v => {
       console.log('resolve', v)
       this.setState({
@@ -1713,6 +1725,12 @@ class PickerWrap extends React.Component {
           datas={datas}
           values={values}
           onChange={this.handleChange}
+          renderOption={(index, option) => {
+            if (index === 1) {
+              return <div>{option.value} <span style={{color: 'red'}}>red</span></div>
+            }
+            return option.value
+          }}
         />
       </div>
     )

@@ -31,7 +31,7 @@ class ConfirmPicker extends React.Component {
   }
 
   render () {
-    const {itemHeight, datas, title} = this.props
+    const {itemHeight, datas, title, renderOption} = this.props
     const {values} = this.state
 
     return (
@@ -50,6 +50,7 @@ class ConfirmPicker extends React.Component {
         <Picker
           datas={datas}
           values={values}
+          renderOption={renderOption}
           itemHeight={itemHeight}
           onChange={this.handleChange}
         />
@@ -96,6 +97,7 @@ ConfirmPicker.propTypes = {
   title: PropTypes.string,
   datas: PropTypes.array.isRequired,
   values: PropTypes.array.isRequired,
+  renderOption: PropTypes.func,
   itemHeight: PropTypes.number,
   onConfirm: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired

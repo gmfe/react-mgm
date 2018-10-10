@@ -32,11 +32,11 @@ class PickerColumn extends React.Component {
 
   computeTranslate = (props) => {
     const {options, value, itemHeight, columnHeight} = props
-    let selectedIndex = options.indexOf(value)
+    let selectedIndex = _.findIndex(options, option => option.value === value)
     if (selectedIndex < 0) {
       // throw new ReferenceError();
       console.warn('Warning: "' + this.props.index + '" doesn\'t contain an option of "' + value + '".')
-      this.onValueSelected(options[0])
+      this.handleOptionSelected(options[0])
       selectedIndex = 0
     }
 
@@ -47,8 +47,8 @@ class PickerColumn extends React.Component {
     }
   }
 
-  onValueSelected = (newValue) => {
-    this.props.onChange(this.props.index, newValue)
+  handleOptionSelected = (newOption) => {
+    this.props.onChange(this.props.index, newOption)
   }
 
   handleTouchStart = (event) => {
@@ -103,7 +103,7 @@ class PickerColumn extends React.Component {
       } else {
         activeIndex = -Math.floor((scrollerTranslate - maxTranslate) / itemHeight)
       }
-      this.onValueSelected(options[activeIndex])
+      this.handleOptionSelected(options[activeIndex])
     }, 0)
   }
 
@@ -119,27 +119,25 @@ class PickerColumn extends React.Component {
     }))
   }
 
-  handleItemClick = (option) => {
-    if (option !== this.props.value) {
-      this.onValueSelected(option)
-    }
+  handleOptionClick = (option) => {
+    this.handleOptionSelected(option)
   }
 
-  renderItems () {
-    const {options, itemHeight, value} = this.props
+  renderOptions () {
+    const {options, renderOption, itemHeight, value} = this.props
     return options.map((option, index) => {
       const style = {
         height: itemHeight + 'px',
         lineHeight: itemHeight + 'px'
       }
-      const className = `picker-item${option === value ? ' picker-item-selected' : ''}`
+      const className = `picker-item${option.value === value ? ' picker-item-selected' : ''}`
       return (
         <div
           key={index}
           className={className}
           style={style}
-          onClick={() => this.handleItemClick(option)}
-        >{option}</div>
+          onClick={() => this.handleOptionClick(option)}
+        >{renderOption(this.props.index, option)}</div>
       )
     })
   }
@@ -166,7 +164,7 @@ class PickerColumn extends React.Component {
           // onTouchMove={this.handleTouchMove}
           onTouchEnd={this.handleTouchEnd}
           onTouchCancel={this.handleTouchCancel}>
-          {this.renderItems()}
+          {this.renderOptions()}
         </div>
       </div>
     )
@@ -179,15 +177,16 @@ PickerColumn.propTypes = {
   value: PropTypes.any.isRequired,
   itemHeight: PropTypes.number.isRequired,
   columnHeight: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  renderOption: PropTypes.func.isRequired
 }
 
 class Picker extends React.Component {
-  handleChange = (index, value) => {
+  handleChange = (index, option) => {
     const {onChange, values} = this.props
     const newValues = values.slice()
 
-    newValues[index] = value
+    newValues[index] = option.value
 
     onChange(newValues)
   }
@@ -199,6 +198,7 @@ class Picker extends React.Component {
       itemHeight,
       onChange, // eslint-disable-line
       className,
+      renderOption,
       ...rest
     } = this.props
 
@@ -218,6 +218,7 @@ class Picker extends React.Component {
               key={i}
               index={i}
               options={v}
+              renderOption={renderOption}
               value={values[i]}
               itemHeight={itemHeight}
               columnHeight={itemHeight * 6}
@@ -232,14 +233,16 @@ class Picker extends React.Component {
 }
 
 Picker.propTyps = {
-  datas: PropTypes.array.isRequired,
+  datas: PropTypes.array.isRequired, // [ [{value, text}] ]
   values: PropTypes.array.isRequired,
   itemHeight: PropTypes.number,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  renderOption: PropTypes.func
 }
 
 Picker.defaultProps = {
-  itemHeight: 36
+  itemHeight: 36,
+  renderOption: (dataIndex, option) => option.text // 此 dataIndex 是 datas 的所以
 }
 
 export default Picker

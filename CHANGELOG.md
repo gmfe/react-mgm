@@ -6,4 +6,4 @@
 
 html body font-size: 14px
 
-select 的 value 从引用改为值的形式
+select 的 data 改为 [{value, text}]
