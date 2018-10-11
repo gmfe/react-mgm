@@ -40,7 +40,7 @@ import {
 } from './component/cell'
 import Button from './component/button'
 import Tabs from './component/tabs'
-import { Picker, ConfirmPicker } from './component/picker'
+import { Picker, ConfirmPicker, CouplingPicker, ConfirmCouplingPicker } from './component/picker'
 import { setLocale } from './locales'
 import { Calendar } from './component/calendar'
 import FlipNumber from './component/flip_number'
@@ -94,6 +94,8 @@ export {
 
   Picker,
   ConfirmPicker,
+  CouplingPicker,
+  ConfirmCouplingPicker,
 
   Calendar,
 

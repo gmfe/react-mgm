@@ -34,7 +34,7 @@ import {
   Counter,
   Divider,
   Cells, CellsTitle, Cell, CellBody, CellFooter, CellSwipe, CellSwipeDeleteEdit,
-  Picker, ConfirmPicker,
+  Picker, ConfirmPicker, CouplingPicker, ConfirmCouplingPicker,
   Calendar,
   FlipNumber
 } from './../src/index'
@@ -105,7 +105,7 @@ class Home extends React.Component {
         'infinite', 'page', 'slider', 'popup', 'search',
         'square', 'lazyimg', 'dialog', 'cursorfix', 'select',
         'dropper', 'tooltip', 'previewimage', 'price', 'cell',
-        'counter', 'divider', 'picker', 'calendar', 'flipnumber'
+        'counter', 'divider', 'picker', 'couplingpicker', 'calendar', 'flipnumber'
       ]
     }]]
   }
@@ -1737,6 +1737,129 @@ class PickerWrap extends React.Component {
   }
 }
 
+class CouplingPickerWrap extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      values: ['T7936', 'S11186', '777777'],
+      datas: [{
+        'value': 'T11660',
+        'text': '喵喵分仓一',
+        'children': [{
+          'value': 'S8058',
+          'text': '综合商品-喵喵分仓一',
+          'children': [{
+            'value': '00000',
+            'text': '000000'
+          }]
+        }]
+      }, {
+        'value': 'T7936',
+        'text': '喵喵总仓',
+        'children': [{
+          'value': 'S8056',
+          'text': '综合商品',
+          'children': [{
+            'value': '11111',
+            'text': '111111'
+          }]
+        }, {
+          'value': 'S11186',
+          'text': '复制报价单',
+          'children': [{
+            'value': '2222222',
+            'text': '222222'
+          }, {
+            'value': '777777',
+            'text': '777777'
+          }]
+        }, {
+          'value': 'S11226',
+          'text': '复制报价单D',
+          'children': [{
+            'value': '333333',
+            'text': '33333333'
+          }]
+        }, {
+          'value': 'S9176',
+          'text': '预售报价单',
+          'children': [{
+            'value': '44444444',
+            'text': '4444444'
+          }]
+        }, {
+          'value': 'S11188',
+          'text': '复制报价单B',
+          'children': [{
+            'value': '5555555',
+            'text': '5555555'
+          }]
+        }, {
+          'value': 'S11189',
+          'text': '复制报价单C',
+          'children': [{
+            'value': '666666',
+            'text': '6666666'
+          }]}]
+      }, {
+        'value': 'T12469',
+        'text': '喵喵分仓二',
+        'children': [{
+          'value': 'S8443',
+          'text': '蔬菜报价单',
+          'children': [{
+            'value': '88888',
+            'text': '888888'
+          }, {
+            'value': '99999',
+            'text': '99999'
+          }]}]
+      }]
+    }
+  }
+
+  handleChange = (values) => {
+    this.setState({
+      values
+    })
+  }
+
+  handleClick = () => {
+    const {datas, values} = this.state
+
+    ConfirmCouplingPicker.render({
+      datas,
+      values
+    }).then(v => {
+      console.log('resolve', v)
+      this.setState({
+        values: v
+      })
+    }, () => {
+      console.log('reject')
+    })
+  }
+
+  render () {
+    const {datas, values} = this.state
+
+    return (
+      <div>
+        <button className='weui-btn' onClick={this.handleClick}>couplingPicker</button>
+
+        <CouplingPicker
+          datas={datas}
+          values={values}
+          onChange={this.handleChange}
+          renderOption={(index, option) => {
+            return option.text
+          }}
+        />
+      </div>
+    )
+  }
+}
+
 class CalendarWrap extends React.Component {
   constructor (props) {
     super(props)
@@ -1822,6 +1945,7 @@ const routeMap = {
   counter: CounterWrap,
   divider: DividerWrap,
   picker: PickerWrap,
+  couplingpicker: CouplingPickerWrap,
   calendar: CalendarWrap,
   flipnumber: FlipNumberWrap
 }
