@@ -40,7 +40,7 @@ class LazyImg extends React.Component {
     
     handleError() {
       const {placeholder} = this.props;
-      if (placeholder) this.refImg.src = placeholder;
+      if (placeholder) this.setState({show: false});
     }
 
     doLazy() {
