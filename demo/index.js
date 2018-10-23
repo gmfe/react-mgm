@@ -1162,14 +1162,14 @@ class LazyImgWrap extends React.Component {
         return (
             <Page className="lazy-img-wrap">
                 <LazyImg
-                    placeholder={'https://placeholdit.imgix.net/~text?txtsize=23&bg=f7f7f7&txt=loading&w=250&h=250'}
+              placeholder={'https://js.guanmai.cn/build/bshop/img/product-default-gm.4e797d97.jpg'}
                     src={gmLogo}
                 />
                 <div style={{height: '600px'}}>
                     滚到下面看图片
                 </div>
                 <LazyImg
-                    placeholder={'https://placeholdit.imgix.net/~text?txtsize=23&bg=f7f7f7&txt=loading&w=250&h=250'}
+              placeholder={'https://js.guanmai.cn/build/bshop/img/product-default-gm.4e797d97.jpg'}
                     src={gmLogo}
                 />
                 <LazyImg

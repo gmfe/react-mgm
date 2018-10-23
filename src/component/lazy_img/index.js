@@ -16,6 +16,7 @@ class LazyImg extends React.Component {
         this.timer = null;
 
         this.debounceDoLazy = _.debounce(this.doLazy, props.delay).bind(this);
+        this.handleError = ::this.handleError;
     }
 
     componentDidMount() {
@@ -35,6 +36,11 @@ class LazyImg extends React.Component {
         if (this.targetDom) {
             this.targetDom.removeEventListener('scroll', this.debounceDoLazy);
         }
+    }
+    
+    handleError() {
+      const {placeholder} = this.props;
+      if (placeholder) this.refImg.src = placeholder;
     }
 
     doLazy() {
@@ -60,6 +66,7 @@ class LazyImg extends React.Component {
             ref={ref => this.refImg = ref}
             className={classNames('lazy-img', className)}
             src={this.state.show && src ? src : placeholder}
+            onError={this.handleError}
         />;
     }
 }
