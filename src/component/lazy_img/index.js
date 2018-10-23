@@ -10,7 +10,8 @@ class LazyImg extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: false
+            show: false,
+            isError: false
         };
         this.targetDom = null;
         this.timer = null;
@@ -40,7 +41,7 @@ class LazyImg extends React.Component {
     
     handleError() {
       const {placeholder} = this.props;
-      if (placeholder) this.setState({show: false});
+      if (placeholder) this.setState({isError: true});
     }
 
     doLazy() {
@@ -60,12 +61,13 @@ class LazyImg extends React.Component {
             delay, targetId, // eslint-disable-line
             ...rest
         } = this.props;
+        const {show, isError} = this.state;
 
         return <img
             {...rest}
             ref={ref => this.refImg = ref}
             className={classNames('lazy-img', className)}
-            src={this.state.show && src ? src : placeholder}
+            src={(!isError && show && src) ? src : placeholder}
             onError={this.handleError}
         />;
     }
