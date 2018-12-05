@@ -12,10 +12,16 @@
     "mobile"
   ],
   "scripts": {
-    "precommit": "eslint --fix --cache ./src ./demo",
+    "precommit": "lint-staged",
     "start": "webpack-dev-server --host 0.0.0.0 --port 4000 --inline --hot --devtool eval --progress --color",
     "publishpatch": "sh deploy/publish.sh",
     "docs": "sh deploy/docs.sh;"
+  },
+  "lint-staged": {
+    "./(src|demo)/**/*.js": [
+      "eslint --cache --fix",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -41,6 +47,7 @@
   "devDependencies": {
     "autoprefixer": "^7.1.5",
     "babel-core": "^6.26.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.9.0",
@@ -49,6 +56,14 @@
     "big": "^0.5.2",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.7",
+    "eslint": "^5.9.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-jsx": "^6.0.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
     "gm-mfont": "^1.2.9",
@@ -58,6 +73,7 @@
     "husky": "^0.14.3",
     "less": "^2.7.1",
     "less-loader": "^4.0.5",
+    "lint-staged": "^8.1.0",
     "lodash": "^4.17.4",
     "lrz": "^4.9.36",
     "path": "^0.12.7",

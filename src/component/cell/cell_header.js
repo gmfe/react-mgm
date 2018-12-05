@@ -1,25 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 const CellHeader = (props) => {
-    const {className, children, primary, ...others} = props;
-    const cls = classNames({
-        'weui-cell__hd': true,
-        'weui-cell_primary': primary
-    }, className);
+  const { className, children, primary, ...others } = props
+  const cls = classNames({
+    'weui-cell__hd': true,
+    'weui-cell_primary': primary
+  }, className)
 
-    return (
-        <div className={cls} {...others}>{children}</div>
-    );
-};
+  return (
+    <div className={cls} {...others}>{children}</div>
+  )
+}
 
 CellHeader.propTypes = {
-    primary: PropTypes.bool
-};
+  primary: PropTypes.bool
+}
 
 CellHeader.defaultProps = {
-    primary: false
-};
+  primary: false
+}
 
-export default CellHeader;
+export default CellHeader
