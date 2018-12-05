@@ -29,18 +29,22 @@ import Loading from './component/loading'
 import Divider from './component/divider'
 import {
   Cells,
-  Cell,
   CellsTitle,
   CellsTips,
+  Cell,
   CellHeader,
   CellBody,
   CellFooter,
   CellSwipe,
-  CellSwipeDeleteEdit
+  CellSwipeDeleteEdit,
+  CellSwitch
 } from './component/cell'
 import Button from './component/button'
 import Tabs from './component/tabs'
+import { Picker, ConfirmPicker, CouplingPicker, ConfirmCouplingPicker } from './component/picker'
 import { setLocale } from './locales'
+import { Calendar } from './component/calendar'
+import FlipNumber from './component/flip_number'
 
 const Alert = Dialog.alert
 const Confirm = Dialog.confirm
@@ -86,6 +90,18 @@ export {
   CellFooter,
   CellSwipe,
   CellSwipeDeleteEdit,
+  CellSwitch,
+
   Tabs,
+
+  Picker,
+  ConfirmPicker,
+  CouplingPicker,
+  ConfirmCouplingPicker,
+
+  Calendar,
+
+  FlipNumber,
+
   setLocale
 }

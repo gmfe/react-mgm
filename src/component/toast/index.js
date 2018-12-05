@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Mask from '../mask/index'
 import LayoutRoot from '../layout_root'
 import Loading from '../loading'
+import Mask from '../mask'
 import { getLocale } from '../../locales'
+import Flex from '../flex'
 
 let timer = null
 let ToastStatics = {
@@ -11,20 +12,26 @@ let ToastStatics = {
     clearTimeout(timer)
     LayoutRoot.removeComponent(LayoutRoot.TYPE.TIP)
   },
-  _tip (options, type) {
+  _tip (options = {}, type) {
     if (typeof options === 'string') {
       options = {
         children: options
       }
     }
 
+    if (options.time === undefined) {
+      options.time = 2000
+    }
+
     if (type) {
       options[type] = true
     }
 
-    timer = setTimeout(() => {
-      ToastStatics.clear()
-    }, options.time || 2000)
+    if (options.time) {
+      timer = setTimeout(() => {
+        ToastStatics.clear()
+      }, options.time)
+    }
 
     LayoutRoot.setComponent(LayoutRoot.TYPE.TIP, <Toast {...options}/>)
   },
@@ -68,16 +75,22 @@ class Toast extends React.Component {
     } else if (danger) {
       icon = <i className='ifont ifont-close'/>
     } else if (loading_linear) {
-      icon = <Loading/>
+      icon = <Loading line/>
     }
 
     return (
-      <div className='toast-container'>
-        <Mask show opacity={0.01}/>
-        <div className='toast'>
-          {icon}
-          <div className='toast-content'>{children}</div>
-        </div>
+      <div>
+        {(loading || loading_linear) && <Mask show opacity={0.01}/>}
+        <Flex justifyCenter className='toast animated-fade-in'>
+          <div className='toast-inner'>
+            {icon && (
+              <div className='loading-icon'>
+                {icon}
+              </div>
+            )}
+            <div className='toast-content'>{children}</div>
+          </div>
+        </Flex>
       </div>
     )
   }

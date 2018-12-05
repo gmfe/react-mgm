@@ -6,34 +6,37 @@ import Flex from '../flex'
 class Loading extends React.Component {
   render () {
     let {
+      line,
       children,
-      type,
       className,
       ...rest
     } = this.props
 
     return (
-      <Flex column alignCenter {...rest} className={classNames(`gm-loading gm-loading-${type}`, className)}>
-        <Flex alignEnd className='gm-loading-linear'>
-          <div className='line'/>
-          <div className='line'/>
-          <div className='line'/>
-          <div className='line'/>
-        </Flex>
-        {
-          children && <p className='gm-loading-text'>{children}</p>
-        }
+      <Flex
+        alignCenter
+        justifyCenter
+        {...rest}
+        className={classNames('loading', className)}
+      >
+        {line ? (
+          <Flex alignEnd className='loading-linear'>
+            <div className='line'/>
+            <div className='line'/>
+            <div className='line'/>
+            <div className='line'/>
+            <div className='line'/>
+          </Flex>
+        ) : <i className='weui-loading'/>}
+
+        <span className='weui-loadmore__tips margin-left-4'>{children}</span>
       </Flex>
     )
   }
 }
 
 Loading.propTypes = {
-  type: PropTypes.string
-}
-
-Loading.defaultProps = {
-  type: 'default'
+  line: PropTypes.bool
 }
 
 export default Loading

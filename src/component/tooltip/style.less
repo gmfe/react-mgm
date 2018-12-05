@@ -1,7 +1,7 @@
 .topMixin() {
   padding-bottom: 5px;
 
-  .gm-tooltip-arrow {
+  .tooltip-arrow {
     bottom: 0;
     margin-left: -5px;
     border-width: 5px 5px 0;
@@ -19,7 +19,7 @@
 .bottomMixin() {
   padding-top: 5px;
 
-  .gm-tooltip-arrow {
+  .tooltip-arrow {
     top: 0;
     margin-left: -5px;
     border-width: 0 5px 5px;
@@ -34,12 +34,21 @@
   }
 }
 
-.gm-tooltip {
+.tooltip {
   position: relative;
   display: inline-block;
   font-size: 12px;
 
-  .gm-tooltip-arrow {
+  .tooltip-inner {
+    padding: 3px 8px;
+    color: @defaultColor;
+    text-align: center;
+    background-color: white;
+    border: 1px solid @borderColor;
+    border-radius: 5px;
+  }
+
+  .tooltip-arrow {
     position: absolute;
     width: 0;
     height: 0;
@@ -57,60 +66,51 @@
     }
   }
 
-  &.gm-tooltip-top {
+  &.tooltip-top {
     .topMixin();
 
-    .gm-tooltip-arrow {
+    .tooltip-arrow {
       left: 50%;
     }
   }
 
-  &.gm-tooltip-topRight {
+  &.tooltip-topRight {
     .topMixin();
 
-    .gm-tooltip-arrow {
+    .tooltip-arrow {
       right: 8px;
     }
   }
 
-  &.gm-tooltip-topLeft {
+  &.tooltip-topLeft {
     .topMixin();
 
-    .gm-tooltip-arrow {
+    .tooltip-arrow {
       left: 12px;
     }
   }
 
-  &.gm-tooltip-bottom {
+  &.tooltip-bottom {
     .bottomMixin();
 
-    .gm-tooltip-arrow {
+    .tooltip-arrow {
       left: 50%;
     }
   }
 
-  &.gm-tooltip-bottomRight {
+  &.tooltip-bottomRight {
     .bottomMixin();
 
-    .gm-tooltip-arrow {
+    .tooltip-arrow {
       right: 8px;
     }
   }
 
-  &.gm-tooltip-bottomLeft {
+  &.tooltip-bottomLeft {
     .bottomMixin();
 
-    .gm-tooltip-arrow {
+    .tooltip-arrow {
       left: 12px;
     }
-  }
-
-  .gm-tooltip-inner {
-    padding: 3px 8px;
-    color: @defaultColor;
-    text-align: center;
-    background-color: white;
-    border: 1px solid @borderColor;
-    border-radius: 5px;
   }
 }

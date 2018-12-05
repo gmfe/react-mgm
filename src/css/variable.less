@@ -15,25 +15,25 @@
 @tabbarHeight: 55px;
 
 // text color
-@defaultColor: rgba(0, 0, 0, .9);
-@descColor: rgba(0, 0, 0, .6);
-@disabledColor: rgba(0, 0, 0, .3);
+@defaultColor: rgba(0, 0, 0, 0.9);
+@descColor: rgba(0, 0, 0, 0.6);
+@disabledColor: rgba(0, 0, 0, 0.3);
 
 // color
-@primaryColor: #6CCA28;
+@primaryColor: #6cca28;
 @primaryColorActive: darken(@primaryColor, 10%);
 @primaryColorDisabledBg: lighten(@primaryColor, 10%);
 
 @warnColor: @weuiColorWarn; // 保留warnColor的定义，直接用weui的色值
 
-@redColor: #FF3333;
+@redColor: #f33;
 @linkColor: @weuiLinkColorDefault; // 保留linkColor的定义，直接用weui的色值
 
-@coralColor: #DD4F63;
-@apricotColor: #EA9958;
-@mintColor: #A4D3D1;
-@tealColor: #4EAEBB;
-@arcticColor: #626CAE;
+@coralColor: #dd4f63;
+@apricotColor: #ea9958;
+@mintColor: #a4d3d1;
+@tealColor: #4eaebb;
+@arcticColor: #626cae;
 @violetColor: #564180;
 
 // font size
@@ -46,7 +46,6 @@
 @fontSize10: @n10;
 @fontSize8: @n8;
 
-
 // :active
 @activeColor: #ededed;
 
@@ -54,15 +53,15 @@
 @placeholderColor: #989898;
 
 // border
-@borderColor: #EDEDED;
+@borderColor: #ededed;
 
 // bg
-@defaultBg: #F4F4F4;
+@defaultBg: #f4f4f4;
 @whiteBg: white;
-@titleBg: #FAFAFA;
+@titleBg: #fafafa;
 
 // page head
-@headerBg: #4EBB6E;
+@headerBg: #4ebb6e;
 
 // nprogress 保持和微信浏览器原生的一致
 @nprogressBg: #3cc51f;
@@ -76,5 +75,14 @@
 
 //counter
 @counterMinus: #b7b6b6;
+
+// zIndex
+@headerZIndex: 20;
+@maskZIndex: 1000;
+@popupZIndex: 2000;
+@triggerZIndex: 2000;
+@previewImageZIndex: 4000;
+@toastZIndex: 7000;
+@nprogressZIndex: 9999;
 
 @import "./variable-cover-weui";

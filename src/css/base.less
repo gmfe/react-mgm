@@ -4,6 +4,7 @@ body {
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   color: @defaultColor;
+  font-size: @fontSize14;
 }
 
 * {
@@ -12,6 +13,10 @@ body {
 
 ::-webkit-input-placeholder {
   color: @placeholderColor;
+}
+
+.ifont {
+  font-size: @fontSize14;
 }
 
 .container {
@@ -31,6 +36,10 @@ a.decoration {
 
 .pull-left {
   float: left;
+}
+
+.absolute {
+  position: absolute;
 }
 
 .absolute-right {
@@ -101,6 +110,28 @@ a.decoration {
 
 .line-height {
   line-height: 1;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow {
+  overflow: auto;
+}
+
+.overflow-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.overflow-y {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 // 让容器占满父元素

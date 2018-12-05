@@ -1,7 +1,13 @@
 .popup-container {
   .popup {
     position: absolute;
-    z-index: 2000;
+    z-index: @popupZIndex;
+
+    .popup-content {
+      background: white;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
 
     .popup-content {
       background: white;
@@ -11,14 +17,24 @@
 
     &.popup-left {
       top: 0;
-      left: -100%;
+      left: 0;
       width: 70%;
       height: 100%;
-      transition: left 0.2s ease-out;
 
-      &.active {
+      .popup-content {
+        position: absolute;
+        top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
       }
+    }
+
+    &.popup-right {
+      top: 0;
+      right: 0;
+      width: 70%;
+      height: 100%;
 
       .popup-content {
         position: absolute;
@@ -37,12 +53,6 @@
       margin: auto;
       height: auto;
       max-height: 100%;
-      transition: transform 0.2s ease-out;
-      transform: translate3d(0, 100%, 0);
-
-      &.active {
-        transform: translate3d(0, 0, 0);
-      }
 
       .popup-content {
         height: auto;
