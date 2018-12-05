@@ -5,6 +5,7 @@ class Price extends React.Component {
   constructor (props) {
     super(props)
     this.currency = getCurrency()
+    console.warn('Price 已废弃。请使用 PriceNew 组件')
   }
 
   render () {

@@ -23,6 +23,7 @@ import Tooltip from './component/tooltip'
 import PreviewImage from './component/preview_image'
 import LayoutRoot from './component/layout_root'
 import Price from './component/price'
+import PriceNew from './component/price_new'
 import Counter from './component/counter'
 import Loading from './component/loading'
 import Divider from './component/divider'
@@ -71,6 +72,7 @@ export {
   PreviewImage,
   LayoutRoot,
   Price,
+  PriceNew,
   Counter,
   Divider,
 
