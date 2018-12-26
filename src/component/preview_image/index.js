@@ -60,7 +60,7 @@ class PreviewImage extends React.Component {
       className,
       images,
       show,
-            onHide, // eslint-disable-line
+      onHide, // eslint-disable-line
       ...rest
     } = this.props
 
@@ -69,8 +69,12 @@ class PreviewImage extends React.Component {
     }
 
     return (
-      <Flex column justifyCenter {...rest} className={classNames('preview-image', className)}
-        onClick={this.handleClose}>
+      <Flex
+        column
+        justifyCenter {...rest}
+        className={classNames('preview-image', className)}
+        onClick={this.handleClose}
+      >
         <div className='preview-image-close'>X</div>
         <div className='preview-image-inner'>
           {images.length === 1 ? (

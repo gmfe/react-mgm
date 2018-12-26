@@ -42,7 +42,8 @@ import Button from './component/button'
 import Tabs from './component/tabs'
 import { setLocale } from './locales'
 
-const Alert = Dialog.alert; const Confirm = Dialog.confirm
+const Alert = Dialog.alert
+const Confirm = Dialog.confirm
 
 export {
   Button,

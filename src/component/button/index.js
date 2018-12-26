@@ -36,7 +36,7 @@ class Button extends React.Component {
 
   render () {
     const {
-            onClick, // eslint-disable-line
+      onClick, // eslint-disable-line
       hasLoading,
       className,
       children,

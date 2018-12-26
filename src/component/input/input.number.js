@@ -36,7 +36,7 @@ class InputNumber extends React.Component {
 
   render () {
     const {
-            precision, minus, // eslint-disable-line
+      precision, minus, // eslint-disable-line
       ...rest
     } = this.props
 

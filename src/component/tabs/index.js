@@ -10,8 +10,11 @@ class Tabs extends React.Component {
     return (
       <div className='tabs'>
         {_.map(list, (v, i) => (
-          <div key={v} className={classNames('tabs-item', { active: tabIndex === i })}
-            onClick={() => onChange(i)}>
+          <div
+            key={v}
+            className={classNames('tabs-item', { active: tabIndex === i })}
+            onClick={() => onChange(i)}
+          >
             <div className='tabs-item-text'>{v}</div>
           </div>
         ))}

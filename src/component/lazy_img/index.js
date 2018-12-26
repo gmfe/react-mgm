@@ -51,7 +51,7 @@ class LazyImg extends React.Component {
       className,
       src,
       placeholder,
-            delay, targetId, // eslint-disable-line
+      delay, targetId, // eslint-disable-line
       ...rest
     } = this.props
 

@@ -150,7 +150,8 @@ class Trigger extends React.Component {
     const child = React.Children.only(children)
     const { active } = this.state
 
-    const p = {}; const popupStyle = {}
+    const p = {}
+    const popupStyle = {}
     if (type === 'focus' || type === 'click') {
       p.onClick = createChainedFunction(component.props.onClick, this.handleClick)
     } else if (type === 'hover') {
@@ -170,20 +171,23 @@ class Trigger extends React.Component {
 
     return React.cloneElement(component, Object.assign({}, componentProps, {
       className: classNames(component.props.className, 'trigger'),
-      children: [child, active ? React.createElement('div', {
-        key: 'popup',
-        ref: ref => (this.refPopup = ref),
-        className: classNames('trigger-popup ', {
-          'trigger-popup-right': right,
-          'trigger-popup-top': top
-        }),
-        style: popupStyle
-      }, popup) : null,
-      active && mask && type !== 'hover' ? <Mask
-        show
-        opacity={opacity}
-        ref={ref => (this.refMask = ref)}
-      /> : null]
+      children: [
+        child,
+        active ? React.createElement('div', {
+          key: 'popup',
+          ref: ref => (this.refPopup = ref),
+          className: classNames('trigger-popup ', {
+            'trigger-popup-right': right,
+            'trigger-popup-top': top
+          }),
+          style: popupStyle
+        }, popup) : null,
+        active && mask && type !== 'hover' ? <Mask
+          show
+          opacity={opacity}
+          ref={ref => (this.refMask = ref)}
+        /> : null
+      ]
     }))
   }
 }

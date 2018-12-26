@@ -69,7 +69,7 @@ class Infinite extends React.Component {
   render () {
     const {
       className, children, done,
-            bottomOffset, onBottom, // eslint-disable-line
+      bottomOffset, onBottom, // eslint-disable-line
       ...rest
     } = this.props
 
@@ -84,7 +84,8 @@ class Infinite extends React.Component {
         {children}
         <Flex justifyCenter alignCenter className='text-center'>
           {loading && <i className='weui-loading'/>}
-          {done && <Flex justifyCenter className='text-desc text-small margin-top-12'>{getLocale('infinite', 'noMore')}</Flex>}
+          {done &&
+          <Flex justifyCenter className='text-desc text-small margin-top-12'>{getLocale('infinite', 'noMore')}</Flex>}
         </Flex>
       </div>
     )

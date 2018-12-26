@@ -36,7 +36,8 @@ class SearchBar extends React.Component {
         <form className='weui-search-bar__form' onSubmit={this.handleOK}>
           <div className='weui-search-bar__box' onClick={this.handleInputFocus}>
             <i className='weui-icon-search'/>
-            <input id={this.state.id}
+            <input
+              id={this.state.id}
               type='search'
               className='weui-search-bar__input'
               placeholder={this.props.placeholder}
@@ -46,14 +47,20 @@ class SearchBar extends React.Component {
               onChange={this.handleChange}
               value={this.props.value}
               autoFocus={this.props.defaultFocus}
-
             />
             {this.props.value === '' ? undefined : (
-              <a href='javascript:' className='weui-icon-clear'
-                onClick={this.handleClear}/>
+              <a
+                href='javascript:'
+                className='weui-icon-clear'
+                onClick={this.handleClear}
+              />
             )}
           </div>
-          <label htmlFor={this.state.id} className='flex flex-align-center weui-search-bar__label' onClick={this.handleInputFocus}>
+          <label
+            htmlFor={this.state.id}
+            className='flex flex-align-center weui-search-bar__label'
+            onClick={this.handleInputFocus}
+          >
             <i className='weui-icon-search'/>
             <span>{this.props.placeholder}</span>
           </label>
@@ -63,7 +70,11 @@ class SearchBar extends React.Component {
             {this.props.OKBtn === true ? getLocale('searchBar', 'search') : this.props.OKBtn}
           </a>
         ) : (
-          <a href='javascript:' className='weui-search-bar__cancel-btn' onClick={this.handleCancel}>{getLocale('searchBar', 'cancel')}</a>
+          <a
+            href='javascript:'
+            className='weui-search-bar__cancel-btn'
+            onClick={this.handleCancel}
+          >{getLocale('searchBar', 'cancel')}</a>
         )}
       </div>
     )

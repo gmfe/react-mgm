@@ -187,7 +187,8 @@ class Slider extends React.Component {
 
   renderChild () {
     let { children } = this.props
-    const { x, sliderWidth, dragging } = this.state; const index = Math.abs(x / sliderWidth)
+    const { x, sliderWidth, dragging } = this.state
+    const index = Math.abs(x / sliderWidth)
 
     if (!_.isArray(children)) {
       children = [children]

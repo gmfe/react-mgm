@@ -4,6 +4,7 @@ import CellSwipe from './cell_swipe'
 import Toast from '../toast'
 import Dialog from '../dialog'
 import { getLocale } from '../../locales'
+
 const Confirm = Dialog.confirm
 
 class CellSwipeDeleteEdit extends React.Component {

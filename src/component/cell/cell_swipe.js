@@ -57,7 +57,7 @@ class CellSwipe extends React.Component {
 
     // 这里的 page 是针对整个库设计的，如果 touchstart 事件绑定到 body 的话，那不在 page 的层，
     // 比如 modal 等，当点击这样的层时，会执行 onCloseSwiped，收起按钮，这不是预期的
-        this.domObj = window.document.getElementsByClassName('page')[0] || document.body; // eslint-disable-line
+    this.domObj = window.document.getElementsByClassName('page')[0] || document.body // eslint-disable-line
 
     this.domObj.addEventListener('touchstart', this.onCloseSwiped, true)
   }

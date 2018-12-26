@@ -21,7 +21,7 @@ class Select extends React.Component {
       data,
       value,
       className,
-            onChange, onCancel, // eslint-disable-line
+      onChange, onCancel, // eslint-disable-line
       ...rest
     } = this.props
 

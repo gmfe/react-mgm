@@ -57,7 +57,7 @@ class Popup extends React.Component {
       opacity,
       className,
       style,
-            onHide, // eslint-disable-line
+      onHide, // eslint-disable-line
       children,
       ...rest
     } = this.props

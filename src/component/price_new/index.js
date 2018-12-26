@@ -35,9 +35,12 @@ class Price extends React.Component {
     }
     return (
       <span {...rest}>
-        {value < 0 ? '-' : ''}<span style={{
-          fontSize: `${currencyScale > 1 ? '1' : currencyScale}em`
-        }}>{_currency}</span>{this.addComma(useGrouping, this.formatValue(value, precision, keepZero, isYuanUnit))}
+        {value < 0 ? '-' : ''}
+        <span
+          style={{
+            fontSize: `${currencyScale > 1 ? '1' : currencyScale}em`
+          }}
+        >{_currency}</span>{this.addComma(useGrouping, this.formatValue(value, precision, keepZero, isYuanUnit))}
       </span>
     )
   }
