@@ -7,6 +7,7 @@ import CellBody from './cell_body'
 import CellFooter from './cell_footer'
 import CellSwipe from './cell_swipe'
 import CellSwipeDeleteEdit from './cell_swipe_delete_edit'
+import CellSwitch from './cell_switch'
 
 export {
   Cells,
@@ -17,5 +18,6 @@ export {
   CellBody,
   CellFooter,
   CellSwipe,
-  CellSwipeDeleteEdit
+  CellSwipeDeleteEdit,
+  CellSwitch
 }

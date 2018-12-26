@@ -11,22 +11,19 @@ let PreviewImageStatics = {
   render (options) {
     const popstate = () => {
       LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
-
       window.removeEventListener('popstate', popstate)
     }
 
     window.addEventListener('popstate', popstate)
 
-    options.show = true
     options.onHide = () => {
       PreviewImageStatics.hide()
     }
-    window.history.pushState({}, null)
-    LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <PreviewImage {...options}/>)
+    window.history.pushState({}, '')
+    LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <PreviewImage {...options} show/>)
   },
 
   hide () {
-    // TODO mark 重复 remove，没关系
     LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
 
     window.history.go(-1)
@@ -71,7 +68,8 @@ class PreviewImage extends React.Component {
     return (
       <Flex
         column
-        justifyCenter {...rest}
+        justifyCenter
+        {...rest}
         className={classNames('preview-image', className)}
         onClick={this.handleClose}
       >

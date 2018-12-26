@@ -1,46 +1,37 @@
-.gm-loading {
-  &-primary {
-    .line {
-      background-color: @primaryColor;
-    }
-  }
-
-  &-default {
-    .line {
-      background-color: white;
-    }
-  }
-}
-
-.gm-loading-linear {
+.loading-linear {
   width: 20px;
   height: 12px;
 
   .line {
+    background: #989697;
     display: inline-block;
     width: 2px;
     height: 5px;
     margin: 0 1px;
 
     &:nth-last-child(1) {
-      animation: loading 1s 0s infinite;
+      animation: loading-linear 1s 0s infinite;
     }
 
     &:nth-last-child(2) {
-      animation: loading 1s 0.5s infinite;
+      animation: loading-linear 1s 0.5s infinite;
     }
 
     &:nth-last-child(3) {
-      animation: loading 1s 0.25s infinite;
+      animation: loading-linear 1s 0.25s infinite;
     }
 
     &:nth-last-child(4) {
-      animation: loading 1s 0.75s infinite;
+      animation: loading-linear 1s 0.75s infinite;
+    }
+
+    &:nth-last-child(5) {
+      animation: loading-linear 1s 1s infinite;
     }
   }
 }
 
-@keyframes loading {
+@keyframes loading-linear {
   0% {
     height: 5px;
   }

@@ -6,9 +6,9 @@ class Tooltip extends React.Component {
     const { placement, children, style } = this.props
 
     return (
-      <div className={`gm-tooltip gm-tooltip-${placement}`} style={style}>
-        <div className='gm-tooltip-arrow'/>
-        <div className='gm-tooltip-inner'>{children}</div>
+      <div className={`tooltip tooltip-${placement}`} style={style}>
+        <div className='tooltip-arrow'/>
+        <div className='tooltip-inner'>{children}</div>
       </div>
     )
   }

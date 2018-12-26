@@ -1,4 +1,5 @@
 import * as lng from './lng'
+
 let react_gm_lng = 'zh'
 
 const setLocale = (lng) => {

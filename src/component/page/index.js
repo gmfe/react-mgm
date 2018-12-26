@@ -7,6 +7,7 @@ class Page extends React.Component {
   render () {
     const {
       className,
+      pageClassName,
       white,
       header,
       tabbar,
@@ -23,7 +24,7 @@ class Page extends React.Component {
     return (
       <Flex column {...rest} className={cn}>
         {header && <Flex column>{header}</Flex>}
-        <Flex flex column className='page-content block'>
+        <Flex flex column className={classNames('page-content block', pageClassName)}>
           {children}
         </Flex>
         {tabbar && <Flex column className='page-tabbar'>{tabbar}</Flex>}
@@ -36,6 +37,7 @@ class Page extends React.Component {
 Page.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  pageClassName: PropTypes.string,
   white: PropTypes.bool,
   header: PropTypes.node,
   tabbar: PropTypes.node,

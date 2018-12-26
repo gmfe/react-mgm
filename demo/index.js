@@ -33,9 +33,13 @@ import {
   Price,
   Counter,
   Divider,
-  Cells, CellsTitle, Cell, CellBody, CellFooter, CellSwipe, CellSwipeDeleteEdit
+  Cells, CellsTitle, Cell, CellBody, CellFooter, CellSwipe, CellSwipeDeleteEdit,
+  Picker, ConfirmPicker, CouplingPicker, ConfirmCouplingPicker,
+  Calendar,
+  FlipNumber
 } from './../src/index'
 import _ from 'lodash'
+import moment from 'moment'
 
 import { setCurrency } from '../src/util/currency'
 
@@ -63,7 +67,7 @@ class DemoWrap extends React.Component {
         ptrOnRefresh={resolve => setTimeout(() => resolve(), 50000)}
       >
         <div>
-                    asdfaf
+          asdfaf
         </div>
       </Page>
     )
@@ -79,14 +83,20 @@ class Home extends React.Component {
 
     this.list = [[{
       title: 'CSS',
-      list: [{
-        to: 'javascript:window.open("https://weui.io/")',
-        text: 'WEUI'
-      }, {
-        to: 'javascript:window.open("http://www.iconfont.cn/")',
-        text: 'icon'
-      },
-      'theme', 'border', 'gap', 'tabs', 'badge'
+      list: [
+        {
+          to: 'javascript:window.open("https://weui.io/")',
+          text: 'WEUI'
+        },
+        {
+          to: 'javascript:window.open("http://www.iconfont.cn/")',
+          text: 'icon'
+        },
+        'theme',
+        'border',
+        'gap',
+        'tabs',
+        'badge'
       ]
     }], [{
       title: 'Component',
@@ -95,7 +105,7 @@ class Home extends React.Component {
         'infinite', 'page', 'slider', 'popup', 'search',
         'square', 'lazyimg', 'dialog', 'cursorfix', 'select',
         'dropper', 'tooltip', 'previewimage', 'price', 'cell',
-        'counter', 'divider'
+        'counter', 'divider', 'picker', 'couplingpicker', 'calendar', 'flipnumber'
       ]
     }]]
   }
@@ -109,7 +119,7 @@ class Home extends React.Component {
               height='30px'
               src='https://avatars1.githubusercontent.com/u/14875414?s=200&v=4'
             />
-                        React MGM
+            React MGM
           </Flex>
         </div>
       } left={<div/>}/>} tabbar={this.renderTabbar()}>
@@ -120,17 +130,18 @@ class Home extends React.Component {
                 <div key={eList.title}>
                   <CellsTitle>{eList.title}</CellsTitle>
                   <Cells>
-                    {_.map(eList.list, v => (v.text ? (
-                      <Cell key={v.text} href={v.to} access>
-                        <CellBody>{v.text}</CellBody>
-                        <CellFooter/>
-                      </Cell>
-                    ) : (
-                      <Cell key={v} href={'#/' + v} access>
-                        <CellBody>{v}</CellBody>
-                        <CellFooter/>
-                      </Cell>
-                    )
+                    {_.map(eList.list, v => (
+                      v.text ? (
+                        <Cell key={v.text} href={v.to} access>
+                          <CellBody>{v.text}</CellBody>
+                          <CellFooter/>
+                        </Cell>
+                      ) : (
+                        <Cell key={v} href={'#/' + v} access>
+                          <CellBody>{v}</CellBody>
+                          <CellFooter/>
+                        </Cell>
+                      )
                     ))}
                   </Cells>
                 </div>
@@ -321,7 +332,7 @@ class ThemeWrap extends React.Component {
         </div>
         <div className='bg'>
           <h3>背景</h3>
-                    两种:
+          两种:
           <div>1 白色背景色</div>
           <div className='default'>2 默认背景色</div>
         </div>
@@ -339,7 +350,9 @@ class ThemeWrap extends React.Component {
           <h4 className='margin-top-12'>通用按钮 size</h4>
           <button className='weui-btn weui-btn_plain-primary btn-default-size-sm'>primary sm</button>
           <button className='weui-btn weui-btn_plain-primary btn-default-size'>primary default</button>
-          <button className='weui-btn weui-btn_plain-primary weui-btn_disabled btn-default-size-130' disabled>primary 130 width</button>
+          <button className='weui-btn weui-btn_plain-primary weui-btn_disabled btn-default-size-130' disabled>primary
+            130 width
+          </button>
         </div>
       </Page>
     )
@@ -352,24 +365,24 @@ class BorderWrap extends React.Component {
       <Page white>
         <h3>边框</h3>
         <div className='border margin-4'>
-                    border
+          border
         </div>
         <div className='border-bottom margin-4'>
-                    border bottom
+          border bottom
         </div>
         <div className='border-top margin-4'>
-                    border top
+          border top
         </div>
 
         <h3>1x 边框(用前请了解其原理)</h3>
         <div className='border-1px-before margin-4'>
-                    border 1x
+          border 1x
         </div>
         <div className='border-1px-bottom-after margin-4'>
-                    border 1x bottom
+          border 1x bottom
         </div>
         <div className='border-1px-top-before margin-4'>
-                    border 1x top
+          border 1x top
         </div>
       </Page>
     )
@@ -381,11 +394,11 @@ class BadgeWrap extends React.Component {
     return (
       <Page className='padding-8'>
         <div className='badge badge-primary'>
-                    ¥ 10086 / 斤
+          ¥ 10086 / 斤
         </div>
         <br/>
         <div className='badge badge-apricot'>
-                    ¥ 10086 / 斤
+          ¥ 10086 / 斤
         </div>
       </Page>
     )
@@ -401,28 +414,28 @@ class FlexWrap extends React.Component {
         </h2>
         <hr/>
         <div className='padding-12'>
-                    横向 默认 Flex
+          横向 默认 Flex
           <Flex>
             <Flex className='border'>
-                            1
+              1
             </Flex>
             <Flex flex className='border'>Flex flex 会占满</Flex>
           </Flex>
-                    纵向 Flex column
+          纵向 Flex column
           <Flex column>
             <Flex className='border'>1</Flex>
             <Flex className='border'>2</Flex>
           </Flex>
         </div>
         <div className='padding-12'>
-                    不换行 默认 宽度会被压缩 FLex
+          不换行 默认 宽度会被压缩 FLex
           <Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
           </Flex>
-                    换行 FLex wrap
+          换行 FLex wrap
           <Flex wrap>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
@@ -431,7 +444,7 @@ class FlexWrap extends React.Component {
           </Flex>
         </div>
         <div className='padding-12'>
-                    Flex width height 如果定了width|height则不能被压缩
+          Flex width height 如果定了width|height则不能被压缩
           <Flex>
             <Flex className='border' width={'100px'}>100px</Flex>
             <Flex className='border' width={'100px'}>100px</Flex>
@@ -440,54 +453,54 @@ class FlexWrap extends React.Component {
           </Flex>
         </div>
         <div className='padding-12'>
-                    主轴对齐方式 默认 Flex
+          主轴对齐方式 默认 Flex
           <Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
           </Flex>
-                    主轴对齐方式 Flex justifyCenter
+          主轴对齐方式 Flex justifyCenter
           <Flex justifyCenter>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
           </Flex>
-                    主轴对齐方式 Flex justifyEnd
+          主轴对齐方式 Flex justifyEnd
           <Flex justifyEnd>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
           </Flex>
-                    主轴对齐方式 Flex justifyBetween
+          主轴对齐方式 Flex justifyBetween
           <Flex justifyBetween>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
           </Flex>
-                    主轴对齐方式 Flex justifyAround
+          主轴对齐方式 Flex justifyAround
           <Flex justifyAround>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
             <Flex className='border' style={{ width: '100px' }}>100px</Flex>
           </Flex>
         </div>
         <div className='padding-12'>
-                    交叉轴对齐 默认 Flex
+          交叉轴对齐 默认 Flex
           <Flex>
             <Flex className='border' style={{ width: '50px' }}>50 50</Flex>
             <Flex className='border' style={{ width: '50px', height: '100px' }}>50 100</Flex>
           </Flex>
-                    交叉轴对齐 Flex alignEnd
+          交叉轴对齐 Flex alignEnd
           <Flex alignEnd>
             <Flex className='border' style={{ width: '50px' }}>1<br/>2</Flex>
             <Flex className='border' style={{ width: '50px' }}>1<br/>2<br/>3</Flex>
           </Flex>
-                    交叉轴对齐 Flex alignCenter
+          交叉轴对齐 Flex alignCenter
           <Flex alignCenter>
             <Flex className='border' style={{ width: '50px' }}>1<br/>2</Flex>
             <Flex className='border' style={{ width: '50px' }}>1<br/>2<br/>3</Flex>
           </Flex>
-                    交叉轴对齐 Flex alignStretch
+          交叉轴对齐 Flex alignStretch
           <Flex alignStretch>
             <Flex className='border' style={{ width: '50px' }}>1<br/>2</Flex>
             <Flex className='border' style={{ width: '50px' }}>1<br/>2<br/>3</Flex>
           </Flex>
-                    交叉轴对齐 Flex alignBaseline
+          交叉轴对齐 Flex alignBaseline
           <Flex alignBaseline>
             <Flex className='border' style={{ width: '50px' }}>1<br/>2</Flex>
             <Flex className='border padding-top-8' style={{ width: '50px' }}>1<br/>2<br/>3</Flex>
@@ -508,28 +521,28 @@ class GapWrap extends React.Component {
         <div>有 5 种尺寸，分别是0 4 8 12 16(px)</div>
         <div>有以下形式：</div>
         <div className='border padding-8'>
-                    padding-8
+          padding-8
         </div>
         <div className='border padding-top-8'>
-                    padding-top-8
+          padding-top-8
         </div>
         <div className='border padding-bottom-8'>
-                    padding-bottom-8
+          padding-bottom-8
         </div>
         <div className='border padding-left-8'>
-                    padding-left-8
+          padding-left-8
         </div>
         <div className='border padding-right-8'>
-                    padding-right-8
+          padding-right-8
         </div>
         <div className='border padding-lr-8'>
-                    padding-lr-8 lr表示左右
+          padding-lr-8 lr表示左右
         </div>
         <div className='border padding-tb-8'>
-                    padding-tb-8 tb表示上下
+          padding-tb-8 tb表示上下
         </div>
         <div>
-                    margin-x margin-top-x margin-bottom-x margin-left-x margin-right-x margin-lr-x margin-tb-x 同理
+          margin-x margin-top-x margin-bottom-x margin-left-x margin-right-x margin-lr-x margin-tb-x 同理
         </div>
 
       </Page>
@@ -548,8 +561,8 @@ class PriceWrap extends React.Component {
       <div>
         <h3>用法</h3>
         <div className='margin-bottom-12'>
-                    在入口调用 './src/util/setCurrency' 文件中的 setCurrency 方法。方法只接收一个参数，即货币符号。
-                    默认是为 ¥。
+          在入口调用 './src/util/setCurrency' 文件中的 setCurrency 方法。方法只接收一个参数，即货币符号。
+          默认是为 ¥。
         </div>
         <div>&lt;Price&gt;100&lt;/Price&gt;</div>
         <Price style={{ 'color': 'red' }}>100</Price>
@@ -616,7 +629,8 @@ class CounterWrap extends React.Component {
 
     return (
       <div>
-        <Counter key='counter'
+        <Counter
+          key='counter'
           onCountMinus={this.handleCountMinus}
           onCountPlus={this.handleCountPlus}
           onCountNumEdit={this.handleCountNumEdit}
@@ -640,7 +654,7 @@ class ButtonWrap extends React.Component {
       <Page white>
         <h2>Button 只封装了loading</h2>
         <hr/>
-                loading 2s
+        loading 2s
         <Button hasLoading className='weui-btn weui-btn_default' onClick={this.handleClick}>asdfa</Button>
       </Page>
     )
@@ -661,10 +675,13 @@ class TextareaWrap extends React.Component {
       <Page>
         <h2>textarea</h2>
         <hr/>
-                固定高度
-        <Textarea value={this.state.value} onChange={this.handleChange}
-          wrapProps={{ style: { maxHeight: '6.4em' } }}/>
-                原生textarea不能随内容变高。
+        固定高度
+        <Textarea
+          value={this.state.value}
+          onChange={this.handleChange}
+          wrapProps={{ style: { maxHeight: '6.4em' } }}
+        />
+        原生textarea不能随内容变高。
         <Textarea value={this.state.value} onChange={this.handleChange}/>
       </Page>
     )
@@ -680,9 +697,10 @@ class TextareaWrap extends React.Component {
 class LoadingWrap extends React.Component {
   render () {
     return (
-      <Page white>
+      <Page>
         <h2>loading</h2>
-        <Loading type='primary'>loading...</Loading>
+        <Loading>loading...</Loading>
+        <Loading line>loading...</Loading>
       </Page>
     )
   }
@@ -692,26 +710,31 @@ class ToastWrap extends React.Component {
   handleToast (type) {
     if (type === 'success') {
       Toast.success({
-        time: 2000,
+        time: 0,
         children: (
           <div>
-            <div>a</div>
-            <div>b</div>
+            <div>保存成功啦保存成功啦保存成功啦保存成功啦</div>
           </div>
         )
       })
     } else if (type === 'loading_linear') {
       Toast.loading_linear({
-        time: 5000,
+        time: 10000,
         children: (
           <div>
-            <div>a</div>
-            <div>b</div>
+            <div>录音中...</div>
           </div>
         )
       })
+    } else if (type === 'loading') {
+      Toast.loading({
+        time: 0
+      })
     } else {
-      Toast[type](type)
+      Toast[type]({
+        children: type,
+        time: 0
+      })
     }
   }
 
@@ -719,25 +742,32 @@ class ToastWrap extends React.Component {
     return (
       <Page white>
         <h2>toast</h2>
-        <button className='weui-btn weui-btn_primary'
+        <button
+          className='weui-btn weui-btn_primary'
           onClick={this.handleToast.bind(this, 'tip')}>Toast tip
         </button>
-        <button className='weui-btn weui-btn_primary'
+        <button
+          className='weui-btn weui-btn_primary'
           onClick={this.handleToast.bind(this, 'success')}>Toast success
         </button>
-        <button className='weui-btn weui-btn_primary'
+        <button
+          className='weui-btn weui-btn_primary'
           onClick={this.handleToast.bind(this, 'info')}>Toast info
         </button>
-        <button className='weui-btn weui-btn_primary'
+        <button
+          className='weui-btn weui-btn_primary'
           onClick={this.handleToast.bind(this, 'warning')}>Toast warning
         </button>
-        <button className='weui-btn weui-btn_primary'
+        <button
+          className='weui-btn weui-btn_primary'
           onClick={this.handleToast.bind(this, 'danger')}>Toast danger
         </button>
-        <button className='weui-btn weui-btn_primary'
+        <button
+          className='weui-btn weui-btn_primary'
           onClick={this.handleToast.bind(this, 'loading')}>Toast loading
         </button>
-        <button className='weui-btn weui-btn_primary'
+        <button
+          className='weui-btn weui-btn_primary'
           onClick={this.handleToast.bind(this, 'loading_linear')}>Toast loading_linear
         </button>
       </Page>
@@ -851,13 +881,13 @@ class PageWrap extends React.Component {
         <h2>page</h2>
         <hr/>
         <div>
-                    everyway 每个页面都是Page
+          everyway 每个页面都是Page
         </div>
 
         <button className='weui-btn weui-btn_primary' onClick={this.handleOtherPage}>showOtherPage</button>
         {this.state.show && (
           <Page className='enter'>
-                        adf
+            adf
             <button className='weui-btn weui-btn_primary' onClick={this.handleClose}>close</button>
           </Page>
         )}
@@ -986,7 +1016,16 @@ class PopupWrap extends React.Component {
     Popup.render({
       left: true,
       children: <div>
-                        调用静态方法
+        调用静态方法
+      </div>
+    })
+  }
+
+  handleShow4 () {
+    Popup.render({
+      right: true,
+      children: <div>
+        调用静态方法
       </div>
     })
   }
@@ -1009,6 +1048,7 @@ class PopupWrap extends React.Component {
         <button className='weui-btn weui-btn_primary' onClick={this.handleShow}>open popup left</button>
         <button className='weui-btn weui-btn_primary' onClick={this.handleShow2}>open popup bottom</button>
         <button className='weui-btn weui-btn_primary' onClick={this.handleShow3}>open popup API left</button>
+        <button className='weui-btn weui-btn_primary' onClick={this.handleShow4}>open popup API right</button>
         <Popup left show={this.state.show} onHide={this.handleChange}>
           <div>asdf</div>
           <div>asdf</div>
@@ -1038,7 +1078,7 @@ class PopupWrap extends React.Component {
         </Popup>
 
         <Popup opacity={0.8} bottom show={this.state.show2} onHide={this.handleChange2}>
-          <div style={{ height: '100px' }}>height 100px</div>
+          <div style={{ height: '300px' }}>height 100px</div>
         </Popup>
 
         <div>asdf</div>
@@ -1158,7 +1198,7 @@ class LazyImgWrap extends React.Component {
           src={gmLogo}
         />
         <div style={{ height: '600px' }}>
-                    滚到下面看图片
+          滚到下面看图片
         </div>
         <LazyImg
           placeholder={'https://placeholdit.imgix.net/~text?txtsize=23&bg=f7f7f7&txt=loading&w=250&h=250'}
@@ -1222,7 +1262,7 @@ class DialogWrap extends React.Component {
           title='Alert Dialog'
           onConfirm={() => this.setState({ alert: !alert })}
         >
-                    这是alert
+          这是alert
         </Dialog>
 
         <Dialog
@@ -1233,7 +1273,7 @@ class DialogWrap extends React.Component {
           onConfirm={() => this.setState({ confirm: !confirm })}
           {...btnText}
         >
-                    这是confirm内容
+          这是confirm内容
         </Dialog>
 
         <button className='weui-btn weui-btn_warn' onClick={this.handleA}>Alert Dialog（API+Promise）</button>
@@ -1248,8 +1288,13 @@ class CursorFixWrap extends React.Component {
   render () {
     return (
       <div>
-        <CursorFix component='input' type='text' style={{ border: '1px solid black' }} name='name'
-          onClick={this.handleClick}/>
+        <CursorFix
+          component='input'
+          type='text'
+          style={{ border: '1px solid black' }}
+          name='name'
+          onClick={this.handleClick}
+        />
         <input type='text' style={{ border: '1px solid black' }}/>
       </div>
     )
@@ -1266,32 +1311,15 @@ class SelectWrap extends React.Component {
     this.state = {
       show: false,
       data: [
-        { value: 1, name: '深圳' },
-        { value: 2, name: '罗湖' },
-        { value: 3, name: '罗湖' },
-        { value: 4, name: '罗湖' },
-        { value: 5, name: '罗湖' },
-        { value: 6, name: '罗湖' },
-        { value: 7, name: '罗湖' },
-        { value: 8, name: '罗湖' },
-        { value: 9, name: '罗湖' }
+        { value: 1, text: '深圳' },
+        { value: 2, text: '罗湖' },
+        { value: 3, text: '南山' },
+        { value: 4, text: '宝安' },
+        { value: 5, text: '福田' },
+        { value: 6, text: '龙岗' }
       ],
       value: null
     }
-  }
-
-  render () {
-    return (
-      <div>
-        <button className='weui-btn weui-btn_primary' onClick={::this.handleClick}>选择</button>
-        {this.state.value && this.state.value.name}
-        <Select
-          show={this.state.show}
-          data={this.state.data}
-          value={this.state.value}
-          onChange={::this.handleChange}/>
-      </div>
-    )
   }
 
   handleChange (value) {
@@ -1306,6 +1334,86 @@ class SelectWrap extends React.Component {
     this.setState({
       show: true
     })
+  }
+
+  handleClickStatic = () => {
+    const { data, value } = this.state
+
+    Select.render({
+      data,
+      value
+    }).then(v => {
+      console.log(v)
+      this.setState({
+        value: v
+      })
+    })
+  }
+
+  render () {
+    const item = _.find(this.state.data, v => v.value === this.state.value)
+
+    return (
+      <div>
+        <button className='weui-btn weui-btn_primary' onClick={::this.handleClick}>选择</button>
+        <button className='weui-btn weui-btn_primary' onClick={::this.handleClickStatic}>选择(静态方法)</button>
+        {item && item.name}
+        <Select
+          show={this.state.show}
+          data={this.state.data}
+          value={this.state.value}
+          onChange={::this.handleChange}/>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+        <div>asdfasf</div>
+      </div>
+    )
   }
 }
 
@@ -1324,7 +1432,7 @@ class DropperWrap extends React.Component {
     return (
       <div>
         <Dropper onDrop={this.handleDrop}>
-                    默认选择图片样式
+          默认选择图片样式
         </Dropper>
 
         <Dropper className='border'>
@@ -1332,7 +1440,7 @@ class DropperWrap extends React.Component {
         </Dropper>
 
         <div>
-                    原图
+          原图
           <img style={{ width: '100%' }} src={this.state.img} alt=''/>
 
         </div>
@@ -1417,7 +1525,7 @@ class TooltipWrap extends React.Component {
   renderPopup () {
     return (
       <Tooltip placement='bottomRight' style={{ width: '250px' }}>
-                这是一个tooltip bottomRight (default)
+        这是一个tooltip bottomRight (default)
       </Tooltip>
     )
   }
@@ -1426,8 +1534,8 @@ class TooltipWrap extends React.Component {
     return (
       <Flex column>
         <Flex style={{ margin: '5px 15px' }}>
-                    Tooltip需要配合Trigger使用，注意Tooltip的'topLeft', 'topRight', 'bottomLeft',
-                    'bottomRight'合Trigger的'right'、'top'的搭配
+          Tooltip需要配合Trigger使用，注意Tooltip的'topLeft', 'topRight', 'bottomLeft',
+          'bottomRight'合Trigger的'right'、'top'的搭配
         </Flex>
         <Flex justifyEnd style={{ margin: '30px 20px' }}>
           <Trigger component={<div/>} right adjustX={20} popup={this.renderPopup()}>
@@ -1437,10 +1545,14 @@ class TooltipWrap extends React.Component {
         </Flex>
 
         <Flex style={{ margin: '30px 20px' }}>
-          <Trigger component={<div/>} timeout={2000}
-            popup={<Tooltip placement='bottomLeft' style={{ width: '250px' }}>
-                                 这是一个tooltip bottomLeft
-            </Tooltip>}
+          <Trigger
+            component={<div/>}
+            timeout={2000}
+            popup={
+              <Tooltip placement='bottomLeft' style={{ width: '250px' }}>
+                这是一个tooltip bottomLeft
+              </Tooltip>
+            }
           >
             <button className='weui-btn weui-btn_primary weui-btn_mini'>bottomLeft with timeout
             </button>
@@ -1448,10 +1560,17 @@ class TooltipWrap extends React.Component {
         </Flex>
 
         <Flex justifyEnd style={{ margin: '30px 20px' }}>
-          <Trigger component={<div/>} top right adjustX={20} mask
-            popup={<Tooltip placement='topRight' style={{ width: '250px' }}>
-                                 这是一个tooltip topRight
-            </Tooltip>}
+          <Trigger
+            component={<div/>}
+            top
+            right
+            adjustX={20}
+            mask
+            popup={
+              <Tooltip placement='topRight' style={{ width: '250px' }}>
+                这是一个tooltip topRight
+              </Tooltip>
+            }
           >
             <button className='weui-btn weui-btn_primary weui-btn_mini'>topRight with mask
             </button>
@@ -1459,9 +1578,14 @@ class TooltipWrap extends React.Component {
         </Flex>
 
         <Flex style={{ margin: '30px 20px' }}>
-          <Trigger component={<div/>} top adjustX={30} mask
-            popup={<Tooltip placement='topLeft' style={{ width: '250px' }}>
-                                 这是一个tooltip topLeft
+          <Trigger
+            component={<div/>}
+            top
+            adjustX={30}
+            mask
+            popup={<Tooltip placement='topLeft' style={{ width: '250px' }}
+            >
+              这是一个tooltip topLeft
             </Tooltip>}
           >
             <button className='weui-btn weui-btn_primary weui-btn_mini'>topLeft with mask
@@ -1470,9 +1594,14 @@ class TooltipWrap extends React.Component {
         </Flex>
 
         <Flex style={{ margin: '30px 20px' }}>
-          <Trigger component={<div/>} type='hover' top mask
-            popup={<Tooltip placement='topLeft' style={{ width: '250px' }}>
-                                 这是一个tooltip topLeft (hover)
+          <Trigger
+            component={<div/>}
+            type='hover'
+            top
+            mask
+            popup={<Tooltip placement='topLeft' style={{ width: '250px' }}
+            >
+              这是一个tooltip topLeft (hover)
             </Tooltip>}
           >
             <button className='weui-btn weui-btn_primary weui-btn_mini'>topLeft (hover)
@@ -1524,11 +1653,263 @@ class PreviewImageWrap extends React.Component {
   }
 }
 
-class dividerWrap extends React.Component {
+class DividerWrap extends React.Component {
   render () {
     return (
       <div>
         <Divider>lalala</Divider>
+      </div>
+    )
+  }
+}
+
+class PickerWrap extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      values: [
+        'Mr.',
+        'Micheal',
+        'Jordan'
+      ],
+      datas: [
+        [{ value: 'Mr.', text: 'Mr.' }, { value: 'Mrs.', text: 'Mrs.' }, { value: 'Ms.', text: 'Ms.' }, {
+          value: 'Dr.',
+          text: 'Dr.'
+        }],
+        [{ value: 'John', text: 'John' }, { value: 'Micheal', text: 'Micheal' }, { value: 'Elizabeth', text: 'Elizabeth' }],
+        [{ value: 'Lennon', text: 'Lennon' }, { value: 'Jackson', text: 'Jackson' }, {
+          value: 'Jordan',
+          text: 'Jordan'
+        }, { value: 'Legend', text: 'Legend' }, { value: 'Taylor', text: 'Taylor' }]
+      ]
+    }
+  }
+
+  handleChange = (values) => {
+    this.setState({
+      values
+    })
+  }
+
+  handleClick = () => {
+    const { datas, values } = this.state
+
+    ConfirmPicker.render({
+      datas,
+      values,
+      renderOption: (index, option) => {
+        if (index === 0) {
+          return <div>{option.value} <span style={{ color: 'red' }}>red</span></div>
+        }
+        return option.value
+      }
+    }).then(v => {
+      console.log('resolve', v)
+      this.setState({
+        values: v
+      })
+    }, () => {
+      console.log('reject')
+    })
+  }
+
+  render () {
+    const { datas, values } = this.state
+
+    return (
+      <div>
+        <button className='weui-btn' onClick={this.handleClick}>picker</button>
+
+        <Picker
+          datas={datas}
+          values={values}
+          onChange={this.handleChange}
+          renderOption={(index, option) => {
+            if (index === 1) {
+              return <div>{option.value} <span style={{ color: 'red' }}>red</span></div>
+            }
+            return option.value
+          }}
+        />
+      </div>
+    )
+  }
+}
+
+class CouplingPickerWrap extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      values: ['T7936', 'S11186', '777777'],
+      datas: [{
+        'value': 'T11660',
+        'text': '喵喵分仓一',
+        'children': [{
+          'value': 'S8058',
+          'text': '综合商品-喵喵分仓一',
+          'children': [{
+            'value': '00000',
+            'text': '000000'
+          }]
+        }]
+      }, {
+        'value': 'T7936',
+        'text': '喵喵总仓',
+        'children': [{
+          'value': 'S8056',
+          'text': '综合商品',
+          'children': [{
+            'value': '11111',
+            'text': '111111'
+          }]
+        }, {
+          'value': 'S11186',
+          'text': '复制报价单',
+          'children': [{
+            'value': '2222222',
+            'text': '222222'
+          }, {
+            'value': '777777',
+            'text': '777777'
+          }]
+        }, {
+          'value': 'S11226',
+          'text': '复制报价单D',
+          'children': [{
+            'value': '333333',
+            'text': '33333333'
+          }]
+        }, {
+          'value': 'S9176',
+          'text': '预售报价单',
+          'children': [{
+            'value': '44444444',
+            'text': '4444444'
+          }]
+        }, {
+          'value': 'S11188',
+          'text': '复制报价单B',
+          'children': [{
+            'value': '5555555',
+            'text': '5555555'
+          }]
+        }, {
+          'value': 'S11189',
+          'text': '复制报价单C',
+          'children': [{
+            'value': '666666',
+            'text': '6666666'
+          }]
+        }]
+      }, {
+        'value': 'T12469',
+        'text': '喵喵分仓二',
+        'children': [{
+          'value': 'S8443',
+          'text': '蔬菜报价单',
+          'children': [{
+            'value': '88888',
+            'text': '888888'
+          }, {
+            'value': '99999',
+            'text': '99999'
+          }]
+        }]
+      }]
+    }
+  }
+
+  handleChange = (values) => {
+    this.setState({
+      values
+    })
+  }
+
+  handleClick = () => {
+    const { datas, values } = this.state
+
+    ConfirmCouplingPicker.render({
+      datas,
+      values
+    }).then(v => {
+      console.log('resolve', v)
+      this.setState({
+        values: v
+      })
+    }, () => {
+      console.log('reject')
+    })
+  }
+
+  render () {
+    const { datas, values } = this.state
+
+    return (
+      <div>
+        <button className='weui-btn' onClick={this.handleClick}>couplingPicker</button>
+
+        <CouplingPicker
+          datas={datas}
+          values={values}
+          onChange={this.handleChange}
+          renderOption={(index, option) => {
+            return option.text
+          }}
+        />
+      </div>
+    )
+  }
+}
+
+class CalendarWrap extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      begin: moment().add(-4, 'd').toDate(),
+      end: moment().toDate()
+    }
+  }
+
+  componentDidMount () {
+    this.refCalendar.apiScrollToBegin()
+  }
+
+  render () {
+    return (
+      <div className='padding-8' style={{ height: '400px', overflow: 'auto' }}>
+        <Calendar
+          ref={ref => (this.refCalendar = ref)}
+          min={moment().add(-1, 'month').toDate()}
+          max={moment().toDate()}
+          begin={this.state.begin}
+          end={this.state.end}
+          onChange={({ begin, end }) => {
+            console.log(moment(begin).format('YYYY-MM-DD'), moment(end).format('YYYY-MM-DD'))
+            this.setState({ begin, end })
+          }}
+          label
+        />
+      </div>
+    )
+  }
+}
+
+class FlipNumberWrap extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      begin: null,
+      end: null
+    }
+  }
+
+  render () {
+    return (
+      <div className='padding-8'>
+        <FlipNumber useGroup delay={1000} decimal={2} from={0} to={123.456}/>
       </div>
     )
   }
@@ -1564,7 +1945,11 @@ const routeMap = {
   price: PriceWrap,
   cell: CellWrap,
   counter: CounterWrap,
-  divider: dividerWrap
+  divider: DividerWrap,
+  picker: PickerWrap,
+  couplingpicker: CouplingPickerWrap,
+  calendar: CalendarWrap,
+  flipnumber: FlipNumberWrap
 }
 
 const Root = () => (

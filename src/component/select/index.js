@@ -5,14 +5,21 @@ import Mask from '../mask/index'
 import _ from 'lodash'
 import pureRenderDecorator from '../../util/pure.render.decorator'
 import { getLocale } from '../../locales'
+import { ConfirmPicker } from '../picker'
 
 @pureRenderDecorator
 class Select extends React.Component {
-  constructor (props) {
-    super(props)
+  handleCancel = (e) => {
+    e.preventDefault()
 
-    this.handleCancel = ::this.handleCancel
-    this.handleClick = ::this.handleClick
+    this.props.onCancel(e)
+  }
+
+  handleClick = (e) => {
+    e.preventDefault()
+
+    const index = e.currentTarget.dataset.index
+    this.props.onChange(this.props.data[index].value)
   }
 
   render () {
@@ -30,6 +37,7 @@ class Select extends React.Component {
     if (!show) {
       return null
     }
+
     return (
       <div className='select-popup'>
         <Mask show={show} opacity={0.1} onClick={this.handleCancel}/>
@@ -40,44 +48,60 @@ class Select extends React.Component {
               key={i}
               data-index={i}
               className={classNames('select-popup-list-item', {
-                active: v === value
+                active: v.value === value
               })}
               onClick={this.handleClick}
-            >{v.name}</div>
+            >{v.text}</div>
           ))}
         </div>
       </div>
     )
   }
-
-  handleCancel (event) {
-    event.preventDefault()
-    this.props.onCancel(event)
-  }
-
-  handleClick (event) {
-    event.preventDefault()
-    const index = event.currentTarget.dataset.index
-    this.props.onChange(this.props.data[index])
-  }
 }
 
-Select.defaultProps = {
-  show: false,
-  data: [],
-  value: null,
-  onChange: () => {
-  },
-  onCancel: () => {
+Select.render = ({ data, value, title }) => {
+  // 转换下
+  const datas = [data]
+  const values = []
+
+  // 找不到得有个默认的
+  const item = _.find(data, v => v.value === value)
+  if (item) {
+    values[0] = item.value
+  } else {
+    values[0] = data[0].value
   }
+
+  console.log(datas)
+
+  return ConfirmPicker.render({
+    title: title || '选择',
+    datas,
+    values
+  }).then(values => {
+    // 转回去
+    const item = _.find(data, v => v.value === values[0])
+    return item.value
+  })
+}
+
+Select.hide = () => {
+  ConfirmPicker.hide()
 }
 
 Select.propTypes = {
   show: PropTypes.bool.isRequired,
   data: PropTypes.array,
+  title: PropTypes.string,
   value: PropTypes.any,
   onChange: PropTypes.func.isRequired,
   onCancel: PropTypes.func
+}
+
+Select.defaultProps = {
+  data: [], // [{value, text}]
+  value: null,
+  onCancel: _.noop
 }
 
 export default Select

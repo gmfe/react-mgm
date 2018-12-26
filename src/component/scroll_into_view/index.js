@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { findDOMNode } from 'react-dom'
 import _ from 'lodash'
 
 const iPhone = window.navigator.userAgent.indexOf('iPhone') > -1
@@ -7,13 +7,7 @@ const iPhone = window.navigator.userAgent.indexOf('iPhone') > -1
 class ScrollIntoView extends React.Component {
   constructor (props) {
     super(props)
-    this.target = null
-  }
-
-  render () {
-    return React.cloneElement(this.props.children, {
-      onFocus: :: this.handleFocus
-    })
+    this.__mounted = false
   }
 
   componentWillMount () {
@@ -22,27 +16,30 @@ class ScrollIntoView extends React.Component {
     }
   }
 
-  componentDidMount () {
-    this.target = ReactDOM.findDOMNode(this)
-  }
-
   componentWillUnmount () {
-    this.target = null
+    this.__mounted = true
   }
 
-  handleFocus () {
+  handleFocus = () => {
     const { onFocus } = this.props.children.props
 
     onFocus && onFocus()
 
     if (!iPhone) {
       setTimeout(() => {
-        const { target } = this
-        if (target) {
+        if (this.__mounted) {
+          const target = findDOMNode(this.ref)
           target.scrollIntoViewIfNeeded ? target.scrollIntoViewIfNeeded() : target.scrollIntoView()
         }
       }, 500)
     }
+  }
+
+  render () {
+    return React.cloneElement(this.props.children, {
+      ref: ref => (this.ref = ref),
+      onFocus: this.handleFocus
+    })
   }
 }
 

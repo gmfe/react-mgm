@@ -15,9 +15,6 @@ class Infinite extends React.Component {
     }
     this.timer = null
     this.scrollTop = 0
-
-    this.handleScroll = ::this.handleScroll
-    this.noLoading = ::this.noLoading
   }
 
   componentWillReceiveProps (nextProps) {
@@ -26,7 +23,7 @@ class Infinite extends React.Component {
     }
   }
 
-  noLoading () {
+  noLoading = () => {
     this.setState({
       loading: false
     })
@@ -53,7 +50,8 @@ class Infinite extends React.Component {
     }
   }
 
-  handleScroll (event) {
+  handleScroll = (event) => {
+    // TODO 优化
     // 向下滚动才触发
     if (event.target.scrollTop > this.scrollTop) {
       if (!this.state.loading) {
@@ -64,6 +62,8 @@ class Infinite extends React.Component {
       }
     }
     this.scrollTop = event.target.scrollTop
+
+    this.props.onScroll()
   }
 
   render () {
@@ -83,9 +83,19 @@ class Infinite extends React.Component {
       >
         {children}
         <Flex justifyCenter alignCenter className='text-center'>
-          {loading && <i className='weui-loading'/>}
-          {done &&
-          <Flex justifyCenter className='text-desc text-small margin-top-12'>{getLocale('infinite', 'noMore')}</Flex>}
+          {loading && (
+            <Flex column justifyCenter style={{ height: '30px' }}>
+              <i className='weui-loading'/>
+            </Flex>
+          )}
+          {done && (
+            <Flex
+              column
+              justifyCenter
+              className='text-desc text-small infinite-no-more'
+              style={{ height: '30px' }}
+            >{getLocale('infinite', 'noMore')}</Flex>
+          )}
         </Flex>
       </div>
     )
@@ -94,13 +104,15 @@ class Infinite extends React.Component {
 
 Infinite.defaultProps = {
   onBottom: _.noop,
-  bottomOffset: 20 + 50 // loading 高度 + 50
+  bottomOffset: 30 + 50, // loading 高度 + 50
+  onScroll: _.noop
 }
 
 Infinite.propTypes = {
   onBottom: PropTypes.func.isRequired,
   bottomOffset: PropTypes.number,
-  done: PropTypes.bool
+  done: PropTypes.bool,
+  onScroll: PropTypes.func
 }
 
 export default Infinite

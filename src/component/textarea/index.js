@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 class Textarea extends React.Component {
@@ -16,6 +17,14 @@ class Textarea extends React.Component {
       </div>
     )
   }
+}
+
+Textarea.propTypes = {
+  wrapProps: PropTypes.object
+}
+
+Textarea.defaultProps = {
+  wrapProps: {}
 }
 
 export default Textarea
