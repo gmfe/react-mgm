@@ -17,12 +17,12 @@
 
     .borderRightBefore();
 
-    &:before {
+    &::before {
       transform: scale(0.5);
       transform-origin: 100% 50%;
     }
 
-    &:last-child:before {
+    &:last-child::before {
       display: none;
     }
 
@@ -35,7 +35,7 @@
       color: @primaryColor;
       position: relative;
 
-      &:after {
+      &::after {
         content: " ";
         position: absolute;
         left: 0;

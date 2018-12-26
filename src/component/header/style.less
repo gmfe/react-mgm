@@ -20,18 +20,21 @@
   .button {
     z-index: 20;
     position: relative;
+
     &.button-link {
       line-height: @headerHeight;
     }
+
     &.pull-left {
       color: @defaultColor;
     }
+
     &.pull-right {
       color: @defaultColor;
     }
   }
 
-  &:after {
+  &::after {
     content: " ";
     position: absolute;
     left: 0;

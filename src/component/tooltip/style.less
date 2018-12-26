@@ -7,7 +7,7 @@
     border-width: 5px 5px 0;
     border-top-color: @borderColor;
 
-    &:after {
+    &::after {
       bottom: 1px;
       margin-left: -5px;
       border-width: 5px 5px 0;
@@ -25,7 +25,7 @@
     border-width: 0 5px 5px;
     border-bottom-color: @borderColor;
 
-    &:after {
+    &::after {
       top: 1px;
       margin-left: -5px;
       border-width: 0 5px 5px;
@@ -38,6 +38,24 @@
   position: relative;
   display: inline-block;
   font-size: 12px;
+
+  .gm-tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+
+    &::after {
+      content: " ";
+      position: absolute;
+      border-color: transparent;
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+  }
 
   &.gm-tooltip-top {
     .topMixin();
@@ -94,23 +112,5 @@
     background-color: white;
     border: 1px solid @borderColor;
     border-radius: 5px;
-  }
-
-  .gm-tooltip-arrow {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-
-    &:after {
-      content: " ";
-      position: absolute;
-      border-color: transparent;
-      display: block;
-      width: 0;
-      height: 0;
-      border-style: solid;
-    }
   }
 }

@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -43,12 +44,13 @@ a.decoration {
 }
 
 .clearfix {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: " ";
-    display: table
+    display: table;
   }
-  &:after {
+
+  &::after {
     clear: both;
   }
 }
@@ -84,7 +86,7 @@ a.decoration {
 .img-responsive {
   display: block;
   max-width: 100%;
-  height: auto;;
+  height: auto;
 }
 
 .text-ellipsis {
