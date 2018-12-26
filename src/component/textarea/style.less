@@ -1,15 +1,15 @@
 .textarea-adapter {
   position: relative;
-  min-height: 4.8em; // 5em * 1.6(line-height)
+  min-height: 4.8em;
   border: 1px solid @borderColor;
   overflow: hidden;
-  
+
   pre {
     display: block;
-    font-size: 1.22em; // 不知道为啥pre font-size小了，故16/13约等于1.22
+    font-size: 1.22em;
     visibility: hidden;
 
-    &:after {
+    &::after {
       display: block;
       content: " ";
     }
