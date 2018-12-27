@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import pureRenderDecorator from '../../util/pure.render.decorator'
 import LayoutRoot from '../layout_root'
 import _ from 'lodash'
 import { getLocale } from '../../locales'
@@ -68,27 +67,18 @@ const DialogStatics = {
   }
 }
 
-@pureRenderDecorator
 class Dialog extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.handleCancel = ::this.handleCancel
-    this.handleConfirm = ::this.handleConfirm
-    this.handleOtherClick = ::this.handleOtherClick
-  }
-
-  handleConfirm (e) {
+  handleConfirm = (e) => {
     e.preventDefault()
     this.props.onConfirm()
   }
 
-  handleCancel (e) {
+  handleCancel = (e) => {
     e.preventDefault()
     this.props.onCancel && this.props.onCancel()
   }
 
-  handleOtherClick (e) {
+  handleOtherClick = (e) => {
     e.preventDefault()
     this.props.onOtherClick && this.props.onOtherClick()
   }

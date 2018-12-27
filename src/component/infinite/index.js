@@ -17,6 +17,7 @@ class Infinite extends React.Component {
     this.scrollTop = 0
   }
 
+  // TODO getDerivedStateFromProps
   componentWillReceiveProps (nextProps) {
     if (nextProps.done) {
       this.noLoading()

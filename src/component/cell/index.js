@@ -5,9 +5,10 @@ import CellsTips from './cells_tips'
 import CellHeader from './cell_header'
 import CellBody from './cell_body'
 import CellFooter from './cell_footer'
-import CellSwipe from './cell_swipe'
-import CellSwipeDeleteEdit from './cell_swipe_delete_edit'
 import CellSwitch from './cell_switch'
+import CellSwipe from './cell_swipe'
+
+// TODO 整理 cell 文件
 
 export {
   Cells,
@@ -17,7 +18,6 @@ export {
   CellHeader,
   CellBody,
   CellFooter,
-  CellSwipe,
-  CellSwipeDeleteEdit,
-  CellSwitch
+  CellSwitch,
+  CellSwipe
 }

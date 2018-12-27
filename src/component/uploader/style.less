@@ -1,0 +1,31 @@
+.uploader {
+  display: inline-block;
+
+  .uploader-default {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed @borderColor;
+    cursor: pointer;
+  }
+
+  .uploader-wrap {
+    display: inline-block;
+  }
+
+  .uploader-input[type="file"] {
+    display: none;
+  }
+
+  .uploader-icon-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    color: @borderColor;
+  }
+
+  .uploader-icon {
+    font-size: 2.5em;
+  }
+}

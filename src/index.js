@@ -17,13 +17,11 @@ import Dialog from './component/dialog'
 import ScrollIntoView from './component/scroll_into_view'
 import CursorFix from './component/cursor_fix'
 import Select from './component/select'
-import Dropper from './component/dropper'
 import Trigger from './component/trigger'
 import Tooltip from './component/tooltip'
 import PreviewImage from './component/preview_image'
 import LayoutRoot from './component/layout_root'
 import Price from './component/price'
-import PriceNew from './component/price_new'
 import Counter from './component/counter'
 import Loading from './component/loading'
 import Divider from './component/divider'
@@ -36,7 +34,6 @@ import {
   CellBody,
   CellFooter,
   CellSwipe,
-  CellSwipeDeleteEdit,
   CellSwitch
 } from './component/cell'
 import Button from './component/button'
@@ -71,13 +68,11 @@ export {
   ScrollIntoView,
   CursorFix,
   Select,
-  Dropper,
   Trigger,
   Tooltip,
   PreviewImage,
   LayoutRoot,
   Price,
-  PriceNew,
   Counter,
   Divider,
 
@@ -89,7 +84,6 @@ export {
   CellBody,
   CellFooter,
   CellSwipe,
-  CellSwipeDeleteEdit,
   CellSwitch,
 
   Tabs,

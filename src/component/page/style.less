@@ -1,13 +1,8 @@
 .page {
-  box-sizing: border-box;
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100vw;
   height: 100vh;
   background: @defaultBg;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
 
   &.page-white {
     background: @whiteBg;
@@ -21,5 +16,6 @@
 
   .page-tabbar {
     height: @tabbarHeight;
+    overflow: hidden;
   }
 }

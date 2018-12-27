@@ -3,11 +3,9 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Mask from '../mask/index'
 import _ from 'lodash'
-import pureRenderDecorator from '../../util/pure.render.decorator'
 import { getLocale } from '../../locales'
 import { ConfirmPicker } from '../picker'
 
-@pureRenderDecorator
 class Select extends React.Component {
   handleCancel = (e) => {
     e.preventDefault()

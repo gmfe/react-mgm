@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import pureRenderDecorator from '../../util/pure.render.decorator'
 
-@pureRenderDecorator
 class Flex extends React.Component {
   render () {
     const {

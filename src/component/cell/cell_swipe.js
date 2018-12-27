@@ -179,8 +179,8 @@ class CellSwipe extends React.Component {
     return (isOverflow ? limit : value)
   }
 
-  handleBtnClick (onPress) {
-    onPress(this.close)
+  handleBtnClick (onClick) {
+    onClick(this.close)
   }
 
   renderButtons (buttons, ref) {
@@ -195,7 +195,7 @@ class CellSwipe extends React.Component {
               alignCenter
               className='weui-swiped-btn'
               style={btn.style}
-              onClick={this.handleBtnClick.bind(this, btn.onPress)}
+              onClick={this.handleBtnClick.bind(this, btn.onClick)}
             >{btn.text || 'click'}</Flex>
 
           ))
@@ -205,7 +205,7 @@ class CellSwipe extends React.Component {
   }
 
   render () {
-    const { bodyText, footerText, onPress, right } = this.props
+    const { bodyText, footerText, onClick, right } = this.props
 
     return (
       <Cell
@@ -216,7 +216,7 @@ class CellSwipe extends React.Component {
           onTouchMove={this.handleTouchMove}
           onTouchStart={this.handleTouchStart}
           onTouchEnd={this.handleTouchEnd}
-          onClick={onPress}
+          onClick={onClick}
           className='swiped-body'
         >
           <Cell access>
@@ -227,9 +227,7 @@ class CellSwipe extends React.Component {
           </Cell>
         </CellBody>
         <CellFooter>
-          {
-            right && right.length > 0 ? this.renderButtons(right, 'right') : null
-          }
+          {(right && right.length > 0) && this.renderButtons(right, 'right')}
         </CellFooter>
       </Cell>
     )
@@ -240,7 +238,7 @@ CellSwipe.propTypes = {
   bodyText: PropTypes.string.isRequired,
   footerText: PropTypes.string.isRequired,
   right: PropTypes.array,
-  onPress: PropTypes.func
+  onClick: PropTypes.func
 }
 
 export default CellSwipe

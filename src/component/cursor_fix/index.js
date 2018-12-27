@@ -2,13 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class CursorFix extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.handleClick = ::this.handleClick
-  }
-
-  handleClick (event) {
+  handleClick = (event) => {
     // 移动的的光标容易飘。click perventDefault 然后 focus 下可解决。
     // 别问我为什么。
     event.preventDefault()

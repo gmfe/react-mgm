@@ -5,6 +5,12 @@ import _ from 'lodash'
 const prefix = '_react-gmm_'
 
 class Storage extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.save()
+  }
+
   save () {
     Storage.set(this.props.name, this.props.value)
   }
@@ -13,10 +19,6 @@ class Storage extends React.Component {
     if (this.props.autoSave) {
       this.save()
     }
-  }
-
-  componentWillMount () {
-    this.save()
   }
 
   render () {

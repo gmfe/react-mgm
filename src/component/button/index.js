@@ -5,17 +5,13 @@ import classNames from 'classnames'
 import { is } from 'gm-util'
 
 class Button extends React.Component {
-  constructor (props) {
-    super(props)
-    this.handleClick = ::this.handleClick
-    this.state = {
-      loading: false
-    }
+  state = {
+    loading: false
   }
 
-  handleClick (event) {
+  handleClick = (event) => {
     event.preventDefault()
-    const { hasLoading, onClick } = this.props
+    const { onClick } = this.props
     const { loading } = this.state
 
     if (loading) {
@@ -24,7 +20,7 @@ class Button extends React.Component {
 
     const result = onClick(event)
 
-    if (hasLoading && is.promise(result)) {
+    if (is.promise(result)) {
       this.setState({ loading: true })
       Promise.resolve(result).then(() => this.setState({
         loading: false
@@ -37,7 +33,6 @@ class Button extends React.Component {
   render () {
     const {
       onClick, // eslint-disable-line
-      hasLoading,
       className,
       children,
       ...rest
@@ -49,25 +44,22 @@ class Button extends React.Component {
       <button
         {...rest}
         className={classNames({
-          'weui-btn_loading': hasLoading && loading
+          'weui-btn_loading': loading
         }, className)}
         onClick={this.handleClick}
       >
-        {hasLoading && loading && <i className='weui-loading'/>}
+        {loading && <i className='weui-loading'/>}
         {children}
       </button>
     )
   }
 }
 
-// 只封装了 loading
 Button.propTypes = {
-  hasLoading: PropTypes.bool,
   onClick: PropTypes.func
 }
 
 Button.defaultProps = {
-  hasLoading: false,
   onClick: _.noop
 }
 

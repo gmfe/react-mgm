@@ -8,9 +8,7 @@ class ScrollIntoView extends React.Component {
   constructor (props) {
     super(props)
     this.__mounted = false
-  }
 
-  componentWillMount () {
     if (!_.isObject(this.props.children)) {
       console.error('There must be one and only one component')
     }

@@ -16,19 +16,21 @@ class Page extends React.Component {
       ...rest
     } = this.props
 
-    const cn = classNames({
-      'page': true,
-      'page-white': white
-    }, className)
-
     return (
-      <Flex column {...rest} className={cn}>
+      <Flex
+        {...rest}
+        column
+        className={classNames({
+          'page': true,
+          'page-white': white
+        }, className)}
+      >
         {header && <Flex column>{header}</Flex>}
         <Flex flex column className={classNames('page-content block', pageClassName)}>
           {children}
         </Flex>
-        {tabbar && <Flex column className='page-tabbar'>{tabbar}</Flex>}
         {bottom}
+        {tabbar && <Flex column className='page-tabbar'>{tabbar}</Flex>}
       </Flex>
     )
   }

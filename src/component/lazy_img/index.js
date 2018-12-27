@@ -2,10 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { isElementOverViewport } from 'gm-util'
-import pureRenderDecorator from '../../util/pure.render.decorator'
 import _ from 'lodash'
 
-@pureRenderDecorator
 class LazyImg extends React.Component {
   constructor (props) {
     super(props)

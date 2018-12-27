@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import pureRenderDecorator from '../../util/pure.render.decorator'
 import _ from 'lodash'
 import Slide from '../slider/index'
 import Flex from '../flex/index'
@@ -30,7 +29,6 @@ let PreviewImageStatics = {
   }
 }
 
-@pureRenderDecorator
 class PreviewImage extends React.Component {
   constructor (props) {
     super(props)

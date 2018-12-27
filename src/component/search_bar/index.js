@@ -1,13 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import pureRenderDecorator from '../../util/pure.render.decorator'
+import _ from 'lodash'
 import { getLocale } from '../../locales'
 
-const noop = () => {
-}
-
-@pureRenderDecorator
 class SearchBar extends React.Component {
   constructor (props) {
     super(props)
@@ -139,11 +135,11 @@ class SearchBar extends React.Component {
 
 SearchBar.defaultProps = {
   defaultFocus: false,
-  onBlur: noop,
-  onFocus: noop,
-  onOK: noop,
-  onCancel: noop,
-  onClear: noop,
+  onBlur: _.noop,
+  onFocus: _.noop,
+  onOK: _.noop,
+  onCancel: _.noop,
+  onClear: _.noop,
   OKBtn: false
 }
 
