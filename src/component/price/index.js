@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import Big from 'big.js'
 import _ from 'lodash'
 // _currency 为货币符号
-let _currency = '¥'
-let _unit = '元'
+let _currency = '¥'
+let _unit = '元'
 
 class Price extends React.Component {
-  formatValue = (value, precision, keepZero, isYuanUnit) => {
-    let divRatio = isYuanUnit ? 1 : 100
+  formatValue = (value, precision, keepZero, isFenUnit) => {
+    let divRatio = isFenUnit ? 100 : 1
     const result = Big(Math.abs(value)).div(divRatio).toFixed(precision)
     return keepZero ? result : parseFloat(result)
   }
@@ -27,7 +27,7 @@ class Price extends React.Component {
       precision,
       currencyScale,
       keepZero,
-      isYuanUnit,
+      isFenUnit,
       ...rest
     } = this.props
     if (_.isNil(value) || _.isNaN(value)) {
@@ -40,7 +40,7 @@ class Price extends React.Component {
           style={{
             fontSize: `${currencyScale > 1 ? '1' : currencyScale}em`
           }}
-        >{_currency}</span>{this.addComma(useGrouping, this.formatValue(value, precision, keepZero, isYuanUnit))}
+        >{_currency}</span>{this.addComma(useGrouping, this.formatValue(value, precision, keepZero, isFenUnit))}
       </span>
     )
   }
@@ -53,7 +53,7 @@ Price.propTypes = {
   currencyScale: PropTypes.number,
   // 是否保留小数点后无效的零
   keepZero: PropTypes.bool,
-  isYuanUnit: PropTypes.bool
+  isFenUnit: PropTypes.bool
 }
 
 Price.defaultProps = {
@@ -61,7 +61,7 @@ Price.defaultProps = {
   useGrouping: true,
   currencyScale: 0.85,
   keepZero: true,
-  isYuanUnit: true
+  isFenUnit: false
 }
 
 // 设置符号

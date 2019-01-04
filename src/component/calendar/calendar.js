@@ -7,9 +7,8 @@ import _ from 'lodash'
 import Flex from '../flex'
 import { getLocale } from '../../locales'
 
-const nowMountStart = +moment().startOf('day')
-
 class Day extends React.Component {
+  nowMountStart = +moment().startOf('day')
   handleClick = () => {
     const { onClick, value } = this.props
 
@@ -46,7 +45,7 @@ class Day extends React.Component {
         className={cn}
         onClick={disabled ? _.noop : this.handleClick}
       >
-        {nowMountStart === +value.startOf('day') ? getLocale('calendar', 'today') : value.date()}
+        {this.nowMountStart === +value.startOf('day') ? getLocale('calendar', 'today') : value.date()}
         {label && (
           <small>
             {v === bv && v === ev && '单天'}
