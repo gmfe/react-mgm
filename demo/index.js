@@ -71,7 +71,7 @@ const navList = [
       'tooltip',
 
       'page',
-      'picker', 'couplingpicker',
+      'picker',
       'preview_image',
       'price',
       'popup',

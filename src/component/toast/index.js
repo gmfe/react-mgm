@@ -21,6 +21,9 @@ let ToastStatics = {
 
     if (options.time === undefined) {
       options.time = 2000
+      if (type === 'loading' || type === 'loading_linear') {
+        options.time = 20000
+      }
     }
 
     if (type) {
