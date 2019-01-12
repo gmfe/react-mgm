@@ -9,27 +9,27 @@ const DialogStatics = {
     return new Promise((resolve, reject) => {
       const _onConfirm = options.onConfirm || _.noop
       options.onConfirm = () => {
-        Promise.resolve(_onConfirm()).then(() => {
+        Promise.resolve(_onConfirm()).then(data => {
           LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
 
           window.history.go(-1)
 
           setTimeout(() => {
-            resolve()
+            resolve(data)
           }, 50)
         })
       }
 
       const _onCancel = options.onCancel || _.noop
       options.onCancel = () => {
-        _onCancel()
+        const reason = _onCancel()
 
         LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
 
         window.history.go(-1)
 
         setTimeout(() => {
-          reject(new Error())
+          reject(reason)
         }, 50)
       }
 

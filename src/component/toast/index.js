@@ -81,7 +81,7 @@ class Toast extends React.Component {
     return (
       <div>
         {(loading || loading_linear) && <Mask show opacity={0.01}/>}
-        <Flex justifyCenter className='toast animated-fade-in'>
+        <Flex justifyCenter className='toast'>
           <div className='toast-inner'>
             {icon && (
               <div className='loading-icon'>
