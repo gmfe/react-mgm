@@ -25,12 +25,12 @@ class Page extends React.Component {
           'page-white': white
         }, className)}
       >
-        {header && <Flex column>{header}</Flex>}
+        {header && <Flex column none>{header}</Flex>}
         <Flex flex column className={classNames('page-content block', pageClassName)}>
           {children}
         </Flex>
         {bottom}
-        {tabbar && <Flex column className='page-tabbar'>{tabbar}</Flex>}
+        {tabbar && <Flex column none className='page-tabbar'>{tabbar}</Flex>}
       </Flex>
     )
   }
