@@ -82,7 +82,7 @@ class Popup extends React.Component {
 
     return (
       <div className='popup-container'>
-        <Mask show opacity={opacity || 0.1} onClick={this.handleChange}/>
+        <Mask show opacity={opacity} onClick={this.handleChange}/>
         <div {...rest} className={cn} style={s}>
           <div className='popup-content'>
             {children}
