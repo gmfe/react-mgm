@@ -25,7 +25,7 @@ class ScrollIntoView extends React.Component {
 
     if (!iPhone) {
       setTimeout(() => {
-        if (this.__mounted) {
+        if (!this.__mounted) {
           const target = findDOMNode(this.ref)
           target.scrollIntoViewIfNeeded ? target.scrollIntoViewIfNeeded() : target.scrollIntoView()
         }
