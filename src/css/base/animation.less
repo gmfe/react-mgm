@@ -1,37 +1,51 @@
 .animated {
-  animation-duration: 1s;
+  animation-duration: 0.2s;
   animation-fill-mode: both;
+}
+
+.animated-in {
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
 }
 
 .animated-fade-in {
   animation-name: fade-in;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-out;
 }
 
-// alpha left right top bottom
 .animated-fade-in-right {
   animation-name: fade-in-right;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-out;
 }
 
 .animated-fade-in-left {
   animation-name: fade-in-left;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-out;
 }
 
 .animated-fade-in-top {
   animation-name: fade-in-top;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-out;
 }
 
 .animated-fade-in-bottom {
   animation-name: fade-in-bottom;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-out;
+}
+
+.animated-slide-in {
+  animation-name: slide-in;
+}
+
+.animated-slide-in-right {
+  animation-name: slide-in-right;
+}
+
+.animated-slide-in-left {
+  animation-name: slide-in-left;
+}
+
+.animated-slide-in-top {
+  animation-name: slide-in-top;
+}
+
+.animated-slide-in-bottom {
+  animation-name: slide-in-bottom;
 }
 
 @-webkit-keyframes fade-in {
@@ -52,17 +66,19 @@
 
   to {
     opacity: 1;
-    transform: none;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @-webkit-keyframes fade-in-left {
   from {
+    opacity: 0;
     transform: translate3d(-100%, 0, 0);
   }
 
   to {
-    transform: none;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -74,16 +90,68 @@
 
   to {
     opacity: 1;
-    transform: none;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @-webkit-keyframes fade-in-bottom {
   from {
+    opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
 
   to {
-    transform: none;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes slide-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-in-right {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes slide-in-left {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes slide-in-top {
+  from {
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes slide-in-bottom {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }

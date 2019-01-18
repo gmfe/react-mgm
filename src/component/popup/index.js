@@ -64,9 +64,9 @@ class Popup extends React.Component {
       'popup-left': left,
       'popup-right': right,
       'popup-bottom': bottom,
-      'animated-fade-in-left': left,
-      'animated-fade-in-right': right,
-      'animated-fade-in-bottom': bottom
+      'animated-in animated-slide-in-left': left,
+      'animated-in animated-slide-in-right': right,
+      'animated-in animated-slide-in-bottom': bottom
     }, className)
 
     let s = Object.assign({}, style)
