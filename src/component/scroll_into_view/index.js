@@ -26,7 +26,7 @@ class ScrollIntoView extends React.Component {
     if (!iPhone) {
       setTimeout(() => {
         if (!this.__mounted) {
-          const target = findDOMNode(this.ref)
+          const target = findDOMNode(this)
           target.scrollIntoViewIfNeeded ? target.scrollIntoViewIfNeeded() : target.scrollIntoView()
         }
       }, 500)
@@ -35,7 +35,6 @@ class ScrollIntoView extends React.Component {
 
   render () {
     return React.cloneElement(this.props.children, {
-      ref: ref => (this.ref = ref),
       onFocus: this.handleFocus
     })
   }
