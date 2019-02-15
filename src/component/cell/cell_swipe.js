@@ -226,7 +226,7 @@ class CellSwipe extends React.Component {
             </CellFooter>
           </Cell>
         </CellBody>
-        <CellFooter>
+        <CellFooter className='padding-right-0'>
           {(right && right.length > 0) && this.renderButtons(right, 'right')}
         </CellFooter>
       </Cell>

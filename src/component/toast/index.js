@@ -10,7 +10,7 @@ let timer = null
 let ToastStatics = {
   clear () {
     clearTimeout(timer)
-    LayoutRoot.removeComponent(LayoutRoot.TYPE.TIP)
+    LayoutRoot.removeComponent(LayoutRoot.TYPE.TOAST)
   },
   _tip (options = {}, type) {
     if (typeof options === 'string') {
@@ -36,7 +36,7 @@ let ToastStatics = {
       }, options.time)
     }
 
-    LayoutRoot.setComponent(LayoutRoot.TYPE.TIP, <Toast {...options}/>)
+    LayoutRoot.setComponent(LayoutRoot.TYPE.TOAST, <Toast {...options}/>)
   },
   tip (options) {
     ToastStatics._tip(options)

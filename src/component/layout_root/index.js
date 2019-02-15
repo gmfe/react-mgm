@@ -1,9 +1,10 @@
 import React from 'react'
 
 const TYPE = {
+  INNERLAYER: 'innerLayer',
   POPUP: 'popup',
   MODAL: 'modal',
-  TIP: 'tip',
+  TOAST: 'toast',
   NPROGRESS: 'nprogress'
 }
 
@@ -13,9 +14,10 @@ class LayerRoot extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      innerLayer: null,
       popup: null,
       modal: null,
-      tip: null,
+      toast: null,
       nprogress: null
     }
   }
@@ -36,10 +38,11 @@ class LayerRoot extends React.Component {
     // 有层级关系
     return (
       <div>
-        <div>{this.state.popup}</div>
-        <div>{this.state.modal}</div>
-        <div>{this.state.tip}</div>
-        <div>{this.state.nprogress}</div>
+        {this.state.innerLayer}
+        {this.state.popup}
+        {this.state.modal}
+        {this.state.toast}
+        {this.state.nprogress}
       </div>
     )
   }

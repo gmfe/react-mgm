@@ -11,7 +11,6 @@ class LazyImg extends React.Component {
       show: false
     }
     this.targetDom = null
-    this.timer = null
 
     this.debounceDoLazy = _.debounce(this.doLazy, props.delay).bind(this)
   }

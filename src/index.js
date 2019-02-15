@@ -42,6 +42,7 @@ import { Picker, ConfirmPicker, CouplingPicker, ConfirmCouplingPicker } from './
 import { setLocale } from './locales'
 import { Calendar } from './component/calendar'
 import FlipNumber from './component/flip_number'
+import InnerLayer from './component/inner_layer'
 
 const Alert = Dialog.alert
 const Confirm = Dialog.confirm
@@ -75,6 +76,7 @@ export {
   Price,
   Counter,
   Divider,
+  InnerLayer,
 
   Cells,
   Cell,
