@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 const CellHeader = (props) => {
   const { className, children, primary, ...others } = props
-  const cls = classNames({
+  const cls = classNames('flex-none', {
     'weui-cell__hd': true,
     'weui-cell_primary': primary
   }, className)

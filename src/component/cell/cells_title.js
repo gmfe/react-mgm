@@ -2,11 +2,10 @@ import React from 'react'
 import classNames from 'classnames'
 
 const CellsTitle = (props) => {
-  const { className, children, ...others } = props
-  const cls = classNames('weui-cells__title', className)
+  const { className, children, ...rest } = props
 
   return (
-    <div className={cls} {...others}>{children}</div>
+    <div {...rest} className={classNames('weui-cells__title', className)}>{children}</div>
   )
 }
 
