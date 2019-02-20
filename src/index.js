@@ -43,6 +43,7 @@ import { setLocale } from './locales'
 import { Calendar } from './component/calendar'
 import FlipNumber from './component/flip_number'
 import InnerLayer from './component/inner_layer'
+import InputNumber from './component/input_number'
 
 const Alert = Dialog.alert
 const Confirm = Dialog.confirm
@@ -98,6 +99,7 @@ export {
   Calendar,
 
   FlipNumber,
+  InputNumber,
 
   setLocale
 }
