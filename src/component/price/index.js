@@ -1,33 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Big from 'big.js'
 import _ from 'lodash'
+import { formatNumber } from 'gm-util'
+
 // _currency 为货币符号
 let _currency = '¥'
 let _unit = '元'
 
+const format = (value, isFenUnit, formatOptions) => {
+  if (isFenUnit) {
+    value = value / 100
+  }
+  return formatNumber(value, formatOptions)
+}
 class Price extends React.Component {
-  formatValue = (value, precision, keepZero, isFenUnit) => {
-    let divRatio = isFenUnit ? 100 : 1
-    const result = Big(Math.abs(value)).div(divRatio).toFixed(precision)
-    return keepZero ? result : parseFloat(result)
-  }
-
-  // 增加千分符
-  addComma = (useGrouping, num) => {
-    if (!useGrouping) return num
-
-    return num.toString().replace(/^\d+/g, (m) => m.replace(/(?=(?!^)(\d{3})+$)/g, ','))
-  }
-
   render () {
     const {
       value,
       useGrouping,
       precision,
       currencyScale,
-      keepZero,
       isFenUnit,
+      keepZero,
       ...rest
     } = this.props
     if (_.isNil(value) || _.isNaN(value)) {
@@ -40,7 +34,7 @@ class Price extends React.Component {
           style={{
             fontSize: `${currencyScale > 1 ? '1' : currencyScale}em`
           }}
-        >{_currency}</span>{this.addComma(useGrouping, this.formatValue(value, precision, keepZero, isFenUnit))}
+        >{_currency}</span>{format(Math.abs(value), isFenUnit, { useGrouping, precision, keepZero })}
       </span>
     )
   }
@@ -63,6 +57,8 @@ Price.defaultProps = {
   keepZero: true,
   isFenUnit: false
 }
+
+Price.format = format
 
 // 设置符号
 Price.setCurrency = currency => {
