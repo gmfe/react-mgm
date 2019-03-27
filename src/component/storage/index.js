@@ -28,30 +28,19 @@ class Storage extends React.Component {
 
 let storageStatics = {
   set (key, value) {
-    // 过滤对象属性值为‘undefined’
-    let replacer = (key, value) => {
-      if (value === 'undefined') {
-        return undefined
-      } else {
-        return value
-      }
-    }
     try {
-      // 无意义的值（undefined、’undefined', null）忽略
-      if (value && value !== 'undefined') {
-        window.localStorage.setItem(prefix + key, JSON.stringify(value, replacer))
-      }
+      value && window.localStorage.setItem(prefix + key, JSON.stringify(value))
     } catch (e) {
-      console.log(e)
-    }   
+      console.warn(e)
+    }
   },
   get (key) {
     try {
       const v = window.localStorage.getItem(prefix + key)
       return v ? JSON.parse(v) : v
     } catch (e) {
-      console.log(e)
-    }    
+      console.warn(e)
+    }
   },
   remove (key) {
     window.localStorage.removeItem(prefix + key)
