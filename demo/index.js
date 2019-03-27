@@ -81,7 +81,8 @@ const navList = [
       'slider',
       'square',
 
-      'uploader'
+      'uploader',
+      'storage'
     ]
   }
 ]
