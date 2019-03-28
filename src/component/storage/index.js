@@ -28,11 +28,19 @@ class Storage extends React.Component {
 
 let storageStatics = {
   set (key, value) {
-    window.localStorage.setItem(prefix + key, JSON.stringify(value))
+    try {
+      value && window.localStorage.setItem(prefix + key, JSON.stringify(value))
+    } catch (e) {
+      console.warn(e)
+    }
   },
   get (key) {
-    const v = window.localStorage.getItem(prefix + key)
-    return v ? JSON.parse(v) : v
+    try {
+      const v = window.localStorage.getItem(prefix + key)
+      return v ? JSON.parse(v) : v
+    } catch (e) {
+      console.warn(e)
+    }
   },
   remove (key) {
     window.localStorage.removeItem(prefix + key)
