@@ -5,6 +5,7 @@ import Mask from './component/mask'
 import Toast from './component/toast'
 import Page from './component/page'
 import Infinite from './component/infinite'
+import InfiniteBox from './component/infinite/infinite_box'
 import Header from './component/header'
 import Storage from './component/storage'
 import Slider from './component/slider'
@@ -44,6 +45,11 @@ import { Calendar } from './component/calendar'
 import FlipNumber from './component/flip_number'
 import InnerLayer from './component/inner_layer'
 import InputNumber from './component/input_number'
+import Keyboard from './component/keyboard'
+import Radio from './component/radio'
+
+import List from './component/list'
+import { LetterIndex, LetterIndexMultiple } from './component/letter_index'
 
 const Alert = Dialog.alert
 const Confirm = Dialog.confirm
@@ -52,6 +58,7 @@ export {
   Button,
   Flex,
   Infinite,
+  InfiniteBox,
   Textarea,
   NProgress,
   Mask,
@@ -100,6 +107,11 @@ export {
 
   FlipNumber,
   InputNumber,
+  Keyboard,
+  Radio,
+  List,
+  LetterIndex,
+  LetterIndexMultiple,
 
   setLocale
 }
