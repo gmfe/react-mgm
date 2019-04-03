@@ -22,6 +22,10 @@ class SearchBar extends React.Component {
     this.handleInputFocus = ::this.handleInputFocus
   }
 
+  componentDidMount () {
+    console.warn('Deprecated. Use Search or SearchPage instead.')
+  }
+
   render () {
     const cn = classNames('weui-search-bar', {
       'weui-search-bar_focusing': this.props.value || this.state.focus
