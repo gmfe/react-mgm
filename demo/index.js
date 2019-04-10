@@ -12,6 +12,7 @@ import {
 import _ from 'lodash'
 import Loadable from 'react-loadable'
 import '../node_modules/gm-mfont/iconfont.css'
+import '../node_modules/gm-xfont/iconfont.css'
 import './index.less'
 
 class App extends React.Component {
@@ -82,7 +83,9 @@ const navList = [
       'square',
 
       'uploader',
-      'storage'
+      'storage',
+      // 业务组件
+      'time_select'
     ]
   }
 ]

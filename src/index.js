@@ -50,6 +50,7 @@ import Radio from './component/radio'
 
 import List from './component/list'
 import { LetterIndex, LetterIndexMultiple } from './component/letter_index'
+import TimeSelect from './component/time_select'
 
 const Alert = Dialog.alert
 const Confirm = Dialog.confirm
@@ -113,5 +114,7 @@ export {
   LetterIndex,
   LetterIndexMultiple,
 
-  setLocale
+  setLocale,
+  // 业务组件
+  TimeSelect
 }
