@@ -12,6 +12,7 @@
 - trigger popup 3000
 - PreviewImage 4000
 - dialog 5000 dialog mask 5000
+- pickpopup 6000
 - toast 7000 toast mask 7000
 - nprogress 9999
 

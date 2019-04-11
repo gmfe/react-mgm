@@ -1,17 +1,36 @@
 import React from 'react'
-import { InnerLayer, Popup } from '../../src'
+import { InnerLayer, Popup, Select } from '../../src'
 
-class Com extends React.Component {
+class S extends React.Component {
   render () {
     return (
-      <div className='bg-white' style={{ height: '500px' }}>
+      <div>
+        <button onClick={() => {
+          Select.render({
+            value: 1,
+            data: [{
+              text: '11',
+              value: 1
+            }]
+          })
+        }}>select
+        </button>
+      </div>
+    )
+  }
+}
+
+class P extends React.Component {
+  render () {
+    return (
+      <div className='bg-default' style={{ height: '200px' }}>
         <div>a</div>
         <div>a</div>
         <div>a</div>
         <div>a</div>
         <button onClick={() => {
           Popup.render({
-            children: <div className='bg-default'>dafafa</div>
+            children: <S/>
           })
         }}>popup
         </button>
@@ -26,7 +45,7 @@ class DemoWrap extends React.Component {
       <div>
         <button onClick={() => {
           InnerLayer.render({
-            children: <Com/>
+            children: <P/>
           })
         }}>innerLayer
         </button>

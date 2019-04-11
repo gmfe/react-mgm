@@ -13,7 +13,7 @@ const InnerLayerStatics = {
 }
 
 const InnerLayer = ({ className, children, ...rest }) => (
-  <div {...rest} className={classNames('under-popup-container container-full', className)}>
+  <div {...rest} className={classNames('inner-layer-container container-full', className)}>
     {children}
   </div>
 )

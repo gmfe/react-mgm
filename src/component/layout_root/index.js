@@ -76,8 +76,14 @@ LayoutRoot.removeComponent = (type) => {
 
 LayoutRoot.renderWith = (type, Component) => {
   const popstate = (e) => {
+    const typeStack = [
+      TYPE.INNERLAYER,
+      TYPE.POPUP,
+      TYPE.MODAL,
+      TYPE.PICKER
+    ]
     // 代表还有其他state，即浮层，所以不采取任务逻辑
-    if (e.state && e.state.type === type) {
+    if (e.state && typeStack.indexOf(e.state.type) >= typeStack.indexOf(type)) {
       return
     }
     LayoutRoot.removeComponent(type)
