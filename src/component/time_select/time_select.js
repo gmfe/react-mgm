@@ -69,23 +69,22 @@ class Component extends React.Component {
     const { begin, end, selected } = this.state
     const { min, max } = this.props.getRange(selected)
     return (
-      <Flex column className='page'>
+      <Flex column className='page time-select'>
         <Flex column none className='overflow-hidden'>
           <Flex alignCenter style={{ fontSize: '1.1em' }} className='padding-tb-8 padding-lr-16 border-bottom'>
-            <Flex onClick={this.handleHide}>
+            <Flex
+              onClick={this.handleHide}
+              className='absolute-left padding-left-16'
+            >
               <i style={{ fontSize: '1em' }} className='xfont xfont-remove padding-lr-4'/>
             </Flex>
             <Flex flex={1} justifyCenter className='text-bold'>{title}</Flex>
             {
-              type ? <Flex onClick={this.handleSubmit}>
-                <button
-                  style={{
-                    padding: '0 .8em',
-                    lineHeight: '2.2',
-                    fontSize: '.85em'
-                  }}
-                  className='weui-btn weui-btn_mini weui-btn_primary'
-                >确定</button>
+              type ? <Flex
+                className='absolute-right padding-right-16'
+                onClick={this.handleSubmit}
+              >
+                <button className='weui-btn weui-btn_mini weui-btn_primary time-select-btn'>确定</button>
               </Flex> : null
             }
           </Flex>

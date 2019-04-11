@@ -20,24 +20,18 @@ class Component extends React.Component {
 
   render () {
     const { selected } = this.props
-    const btnStyle = { lineHeight: 2.5, fontSize: '1.05em' }
     return (
       <div
         onClick={this.renderSelect}
-        className='padding-bottom-8 padding-lr-16'
+        className='padding-tb-8'
       >
-        <Flex className='padding-tb-4'>
-          <Flex alignCenter flex={1}>运营时间</Flex>
-          <Flex justifyEnd alignCenter>
-            <i style={{ fontSize: '1em' }} className='xfont xfont-down-small'/>
-          </Flex>
-        </Flex>
-        <Flex column className='padding-tb-4'>
-          <button
-            style={btnStyle}
-            className='weui-btn weui-btn_primary'
-          >{selected.name}
-          </button>
+        <Flex
+          className='padding-lr-16'
+          alignCenter
+          flex
+        >
+          <Flex flex>{selected.name}</Flex>
+          <Flex justifyEnd><i className='xfont xfont-down-small'/></Flex>
         </Flex>
       </div>
     )

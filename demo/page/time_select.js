@@ -110,6 +110,7 @@ class Component extends React.Component {
       <div>
         <TimeSelect
           title='选择时间'
+          text={this.renderText()}
           type={1}
           begin={begin}
           end={end}
