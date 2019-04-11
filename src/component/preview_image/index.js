@@ -8,24 +8,15 @@ import LayoutRoot from '../layout_root'
 
 let PreviewImageStatics = {
   render (options) {
-    const popstate = () => {
-      LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
-      window.removeEventListener('popstate', popstate)
-    }
-
-    window.addEventListener('popstate', popstate)
-
     options.onHide = () => {
       PreviewImageStatics.hide()
     }
-    window.history.pushState({}, '')
-    LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <PreviewImage {...options} show/>)
+
+    LayoutRoot.renderWith(LayoutRoot.TYPE.POPUP, <PreviewImage {...options} show/>)
   },
 
   hide () {
-    LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
-
-    window.history.go(-1)
+    LayoutRoot.hideWith(LayoutRoot.TYPE.POPUP)
   }
 }
 

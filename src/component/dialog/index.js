@@ -10,9 +10,7 @@ const DialogStatics = {
       const _onConfirm = options.onConfirm || _.noop
       options.onConfirm = () => {
         Promise.resolve(_onConfirm()).then(data => {
-          LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
-
-          window.history.go(-1)
+          DialogStatics.hide()
 
           setTimeout(() => {
             resolve(data)
@@ -22,27 +20,15 @@ const DialogStatics = {
 
       const _onCancel = options.onCancel || _.noop
       options.onCancel = () => {
+        DialogStatics.hide()
+
         const reason = _onCancel()
-
-        LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
-
-        window.history.go(-1)
-
         setTimeout(() => {
           reject(reason)
         }, 50)
       }
 
-      const popstate = () => {
-        LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
-        window.removeEventListener('popstate', popstate)
-      }
-
-      window.addEventListener('popstate', popstate)
-
-      window.history.pushState({}, '')
-
-      LayoutRoot.setComponent(LayoutRoot.TYPE.MODAL, <Dialog {...options} show/>)
+      LayoutRoot.renderWith(LayoutRoot.TYPE.MODAL, <Dialog {...options} show/>)
     })
   },
 
@@ -64,6 +50,9 @@ const DialogStatics = {
     }
     options.confirm = true
     return DialogStatics.dialog(options)
+  },
+  hide () {
+    LayoutRoot.hideWith(LayoutRoot.TYPE.MODAL)
   }
 }
 

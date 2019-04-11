@@ -1,37 +1,35 @@
 import React from 'react'
-import InputNumber from '../../src/component/input_number'
+import { InnerLayer, Popup } from '../../src'
+
+class Com extends React.Component {
+  render () {
+    return (
+      <div className='bg-white' style={{ height: '500px' }}>
+        <div>a</div>
+        <div>a</div>
+        <div>a</div>
+        <div>a</div>
+        <button onClick={() => {
+          Popup.render({
+            children: <div className='bg-default'>dafafa</div>
+          })
+        }}>popup
+        </button>
+      </div>
+    )
+  }
+}
 
 class DemoWrap extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      amount: 2
-    }
-    //
-    // setTimeout(() => {
-    //   this.setState({
-    //     amount: 1
-    //   })
-    // }, 5000)
-  }
-
   render () {
-    const { amount } = this.state
-
-    console.log(amount)
-
     return (
       <div>
-        <InputNumber
-          min={0}
-          value={amount}
-          onChange={na => {
-            console.log('onChange')
-            this.setState({
-              amount: na
-            })
-          }}
-        />
+        <button onClick={() => {
+          InnerLayer.render({
+            children: <Com/>
+          })
+        }}>innerLayer
+        </button>
       </div>
     )
   }
