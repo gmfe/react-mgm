@@ -88,9 +88,7 @@ class Week extends React.Component {
             justifyCenter
             alignCenter
             key={i}
-            className={classNames('calendar-day-name', {
-              'calendar-color-second-primary': i === 0 || (i === weekDays.length - 1)
-            })}
+            className='calendar-day-name'
           >{v}</Flex>
         ))}
       </Flex>
@@ -109,7 +107,9 @@ class Calendar extends React.Component {
   apiScrollToBegin = () => {
     const $dom = findDOMNode(this.refCalendar).querySelector('.calendar-day-point')
     if ($dom) {
-      $dom.scrollIntoView()
+      $dom.scrollIntoView({
+        behavior: 'smooth'
+      })
     }
   }
 

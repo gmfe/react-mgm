@@ -7,28 +7,16 @@ import _ from 'lodash'
 
 const PopupStatics = {
   render (options) {
-    const popstate = () => {
-      LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
-      window.removeEventListener('popstate', popstate)
-    }
-
-    window.addEventListener('popstate', popstate)
-
     const _onHide = options.onHide
     options.onHide = () => {
       PopupStatics.hide()
       _onHide && _onHide()
     }
-
-    window.history.pushState({}, '')
-
-    LayoutRoot.setComponent(LayoutRoot.TYPE.POPUP, <Popup {...options} show/>)
+    LayoutRoot.renderWith(LayoutRoot.TYPE.POPUP, <Popup {...options} show/>)
   },
 
   hide () {
-    LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP)
-
-    window.history.go(-1)
+    LayoutRoot.hideWith(LayoutRoot.TYPE.POPUP)
   }
 }
 
@@ -55,6 +43,7 @@ class Popup extends React.Component {
       className,
       style,
       onHide, // eslint-disable-line
+      isPickPopup,
       children,
       ...rest
     } = this.props
@@ -81,7 +70,9 @@ class Popup extends React.Component {
     }
 
     return (
-      <div className='popup-container'>
+      <div className={classNames('popup-container', {
+        'picker-popup-container': isPickPopup
+      })}>
         <Mask show opacity={opacity} onClick={this.handleChange}/>
         <div {...rest} className={cn} style={s}>
           <div className='popup-content'>
@@ -104,7 +95,10 @@ Popup.propTypes = {
   bottom: PropTypes.bool,
   width: PropTypes.string,
   height: PropTypes.string,
-  opacity: PropTypes.number
+  opacity: PropTypes.number,
+
+  // 内部用
+  isPickPopup: PropTypes.bool
 }
 
 Popup.defaultProps = {

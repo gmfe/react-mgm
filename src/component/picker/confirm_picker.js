@@ -4,7 +4,7 @@ import Picker from './picker'
 import Flex from '../flex'
 import { getLocale } from '../../locales'
 import _ from 'lodash'
-import Popup from '../popup'
+import PickerStatics from './statics'
 
 class ConfirmPicker extends React.Component {
   constructor (props) {
@@ -61,7 +61,7 @@ class ConfirmPicker extends React.Component {
 
 ConfirmPicker.render = (props) => {
   return new Promise((resolve, reject) => {
-    Popup.render({
+    PickerStatics.render({
       bottom: true,
       onHide: () => {
         setTimeout(() => {
@@ -72,13 +72,13 @@ ConfirmPicker.render = (props) => {
         <ConfirmPicker
           {...props}
           onConfirm={values => {
-            Popup.hide()
+            PickerStatics.hide()
             setTimeout(() => {
               resolve(values)
             }, 50)
           }}
           onCancel={() => {
-            Popup.hide()
+            PickerStatics.hide()
             setTimeout(() => {
               reject(new Error())
             }, 50)
@@ -90,7 +90,7 @@ ConfirmPicker.render = (props) => {
 }
 
 ConfirmPicker.hide = () => {
-  Popup.hide()
+  PickerStatics.hide()
 }
 
 ConfirmPicker.propTypes = {
