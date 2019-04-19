@@ -5,16 +5,8 @@ import Search from './search'
 import _ from 'lodash'
 
 class SearchPage extends React.Component {
-  handleSearch = () => {
-    this.props.onSearch()
-  }
-
-  handleCancel = () => {
-    this.props.onCancel()
-  }
-
   renderHeader () {
-    const { active, header, value, onChange } = this.props
+    const { active, header, value, onChange, onSearch, onCancel } = this.props
 
     if (active) {
       return (
@@ -23,8 +15,8 @@ class SearchPage extends React.Component {
           onChange={onChange}
           autoFocus
           type='cancel'
-          onSearch={this.handleSearch}
-          onCancel={this.handleCancel}
+          onSearch={onSearch}
+          onCancel={onCancel}
         />
       )
     }

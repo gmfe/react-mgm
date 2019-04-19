@@ -2,26 +2,47 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { getLocale } from '../../locales'
+import Flex from '../flex'
 
-class FakeSearch extends React.Component {
-  render () {
-    const { onClick, placeholder, className, ...rest } = this.props
-    return (
-      <div
-        {...rest}
-        onClick={onClick}
-        className={classNames('fake-search', 'text-desc', 'padding-lr-8', className)}
+const FakeSearch = (props) => {
+  const { placeholder, center, light, className, style, children, ...rest } = props
+
+  return (
+    <Flex
+      {...rest}
+      column
+      justifyCenter
+      className={classNames('fake-search padding-lr-8', className)}
+      style={{
+        height: '45px',
+        ...style
+      }}
+    >
+      <Flex
+        alignCenter
+        justifyCenter={center}
+        className='text-center text-desc'
+        style={{
+          borderRadius: '14px',
+          height: '28px',
+          lineHeight: '28px',
+          padding: '0 8px',
+          background: light ? 'rgba(214, 214, 214, 0.4)' : 'white'
+        }}
       >
-        <i className='weui-icon-search icon-search margin-right-4'/>
+        <i className='weui-icon-search margin-right-4'/>
         {placeholder}
-      </div>
-    )
-  }
+        {children}
+      </Flex>
+    </Flex>
+  )
 }
 
 FakeSearch.propTypes = {
   onClick: PropTypes.func,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  center: PropTypes.bool,
+  light: PropTypes.bool
 }
 
 FakeSearch.defaultProps = {

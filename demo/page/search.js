@@ -14,12 +14,7 @@ class SearchWrap extends React.Component {
       <div>
         <h1>Search</h1>
         <h3>search带取消按钮（点Header的搜索按钮）</h3>
-        <p><b>场景：</b>搜索内容仅限于当前页，搜索用于关键词过滤。</p>
-        <p><b>交互：</b>输入搜索文字后，点击键盘搜索按钮搜索信息，点击清空按钮清空当前搜索框内容，点击取消按钮即可回到搜索初始状态。</p>
-
-        <h3>search带搜索按钮</h3>
-        <p><b>场景：</b>一般用于点击搜索框时另起一页，从一个假的搜索框跳转到真正的搜索页面。一般带有返回键。补充：微信端这种自带返回键的，左边没有返回键。</p>
-        <p><b>交互：</b>输入搜索文字后，点击搜索按钮或键盘搜索按钮搜索信息，点击清空按钮清空当前搜索框内容，点击返回按钮返回上页。</p>
+        <h3>search带搜索按钮 （一般一个路由承载的搜索页）</h3>
         <Search
           placeholder='在站内搜索'
           value={this.state.value}
@@ -27,13 +22,14 @@ class SearchWrap extends React.Component {
           onSearch={() => console.log('搜索拉')}
         />
 
-        <h3>假的search框</h3>
-        <p><b>场景：</b>一般用于点击搜索框时另起一页，从一个假的搜索框跳转到真正的搜索页面。</p>
+        <h3>FakeSearch 作为搜索入口</h3>
         <FakeSearch
           placeholder='站内搜索'
           className='text-center'
           onClick={() => {}}
         />
+        <FakeSearch center/>
+        <FakeSearch light placeholder=''/>
       </div>
     )
   }
