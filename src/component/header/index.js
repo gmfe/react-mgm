@@ -1,43 +1,53 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Flex from '../flex'
+import classNames from 'classnames'
 import _ from 'lodash'
 
-class Header extends React.Component {
-  constructor (props) {
-    super(props)
-    this.handleBack = ::this.handleBack
+const Header = (props) => {
+  const {
+    title,
+    hideBack,
+    onBack,
+    right,
+    style,
+    ...rest
+  } = props
+
+  const handleBack = () => {
+    onBack()
   }
 
-  handleBack (event) {
-    event.stopPropagation()
-    event.preventDefault()
-
-    this.props.onBack()
-  }
-
-  render () {
-    return (
-      <div className='header'>
-        {this.props.left || (
-          <a
-            href='javascript:;'
-            className='button button-link pull-left header-left'
-            onClick={this.handleBack}
-          >
-            <i className='ifont ifont-angle-left'/>
-          </a>)}
-        {this.props.right}
-        <h1 className='header-title'>{this.props.title}</h1>
-      </div>
-    )
-  }
+  return (
+    <Flex
+      alignCenter
+      justifyBetween
+      style={{
+        height: '45px',
+        ...style
+      }}
+      {...rest}
+    >
+      <Flex alignCenter>
+        {!hideBack && (
+          <i className='ifont ifont-angle-left text-24 padding-lr-8' onClick={handleBack}/>
+        )}
+        <div className={classNames('text-16 padding-right-8', {
+          'padding-left-8': hideBack
+        })}>
+          {title}
+        </div>
+      </Flex>
+      {right}
+    </Flex>
+  )
 }
 
 Header.propTypes = {
-  left: PropTypes.element,
-  right: PropTypes.element,
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  onBack: PropTypes.func
+  onBack: PropTypes.func,
+  title: PropTypes.string,
+  hideBack: PropTypes.bool,
+  right: PropTypes.element
 }
 
 Header.defaultProps = {

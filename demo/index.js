@@ -78,6 +78,7 @@ const navList = [
       'popup',
 
       'search',
+      'search_bar',
       'select',
       'slider',
       'square',
