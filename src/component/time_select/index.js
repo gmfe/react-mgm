@@ -16,7 +16,7 @@ class Component extends React.Component {
   }
 
   handleCalendarPopup = () => {
-    const { data, selected, begin, end, title, type, getRange } = this.props
+    const { data, selected, begin, end, title, type, getRange, showText } = this.props
     Popup.render({
       bottom: true,
       height: '100%',
@@ -25,6 +25,7 @@ class Component extends React.Component {
         type={type}
         begin={moment(begin)}
         end={moment(end)}
+        showText={showText}
         data={data}
         selected={selected}
         getRange={getRange}
@@ -55,6 +56,7 @@ Component.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   className: PropTypes.string,
+  showText: PropTypes.bool, // 是否是选择运营周期
   type: PropTypes.oneOf([0, 1]), // 0： 选一个周期, 1：选多个周期
   begin: PropTypes.object.isRequired, // 开始 Date
   end: PropTypes.object.isRequired, // 结束 Date
