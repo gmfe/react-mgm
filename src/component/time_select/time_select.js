@@ -65,7 +65,7 @@ class Component extends React.Component {
   }
 
   render () {
-    const { data, title, type } = this.props
+    const { data, title, type, showText } = this.props
     const { begin, end, selected } = this.state
     const { min, max } = this.props.getRange(selected)
     return (
@@ -89,14 +89,14 @@ class Component extends React.Component {
             }
           </Flex>
         </Flex>
-        <Flex column none className='overflow-hidden'>
+        {showText && <Flex column none className='overflow-hidden'>
           <ConfigSelect
             data={data}
             selected={selected}
             onChange={this.handleChange}
             onSelect={this.handleScrollToBegin}
           />
-        </Flex>
+        </Flex>}
         <Flex
           column
           flex
@@ -121,6 +121,7 @@ class Component extends React.Component {
 Component.propTypes = {
   title: PropTypes.string,
   type: PropTypes.number,
+  showText: PropTypes.bool,
   begin: PropTypes.object.isRequired,
   end: PropTypes.object.isRequired,
   data: PropTypes.array.isRequired,
@@ -130,6 +131,7 @@ Component.propTypes = {
 }
 
 Component.defaultProps = {
+  showText: true,
   title: '选择运营时间',
   type: 1
 }

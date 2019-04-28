@@ -30,7 +30,7 @@ class Component extends React.Component {
           alignCenter
           flex
         >
-          <Flex flex>{selected.name}</Flex>
+          <Flex flex>运营周期：{selected.name}</Flex>
           <Flex justifyEnd><i className='xfont xfont-down-small'/></Flex>
         </Flex>
       </div>
