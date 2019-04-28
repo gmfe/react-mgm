@@ -50,6 +50,7 @@ import Radio from './component/radio'
 
 import List from './component/list'
 import { LetterIndex, LetterIndexMultiple } from './component/letter_index'
+import ProgressBar from './component/progress'
 import TimeSelect from './component/time_select'
 
 const Alert = Dialog.alert
@@ -117,6 +118,7 @@ export {
   LetterIndexMultiple,
 
   setLocale,
+  ProgressBar,
   // 业务组件
   TimeSelect
 }
