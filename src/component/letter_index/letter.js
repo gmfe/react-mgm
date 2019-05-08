@@ -5,6 +5,7 @@ import Flex from '../flex'
 import PropTypes from 'prop-types'
 
 const letterList = _.map(_.range(65, 91), v => String.fromCharCode(v))
+letterList.push('#')
 
 class Letter extends React.Component {
   constructor (props) {
@@ -24,7 +25,7 @@ class Letter extends React.Component {
   componentDidMount () {
     const rect = ReactDOM.findDOMNode(this.refLetter.current).getBoundingClientRect()
     this.top = rect.top
-    this.itemHeight = rect.height / 26
+    this.itemHeight = rect.height / 27 // 总共有 27 个符号
   }
 
   getY (event) {
@@ -33,7 +34,11 @@ class Letter extends React.Component {
 
   handleTouch = (e) => {
     const top = this.getY(e)
-    const letter = String.fromCharCode(parseInt((top - this.top) / this.itemHeight, 10) + 65)
+    let code = parseInt((top - this.top) / this.itemHeight, 10) + 65
+    if (code < 65) { // 把滑动是能够出现的字母限定在26个大写字母和特殊符号#
+      code = 65
+    }
+    const letter = String.fromCharCode(code >= 91 ? 35 : code) // 字母以外用 #:35
 
     this.setState({
       letter

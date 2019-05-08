@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 const letterList = _.map(_.range(65, 91), v => String.fromCharCode(v))
+letterList.push('#') // 无法识别字母的使用 # 代替
 
 function data2Group (data, getFirstLetter) {
   const flMap = {}
@@ -25,14 +26,14 @@ function data2Group (data, getFirstLetter) {
     }
   })
 
-  const gData = _.groupBy(data, v => getFirstLetter(v.text)[0].toUpperCase())
+  // const gData = _.groupBy(data, v => getFirstLetter(v.text)[0].toUpperCase())
   const result = []
 
   _.each(letterList, v => {
-    if (gData[v]) {
+    if (flMap[v]) {
       result.push({
         label: v,
-        children: gData[v]
+        children: flMap[v]
       })
     }
   })
