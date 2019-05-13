@@ -61,6 +61,16 @@ class Letter extends React.Component {
     })
   }
 
+  handleTouchCancel = () => {
+    this.setState({
+      showLetter: false
+    })
+  }
+
+  handleContextMenu = (e) => {
+    e.preventDefault()
+  }
+
   doChange = _.throttle((letter) => {
     this.props.onChange(letter)
   }, 100)
@@ -79,10 +89,13 @@ class Letter extends React.Component {
         <Flex
           ref={this.refLetter}
           column
+          justifyBetween
           onTouchStart={this.handleTouchStart}
           onTouchMove={this.handleTouch}
           onTouchEnd={this.handleTouchEnd}
-          style={{ height: '100%' }}
+          onTouchCancel={this.handleTouchCancel}
+          onContextMenu={this.handleContextMenu}
+          style={{ height: '100%', lineHeight: 1 }}
         >
           {_.map(letterList, v => (
             <Flex
