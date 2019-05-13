@@ -79,10 +79,11 @@ class Letter extends React.Component {
         <Flex
           ref={this.refLetter}
           column
+          justifyBetween
           onTouchStart={this.handleTouchStart}
           onTouchMove={this.handleTouch}
           onTouchEnd={this.handleTouchEnd}
-          style={{ height: '100%' }}
+          style={{ height: '100%', lineHeight: 1 }}
         >
           {_.map(letterList, v => (
             <Flex
