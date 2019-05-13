@@ -57,21 +57,19 @@ class LetterIndexMultiple extends React.Component {
           ...style
         }}
       >
-        <Flex column flex>
-          <div style={{ position: 'relative', height: '100%' }}>
-            <List
-              ref={this.refList}
-              className='overflow-y relative'
-              style={{ height: '100%' }}
-              data={gData}
-              selected={this.state.selected}
-              onSelect={this.handleSelect}
-              renderItem={renderItem}
-              multiple
-              isGroupList
-            />
-            <Letter onChange={this.handleLetter}/>
-          </div>
+        <Flex column flex className='relative'>
+          <List
+            ref={this.refList}
+            className='overflow-y relative'
+            style={{ height: '100%' }}
+            data={gData}
+            selected={this.state.selected}
+            onSelect={this.handleSelect}
+            renderItem={renderItem}
+            multiple
+            isGroupList
+          />
+          <Letter onChange={this.handleLetter}/>
         </Flex>
         <Flex className='bg-white' style={{
           height: '45px'
