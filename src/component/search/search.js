@@ -27,7 +27,7 @@ class Search extends React.Component {
   }
 
   render () {
-    const { value, placeholder, autoFocus, searchText, type, onCancel, onSearch, onChange, className, style, ...rest } = this.props
+    const { disableSearchBtn, value, placeholder, autoFocus, searchText, type, onCancel, onSearch, onChange, className, style, ...rest } = this.props
     return (
       <form
         {...rest}
@@ -66,22 +66,25 @@ class Search extends React.Component {
           )}
         </label>
         {
-          type === 'search' ? (
-            <a
-              href='javascript:'
-              className='text-link margin-left-8'
-              onClick={this.handleSearch}
-            >
-              {searchText || getLocale('searchBar', 'search')}
-            </a>
-          ) : (
-            <a
-              href='javascript:'
-              className='text-link margin-left-8'
-              onClick={this.handleCancel}
-            >
-              {searchText || getLocale('searchBar', 'cancel')}
-            </a>
+          !disableSearchBtn &&
+          (
+            type === 'search' ? (
+              <a
+                href='javascript:'
+                className='text-link margin-left-8'
+                onClick={this.handleSearch}
+              >
+                {searchText || getLocale('searchBar', 'search')}
+              </a>
+            ) : (
+              <a
+                href='javascript:'
+                className='text-link margin-left-8'
+                onClick={this.handleCancel}
+              >
+                {searchText || getLocale('searchBar', 'cancel')}
+              </a>
+            )
           )
         }
       </form>
@@ -100,10 +103,13 @@ Search.propTypes = {
   onCancel: PropTypes.func,
   placeholder: PropTypes.string,
   // 自定义搜索按钮文案
-  searchText: PropTypes.string
+  searchText: PropTypes.string,
+  // 不显示搜索按钮
+  disableSearchBtn: PropTypes.bool
 }
 
 Search.defaultProps = {
+  disableSearchBtn: false,
   autoFocus: false,
   onSearch: _.noop,
   onCancel: _.noop,
