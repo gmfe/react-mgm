@@ -1,9 +1,9 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import LayoutRoot from '../layout_root'
 import Loading from '../loading'
 import Mask from '../mask'
-import { getLocale } from '../../locales'
 import Flex from '../flex'
 
 let timer = null
@@ -68,7 +68,7 @@ class Toast extends React.Component {
     let icon = null
     if (loading) {
       icon = <i className='weui-loading'/>
-      children = children || getLocale('toast', 'loading')
+      children = children || getLocale('加载中...')
     } else if (success) {
       icon = <i className='ifont ifont-success'/>
     } else if (info) {

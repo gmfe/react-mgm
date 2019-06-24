@@ -14,7 +14,9 @@ import Loadable from 'react-loadable'
 import '../node_modules/gm-mfont/iconfont.css'
 import '../node_modules/gm-xfont/iconfont.css'
 import './index.less'
+import { setLocale } from '../locales'
 
+setLocale('zh-HK')
 class App extends React.Component {
   render () {
     return (

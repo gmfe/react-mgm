@@ -1,8 +1,8 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import LayoutRoot from '../layout_root'
 import _ from 'lodash'
-import { getLocale } from '../../locales'
 
 const DialogStatics = {
   dialog (options) {
@@ -145,9 +145,9 @@ Dialog.propTypes = {
 }
 
 Dialog.defaultProps = {
-  title: getLocale('dialog', 'title'),
-  confirmText: getLocale('dialog', 'confirmText'),
-  cancelText: getLocale('dialog', 'cancelText')
+  title: getLocale('提示'),
+  confirmText: getLocale('确定'),
+  cancelText: getLocale('取消')
 }
 
 export default Dialog

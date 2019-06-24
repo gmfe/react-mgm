@@ -1,3 +1,4 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 import PropTypes from 'prop-types'
@@ -5,7 +6,6 @@ import moment from 'moment'
 import classNames from 'classnames'
 import _ from 'lodash'
 import Flex from '../flex'
-import { getLocale } from '../../locales'
 
 class Day extends React.Component {
   nowMountStart = +moment().startOf('day')
@@ -45,12 +45,12 @@ class Day extends React.Component {
         className={cn}
         onClick={disabled ? _.noop : this.handleClick}
       >
-        {this.nowMountStart === +value.startOf('day') ? getLocale('calendar', 'today') : value.date()}
+        {this.nowMountStart === +value.startOf('day') ? getLocale('今天') : value.date()}
         {label && (
           <small>
-            {v === bv && v === ev && '单天'}
-            {v === bv && v !== ev && '起始'}
-            {v !== bv && v === ev && '结束'}
+            {v === bv && v === ev && getLocale('单天')}
+            {v === bv && v !== ev && getLocale('起始')}
+            {v !== bv && v === ev && getLocale('结束')}
           </small>
         )}
       </Flex>
@@ -58,6 +58,20 @@ class Day extends React.Component {
   }
 }
 
+const months = [
+  getLocale('1月'),
+  getLocale('2月'),
+  getLocale('3月'),
+  getLocale('4月'),
+  getLocale('5月'),
+  getLocale('6月'),
+  getLocale('7月'),
+  getLocale('8月'),
+  getLocale('9月'),
+  getLocale('10月'),
+  getLocale('11月'),
+  getLocale('12月')
+]
 class Head extends React.Component {
   render () {
     const { currentMoment } = this.props
@@ -66,20 +80,27 @@ class Head extends React.Component {
     return (
       <Flex alignCenter className='calendar-head text-center clearfix'>
         <Flex flex justifyCenter className='calendar-head-title text-center text-16 text-bold padding-tb-4'>
-          <span>{currentMoment.year()}{getLocale('calendar', 'year')}</span>
+          <span>{currentMoment.year()}{getLocale('年')}</span>
           <span
             className='calendar-head-month'
             onClick={this.handleSelectMonth}
-          >{getLocale('calendar', 'months')[month]}</span>
+          >{months[month]}</span>
         </Flex>
       </Flex>
     )
   }
 }
-
+const weekDays = [
+  getLocale('日'),
+  getLocale('一'),
+  getLocale('二'),
+  getLocale('三'),
+  getLocale('四'),
+  getLocale('五'),
+  getLocale('六')
+]
 class Week extends React.Component {
   render () {
-    const weekDays = getLocale('calendar', 'weekDays')
     return (
       <Flex className='bg-default'>
         {_.map(weekDays, (v, i) => (

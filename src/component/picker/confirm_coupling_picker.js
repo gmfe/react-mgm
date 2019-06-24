@@ -1,8 +1,8 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import CouplingPicker from './coupling_picker'
 import Flex from '../flex'
-import { getLocale } from '../../locales'
 import _ from 'lodash'
 import PickerStatics from './statics'
 
@@ -40,12 +40,12 @@ class ConfirmCouplingPicker extends React.Component {
           <div
             className='text-link padding-lr-12 padding-tb-8'
             onClick={this.handleCancel}
-          >{getLocale('dialog', 'cancelText')}</div>
+          >{getLocale('取消')}</div>
           <div className='padding-tb-8'>{title}</div>
           <div
             className='text-link padding-lr-12 padding-tb-8'
             onClick={this.handleConfirm}
-          >{getLocale('dialog', 'confirmText')}</div>
+          >{getLocale('确定')}</div>
         </Flex>
         <CouplingPicker
           datas={datas}

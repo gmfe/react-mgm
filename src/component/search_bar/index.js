@@ -1,8 +1,8 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import _ from 'lodash'
-import { getLocale } from '../../locales'
 
 class SearchBar extends React.Component {
   constructor (props) {
@@ -67,14 +67,14 @@ class SearchBar extends React.Component {
         </form>
         {this.props.OKBtn ? (
           <a href='javascript:' className='weui-search-bar__cancel-btn' onClick={this.handleOK}>
-            {this.props.OKBtn === true ? getLocale('searchBar', 'search') : this.props.OKBtn}
+            {this.props.OKBtn === true ? getLocale('搜索') : this.props.OKBtn}
           </a>
         ) : (
           <a
             href='javascript:'
             className='weui-search-bar__cancel-btn'
             onClick={this.handleCancel}
-          >{getLocale('searchBar', 'cancel')}</a>
+          >{getLocale('取消')}</a>
         )}
       </div>
     )

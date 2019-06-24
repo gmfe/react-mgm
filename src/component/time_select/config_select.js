@@ -1,3 +1,4 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import _ from 'lodash'
 import Flex from '../flex'
@@ -30,7 +31,7 @@ class Component extends React.Component {
           alignCenter
           flex
         >
-          <Flex flex>运营周期：{selected.name}</Flex>
+          <Flex flex>{getLocale('运营周期')}：{selected.name}</Flex>
           <Flex justifyEnd><i className='xfont xfont-down-small'/></Flex>
         </Flex>
       </div>

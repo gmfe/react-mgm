@@ -1,7 +1,7 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { getLocale } from '../../locales'
 import Flex from '../flex'
 
 const FakeSearch = (props) => {
@@ -46,7 +46,7 @@ FakeSearch.propTypes = {
 }
 
 FakeSearch.defaultProps = {
-  placeholder: getLocale('searchBar', 'search')
+  placeholder: getLocale('搜索')
 }
 
 export default FakeSearch
