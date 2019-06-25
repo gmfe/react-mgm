@@ -1,3 +1,4 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Flex from '../flex'
@@ -84,7 +85,7 @@ class Component extends React.Component {
                 className='absolute-right padding-right-16'
                 onClick={this.handleSubmit}
               >
-                <button className='weui-btn weui-btn_mini weui-btn_primary time-select-btn'>确定</button>
+                <button className='weui-btn weui-btn_mini weui-btn_primary time-select-btn'>{getLocale('确定')}</button>
               </Flex> : null
             }
           </Flex>
@@ -132,7 +133,7 @@ Component.propTypes = {
 
 Component.defaultProps = {
   showText: true,
-  title: '选择运营时间',
+  title: getLocale('选择运营时间'),
   type: 1
 }
 

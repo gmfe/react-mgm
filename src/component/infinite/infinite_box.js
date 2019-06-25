@@ -1,3 +1,4 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Infinite from './index'
@@ -76,19 +77,19 @@ class InfiniteBox extends React.Component {
           <div className='text-center' style={{
             paddingTop: 100
           }}>
-            加载中...
+            {getLocale('加载中...')}
           </div>
         )}
         {showEmpty && !loading && (
           <Flex column justifyCenter style={{
             paddingTop: 100
           }}>
-            <div className='text-center'>没有数据</div>
+            <div className='text-center'>{getLocale('没有数据')}</div>
             <div className='padding-8'/>
             <button
               className='weui-btn weui-btn_default weui-btn_mini'
               onClick={this.handleReload}
-            >点击重新加载
+            >{getLocale('点击重新加载')}
             </button>
           </Flex>
         )}

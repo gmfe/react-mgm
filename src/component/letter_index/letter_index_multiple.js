@@ -1,3 +1,4 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import List from '../list'
@@ -81,7 +82,7 @@ class LetterIndexMultiple extends React.Component {
             onClick={this.handleCancel}
             className='border-1px-top-before border-1px-right-after'
           >
-            取消
+            {getLocale('取消')}
           </Flex>
           <Flex
             flex
@@ -90,7 +91,7 @@ class LetterIndexMultiple extends React.Component {
             onClick={this.handleConfirm}
             className='border-1px-top-before b-bg-primary text-white'
           >
-            确定
+            {getLocale('确定')}
           </Flex>
         </Flex>
       </Flex>

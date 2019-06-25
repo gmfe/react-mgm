@@ -1,3 +1,4 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Flex from '../flex'
@@ -71,7 +72,7 @@ class Keyboard extends React.Component {
           <Btn onClick={this.handleClick.bind(this, 1)}>1</Btn>
           <Btn onClick={this.handleClick.bind(this, 2)}>2</Btn>
           <Btn onClick={this.handleClick.bind(this, 3)}>3</Btn>
-          <BtnPrimary onClick={this.handleClick.bind(this, 'back')} disabled={!value}>退格</BtnPrimary>
+          <BtnPrimary onClick={this.handleClick.bind(this, 'back')} disabled={!value}>{getLocale('退格')}</BtnPrimary>
         </Flex>
         <Flex flex>
           <Btn onClick={this.handleClick.bind(this, 4)}>4</Btn>
@@ -112,7 +113,7 @@ Keyboard.propTypes = {
 
 Keyboard.defaultProps = {
   onSubmit: _.noop,
-  submitText: '完成'
+  submitText: getLocale('完成')
 }
 
 export default Keyboard

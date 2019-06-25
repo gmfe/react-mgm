@@ -1,8 +1,8 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { getLocale } from '../../locales'
 
 class Search extends React.Component {
   input = React.createRef()
@@ -72,7 +72,7 @@ class Search extends React.Component {
               className='text-link margin-left-8'
               onClick={this.handleSearch}
             >
-              {searchText || getLocale('searchBar', 'search')}
+              {searchText || getLocale('搜索')}
             </a>
           ) : (
             <a
@@ -80,7 +80,7 @@ class Search extends React.Component {
               className='text-link margin-left-8'
               onClick={this.handleCancel}
             >
-              {searchText || getLocale('searchBar', 'cancel')}
+              {searchText || getLocale('取消')}
             </a>
           )
         }
@@ -107,7 +107,7 @@ Search.defaultProps = {
   autoFocus: false,
   onSearch: _.noop,
   onCancel: _.noop,
-  placeholder: getLocale('searchBar', 'search'),
+  placeholder: getLocale('搜索'),
   type: 'search'
 }
 

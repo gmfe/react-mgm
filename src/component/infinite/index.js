@@ -1,10 +1,10 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Flex from '../flex/index'
 import _ from 'lodash'
 import { is } from 'gm-util'
-import { getLocale } from '../../locales'
 
 class Infinite extends React.Component {
   constructor (props) {
@@ -95,7 +95,7 @@ class Infinite extends React.Component {
               justifyCenter
               className='text-desc text-small infinite-no-more'
               style={{ height: '30px' }}
-            >{getLocale('infinite', 'noMore')}</Flex>
+            >{getLocale('没有更多数据')}</Flex>
           )}
         </Flex>
       </div>

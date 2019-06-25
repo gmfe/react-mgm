@@ -1,9 +1,9 @@
+import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Mask from '../mask/index'
 import _ from 'lodash'
-import { getLocale } from '../../locales'
 import { ConfirmPicker } from '../picker'
 
 class Select extends React.Component {
@@ -40,7 +40,7 @@ class Select extends React.Component {
       <div className='select-popup'>
         <Mask show={show} opacity={0.1} onClick={this.handleCancel}/>
         <div {...rest} className={cn}>
-          {(!data || data.length === 0) && <span className='text-desc'>{getLocale('select', 'noData')}</span>}
+          {(!data || data.length === 0) && <span className='text-desc'>{getLocale('没有数据')}</span>}
           {_.map(data, (v, i) => (
             <div
               key={i}
@@ -73,7 +73,7 @@ Select.render = ({ data, value, title }) => {
   console.log(datas)
 
   return ConfirmPicker.render({
-    title: title || '选择',
+    title: title || getLocale('选择'),
     datas,
     values
   }).then(values => {
