@@ -30,10 +30,14 @@ class Slider extends React.Component {
     this.refSlider = null
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.setState({
-      count: _.isArray(nextProps.children) ? nextProps.children.length : 1
-    })
+  static getDerivedStateFromProps (props, state) {
+    const count = _.isArray(props.children) ? props.children.length : 1
+    if (state.count !== count) {
+      return {
+        count,
+        x: 0
+      }
+    }
   }
 
   doAutoSlider () {
