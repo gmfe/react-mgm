@@ -31,13 +31,14 @@ class Slider extends React.Component {
   }
 
   static getDerivedStateFromProps (props, state) {
-    const count = _.isArray(props.children) ? props.children.length : 1
+    const count = React.Children.count(props.children)
     if (state.count !== count) {
       return {
         count,
         x: 0
       }
     }
+    return null
   }
 
   doAutoSlider () {
