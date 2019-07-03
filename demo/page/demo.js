@@ -1,5 +1,5 @@
 import React from 'react'
-import { InnerLayer, Popup, Select } from '../../src'
+import { InnerLayer, Popup, Select, Slider } from '../../src'
 
 class S extends React.Component {
   render () {
@@ -40,7 +40,18 @@ class P extends React.Component {
 }
 
 class DemoWrap extends React.Component {
+  state = {
+    arr: [1, 2, 3, 4, 5]
+  }
+
+  handleClick = () => {
+    this.setState({
+      arr: [1, 2, 3]
+    })
+  }
+
   render () {
+    const { arr } = this.state
     return (
       <div>
         <button onClick={() => {
@@ -49,6 +60,14 @@ class DemoWrap extends React.Component {
           })
         }}>innerLayer
         </button>
+        <div style={{ width: '500px', border: '1px solid #ddd' }}>
+          <Slider>
+            { arr.map(v => (
+              <div><h1>{v}</h1></div>
+            )) }
+          </Slider>
+        </div>
+        <button onClick={this.handleClick}>change slider length</button>
       </div>
     )
   }
