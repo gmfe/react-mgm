@@ -1,28 +1,23 @@
-import * as lng from './lng'
-
+/* 此文件由脚本自动生成 */
+import lng1 from './zh.json'
+import lng2 from './zh-HK.json'
+import lng3 from './en.json'
+import lng4 from './th.json'
 const moduleMap = {
-  'zh-HK': 'hk',
-  'zh': 'zh',
-  'en': 'en'
+  'zh': lng1,
+  'zh-HK': lng2,
+  'en': lng3,
+  'th': lng4
 }
-const getLanguageMap = (languageCode) => {
-  const moduleName = moduleMap[languageCode]
-  return lng[moduleName]
-}
-
 let _language = 'zh'
 
-const setLocale = (lng) => {
+const setLocale = lng => {
   _language = lng
 }
 
-const getLocale = (text) => {
-  const languageMap = getLanguageMap(_language)
-  // 默认返回text
+const getLocale = text => {
+  const languageMap = moduleMap[_language] || moduleMap['zh']
   return languageMap[text] || text
 }
 
-export {
-  setLocale,
-  getLocale
-}
+export { getLocale, setLocale }
