@@ -26,6 +26,7 @@ import Price from './component/price'
 import Counter from './component/counter'
 import Loading from './component/loading'
 import Divider from './component/divider'
+import Uploader from './component/uploader'
 import {
   Cells,
   CellsTitle,
@@ -89,6 +90,7 @@ export {
   Counter,
   Divider,
   InnerLayer,
+  Uploader,
 
   Cells,
   Cell,
