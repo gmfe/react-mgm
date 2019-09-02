@@ -221,9 +221,11 @@ class CellSwipe extends React.Component {
         >
           <Cell access>
             <CellBody className='text'>{bodyText}</CellBody>
-            <CellFooter className='text-desc'>
-              {footerText}
-            </CellFooter>
+            {footerText && (
+              <CellFooter className='text-desc'>
+                {footerText}
+              </CellFooter>
+            )}
           </Cell>
         </CellBody>
         <CellFooter className='padding-right-0'>
@@ -235,8 +237,8 @@ class CellSwipe extends React.Component {
 }
 
 CellSwipe.propTypes = {
-  bodyText: PropTypes.string.isRequired,
-  footerText: PropTypes.string.isRequired,
+  bodyText: PropTypes.node.isRequired,
+  footerText: PropTypes.node,
   right: PropTypes.array,
   onClick: PropTypes.func
 }
