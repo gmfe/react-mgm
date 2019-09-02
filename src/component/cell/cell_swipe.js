@@ -237,8 +237,8 @@ class CellSwipe extends React.Component {
 }
 
 CellSwipe.propTypes = {
-  bodyText: PropTypes.any,
-  footerText: PropTypes.any,
+  bodyText: PropTypes.node.isRequired,
+  footerText: PropTypes.node,
   right: PropTypes.array,
   onClick: PropTypes.func
 }
