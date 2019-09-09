@@ -63,7 +63,8 @@ class Base extends React.Component {
                 key={item.value}
                 data-value={item.value}
                 className={classNames('bg-white padding-8 border-1px-bottom-after', {
-                  'text-primary': selected.includes(item.value)
+                  'text-primary': selected.includes(item.value),
+                  'disabled text-disabled': item.disabled
                 })}
                 onClick={this.handleSelect.bind(this, item)}
               >
