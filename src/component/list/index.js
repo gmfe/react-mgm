@@ -46,7 +46,7 @@ class List extends React.Component {
 
     let oSelected
     if (multiple) {
-      oSelected = selected
+      oSelected = selected || []
     } else {
       oSelected = selected ? [selected] : []
     }
