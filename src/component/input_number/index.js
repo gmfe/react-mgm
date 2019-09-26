@@ -95,6 +95,12 @@ class InputNumber extends React.Component {
     return (
       <input
         {...rest}
+        // type=number 情况下还是可以输入 e, 并且在 ios 浏览器不生效，需要过滤
+        onKeyPress={(event) => {
+          if (!/[\d.]/.test(String.fromCharCode(event.keyCode || event.which))) {
+            event.preventDefault()
+          }
+        }}
         type='number'
         value={this.state.value}
         onChange={this.handleChange}
