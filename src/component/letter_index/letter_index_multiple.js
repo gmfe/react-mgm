@@ -58,7 +58,7 @@ class LetterIndexMultiple extends React.Component {
           ...style
         }}
       >
-        <Flex column flex className='relative'>
+        <Flex column flex className='relative' style={{ height: '100%' }}>
           <List
             ref={this.refList}
             className='overflow-y relative'
