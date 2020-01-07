@@ -47,6 +47,7 @@ class PreviewImage extends React.Component {
       images,
       show,
       onHide, // eslint-disable-line
+      defaultIndex,
       ...rest
     } = this.props
 
@@ -69,7 +70,7 @@ class PreviewImage extends React.Component {
               <img src={images[0].url}/>
             </Flex>
           ) : (
-            <Slide onChange={this.handleChange}>
+            <Slide defaultIndex={defaultIndex} onChange={this.handleChange}>
               {_.map(images, (v, i) => (
                 <div key={i + v.url} className='flex-align-center flex-justify-center'>
                   <img src={v.url}/>
@@ -90,13 +91,15 @@ Object.assign(PreviewImage, PreviewImageStatics)
 
 PreviewImage.defaultProps = {
   show: false,
-  onHide: _.noop
+  onHide: _.noop,
+  defaultIndex: 0
 }
 
 PreviewImage.propTypes = {
   images: PropTypes.array,
   show: PropTypes.bool,
-  onHide: PropTypes.func
+  onHide: PropTypes.func,
+  defaultIndex: PropTypes.number
 }
 
 export default PreviewImage
