@@ -80,7 +80,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "file-loader": "^2.0.0",
     "gm-mfont": "^1.2.21",
-    "gm-util": "^5.9.1",
+    "gm-util": "^5.11.5",
     "gm-webpack": "^1.0.11",
     "happypack": "^5.0.0",
     "history": "^4.7.2",
