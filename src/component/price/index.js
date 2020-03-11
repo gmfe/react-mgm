@@ -51,22 +51,34 @@ class Price extends React.Component {
       isFenUnit,
       keepZero,
       feeType,
+      symbolStyle,
+      integerStyle,
+      decimalStyle,
       ...rest
     } = this.props
     const current = getCurrentFromType(feeType)
     if (_.isNil(value) || _.isNaN(value)) {
       return null
     }
+
+    const price = format(Math.abs(value), isFenUnit, { useGrouping, precision, keepZero })
+    const [integer, decimal] = String(price).split('.')
+
     return (
       <span {...rest}>
         {value < 0 ? '-' : ''}
         <span
           style={{
-            fontSize: `${currencyScale > 1 ? '1' : currencyScale}em`
+            fontSize: `${currencyScale > 1 ? '1' : currencyScale}em`,
+            ...symbolStyle
           }}
         >
           {current ? current.symbol : _symbol}
-        </span>{format(Math.abs(value), isFenUnit, { useGrouping, precision, keepZero })}
+        </span>
+        <span style={integerStyle}>{integer}</span>
+        {
+          !_.isInteger(price) && <span style={{ decimalStyle }}>.{decimal}</span>
+        }
       </span>
     )
   }
@@ -80,7 +92,14 @@ Price.propTypes = {
   // 是否保留小数点后无效的零
   keepZero: PropTypes.bool,
   isFenUnit: PropTypes.bool,
-  feeType: PropTypes.string
+  feeType: PropTypes.string,
+
+  // 符号样式
+  symbolStyle: PropTypes.object,
+  // 整数样式
+  integerStyle: PropTypes.object,
+  // 小数样式
+  decimalStyle: PropTypes.object
 }
 
 Price.defaultProps = {
