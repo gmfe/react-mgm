@@ -5,6 +5,8 @@ import Flex from '../flex'
 import Select from '../select'
 import PropTypes from 'prop-types'
 
+import SVGDownSmall from '../../../svg/down_small.svg'
+
 class Component extends React.Component {
   renderSelect = () => {
     const { data, selected, onChange } = this.props
@@ -32,7 +34,7 @@ class Component extends React.Component {
           flex
         >
           <Flex flex>{getLocale('运营周期')}：{selected.name}</Flex>
-          <Flex justifyEnd><i className='xfont xfont-down-small'/></Flex>
+          <Flex><SVGDownSmall/></Flex>
         </Flex>
       </div>
     )

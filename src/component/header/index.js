@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Flex from '../flex'
 import classNames from 'classnames'
 import _ from 'lodash'
+import SVGAngleLeft from '../../../svg/angle-left.svg'
 
 const Header = (props) => {
   const {
@@ -30,7 +31,7 @@ const Header = (props) => {
     >
       <Flex alignCenter>
         {!hideBack && (
-          <i className='ifont ifont-angle-left text-24 padding-lr-8' onClick={handleBack}/>
+          <SVGAngleLeft className=' text-24 padding-lr-8' onClick={handleBack}/>
         )}
         <div className={classNames('text-16 padding-right-8', {
           'padding-left-8': hideBack

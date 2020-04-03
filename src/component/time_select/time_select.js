@@ -6,6 +6,8 @@ import { Calendar } from '../calendar'
 import moment from 'moment'
 import ConfigSelect from './config_select'
 
+import SVGRemove from '../../../svg/remove.svg'
+
 class Component extends React.Component {
   constructor (props) {
     super(props)
@@ -77,7 +79,7 @@ class Component extends React.Component {
               onClick={this.handleHide}
               className='absolute-left padding-left-16'
             >
-              <i style={{ fontSize: '1em' }} className='xfont xfont-remove padding-lr-4'/>
+              <SVGRemove style={{ fontSize: '1em' }} className='padding-lr-4'/>
             </Flex>
             <Flex flex={1} justifyCenter className='text-bold'>{title}</Flex>
             {

@@ -6,6 +6,8 @@ import Popup from '../popup'
 import Flex from '../flex'
 import TimeSelect from './time_select'
 
+import SVGDownSmall from '../../../svg/down_small.svg'
+
 class Component extends React.Component {
   handleChange = ({ time, selected }) => {
     this.props.onChange({ time, selected })
@@ -45,7 +47,7 @@ class Component extends React.Component {
       >
         <Flex className='padding-tb-4'>{this.props.text}</Flex>
         <Flex alignCenter className='padding-left-8'>
-          <i className='xfont xfont-down-small'/>
+          <SVGDownSmall/>
         </Flex>
       </Flex>
     )

@@ -5,6 +5,10 @@ import LayoutRoot from '../layout_root'
 import Loading from '../loading'
 import Mask from '../mask'
 import Flex from '../flex'
+import SVGSuccess from '../../../svg/success.svg'
+import SVGInfoCircle from '../../../svg/info-circle.svg'
+import SVGWarning from '../../../svg/warning.svg'
+import SVGClose from '../../../svg/close.svg'
 
 let timer = null
 let ToastStatics = {
@@ -70,13 +74,13 @@ class Toast extends React.Component {
       icon = <i className='weui-loading'/>
       children = children || getLocale('加载中...')
     } else if (success) {
-      icon = <i className='ifont ifont-success'/>
+      icon = <SVGSuccess className='toast-icon'/>
     } else if (info) {
-      icon = <i className='ifont ifont-info-circle'/>
+      icon = <SVGInfoCircle className='toast-icon'/>
     } else if (warning) {
-      icon = <i className='ifont ifont-warning'/>
+      icon = <SVGWarning className='toast-icon'/>
     } else if (danger) {
-      icon = <i className='ifont ifont-close'/>
+      icon = <SVGClose className='toast-icon'/>
     } else if (loading_linear) {
       icon = <Loading line/>
     }

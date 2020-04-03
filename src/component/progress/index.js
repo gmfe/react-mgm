@@ -2,15 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
+import SVGSuccessCircle from '../../../svg/success_circle.svg'
+import SVGCloseCircle from '../../../svg/close_circle.svg'
+
 class ProgressBar extends React.Component {
   constructor (props) {
     super(props)
-    this.getIconClass = ::this.getIconClass
+    this.getIcon = ::this.getIcon
   }
 
-  getIconClass () {
+  getIcon () {
     const { status } = this.props
-    return status === 'success' ? 'xfont xfont-success-circle progress-bar-success-icon' : 'xfont xfont-close-circle progress-bar-exception-icon'
+    if (status === 'success') {
+      return <SVGSuccessCircle className='progress-bar-success-icon'/>
+    }
+    return <SVGCloseCircle className='progress-bar-exception-icon'/>
   }
 
   render () {
@@ -57,7 +63,7 @@ class ProgressBar extends React.Component {
               className='progress-bar-text'
               style={{ fontSize: `12px`, color: textColor }}
             >
-              {status ? <i className={this.getIconClass()}/> : text || `${percentage}%`}
+              {status ? this.getIcon() : text || `${percentage}%`}
             </div>
         }
       </div>
