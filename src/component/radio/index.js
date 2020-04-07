@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import classNames from 'classnames'
 import Flex from '../flex'
+import SVGSuccess from '../../../svg/success.svg'
+import SVGCircle from '../../../svg/circle.svg'
 
 class Radio extends React.Component {
   render () {
@@ -16,10 +17,11 @@ class Radio extends React.Component {
           opacity: disabled ? 0.7 : 1
         }}
       >
-        <i className={classNames('ifont text-18 padding-4 line-height', {
-          'text-primary ifont-success': checked,
-          'text ifont-circle': !checked
-        })}/>
+        {checked ? (
+          <SVGSuccess className='text-18 padding-4 line-height'/>
+        ) : (
+          <SVGCircle className='text-18 padding-4 line-height'/>
+        )}
         {children}
       </Flex>
     )

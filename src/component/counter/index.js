@@ -5,6 +5,8 @@ import classNames from 'classnames'
 import ScrollIntoView from '../scroll_into_view'
 import Big from 'big.js'
 import InputNumber from '../input/input.number'
+import SVGMinusCycle from '../../../svg/minus-circle.svg'
+import SVGAddCycle from '../../../svg/add-circle.svg'
 
 class Counter extends React.Component {
   constructor (props) {
@@ -48,10 +50,10 @@ class Counter extends React.Component {
 
   render () {
     const { amount, isPlusDisabled } = this.props
-    const minusIconClass = classNames('counter-del-btn ifont ifont-minus-cycle-o', {
+    const minusIconClass = classNames('counter-del-btn', {
       'disable none': amount === 0
     })
-    const plusIconClass = classNames('counter-add-btn ifont ifont-add-circle', {
+    const plusIconClass = classNames('counter-add-btn', {
       'disable': isPlusDisabled
     })
     const inputClass = classNames('counter-num', {
@@ -60,7 +62,7 @@ class Counter extends React.Component {
 
     return (
       <Flex alignCenter className='counter-container-option'>
-        <span
+        <SVGMinusCycle
           className={minusIconClass}
           onClick={this.handleCountMinus}
         />
@@ -75,7 +77,7 @@ class Counter extends React.Component {
             />
           </ScrollIntoView>
         }
-        <span
+        <SVGAddCycle
           className={plusIconClass}
           onClick={this.handleCountPlus}
         />

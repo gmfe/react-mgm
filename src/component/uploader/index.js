@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { is } from 'gm-util'
 import classNames from 'classnames'
 
+import SVGPlus from '../../../svg/plus.svg'
+
 class Uploader extends React.Component {
   handleUpload = (e) => {
     e.preventDefault()
@@ -40,7 +42,7 @@ class Uploader extends React.Component {
           onClick={this.handleClick}
         >
           {children || <div className='uploader-icon-wrap'>
-            <i className='uploader-icon xfont xfont-plus'/>
+            <SVGPlus className='uploader-icon'/>
           </div>}
         </div>
         <input
