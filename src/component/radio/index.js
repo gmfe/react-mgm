@@ -18,7 +18,7 @@ class Radio extends React.Component {
         }}
       >
         {checked ? (
-          <SVGSuccess className='text-18 padding-4 line-height'/>
+          <SVGSuccess className='text-18 padding-4 line-height text-primary'/>
         ) : (
           <SVGCircle className='text-18 padding-4 line-height'/>
         )}
