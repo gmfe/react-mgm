@@ -5,6 +5,26 @@ body {
   -webkit-tap-highlight-color: transparent;
   color: @defaultColor;
   font-size: @fontSize14;
+
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: @tabbarHeight;  /* 兼容不支持 env( ) 的设备  */
+  padding-bottom: calc(env(safe-area-inset-bottom) + @tabbarHeight); /* 在 iphone x + 中本句才会生效 */
+  padding-left: env(safe-area-inset-left);
+}
+
+.bottom-container {
+  box-sizing: content-box;
+  height: @tabbarHeight;
+  line-height: @tabbarHeight;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: white;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 * {

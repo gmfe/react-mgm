@@ -30,7 +30,7 @@ class Page extends React.Component {
           {children}
         </Flex>
         {bottom}
-        {tabbar && <Flex column none className='page-tabbar'>{tabbar}</Flex>}
+        {tabbar && <Flex column none className='bottom-container page-tabbar'>{tabbar}</Flex>}
       </Flex>
     )
   }

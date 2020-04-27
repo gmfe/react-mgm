@@ -4608,11 +4608,6 @@ globjoin@^0.1.4:
   resolved "https://registry.yarnpkg.com/globjoin/-/globjoin-0.1.4.tgz#2f4494ac8919e3767c5cbb691e9f463324285d43"
   integrity sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=
 
-gm-mfont@^1.2.21:
-  version "1.2.21"
-  resolved "https://registry.yarnpkg.com/gm-mfont/-/gm-mfont-1.2.21.tgz#1ddead7d679bf510e20023fce54ee8f325b67025"
-  integrity sha512-uT5yk9Phi5kgiLWr5owu1nVekp5woNWiDccqAcurou+J3AaoDTUQ8HQngyzznTwDc47g51ugi/DREautsRG6xw==
-
 gm-util@^5.11.5:
   version "5.12.3"
   resolved "https://registry.yarnpkg.com/gm-util/-/gm-util-5.12.3.tgz#e0effd09b38d91e22d4b09d31f6a431ba1bbca9c"
