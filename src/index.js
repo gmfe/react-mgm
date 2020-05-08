@@ -53,6 +53,9 @@ import List from './component/list'
 import { LetterIndex, LetterIndexMultiple } from './component/letter_index'
 import ProgressBar from './component/progress'
 import TimeSelect from './component/time_select'
+import Canvas from './component/canvas'
+import Signature from './component/signature'
+import ActionSheet from './component/action_sheet'
 
 const Alert = Dialog.alert
 const Confirm = Dialog.confirm
@@ -121,6 +124,10 @@ export {
 
   setLocale,
   ProgressBar,
+  Canvas,
+  ActionSheet,
+
   // 业务组件
-  TimeSelect
+  TimeSelect,
+  Signature
 }

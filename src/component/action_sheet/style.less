@@ -1,0 +1,43 @@
+.m-action-sheet-body {
+  .m-action-sheet-message {
+    margin: 10px auto;
+    padding: 0 10px;
+    color: @placeholderColor;
+  }
+  .m-action-sheet-list {
+    text-align: center;
+    color: @defaultColor;
+
+    .m-action-sheet-list-item {
+      padding: 0 8px;
+      margin: 0;
+      position: relative;
+      height: 45px;
+      line-height: 45px;
+      box-sizing: border-box;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+    }
+
+    .m-action-sheet-cancel-item {
+      padding-top: 4px;
+      position: relative;
+    }
+
+    .m-action-sheet-cancel-mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: #e7e7ed;
+      border-top: 1px solid @borderColor;
+      border-bottom: 1px solid @borderColor;
+    }
+
+    .m-action-sheet-list-destructive-item {
+      color: @warnColor;
+    }
+  }
+}
