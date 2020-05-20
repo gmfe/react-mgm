@@ -86,7 +86,9 @@ const navList = [
       'uploader',
       'storage',
       // 业务组件
-      'time_select'
+      'time_select',
+      'signature',
+      'action_sheet'
     ]
   }
 ]
