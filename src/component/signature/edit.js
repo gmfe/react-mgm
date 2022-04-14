@@ -18,11 +18,15 @@ const Edit = (props) => {
     width: 0,
     height: 0
   })
+  // 是否签名了 默认没签名
+  const [ isSignature, setIsSignature ] = useState(false)
+
   useEffect(() => {
     const page = document.getElementById('signature-edit')
     page.addEventListener('touchmove', function (e) {
       // 阻止IOS的橡皮筋滚动
       e.preventDefault()
+      setIsSignature(true)
     }, { passive: false })
 
     const bottom = document.getElementById('signature-bottom')
@@ -33,15 +37,16 @@ const Edit = (props) => {
   }, [setArea])
 
   const handleReset = () => {
+    setIsSignature(false)
     canvasRef.current.reset()
   }
 
   const handleSubmit = () => {
     if (props.output === 'base64') {
-      props.onSave(canvasRef.current.toDataURL('image/png'))
+      props.onSave(canvasRef.current.toDataURL('image/png'), isSignature)
     } else {
       canvasRef.current.toBlob((blob) => {
-        props.onSave(blob)
+        props.onSave(blob, isSignature)
       }, 'image/png')
     }
   }
