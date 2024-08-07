@@ -45,6 +45,7 @@ class Popup extends React.Component {
       onHide, // eslint-disable-line
       isPickPopup,
       children,
+      useMask,
       ...rest
     } = this.props
 
@@ -73,7 +74,7 @@ class Popup extends React.Component {
       <div className={classNames('popup-container', {
         'picker-popup-container': isPickPopup
       })}>
-        <Mask show opacity={opacity} onClick={this.handleChange}/>
+        {useMask&&<Mask show opacity={opacity} onClick={this.handleChange}/>}
         <div {...rest} className={cn} style={s}>
           <div className='popup-content'>
             {children}
@@ -96,13 +97,14 @@ Popup.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   opacity: PropTypes.number,
-
+  useMask:PropTypes.bool,
   // 内部用
   isPickPopup: PropTypes.bool
 }
 
 Popup.defaultProps = {
   show: false,
+  useMask:true,
   onHide: _.noop
 }
 
