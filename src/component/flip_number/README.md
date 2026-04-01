@@ -44,14 +44,12 @@ import { FlipNumber } from 'react-mgm'
 import React from 'react'
 import { FlipNumber } from 'react-mgm'
 
-class FlipNumberDemo extends React.Component {
-  render() {
-    return (
-      <div>
-        <FlipNumber from={0} to={1234} />
-      </div>
-    )
-  }
+function FlipNumberDemo () {
+  return (
+    <div>
+      <FlipNumber from={0} to={1234} />
+    </div>
+  )
 }
 ```
 
@@ -61,20 +59,18 @@ class FlipNumberDemo extends React.Component {
 import React from 'react'
 import { FlipNumber } from 'react-mgm'
 
-class FlipNumberDemo extends React.Component {
-  render() {
-    return (
-      <div>
-        <FlipNumber
-          useGroup
-          decimal={2}
-          delay={1000}
-          from={0}
-          to={123456.789}
-        />
-      </div>
-    )
-  }
+function FlipNumberDemo () {
+  return (
+    <div>
+      <FlipNumber
+        useGroup
+        decimal={2}
+        delay={1000}
+        from={0}
+        to={123456.789}
+      />
+    </div>
+  )
 }
 ```
 

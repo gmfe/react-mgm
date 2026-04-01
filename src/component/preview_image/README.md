@@ -34,8 +34,8 @@ import PreviewImage from 'react-mgm/lib/preview_image'
 import React from 'react'
 import PreviewImage from 'react-mgm/lib/preview_image'
 
-class Demo extends React.Component {
-  handleShowImages () {
+function Demo() {
+  const handleShowImages = () => {
     PreviewImage.render({
       images: [
         { url: 'https://example.com/image1.png', name: '图片一' },
@@ -46,7 +46,7 @@ class Demo extends React.Component {
     })
   }
 
-  handleShowSingle () {
+  const handleShowSingle = () => {
     PreviewImage.render({
       images: [
         { url: 'https://example.com/image.png', name: '单张图片' }
@@ -55,41 +55,37 @@ class Demo extends React.Component {
     })
   }
 
-  render () {
-    return (
-      <div>
-        <button onClick={this.handleShowImages}>预览多张图片</button>
-        <button onClick={this.handleShowSingle}>预览单张图片</button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <button onClick={handleShowImages}>预览多张图片</button>
+      <button onClick={handleShowSingle}>预览单张图片</button>
+    </div>
+  )
 }
 ```
 
 ### 组件形式使用
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import PreviewImage from 'react-mgm/lib/preview_image'
 
-class Demo extends React.Component {
-  state = { show: false }
+function Demo() {
+  const [show, setShow] = useState(false)
 
-  render () {
-    return (
-      <div>
-        <button onClick={() => this.setState({ show: true })}>打开预览</button>
-        <PreviewImage
-          show={this.state.show}
-          images={[
-            { url: 'https://example.com/image.png', name: '图片名称' }
-          ]}
-          defaultIndex={0}
-          onHide={() => this.setState({ show: false })}
-        />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <button onClick={() => setShow(true)}>打开预览</button>
+      <PreviewImage
+        show={show}
+        images={[
+          { url: 'https://example.com/image.png', name: '图片名称' }
+        ]}
+        defaultIndex={0}
+        onHide={() => setShow(false)}
+      />
+    </div>
+  )
 }
 ```
 

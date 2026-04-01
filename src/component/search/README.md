@@ -36,19 +36,17 @@ import { Search, SearchPage, FakeSearch } from 'react-mgm/search'
 ### 示例
 
 ```jsx
-class Demo extends React.Component {
-  state = { value: '' }
+function Demo () {
+  const [value, setValue] = useState('')
 
-  render () {
-    return (
-      <Search
-        placeholder='在站内搜索'
-        value={this.state.value}
-        onChange={value => this.setState({ value })}
-        onSearch={() => console.log('搜索')}
-      />
-    )
-  }
+  return (
+    <Search
+      placeholder='在站内搜索'
+      value={value}
+      onChange={value => setValue(value)}
+      onSearch={() => console.log('搜索')}
+    />
+  )
 }
 ```
 
@@ -78,27 +76,23 @@ class Demo extends React.Component {
 ### 示例
 
 ```jsx
-class Demo extends React.Component {
-  state = {
-    active: false,
-    value: '',
-    searchValue: ''
-  }
+function Demo () {
+  const [active, setActive] = useState(false)
+  const [value, setValue] = useState('')
+  const [searchValue, setSearchValue] = useState('')
 
-  render () {
-    return (
-      <SearchPage
-        header={<Header title='首页' right={<i className='weui-icon-search' />} onClick={() => this.setState({ active: true, value: '' })} />}
-        active={this.state.active}
-        value={this.state.value}
-        onChange={value => this.setState({ value })}
-        onSearch={() => this.setState({ searchValue: this.state.value })}
-        onCancel={() => this.setState({ active: false })}
-      >
-        {/* 页面内容 */}
-      </SearchPage>
-    )
-  }
+  return (
+    <SearchPage
+      header={<Header title='首页' right={<i className='weui-icon-search' />} onClick={() => { setActive(true); setValue('') }} />}
+      active={active}
+      value={value}
+      onChange={value => setValue(value)}
+      onSearch={() => setSearchValue(value)}
+      onCancel={() => setActive(false)}
+    >
+      {/* 页面内容 */}
+    </SearchPage>
+  )
 }
 ```
 

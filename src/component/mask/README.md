@@ -7,6 +7,7 @@ Mask 遮罩层组件，用于在弹出层、对话框等组件下方显示半透
 ## 使用
 
 ```jsx
+import React, { useState } from 'react'
 import Mask from 'react-mgm'
 ```
 
@@ -28,20 +29,18 @@ import Mask from 'react-mgm'
 ### 基本用法
 
 ```jsx
-class Demo extends React.Component {
-  state = { show: false }
+function Demo() {
+  const [show, setShow] = useState(false)
 
-  render() {
-    return (
-      <div>
-        <button onClick={() => this.setState({ show: true })}>显示遮罩</button>
-        <Mask
-          show={this.state.show}
-          onClick={() => this.setState({ show: false })}
-        />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <button onClick={() => setShow(true)}>显示遮罩</button>
+      <Mask
+        show={show}
+        onClick={() => setShow(false)}
+      />
+    </div>
+  )
 }
 ```
 

@@ -88,51 +88,51 @@ Dialog.confirm({
 ### 声明式 Alert
 
 ```jsx
-class Demo extends React.Component {
-  state = { alert: false }
+import React, { useState } from 'react'
 
-  render() {
-    return (
-      <div>
-        <button onClick={() => this.setState({ alert: true })}>打开 Alert</button>
-        <Dialog
-          alert
-          show={this.state.alert}
-          title="提示"
-          onConfirm={() => this.setState({ alert: false })}
-        >
-          这是一条提示信息
-        </Dialog>
-      </div>
-    )
-  }
+function Demo() {
+  const [alertVisible, setAlertVisible] = useState(false)
+
+  return (
+    <div>
+      <button onClick={() => setAlertVisible(true)}>打开 Alert</button>
+      <Dialog
+        alert
+        show={alertVisible}
+        title="提示"
+        onConfirm={() => setAlertVisible(false)}
+      >
+        这是一条提示信息
+      </Dialog>
+    </div>
+  )
 }
 ```
 
 ### 声明式 Confirm
 
 ```jsx
-class Demo extends React.Component {
-  state = { confirm: false }
+import React, { useState } from 'react'
 
-  render() {
-    return (
-      <div>
-        <button onClick={() => this.setState({ confirm: true })}>打开 Confirm</button>
-        <Dialog
-          confirm
-          show={this.state.confirm}
-          title="确认"
-          confirmText="合并"
-          cancelText="不合并"
-          onCancel={() => this.setState({ confirm: false })}
-          onConfirm={() => this.setState({ confirm: false })}
-        >
-          确定要合并吗？
-        </Dialog>
-      </div>
-    )
-  }
+function Demo() {
+  const [confirmVisible, setConfirmVisible] = useState(false)
+
+  return (
+    <div>
+      <button onClick={() => setConfirmVisible(true)}>打开 Confirm</button>
+      <Dialog
+        confirm
+        show={confirmVisible}
+        title="确认"
+        confirmText="合并"
+        cancelText="不合并"
+        onCancel={() => setConfirmVisible(false)}
+        onConfirm={() => setConfirmVisible(false)}
+      >
+        确定要合并吗？
+      </Dialog>
+    </div>
+  )
 }
 ```
 

@@ -45,37 +45,32 @@ import InfiniteBox from 'react-mgm/lib/component/infinite/infinite_box'
 ### Infinite 基础用法
 
 ```jsx
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import Infinite from 'react-mgm/lib/component/infinite'
 
-class InfiniteWrap extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { done: false }
-  }
+function InfiniteWrap() {
+  const [done, setDone] = useState(false)
 
-  handleBottom = () => {
+  const handleBottom = useCallback(() => {
     return new Promise(resolve => {
       setTimeout(() => {
-        this.setState({ done: true })
+        setDone(true)
         resolve()
       }, 2000)
     })
-  }
+  }, [])
 
-  render() {
-    return (
-      <Infinite
-        done={this.state.done}
-        onBottom={this.handleBottom}
-        style={{ height: '300px' }}
-      >
-        <div>列表项 1</div>
-        <div>列表项 2</div>
-        <div>列表项 3</div>
-      </Infinite>
-    )
-  }
+  return (
+    <Infinite
+      done={done}
+      onBottom={handleBottom}
+      style={{ height: '300px' }}
+    >
+      <div>列表项 1</div>
+      <div>列表项 2</div>
+      <div>列表项 3</div>
+    </Infinite>
+  )
 }
 
 export default InfiniteWrap
@@ -84,36 +79,34 @@ export default InfiniteWrap
 ### InfiniteBox 分页加载
 
 ```jsx
-import React from 'react'
+import React, { useRef, useCallback } from 'react'
 import InfiniteBox from 'react-mgm/lib/component/infinite/infinite_box'
 
-class InfiniteBoxWrap extends React.Component {
-  refInfiniteBox = React.createRef()
+function InfiniteBoxWrap() {
+  const refInfiniteBox = useRef()
 
-  handleRequest = ({ page_obj }) => {
+  const handleRequest = useCallback(({ page_obj }) => {
     // 调用后端分页接口
     return api.getList({ page_obj }).then(json => {
       // json 格式: { data: [], pagination: { page_obj: 'xxx', more: true } }
       return json
     })
+  }, [])
+
+  const handleReload = () => {
+    refInfiniteBox.current.apiDoFirstRequest()
   }
 
-  handleReload = () => {
-    this.refInfiniteBox.current.apiDoFirstRequest()
-  }
-
-  render() {
-    return (
-      <InfiniteBox
-        ref={this.refInfiniteBox}
-        onRequest={this.handleRequest}
-        showEmpty
-        style={{ height: '500px' }}
-      >
-        {/* 渲染列表数据 */}
-      </InfiniteBox>
-    )
-  }
+  return (
+    <InfiniteBox
+      ref={refInfiniteBox}
+      onRequest={handleRequest}
+      showEmpty
+      style={{ height: '500px' }}
+    >
+      {/* 渲染列表数据 */}
+    </InfiniteBox>
+  )
 }
 
 export default InfiniteBoxWrap

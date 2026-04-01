@@ -23,28 +23,19 @@ import Tabs from 'react-mgm/lib/component/tabs'
 ## 示例
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import Tabs from 'react-mgm/lib/component/tabs'
 
-class TabsWrap extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { tabIndex: 1 }
-  }
+function TabsWrap() {
+  const [tabIndex, setTabIndex] = useState(1)
 
-  handleChange = (index) => {
-    this.setState({ tabIndex: index })
-  }
-
-  render() {
-    return (
-      <Tabs
-        tabIndex={this.state.tabIndex}
-        list={['选项一', '选项二', '选项三']}
-        onChange={this.handleChange}
-      />
-    )
-  }
+  return (
+    <Tabs
+      tabIndex={tabIndex}
+      list={['选项一', '选项二', '选项三']}
+      onChange={setTabIndex}
+    />
+  )
 }
 
 export default TabsWrap

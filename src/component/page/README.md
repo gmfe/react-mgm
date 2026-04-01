@@ -30,18 +30,16 @@ import Page from 'react-mgm/lib/component/page'
 import React from 'react'
 import Page from 'react-mgm/lib/component/page'
 
-class PageWrap extends React.Component {
-  render() {
-    return (
-      <Page
-        header={<div>Header</div>}
-        tabbar={<div>Tabbar</div>}
-        bottom={<div>Bottom</div>}
-      >
-        <div>页面内容</div>
-      </Page>
-    )
-  }
+function PageWrap() {
+  return (
+    <Page
+      header={<div>Header</div>}
+      tabbar={<div>Tabbar</div>}
+      bottom={<div>Bottom</div>}
+    >
+      <div>页面内容</div>
+    </Page>
+  )
 }
 
 export default PageWrap

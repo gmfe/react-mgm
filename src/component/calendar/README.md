@@ -41,44 +41,39 @@ import { Calendar } from 'react-mgm'
 ### 基础用法
 
 ```jsx
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import moment from 'moment'
 import { Calendar } from 'react-mgm'
 
-class CalendarDemo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      begin: moment().add(-4, 'd').toDate(),
-      end: moment().toDate()
-    }
-  }
+function CalendarDemo() {
+  const [begin, setBegin] = useState(moment().add(-4, 'd').toDate())
+  const [end, setEnd] = useState(moment().toDate())
+  const refCalendar = useRef(null)
 
-  componentDidMount() {
-    this.refCalendar.apiScrollToBegin()
-  }
+  useEffect(() => {
+    refCalendar.current.apiScrollToBegin()
+  }, [])
 
-  render() {
-    return (
-      <div style={{ height: '400px', overflow: 'auto' }}>
-        <Calendar
-          ref={ref => (this.refCalendar = ref)}
-          min={moment().add(-1, 'month').toDate()}
-          max={moment().toDate()}
-          begin={this.state.begin}
-          end={this.state.end}
-          label
-          onChange={({ begin, end }) => {
-            console.log(
-              moment(begin).format('YYYY-MM-DD'),
-              moment(end).format('YYYY-MM-DD')
-            )
-            this.setState({ begin, end })
-          }}
-        />
-      </div>
-    )
-  }
+  return (
+    <div style={{ height: '400px', overflow: 'auto' }}>
+      <Calendar
+        ref={refCalendar}
+        min={moment().add(-1, 'month').toDate()}
+        max={moment().toDate()}
+        begin={begin}
+        end={end}
+        label
+        onChange={({ begin, end }) => {
+          console.log(
+            moment(begin).format('YYYY-MM-DD'),
+            moment(end).format('YYYY-MM-DD')
+          )
+          setBegin(begin)
+          setEnd(end)
+        }}
+      />
+    </div>
+  )
 }
 ```
 

@@ -132,49 +132,41 @@ import { Picker, ConfirmPicker, CouplingPicker, ConfirmCouplingPicker } from 're
 ### Picker 基础用法
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import { Picker } from 'react-mgm'
 
-class PickerDemo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      values: ['Mr.', 'Micheal', 'Jordan'],
-      datas: [
-        [
-          { value: 'Mr.', text: 'Mr.' },
-          { value: 'Mrs.', text: 'Mrs.' },
-          { value: 'Ms.', text: 'Ms.' },
-          { value: 'Dr.', text: 'Dr.' }
-        ],
-        [
-          { value: 'John', text: 'John' },
-          { value: 'Micheal', text: 'Micheal' },
-          { value: 'Elizabeth', text: 'Elizabeth' }
-        ],
-        [
-          { value: 'Lennon', text: 'Lennon' },
-          { value: 'Jackson', text: 'Jackson' },
-          { value: 'Jordan', text: 'Jordan' }
-        ]
-      ]
-    }
+function PickerDemo() {
+  const [values, setValues] = useState(['Mr.', 'Micheal', 'Jordan'])
+  const datas = [
+    [
+      { value: 'Mr.', text: 'Mr.' },
+      { value: 'Mrs.', text: 'Mrs.' },
+      { value: 'Ms.', text: 'Ms.' },
+      { value: 'Dr.', text: 'Dr.' }
+    ],
+    [
+      { value: 'John', text: 'John' },
+      { value: 'Micheal', text: 'Micheal' },
+      { value: 'Elizabeth', text: 'Elizabeth' }
+    ],
+    [
+      { value: 'Lennon', text: 'Lennon' },
+      { value: 'Jackson', text: 'Jackson' },
+      { value: 'Jordan', text: 'Jordan' }
+    ]
+  ]
+
+  const handleChange = (values) => {
+    setValues(values)
   }
 
-  handleChange = (values) => {
-    this.setState({ values })
-  }
-
-  render() {
-    const { datas, values } = this.state
-    return (
-      <Picker
-        datas={datas}
-        values={values}
-        onChange={this.handleChange}
-      />
-    )
-  }
+  return (
+    <Picker
+      datas={datas}
+      values={values}
+      onChange={handleChange}
+    />
+  )
 }
 ```
 
@@ -202,47 +194,39 @@ ConfirmPicker.hide()
 ### CouplingPicker 联动选择
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import { CouplingPicker } from 'react-mgm'
 
-class CouplingPickerDemo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      values: ['T7936', 'S11186', '777777'],
-      datas: [
+function CouplingPickerDemo() {
+  const [values, setValues] = useState(['T7936', 'S11186', '777777'])
+  const datas = [
+    {
+      value: 'T7936',
+      text: '喵喵总仓',
+      children: [
         {
-          value: 'T7936',
-          text: '喵喵总仓',
+          value: 'S11186',
+          text: '复制报价单',
           children: [
-            {
-              value: 'S11186',
-              text: '复制报价单',
-              children: [
-                { value: '2222222', text: '222222' },
-                { value: '777777', text: '777777' }
-              ]
-            }
+            { value: '2222222', text: '222222' },
+            { value: '777777', text: '777777' }
           ]
         }
       ]
     }
+  ]
+
+  const handleChange = (values) => {
+    setValues(values)
   }
 
-  handleChange = (values) => {
-    this.setState({ values })
-  }
-
-  render() {
-    const { datas, values } = this.state
-    return (
-      <CouplingPicker
-        datas={datas}
-        values={values}
-        onChange={this.handleChange}
-      />
-    )
-  }
+  return (
+    <CouplingPicker
+      datas={datas}
+      values={values}
+      onChange={handleChange}
+    />
+  )
 }
 ```
 

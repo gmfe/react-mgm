@@ -27,21 +27,19 @@ import Textarea from 'react-mgm/textarea'
 ### 自适应高度
 
 ```jsx
-class Demo extends React.Component {
-  state = { value: '第一行\n第二行' }
+function Demo () {
+  const [value, setValue] = useState('第一行\n第二行')
 
-  handleChange = (event) => {
-    this.setState({ value: event.target.value })
+  const handleChange = (event) => {
+    setValue(event.target.value)
   }
 
-  render () {
-    return (
-      <Textarea
-        value={this.state.value}
-        onChange={this.handleChange}
-      />
-    )
-  }
+  return (
+    <Textarea
+      value={value}
+      onChange={handleChange}
+    />
+  )
 }
 ```
 
@@ -49,8 +47,8 @@ class Demo extends React.Component {
 
 ```jsx
 <Textarea
-  value={this.state.value}
-  onChange={this.handleChange}
+  value={value}
+  onChange={handleChange}
   wrapProps={{ style: { maxHeight: '6.4em' } }}
 />
 ```

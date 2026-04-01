@@ -46,24 +46,22 @@ import Flex from 'react-mgm/lib/component/flex'
 import React from 'react'
 import Flex from 'react-mgm/lib/component/flex'
 
-class FlexWrap extends React.Component {
-  render() {
-    return (
-      <div>
-        {/* 横向布局（默认） */}
-        <Flex>
-          <Flex className="border">1</Flex>
-          <Flex flex className="border">flex 占满</Flex>
-        </Flex>
+function FlexWrap() {
+  return (
+    <div>
+      {/* 横向布局（默认） */}
+      <Flex>
+        <Flex className="border">1</Flex>
+        <Flex flex className="border">flex 占满</Flex>
+      </Flex>
 
-        {/* 纵向布局 */}
-        <Flex column>
-          <Flex className="border">1</Flex>
-          <Flex className="border">2</Flex>
-        </Flex>
-      </div>
-    )
-  }
+      {/* 纵向布局 */}
+      <Flex column>
+        <Flex className="border">1</Flex>
+        <Flex className="border">2</Flex>
+      </Flex>
+    </div>
+  )
 }
 
 export default FlexWrap
@@ -75,24 +73,22 @@ export default FlexWrap
 import React from 'react'
 import Flex from 'react-mgm/lib/component/flex'
 
-class FlexWrap extends React.Component {
-  render() {
-    return (
-      <div>
-        {/* 居中 */}
-        <Flex justifyCenter>
-          <Flex style={{ width: '100px' }}>1</Flex>
-          <Flex style={{ width: '100px' }}>2</Flex>
-        </Flex>
+function FlexWrap() {
+  return (
+    <div>
+      {/* 居中 */}
+      <Flex justifyCenter>
+        <Flex style={{ width: '100px' }}>1</Flex>
+        <Flex style={{ width: '100px' }}>2</Flex>
+      </Flex>
 
-        {/* 两端对齐 */}
-        <Flex justifyBetween>
-          <Flex style={{ width: '100px' }}>1</Flex>
-          <Flex style={{ width: '100px' }}>2</Flex>
-        </Flex>
-      </div>
-    )
-  }
+      {/* 两端对齐 */}
+      <Flex justifyBetween>
+        <Flex style={{ width: '100px' }}>1</Flex>
+        <Flex style={{ width: '100px' }}>2</Flex>
+      </Flex>
+    </div>
+  )
 }
 
 export default FlexWrap
@@ -104,24 +100,22 @@ export default FlexWrap
 import React from 'react'
 import Flex from 'react-mgm/lib/component/flex'
 
-class FlexWrap extends React.Component {
-  render() {
-    return (
-      <div>
-        {/* 交叉轴居中 */}
-        <Flex alignCenter>
-          <Flex style={{ width: '50px' }}>1<br/>2</Flex>
-          <Flex style={{ width: '50px' }}>1<br/>2<br/>3</Flex>
-        </Flex>
+function FlexWrap() {
+  return (
+    <div>
+      {/* 交叉轴居中 */}
+      <Flex alignCenter>
+        <Flex style={{ width: '50px' }}>1<br/>2</Flex>
+        <Flex style={{ width: '50px' }}>1<br/>2<br/>3</Flex>
+      </Flex>
 
-        {/* 交叉轴拉伸 */}
-        <Flex alignStretch>
-          <Flex style={{ width: '50px' }}>1<br/>2</Flex>
-          <Flex style={{ width: '50px' }}>1<br/>2<br/>3</Flex>
-        </Flex>
-      </div>
-    )
-  }
+      {/* 交叉轴拉伸 */}
+      <Flex alignStretch>
+        <Flex style={{ width: '50px' }}>1<br/>2</Flex>
+        <Flex style={{ width: '50px' }}>1<br/>2<br/>3</Flex>
+      </Flex>
+    </div>
+  )
 }
 
 export default FlexWrap
@@ -133,26 +127,24 @@ export default FlexWrap
 import React from 'react'
 import Flex from 'react-mgm/lib/component/flex'
 
-class FlexWrap extends React.Component {
-  render() {
-    return (
-      <div>
-        {/* 固定宽度，不会被压缩 */}
-        <Flex>
-          <Flex width="100px" className="border">100px</Flex>
-          <Flex width="100px" className="border">100px</Flex>
-          <Flex width="100px" className="border">100px</Flex>
-        </Flex>
+function FlexWrap() {
+  return (
+    <div>
+      {/* 固定宽度，不会被压缩 */}
+      <Flex>
+        <Flex width="100px" className="border">100px</Flex>
+        <Flex width="100px" className="border">100px</Flex>
+        <Flex width="100px" className="border">100px</Flex>
+      </Flex>
 
-        {/* 换行 */}
-        <Flex wrap>
-          <Flex width="100px" className="border">100px</Flex>
-          <Flex width="100px" className="border">100px</Flex>
-          <Flex width="100px" className="border">100px</Flex>
-        </Flex>
-      </div>
-    )
-  }
+      {/* 换行 */}
+      <Flex wrap>
+        <Flex width="100px" className="border">100px</Flex>
+        <Flex width="100px" className="border">100px</Flex>
+        <Flex width="100px" className="border">100px</Flex>
+      </Flex>
+    </div>
+  )
 }
 
 export default FlexWrap

@@ -35,24 +35,24 @@ import SearchBar from 'react-mgm/search_bar'
 ### 基本用法（取消按钮模式）
 
 ```jsx
-class Demo extends React.Component {
-  state = { value: '' }
+import React, { useState } from 'react'
 
-  handleChange = (value) => {
-    this.setState({ value })
+function Demo() {
+  const [value, setValue] = useState('')
+
+  const handleChange = (value) => {
+    setValue(value)
   }
 
-  render () {
-    return (
-      <SearchBar
-        placeholder='搜索商品'
-        value={this.state.value}
-        onChange={this.handleChange}
-        onOK={() => console.log('ok')}
-        onCancel={() => console.log('cancel')}
-      />
-    )
-  }
+  return (
+    <SearchBar
+      placeholder='搜索商品'
+      value={value}
+      onChange={handleChange}
+      onOK={() => console.log('ok')}
+      onCancel={() => console.log('cancel')}
+    />
+  )
 }
 ```
 
@@ -61,8 +61,8 @@ class Demo extends React.Component {
 ```jsx
 <SearchBar
   placeholder='搜索商品'
-  value={this.state.value}
-  onChange={this.handleChange}
+  value={value}
+  onChange={handleChange}
   OKBtn
   defaultFocus
 />
@@ -72,8 +72,8 @@ class Demo extends React.Component {
 
 ```jsx
 <SearchBar
-  value={this.state.value}
-  onChange={this.handleChange}
+  value={value}
+  onChange={handleChange}
   OKBtn='查询'
 />
 ```

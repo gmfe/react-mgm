@@ -66,38 +66,38 @@ Popup.hide()
 ### 从左侧弹出
 
 ```jsx
-class Demo extends React.Component {
-  state = { show: false }
+import React, { useState } from 'react'
 
-  render() {
-    return (
-      <div>
-        <button onClick={() => this.setState({ show: true })}>打开左侧弹出层</button>
-        <Popup left width="80%" show={this.state.show} onHide={() => this.setState({ show: false })}>
-          <div>左侧弹出内容</div>
-        </Popup>
-      </div>
-    )
-  }
+function Demo() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <div>
+      <button onClick={() => setShow(true)}>打开左侧弹出层</button>
+      <Popup left width="80%" show={show} onHide={() => setShow(false)}>
+        <div>左侧弹出内容</div>
+      </Popup>
+    </div>
+  )
 }
 ```
 
 ### 从底部弹出
 
 ```jsx
-class Demo extends React.Component {
-  state = { show: false }
+import React, { useState } from 'react'
 
-  render() {
-    return (
-      <div>
-        <button onClick={() => this.setState({ show: true })}>打开底部弹出层</button>
-        <Popup bottom height="300px" opacity={0.8} show={this.state.show} onHide={() => this.setState({ show: false })}>
-          <div>底部弹出内容</div>
-        </Popup>
-      </div>
-    )
-  }
+function Demo() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <div>
+      <button onClick={() => setShow(true)}>打开底部弹出层</button>
+      <Popup bottom height="300px" opacity={0.8} show={show} onHide={() => setShow(false)}>
+        <div>底部弹出内容</div>
+      </Popup>
+    </div>
+  )
 }
 ```
 

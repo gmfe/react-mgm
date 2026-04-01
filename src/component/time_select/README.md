@@ -33,44 +33,40 @@ import { TimeSelect } from 'react-mgm'
 ### 基础用法
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import moment from 'moment'
 import { TimeSelect } from 'react-mgm'
 
-class TimeSelectDemo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.data = [
-      {
-        name: '全天售卖',
-        value: 'ST2714',
-        text: '全天售卖',
-        receive_time_limit: { e_span_time: 1 },
-        type: 1
-      },
-      {
-        name: '预售运营时间',
-        value: 'ST2128',
-        text: '预售运营时间',
-        receive_time_limit: { e_span_time: 6 },
-        type: 2
-      }
-    ]
-    this.state = {
-      selected: this.data[0],
-      time: {
-        begin: moment().toDate(),
-        end: moment().toDate()
-      }
-    }
+const data = [
+  {
+    name: '全天售卖',
+    value: 'ST2714',
+    text: '全天售卖',
+    receive_time_limit: { e_span_time: 1 },
+    type: 1
+  },
+  {
+    name: '预售运营时间',
+    value: 'ST2128',
+    text: '预售运营时间',
+    receive_time_limit: { e_span_time: 6 },
+    type: 2
+  }
+]
+
+function TimeSelectDemo() {
+  const [selected, setSelected] = useState(data[0])
+  const [time, setTime] = useState({
+    begin: moment().toDate(),
+    end: moment().toDate()
+  })
+
+  const handleChange = ({ time, selected }) => {
+    if (time) setTime(time)
+    if (selected) setSelected(selected)
   }
 
-  handleChange = ({ time, selected }) => {
-    if (time) this.setState({ time })
-    if (selected) this.setState({ selected })
-  }
-
-  getRange = (selected) => {
+  const getRange = (selected) => {
     const { e_span_time } = selected.receive_time_limit
     return {
       min: moment().add(-(30 - e_span_time), 'day').toDate(),
@@ -78,22 +74,18 @@ class TimeSelectDemo extends React.Component {
     }
   }
 
-  render() {
-    const { time, selected } = this.state
-    return (
-      <TimeSelect
-        title='选择时间'
-        text={this.renderText()}
-        type={1}
-        begin={time.begin}
-        end={time.end}
-        data={this.data}
-        selected={selected}
-        onChange={this.handleChange}
-        getRange={this.getRange}
-      />
-    )
-  }
+  return (
+    <TimeSelect
+      title='选择时间'
+      type={1}
+      begin={time.begin}
+      end={time.end}
+      data={data}
+      selected={selected}
+      onChange={handleChange}
+      getRange={getRange}
+    />
+  )
 }
 ```
 

@@ -51,15 +51,13 @@ const style = {
   color: 'white'
 }
 
-class SliderLessDemo extends React.Component {
-  render() {
-    return (
-      <SliderLess>
-        <div style={style}>页面 1</div>
-        <div style={style}>页面 2</div>
-      </SliderLess>
-    )
-  }
+function SliderLessDemo () {
+  return (
+    <SliderLess>
+      <div style={style}>页面 1</div>
+      <div style={style}>页面 2</div>
+    </SliderLess>
+  )
 }
 ```
 
