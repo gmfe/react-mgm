@@ -29,18 +29,16 @@ import Button from 'react-mgm/button'
 点击按钮后自动 loading，2 秒后恢复：
 
 ```jsx
-class Demo extends React.Component {
-  handleClick () {
+function Demo () {
+  const handleClick = () => {
     return new Promise(resolve => setTimeout(() => resolve('done'), 2000))
   }
 
-  render () {
-    return (
-      <Button className='weui-btn weui-btn_default' onClick={this.handleClick}>
-        点击加载
-      </Button>
-    )
-  }
+  return (
+    <Button className='weui-btn weui-btn_default' onClick={handleClick}>
+      点击加载
+    </Button>
+  )
 }
 ```
 

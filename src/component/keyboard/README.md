@@ -35,54 +35,40 @@ import { Keyboard } from 'react-mgm'
 ### 基础用法
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import { Keyboard } from 'react-mgm'
 
-class KeyboardDemo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: ''
-    }
-  }
+function KeyboardDemo() {
+  const [value, setValue] = useState('')
 
-  render() {
-    return (
-      <Keyboard
-        value={this.state.value}
-        onChange={value => this.setState({ value })}
-        onSubmit={() => console.log('提交：', this.state.value)}
-      />
-    )
-  }
+  return (
+    <Keyboard
+      value={value}
+      onChange={setValue}
+      onSubmit={() => console.log('提交：', value)}
+    />
+  )
 }
 ```
 
 ### 带自定义按钮
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import { Keyboard } from 'react-mgm'
 
-class KeyboardDemo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: ''
-    }
-  }
+function KeyboardDemo() {
+  const [value, setValue] = useState('')
 
-  render() {
-    return (
-      <Keyboard
-        value={this.state.value}
-        onChange={value => this.setState({ value })}
-        onSubmit={() => console.log('提交：', this.state.value)}
-        btnOne={{ text: '+', onClick: () => console.log('加号') }}
-        btnTwo={{ text: '-', onClick: () => console.log('减号') }}
-      />
-    )
-  }
+  return (
+    <Keyboard
+      value={value}
+      onChange={setValue}
+      onSubmit={() => console.log('提交：', value)}
+      btnOne={{ text: '+', onClick: () => console.log('加号') }}
+      btnTwo={{ text: '-', onClick: () => console.log('减号') }}
+    />
+  )
 }
 ```
 

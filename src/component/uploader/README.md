@@ -27,58 +27,70 @@ import Uploader from 'react-mgm/lib/uploader'
 import React from 'react'
 import Uploader from 'react-mgm/lib/uploader'
 
-class Demo extends React.Component {
-  handleUpload = (files) => {
+function Demo() {
+  const handleUpload = (files) => {
     console.log(files)
     // files[0].preview 为本地预览 URL
     // files[0] 为原始 File 对象
   }
 
-  render () {
-    return (
-      <Uploader onUpload={this.handleUpload} accept='image/*' />
-    )
-  }
+  return (
+    <Uploader onUpload={handleUpload} accept='image/*' />
+  )
 }
 ```
 
 ### 自定义上传按钮
 
 ```jsx
-<Uploader onUpload={this.handleUpload} accept='.xlsx'>
-  <button>选择 Excel 文件</button>
-</Uploader>
+function Demo() {
+  const handleUpload = (files) => {
+    console.log(files)
+  }
+
+  return (
+    <Uploader onUpload={handleUpload} accept='.xlsx'>
+      <button>选择 Excel 文件</button>
+    </Uploader>
+  )
+}
 ```
 
 ### 多文件上传
 
 ```jsx
-<Uploader onUpload={this.handleUpload} accept='image/*' multiple />
+function Demo() {
+  const handleUpload = (files) => {
+    console.log(files)
+  }
+
+  return (
+    <Uploader onUpload={handleUpload} accept='image/*' multiple />
+  )
+}
 ```
 
 ### 显示图片预览
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import Uploader from 'react-mgm/lib/uploader'
 
-class Demo extends React.Component {
-  state = { preview: '' }
+function Demo() {
+  const [preview, setPreview] = useState('')
 
-  handleUpload = (files) => {
-    this.setState({ preview: files[0].preview })
+  const handleUpload = (files) => {
+    setPreview(files[0].preview)
   }
 
-  render () {
-    return (
-      <div>
-        <Uploader onUpload={this.handleUpload} accept='image/*' />
-        {this.state.preview && (
-          <img style={{ maxWidth: '100%' }} src={this.state.preview} alt='preview' />
-        )}
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Uploader onUpload={handleUpload} accept='image/*' />
+      {preview && (
+        <img style={{ maxWidth: '100%' }} src={preview} alt='preview' />
+      )}
+    </div>
+  )
 }
 ```
 

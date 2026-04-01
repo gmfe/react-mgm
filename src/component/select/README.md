@@ -48,46 +48,45 @@ import Select from 'react-mgm/select'
 ### 组件方式
 
 ```jsx
-class Demo extends React.Component {
-  state = {
-    show: false,
-    data: [
-      { value: 1, text: '深圳' },
-      { value: 2, text: '罗湖' },
-      { value: 3, text: '南山' },
-      { value: 4, text: '宝安' }
-    ],
-    value: null
+import React, { useState } from 'react'
+
+function Demo() {
+  const [show, setShow] = useState(false)
+  const [data] = useState([
+    { value: 1, text: '深圳' },
+    { value: 2, text: '罗湖' },
+    { value: 3, text: '南山' },
+    { value: 4, text: '宝安' }
+  ])
+  const [value, setValue] = useState(null)
+
+  const handleChange = (value) => {
+    setValue(value)
+    setShow(false)
   }
 
-  handleChange = (value) => {
-    this.setState({ value, show: false })
-  }
-
-  render () {
-    return (
-      <div>
-        <button onClick={() => this.setState({ show: true })}>选择</button>
-        <Select
-          show={this.state.show}
-          data={this.state.data}
-          value={this.state.value}
-          onChange={this.handleChange}
-        />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <button onClick={() => setShow(true)}>选择</button>
+      <Select
+        show={show}
+        data={data}
+        value={value}
+        onChange={handleChange}
+      />
+    </div>
+  )
 }
 ```
 
 ### 静态方法方式
 
 ```jsx
-const { data, value } = this.state
+const [value, setValue] = useState(null)
 
 Select.render({ data, value }).then(v => {
   console.log(v) // 选中项的 value
-  this.setState({ value: v })
+  setValue(v)
 })
 ```
 

@@ -28,49 +28,40 @@ import { Counter } from 'react-mgm'
 ### 基础用法
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import { Counter } from 'react-mgm'
 
-class CounterDemo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      amount: 9,
-      maxAmount: 999
-    }
+function CounterDemo() {
+  const [amount, setAmount] = useState(9)
+  const maxAmount = 999
+
+  const handleCountMinus = (amount) => {
+    setAmount(amount)
   }
 
-  handleCountMinus = (amount) => {
-    this.setState({ amount })
+  const handleCountPlus = (amount) => {
+    setAmount(amount)
   }
 
-  handleCountPlus = (amount) => {
-    this.setState({ amount })
+  const handleCountNumEdit = (val) => {
+    if (val > maxAmount) val = maxAmount
+    setAmount(val)
   }
 
-  handleCountNumEdit = (amount) => {
-    const { maxAmount } = this.state
-    if (amount > maxAmount) amount = maxAmount
-    this.setState({ amount })
+  const handleCountInputBlur = (amount) => {
+    setAmount(amount)
   }
 
-  handleCountInputBlur = (amount) => {
-    this.setState({ amount })
-  }
-
-  render() {
-    const { amount, maxAmount } = this.state
-    return (
-      <Counter
-        amount={amount}
-        onCountMinus={this.handleCountMinus}
-        onCountPlus={this.handleCountPlus}
-        onCountNumEdit={this.handleCountNumEdit}
-        onCountInputBlur={this.handleCountInputBlur}
-        isPlusDisabled={amount >= maxAmount}
-      />
-    )
-  }
+  return (
+    <Counter
+      amount={amount}
+      onCountMinus={handleCountMinus}
+      onCountPlus={handleCountPlus}
+      onCountNumEdit={handleCountNumEdit}
+      onCountInputBlur={handleCountInputBlur}
+      isPlusDisabled={amount >= maxAmount}
+    />
+  )
 }
 ```
 

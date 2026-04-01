@@ -53,16 +53,14 @@ const style = {
   color: 'white'
 }
 
-class SliderDemo extends React.Component {
-  render() {
-    return (
-      <Slider>
-        <div style={style}>页面 1</div>
-        <div style={style}>页面 2</div>
-        <div style={style}>页面 3</div>
-      </Slider>
-    )
-  }
+function SliderDemo () {
+  return (
+    <Slider>
+      <div style={style}>页面 1</div>
+      <div style={style}>页面 2</div>
+      <div style={style}>页面 3</div>
+    </Slider>
+  )
 }
 ```
 

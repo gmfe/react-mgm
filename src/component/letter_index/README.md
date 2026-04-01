@@ -44,7 +44,7 @@ import { LetterIndex, LetterIndexMultiple } from 'react-mgm'
 ### 单选模式
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import { LetterIndex } from 'react-mgm'
 
 // 获取首字母的工具函数，需自行引入或实现
@@ -53,28 +53,26 @@ const getFirstLetter = (text) => {
   return pinyin(text)[0][0].toUpperCase()
 }
 
-class Demo extends React.Component {
-  state = { selected: null }
+const data = [
+  { value: 1, text: '北京' },
+  { value: 2, text: '上海' },
+  { value: 3, text: '广州' },
+  { value: 4, text: '深圳' }
+]
 
-  data = [
-    { value: 1, text: '北京' },
-    { value: 2, text: '上海' },
-    { value: 3, text: '广州' },
-    { value: 4, text: '深圳' }
-  ]
+function Demo() {
+  const [selected, setSelected] = useState(null)
 
-  render () {
-    return (
-      <div style={{ height: '500px' }}>
-        <LetterIndex
-          data={this.data}
-          selected={this.state.selected}
-          onSelect={(item) => this.setState({ selected: item })}
-          getFirstLetter={getFirstLetter}
-        />
-      </div>
-    )
-  }
+  return (
+    <div style={{ height: '500px' }}>
+      <LetterIndex
+        data={data}
+        selected={selected}
+        onSelect={(item) => setSelected(item)}
+        getFirstLetter={getFirstLetter}
+      />
+    </div>
+  )
 }
 ```
 
@@ -84,27 +82,25 @@ class Demo extends React.Component {
 import React from 'react'
 import { LetterIndexMultiple } from 'react-mgm'
 
-class Demo extends React.Component {
-  handleSelect = (selected) => {
+function Demo() {
+  const handleSelect = (selected) => {
     console.log('选中的值:', selected)
   }
 
-  handleCancel = () => {
+  const handleCancel = () => {
     console.log('取消选择')
   }
 
-  render () {
-    return (
-      <div style={{ height: '500px' }}>
-        <LetterIndexMultiple
-          data={this.data}
-          onSelect={this.handleSelect}
-          onCancel={this.handleCancel}
-          getFirstLetter={getFirstLetter}
-        />
-      </div>
-    )
-  }
+  return (
+    <div style={{ height: '500px' }}>
+      <LetterIndexMultiple
+        data={data}
+        onSelect={handleSelect}
+        onCancel={handleCancel}
+        getFirstLetter={getFirstLetter}
+      />
+    </div>
+  )
 }
 ```
 

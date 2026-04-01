@@ -113,33 +113,31 @@ import { Cells, CellsTitle, CellsTips, Cell, CellHeader, CellBody, CellFooter, C
 import React from 'react'
 import { CellsTitle, Cells, Cell, CellBody, CellFooter, CellHeader } from 'react-mgm'
 
-class Demo extends React.Component {
-  render () {
-    return (
-      <div>
-        <CellsTitle>列表标题</CellsTitle>
-        <Cells>
-          <Cell>
-            <CellBody>正文</CellBody>
-          </Cell>
-          <Cell>
-            <CellBody>正文</CellBody>
-            <CellFooter>辅助文字</CellFooter>
-          </Cell>
-          <Cell>
-            <CellHeader>图标</CellHeader>
-            <CellBody>带图标的单元格</CellBody>
-            <CellFooter>说明文字</CellFooter>
-          </Cell>
-          <Cell access onClick={() => alert('clicked')}>
-            <CellBody>点击可跳转</CellBody>
-            <CellFooter />
-          </Cell>
-        </Cells>
-        <CellsTips>底部提示信息</CellsTips>
-      </div>
-    )
-  }
+function Demo () {
+  return (
+    <div>
+      <CellsTitle>列表标题</CellsTitle>
+      <Cells>
+        <Cell>
+          <CellBody>正文</CellBody>
+        </Cell>
+        <Cell>
+          <CellBody>正文</CellBody>
+          <CellFooter>辅助文字</CellFooter>
+        </Cell>
+        <Cell>
+          <CellHeader>图标</CellHeader>
+          <CellBody>带图标的单元格</CellBody>
+          <CellFooter>说明文字</CellFooter>
+        </Cell>
+        <Cell access onClick={() => alert('clicked')}>
+          <CellBody>点击可跳转</CellBody>
+          <CellFooter />
+        </Cell>
+      </Cells>
+      <CellsTips>底部提示信息</CellsTips>
+    </div>
+  )
 }
 ```
 
@@ -149,33 +147,31 @@ class Demo extends React.Component {
 import React from 'react'
 import { CellsTitle, Cells, CellSwipe } from 'react-mgm'
 
-class Demo extends React.Component {
-  render () {
-    return (
-      <div>
-        <CellsTitle>左滑操作</CellsTitle>
-        <Cells>
-          <CellSwipe
-            bodyText='可左滑的单元格'
-            footerText='辅助说明'
-            onClick={() => alert('clicked')}
-            right={[
-              {
-                text: '删除',
-                onClick: (close) => { alert('删除'); close() },
-                style: { background: 'red' }
-              },
-              {
-                text: '编辑',
-                onClick: (close) => { alert('编辑'); close() },
-                style: { background: 'blue' }
-              }
-            ]}
-          />
-        </Cells>
-      </div>
-    )
-  }
+function Demo () {
+  return (
+    <div>
+      <CellsTitle>左滑操作</CellsTitle>
+      <Cells>
+        <CellSwipe
+          bodyText='可左滑的单元格'
+          footerText='辅助说明'
+          onClick={() => alert('clicked')}
+          right={[
+            {
+              text: '删除',
+              onClick: (close) => { alert('删除'); close() },
+              style: { background: 'red' }
+            },
+            {
+              text: '编辑',
+              onClick: (close) => { alert('编辑'); close() },
+              style: { background: 'blue' }
+            }
+          ]}
+        />
+      </Cells>
+    </div>
+  )
 }
 ```
 

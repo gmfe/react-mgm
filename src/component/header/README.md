@@ -25,25 +25,23 @@ import Header from 'react-mgm/lib/component/header'
 ## 示例
 
 ```jsx
-import React from 'react'
+import React, { useCallback } from 'react'
 import Header from 'react-mgm/lib/component/header'
 
-class HeaderWrap extends React.Component {
-  handleBack = () => {
+function HeaderWrap() {
+  const handleBack = useCallback(() => {
     window.history.back()
-  }
+  }, [])
 
-  render() {
-    return (
-      <div>
-        <Header
-          title="页面标题"
-          onBack={this.handleBack}
-          right={<span className="text-14">更多</span>}
-        />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Header
+        title="页面标题"
+        onBack={handleBack}
+        right={<span className="text-14">更多</span>}
+      />
+    </div>
+  )
 }
 
 export default HeaderWrap

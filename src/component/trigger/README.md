@@ -34,22 +34,18 @@ import Trigger from 'react-mgm/lib/trigger'
 import React from 'react'
 import Trigger from 'react-mgm/lib/trigger'
 
-class Demo extends React.Component {
-  renderPopup () {
-    return (
-      <div style={{ width: '200px', padding: '10px', background: '#fff', border: '1px solid #ddd' }}>
-        <div>弹出内容</div>
-      </div>
-    )
-  }
+function Demo () {
+  const renderPopup = () => (
+    <div style={{ width: '200px', padding: '10px', background: '#fff', border: '1px solid #ddd' }}>
+      <div>弹出内容</div>
+    </div>
+  )
 
-  render () {
-    return (
-      <Trigger component={<div />} popup={this.renderPopup()}>
-        <button>点击触发（默认）</button>
-      </Trigger>
-    )
-  }
+  return (
+    <Trigger component={<div />} popup={renderPopup()}>
+      <button>点击触发（默认）</button>
+    </Trigger>
+  )
 }
 ```
 

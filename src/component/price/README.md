@@ -41,24 +41,22 @@ import Price from 'react-mgm/lib/price'
 import React from 'react'
 import Price from 'react-mgm/lib/price'
 
-class Demo extends React.Component {
-  render () {
-    return (
-      <div>
-        <Price value={100} />
-        {/* 输出: ¥100.00 */}
+function Demo() {
+  return (
+    <div>
+      <Price value={100} />
+      {/* 输出: ¥100.00 */}
 
-        <Price value={-12314} />
-        {/* 输出: -¥12,314.00 */}
+      <Price value={-12314} />
+      {/* 输出: -¥12,314.00 */}
 
-        <Price value={12345.678} />
-        {/* 输出: ¥12,345.68 */}
+      <Price value={12345.678} />
+      {/* 输出: ¥12,345.68 */}
 
-        <Price value={125345.6478} precision={3} />
-        {/* 输出: ¥125,345.648 */}
-      </div>
-    )
-  }
+      <Price value={125345.6478} precision={3} />
+      {/* 输出: ¥125,345.648 */}
+    </div>
+  )
 }
 ```
 

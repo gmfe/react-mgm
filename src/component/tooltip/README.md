@@ -27,21 +27,19 @@ import React from 'react'
 import Tooltip from 'react-mgm/lib/tooltip'
 import Trigger from 'react-mgm/lib/trigger'
 
-class Demo extends React.Component {
-  render () {
-    return (
-      <Trigger
-        component={<div />}
-        popup={
-          <Tooltip>
-            这是一个提示信息
-          </Tooltip>
-        }
-      >
-        <button>悬浮查看提示</button>
-      </Trigger>
-    )
-  }
+function Demo () {
+  return (
+    <Trigger
+      component={<div />}
+      popup={
+        <Tooltip>
+          这是一个提示信息
+        </Tooltip>
+      }
+    >
+      <button>悬浮查看提示</button>
+    </Trigger>
+  )
 }
 ```
 
@@ -52,40 +50,38 @@ import React from 'react'
 import Tooltip from 'react-mgm/lib/tooltip'
 import Trigger from 'react-mgm/lib/trigger'
 
-class Demo extends React.Component {
-  render () {
-    return (
-      <div>
-        {/* 左下角 */}
-        <Trigger component={<div />} popup={
-          <Tooltip placement='bottomLeft'>bottomLeft 提示</Tooltip>
-        }>
-          <button>bottomLeft</button>
-        </Trigger>
+function Demo () {
+  return (
+    <div>
+      {/* 左下角 */}
+      <Trigger component={<div />} popup={
+        <Tooltip placement='bottomLeft'>bottomLeft 提示</Tooltip>
+      }>
+        <button>bottomLeft</button>
+      </Trigger>
 
-        {/* 右下角（默认） */}
-        <Trigger component={<div />} right adjustX={20} popup={
-          <Tooltip placement='bottomRight'>bottomRight 提示</Tooltip>
-        }>
-          <button>bottomRight</button>
-        </Trigger>
+      {/* 右下角（默认） */}
+      <Trigger component={<div />} right adjustX={20} popup={
+        <Tooltip placement='bottomRight'>bottomRight 提示</Tooltip>
+      }>
+        <button>bottomRight</button>
+      </Trigger>
 
-        {/* 左上角 */}
-        <Trigger component={<div />} top popup={
-          <Tooltip placement='topLeft'>topLeft 提示</Tooltip>
-        }>
-          <button>topLeft</button>
-        </Trigger>
+      {/* 左上角 */}
+      <Trigger component={<div />} top popup={
+        <Tooltip placement='topLeft'>topLeft 提示</Tooltip>
+      }>
+        <button>topLeft</button>
+      </Trigger>
 
-        {/* 右上角 */}
-        <Trigger component={<div />} top right adjustX={20} popup={
-          <Tooltip placement='topRight'>topRight 提示</Tooltip>
-        }>
-          <button>topRight</button>
-        </Trigger>
-      </div>
-    )
-  }
+      {/* 右上角 */}
+      <Trigger component={<div />} top right adjustX={20} popup={
+        <Tooltip placement='topRight'>topRight 提示</Tooltip>
+      }>
+        <button>topRight</button>
+      </Trigger>
+    </div>
+  )
 }
 ```
 

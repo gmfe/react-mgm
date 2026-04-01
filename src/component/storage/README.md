@@ -38,36 +38,34 @@ Storage 也可作为 React 组件使用，在挂载时自动保存数据。
 import React from 'react'
 import Storage from 'react-mgm/lib/storage'
 
-class Demo extends React.Component {
-  handleSet () {
+function Demo() {
+  const handleSet = () => {
     Storage.set('demo-key', { a: 'hello', b: 'world', c: null })
   }
 
-  handleGet () {
+  const handleGet = () => {
     const value = Storage.get('demo-key')
     console.log(value)
     // 输出: { a: 'hello', b: 'world', c: null }
   }
 
-  handleRemove () {
+  const handleRemove = () => {
     Storage.remove('demo-key')
   }
 
-  handleGetAll () {
+  const handleGetAll = () => {
     const all = Storage.getAll()
     console.log(all)
   }
 
-  render () {
-    return (
-      <div>
-        <button onClick={this.handleSet}>存储数据</button>
-        <button onClick={this.handleGet}>读取数据</button>
-        <button onClick={this.handleRemove}>删除数据</button>
-        <button onClick={this.handleGetAll}>获取全部</button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <button onClick={handleSet}>存储数据</button>
+      <button onClick={handleGet}>读取数据</button>
+      <button onClick={handleRemove}>删除数据</button>
+      <button onClick={handleGetAll}>获取全部</button>
+    </div>
+  )
 }
 ```
 
@@ -78,15 +76,13 @@ import React from 'react'
 import Storage from 'react-mgm/lib/storage'
 
 // 在页面挂载时自动存储配置
-class Demo extends React.Component {
-  render () {
-    return (
-      <div>
-        <Storage name='app-config' value={{ theme: 'dark', lang: 'zh' }} />
-        {/* 组件不渲染任何 DOM */}
-      </div>
-    )
-  }
+function Demo() {
+  return (
+    <div>
+      <Storage name='app-config' value={{ theme: 'dark', lang: 'zh' }} />
+      {/* 组件不渲染任何 DOM */}
+    </div>
+  )
 }
 ```
 

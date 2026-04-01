@@ -35,7 +35,7 @@ import List from 'react-mgm/lib/component/list'
 ### 单选列表
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import List from 'react-mgm/lib/component/list'
 
 const data = [
@@ -44,26 +44,17 @@ const data = [
   { value: '3', text: '选项三' }
 ]
 
-class ListWrap extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { selected: '1' }
-  }
+function ListWrap() {
+  const [selected, setSelected] = useState('1')
 
-  handleSelect = (value) => {
-    this.setState({ selected: value })
-  }
-
-  render() {
-    return (
-      <List
-        data={data}
-        selected={this.state.selected}
-        onSelect={this.handleSelect}
-        style={{ height: '300px', overflow: 'auto' }}
-      />
-    )
-  }
+  return (
+    <List
+      data={data}
+      selected={selected}
+      onSelect={setSelected}
+      style={{ height: '300px', overflow: 'auto' }}
+    />
+  )
 }
 
 export default ListWrap
@@ -72,7 +63,7 @@ export default ListWrap
 ### 多选列表
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import List from 'react-mgm/lib/component/list'
 
 const data = [
@@ -81,26 +72,17 @@ const data = [
   { value: '3', text: '选项三' }
 ]
 
-class ListWrap extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { selected: ['1'] }
-  }
+function ListWrap() {
+  const [selected, setSelected] = useState(['1'])
 
-  handleSelect = (selected) => {
-    this.setState({ selected })
-  }
-
-  render() {
-    return (
-      <List
-        data={data}
-        selected={this.state.selected}
-        onSelect={this.handleSelect}
-        multiple
-      />
-    )
-  }
+  return (
+    <List
+      data={data}
+      selected={selected}
+      onSelect={setSelected}
+      multiple
+    />
+  )
 }
 
 export default ListWrap
@@ -129,16 +111,14 @@ const groupData = [
   }
 ]
 
-class ListWrap extends React.Component {
-  render() {
-    return (
-      <List
-        data={groupData}
-        isGroupList
-        onSelect={(value) => console.log(value)}
-      />
-    )
-  }
+function ListWrap() {
+  return (
+    <List
+      data={groupData}
+      isGroupList
+      onSelect={(value) => console.log(value)}
+    />
+  )
 }
 
 export default ListWrap

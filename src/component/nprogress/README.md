@@ -32,23 +32,21 @@ NProgress.done()
 ### 基本用法
 
 ```jsx
-class Demo extends React.Component {
-  handleStart = () => {
+function Demo() {
+  const handleStart = () => {
     NProgress.start()
   }
 
-  handleDone = () => {
+  const handleDone = () => {
     NProgress.done()
   }
 
-  render() {
-    return (
-      <div>
-        <button onClick={this.handleStart}>开始</button>
-        <button onClick={this.handleDone}>完成</button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <button onClick={handleStart}>开始</button>
+      <button onClick={handleDone}>完成</button>
+    </div>
+  )
 }
 ```
 

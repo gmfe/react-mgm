@@ -32,25 +32,23 @@ import InputNumber from 'react-mgm/input/input.number'
 ### 基本用法
 
 ```jsx
-class Demo extends React.Component {
-  state = { value: '' }
+function Demo () {
+  const [value, setValue] = useState('')
 
-  handleChange = (value) => {
-    this.setState({ value })
+  const handleChange = (value) => {
+    setValue(value)
   }
 
-  render () {
-    return (
-      <InputNumber
-        value={this.state.value}
-        onChange={this.handleChange}
-        max={99.99}
-        min={0}
-        precision={2}
-        placeholder='请输入金额'
-      />
-    )
-  }
+  return (
+    <InputNumber
+      value={value}
+      onChange={handleChange}
+      max={99.99}
+      min={0}
+      precision={2}
+      placeholder='请输入金额'
+    />
+  )
 }
 ```
 
@@ -58,8 +56,8 @@ class Demo extends React.Component {
 
 ```jsx
 <InputNumber
-  value={this.state.value}
-  onChange={this.handleChange}
+  value={value}
+  onChange={handleChange}
   minus
   precision={3}
 />

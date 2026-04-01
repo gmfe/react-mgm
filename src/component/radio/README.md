@@ -28,27 +28,25 @@ import Radio from 'react-mgm/radio'
 ### 基本用法
 
 ```jsx
-class Demo extends React.Component {
-  state = { value: 'a' }
+function Demo () {
+  const [value, setValue] = useState('a')
 
-  render () {
-    return (
-      <div>
-        <Radio
-          checked={this.state.value === 'a'}
-          onChange={() => this.setState({ value: 'a' })}
-        >
-          选项 A
-        </Radio>
-        <Radio
-          checked={this.state.value === 'b'}
-          onChange={() => this.setState({ value: 'b' })}
-        >
-          选项 B
-        </Radio>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Radio
+        checked={value === 'a'}
+        onChange={() => setValue('a')}
+      >
+        选项 A
+      </Radio>
+      <Radio
+        checked={value === 'b'}
+        onChange={() => setValue('b')}
+      >
+        选项 B
+      </Radio>
+    </div>
+  )
 }
 ```
 

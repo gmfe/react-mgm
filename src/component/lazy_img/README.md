@@ -29,33 +29,31 @@ import React from 'react'
 import Page from 'react-mgm/lib/component/page'
 import LazyImg from 'react-mgm/lib/component/lazy_img'
 
-class LazyImgWrap extends React.Component {
-  render() {
-    const gmLogo = 'https://example.com/logo.png'
-    const placeholder = 'https://example.com/placeholder.png'
+function LazyImgWrap() {
+  const gmLogo = 'https://example.com/logo.png'
+  const placeholder = 'https://example.com/placeholder.png'
 
-    return (
-      <Page>
-        {/* 第一张图片，在可视区域内直接加载 */}
-        <LazyImg
-          placeholder={placeholder}
-          src={gmLogo}
-        />
+  return (
+    <Page>
+      {/* 第一张图片，在可视区域内直接加载 */}
+      <LazyImg
+        placeholder={placeholder}
+        src={gmLogo}
+      />
 
-        {/* 占位空间，模拟长页面 */}
-        <div style={{ height: '900px' }}>滚动到下面看图片</div>
+      {/* 占位空间，模拟长页面 */}
+      <div style={{ height: '900px' }}>滚动到下面看图片</div>
 
-        {/* 第二张图片，滚动到可视区域时加载 */}
-        <LazyImg
-          placeholder={placeholder}
-          src={gmLogo}
-        />
+      {/* 第二张图片，滚动到可视区域时加载 */}
+      <LazyImg
+        placeholder={placeholder}
+        src={gmLogo}
+      />
 
-        {/* 第三张图片，无占位图 */}
-        <LazyImg src={gmLogo} />
-      </Page>
-    )
-  }
+      {/* 第三张图片，无占位图 */}
+      <LazyImg src={gmLogo} />
+    </Page>
+  )
 }
 
 export default LazyImgWrap
